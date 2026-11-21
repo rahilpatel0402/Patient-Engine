@@ -80,30 +80,60 @@ export function saveBlindLabels(set: string, labels: Record<string, HiddenSign>)
   return { saved: out.length, verdicts };
 }
 
+export type AgreementRow = {
+  key: string;
+  id: string;
+  intended: HiddenSign;
+  heard: HiddenSign;
+  /** What the automatic gate did on its own: kept the clip, left it out, or handed it to the physician. */
+  gate: "kept" | "not kept" | "deferred";
+  gate_by: string;
+  /** Null when the gate deferred, because then it made no call to agree or disagree with. */
+  agrees_with_gate: boolean | null;
+};
+
 export type Agreement = {
   labelled: number;
   /** Physician heard the sign the clip was written to have. */
   with_intended: number;
-  /** Physician and the gate agree on whether the intended sign is really there. */
+  /** Clips where the automatic gate made its own call, and how many of those the physician agreed with. */
+  gate_decided: number;
   with_gate: number;
-  rows: { key: string; id: string; intended: HiddenSign; heard: HiddenSign; gate_kept: boolean; gate_by: string; agrees_with_gate: boolean }[];
+  /** Clips the automatic gate handed to the physician, and how many of those the physician passed. */
+  deferred: number;
+  deferred_passed: number;
+  rows: AgreementRow[];
 };
 
 /** How the blind labels compare with the intended sign and with the automatic gate. */
 export function agreement(set: string): Agreement {
   const patients = new Map(loadSet(set).map((p) => [p.id, p]));
-  const rows = blindLabels(set).flatMap((l) => {
+  const rows: AgreementRow[] = blindLabels(set).flatMap((l) => {
     const p = patients.get(l.id);
     if (!p) return [];
     const heardIntended = l.heard === p.hidden_sign;
     // The gate's own opinion, before any physician verdict changed it.
+    const deferred = Boolean(p.gate.physician) && p.gate.auto?.decision === "review";
     const autoKept = p.gate.physician ? p.gate.auto?.decision === "keep" : p.gate.kept;
-    return [{ key: l.key, id: l.id, intended: p.hidden_sign, heard: l.heard, gate_kept: autoKept, gate_by: p.gate.physician ? "automatic listeners" : (p.gate.by ?? "probe"), agrees_with_gate: heardIntended === autoKept }];
+    return [
+      {
+        key: l.key,
+        id: l.id,
+        intended: p.hidden_sign,
+        heard: l.heard,
+        gate: deferred ? ("deferred" as const) : autoKept ? ("kept" as const) : ("not kept" as const),
+        gate_by: p.gate.physician ? "two listeners" : (p.gate.by ?? "probe"),
+        agrees_with_gate: deferred ? null : heardIntended === autoKept,
+      },
+    ];
   });
   return {
     labelled: rows.length,
     with_intended: rows.filter((r) => r.heard === r.intended).length,
-    with_gate: rows.filter((r) => r.agrees_with_gate).length,
+    gate_decided: rows.filter((r) => r.agrees_with_gate !== null).length,
+    with_gate: rows.filter((r) => r.agrees_with_gate === true).length,
+    deferred: rows.filter((r) => r.gate === "deferred").length,
+    deferred_passed: rows.filter((r) => r.gate === "deferred" && r.heard === r.intended).length,
     rows,
   };
 }

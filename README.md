@@ -16,7 +16,57 @@ Built solo at the Gemini 4 NYC hackathon on Saturday, November 21, 2026, for Pro
 
 <!-- results:start -->
 
-Exam results are sealed until the blind physician labels are saved. `scripts/write-results.ts` then writes this section from `results/listening.json`, so no number here is typed by hand.
+Carbon wrote 28 exam patients. 24 are in the test: 16 with a hidden sign and 8 healthy controls. 4 were left out by the gate, and their results are reported too.
+
+| Arm | What the clinician model is given | Hidden signs caught | False alarms on healthy controls |
+|---|---|---|---|
+| A. Transcript only | The transcript | 0 of 16 | 0 of 8 |
+| B. Raw audio | The raw audio | 12 of 16 (1 unclear) | 0 of 8 |
+| C. Transcript plus probes | The transcript, with seven probe probabilities from the Decisions API added | 15 of 16 | 0 of 8 (2 unclear) |
+
+3 graded notes were unclear to the grader. They are not counted as caught or as false alarms, and they are listed in the review queue.
+
+### By sign
+
+| Sign | Generated | In the test | Gate | A caught | B caught | C caught |
+|---|---|---|---|---|---|---|
+| Short of breath | 4 | 3 | probe | 0 of 3 | 3 of 3 | 3 of 3 |
+| Groaning or crying out | 4 | 4 | probe | 0 of 4 | 3 of 4 | 4 of 4 |
+| Coughing | 4 | 4 | probe | 0 of 4 | 3 of 4 (1 unclear) | 4 of 4 |
+| Tearful or frightened | 4 | 1 | probe | 0 of 1 | 1 of 1 | 1 of 1 |
+| Slurred speech | 4 | 4 | physician | 0 of 4 | 2 of 4 | 3 of 4 |
+
+A physician heard slurred speech in 4 of the 4 slurred clips that the automatic listeners could not settle. The Decisions API had scored those 4 between 0.35 and 0.70 on slurred speech, every one under the 0.80 pass mark used for the other signs.
+
+### How far before it broke
+
+| Rung | Signs the Decisions API still hears | A caught | B caught | C caught |  |
+|---|---|---|---|---|---|
+| Clean | 12 of 12 | 0 of 12 | 10 of 12 (1 unclear) | 12 of 12 |  |
+| Phone quality | 12 of 12 |  |  |  |  |
+| Room noise, voice 10 dB above it | 12 of 12 |  |  |  |  |
+| Room noise, voice 5 dB above it | 12 of 12 |  |  |  |  |
+| Room noise as loud as the voice | 12 of 12 | 0 of 12 | 9 of 12 | 12 of 12 | hardest rung that holds |
+| Room noise 5 dB above the voice | 7 of 12 | 0 of 12 | 4 of 12 | 9 of 12 | breaks here |
+| Room noise 10 dB above the voice | 2 of 12 |  |  |  |  |
+| Room noise 15 dB above the voice | 0 of 12 |  |  |  |  |
+
+At the hardest rung that still held, the raw audio arm caught 9 of 12 signs and the transcript plus probes arm caught 12 of 12. This table covers the probe-gated signs. The arms were run at the clean rung and at the two rungs a fixed rule picked.
+
+### Blind physician labels
+
+A physician heard 16 exam clips in random order with the sign hidden, before any exam result was shown. The physician named the sign the clip was written to have on 14 of 16. The automatic gate made its own call on 12 of the 16, and the physician agreed with it on 9. It handed the other 4 to the physician, who heard the sign in 4.
+
+### Same test, four Gemini 4 models as the clinician
+
+| Clinician model | A caught | B caught | C caught | False alarms on controls (A, B, C) |
+|---|---|---|---|---|
+| Gemini 4 Hydrogen (main run) | 0 of 16 | 12 of 16 (1 unclear) | 15 of 16 | 0 of 8 / 0 of 8 / 0 of 8 (2 unclear) |
+| Gemini 4 Neon | 0 of 16 | 13 of 16 | 15 of 16 (1 unclear) | 0 of 8 / 0 of 8 / 0 of 8 (1 unclear) |
+| Gemini 4 Argon | 0 of 16 | 14 of 16 (1 unclear) | 15 of 16 | 0 of 8 / 0 of 8 / 0 of 8 (2 unclear) |
+| Gemini 4 Carbon | 0 of 16 | 14 of 16 | 16 of 16 | 0 of 8 / 0 of 8 / 0 of 8 (1 unclear) |
+
+Full tables, the clips left out of the test, the pass mark table, and the review queue are in [results/listening.md](results/listening.md). The raw numbers are in [results/listening.json](results/listening.json).
 
 <!-- results:end -->
 

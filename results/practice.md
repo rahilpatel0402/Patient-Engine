@@ -1,6 +1,6 @@
 # Listening station results: practice set, written by Argon
 
-Written by `scripts/write-results.ts` on 2026-11-21 19:11 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
+Written by `scripts/write-results.ts` on 2026-11-21 19:50 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
 
 ## Clips
 
@@ -8,13 +8,13 @@ Written by `scripts/write-results.ts` on 2026-11-21 19:11 UTC from the saved run
 
 ## Result on the clips in the test
 
-| Arm | Hidden signs caught | Unclear, sent to physician review | False alarms on healthy controls |
-|---|---|---|---|
-| A. Transcript only | 0 of 6 | 0 | 0 of 2 |
-| B. Raw audio | 6 of 6 | 0 | 0 of 2 |
-| C. Transcript plus probes | 6 of 6 | 0 | 0 of 2 |
+| Arm | Hidden signs caught | False alarms on healthy controls |
+|---|---|---|
+| A. Transcript only | 0 of 6 | 0 of 2 |
+| B. Raw audio | 6 of 6 | 0 of 2 |
+| C. Transcript plus probes | 6 of 6 | 0 of 2 |
 
-An unclear grade is one where the grader was under 0.7 confident either way. It is not counted as caught.
+An unclear grade is one where the grader was under 0.7 confident either way. It is not counted as caught or as a false alarm, and it goes to physician review.
 
 ## By sign
 
@@ -70,8 +70,8 @@ The same clips were degraded step by step and never re-rendered: phone quality (
 | Room noise, voice 10 dB above it | 6 of 6 | 5 of 6 | 0 of 2 |  |  |  |  |
 | Room noise, voice 5 dB above it | 6 of 6 | 5 of 6 | 0 of 2 |  |  |  |  |
 | Room noise as loud as the voice | 6 of 6 | 5 of 6 | 0 of 2 |  |  |  |  |
-| Room noise 5 dB above the voice | 5 of 6 | 2 of 6 | 0 of 2 | 0 of 6 | 2 of 6 | 5 of 6 | hardest rung that holds |
-| Room noise 10 dB above the voice | 1 of 6 | 0 of 6 | 0 of 2 | 0 of 6 | 0 of 6 | 1 of 6 | breaks here |
+| Room noise 5 dB above the voice | 5 of 6 | 2 of 6 | 0 of 2 | 0 of 6 | 2 of 6 (1 unclear) | 5 of 6 | hardest rung that holds |
+| Room noise 10 dB above the voice | 1 of 6 | 0 of 6 | 0 of 2 | 0 of 6 | 0 of 6 (1 unclear) | 1 of 6 (1 unclear) | breaks here |
 | Room noise 15 dB above the voice | 0 of 6 | 0 of 6 | 0 of 2 |  |  |  |  |
 
 ## Same test, four Gemini 4 models as the clinician
@@ -80,10 +80,10 @@ Same clips, same prompts, same grader. Only the clinician model changes. Two row
 
 | Clinician model | A caught | B caught | C caught | False alarms on controls (A, B, C) |
 |---|---|---|---|---|
-| Gemini 4 Hydrogen (main run) | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
-| Gemini 4 Neon | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
-| Gemini 4 Argon | 0 of 6 | 5 of 6 | 6 of 6 | 0, 0, 0 of 2 |
-| Gemini 4 Carbon | 0 of 6 | 5 of 6 | 6 of 6 | 0, 0, 0 of 2 |
+| Gemini 4 Hydrogen (main run) | 0 of 6 | 6 of 6 | 6 of 6 | 0 of 2 / 0 of 2 / 0 of 2 |
+| Gemini 4 Neon | 0 of 6 | 6 of 6 | 6 of 6 | 0 of 2 / 0 of 2 / 0 of 2 |
+| Gemini 4 Argon | 0 of 6 | 5 of 6 | 6 of 6 | 0 of 2 / 0 of 2 / 0 of 2 (1 unclear) |
+| Gemini 4 Carbon | 0 of 6 | 5 of 6 (1 unclear) | 6 of 6 | 0 of 2 / 0 of 2 / 0 of 2 (1 unclear) |
 
 ## Physician review queue
 

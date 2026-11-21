@@ -4,8 +4,11 @@ import type { Comparison, Ladder } from "../../server/station1/report.ts";
 export type Agreement = {
   labelled: number;
   with_intended: number;
+  gate_decided: number;
   with_gate: number;
-  rows: { key: string; id: string; intended: HiddenSign; heard: HiddenSign; gate_kept: boolean; gate_by: string; agrees_with_gate: boolean }[];
+  deferred: number;
+  deferred_passed: number;
+  rows: { key: string; id: string; intended: HiddenSign; heard: HiddenSign; gate: "kept" | "not kept" | "deferred"; gate_by: string; agrees_with_gate: boolean | null }[];
 };
 export type SetData = {
   set: string;

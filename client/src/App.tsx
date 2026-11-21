@@ -136,7 +136,7 @@ function Exam({ view, sets, hasNoise, reload }: { view: "exam" | "results"; sets
           <LadderView data={current} />
           {current.agreement && (
             <p className="agree">
-              Blind physician labels: on {current.agreement.labelled} clips heard with the sign hidden, the physician named the intended sign on {current.agreement.with_intended} and agreed with the automatic gate on {current.agreement.with_gate}.
+              Blind physician labels: on {current.agreement.labelled} clips heard with the sign hidden, the physician named the intended sign on {current.agreement.with_intended}. The automatic gate made its own call on {current.agreement.gate_decided} of them, and the physician agreed with it on {current.agreement.with_gate}. It handed the other {current.agreement.deferred} to the physician, who heard the sign in {current.agreement.deferred_passed}.
             </p>
           )}
           <ComparisonView data={current} />
@@ -209,22 +209,24 @@ function Scoreboard({ data }: { data: SetData }) {
       <h2>Result of the listening test, {SET_NAME[data.set] ?? data.set}</h2>
       <div className="scorerow">
         {ARMS.map((arm) => {
-          const caught = signCases.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.caught).length;
-          const unclear = signCases.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.needs_review).length;
-          const alarms = controls.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.false_alarm).length;
+          const grade = (c: CaseResult) => c.arms.find((a) => a.arm === arm)?.grade;
+          const caught = signCases.filter((c) => grade(c)?.caught).length;
+          const signUnclear = signCases.filter((c) => grade(c)?.needs_review).length;
+          const alarms = controls.filter((c) => grade(c)?.false_alarm).length;
+          const controlUnclear = controls.filter((c) => grade(c)?.needs_review).length;
           return (
             <div key={arm} className="scorecell">
               <div className="armname">{arm}. {ARM_LABEL[arm]}</div>
               <div className="count">
-                <b>{caught}</b> of {signCases.length} <span>hidden signs caught</span>
+                <b>{caught}</b> of {signCases.length} <span>hidden signs caught{signUnclear ? `, ${signUnclear} unclear` : ""}</span>
               </div>
-              <div className="sub">{alarms} of {controls.length} false alarms on healthy controls{unclear ? `, ${unclear} unclear` : ""}</div>
+              <div className="sub">{alarms} of {controls.length} false alarms on healthy controls{controlUnclear ? `, ${controlUnclear} unclear` : ""}</div>
             </div>
           );
         })}
       </div>
       <p className="sub">
-        {data.patients.length} clips generated, {dropped} left out by the gate, {review} graded notes sent to physician review.
+        {data.patients.length} clips generated, {dropped} left out by the gate. {review} graded notes were unclear to the grader. They are not counted as caught or as false alarms, and they go to physician review.
       </p>
     </section>
   );

@@ -1,0 +1,1033 @@
+{
+  "generated_at": "2026-11-21T19:50:43.547Z",
+  "set": "exam",
+  "note": "Counts, not percentages. The sample is small. Every patient is synthetic.",
+  "setup": {
+    "patient_author": [
+      "gemini-4-carbon"
+    ],
+    "voice": "gemini-3.8-flash-tts",
+    "voice_for_slurred_and_groaning": "gemini-3.1-flash-tts-preview",
+    "transcript": "gemini-3.5-transcribe",
+    "clinician_under_test": "gemini-4-hydrogen, thinking level low",
+    "probes_gate_and_grader": "gemini-decision-1",
+    "second_listener_for_slurred": "gemini-4-carbon",
+    "gate": {
+      "sign_probe_at_least": 0.8,
+      "control_every_sign_probe_at_most": 0.3,
+      "slurred": "kept with no human when the probe is at least 0.7 and the second listener hears it, dropped when the probe is under 0.4 and the second listener does not, otherwise a physician decides"
+    },
+    "grader": "a grade counts only when the grader is at least 0.7 confident, otherwise it is unclear and goes to physician review"
+  },
+  "clips": {
+    "generated": 28,
+    "in_test": 24,
+    "left_out": 4
+  },
+  "headline": {
+    "signs_caught": {
+      "A": {
+        "caught": 0,
+        "unclear": 0,
+        "of": 16
+      },
+      "B": {
+        "caught": 12,
+        "unclear": 1,
+        "of": 16
+      },
+      "C": {
+        "caught": 15,
+        "unclear": 0,
+        "of": 16
+      }
+    },
+    "false_alarms_on_controls": {
+      "A": {
+        "caught": 0,
+        "unclear": 0,
+        "of": 8
+      },
+      "B": {
+        "caught": 0,
+        "unclear": 0,
+        "of": 8
+      },
+      "C": {
+        "caught": 0,
+        "unclear": 2,
+        "of": 8
+      }
+    },
+    "notes_sent_to_review": 3
+  },
+  "by_sign": [
+    {
+      "sign": "breathless",
+      "label": "Short of breath",
+      "generated": 4,
+      "in_test": 3,
+      "gate": "probe",
+      "arms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 3
+        },
+        "B": {
+          "caught": 3,
+          "unclear": 0,
+          "of": 3
+        },
+        "C": {
+          "caught": 3,
+          "unclear": 0,
+          "of": 3
+        }
+      }
+    },
+    {
+      "sign": "groaning",
+      "label": "Groaning or crying out",
+      "generated": 4,
+      "in_test": 4,
+      "gate": "probe",
+      "arms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 4
+        },
+        "B": {
+          "caught": 3,
+          "unclear": 0,
+          "of": 4
+        },
+        "C": {
+          "caught": 4,
+          "unclear": 0,
+          "of": 4
+        }
+      }
+    },
+    {
+      "sign": "cough",
+      "label": "Coughing",
+      "generated": 4,
+      "in_test": 4,
+      "gate": "probe",
+      "arms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 4
+        },
+        "B": {
+          "caught": 3,
+          "unclear": 1,
+          "of": 4
+        },
+        "C": {
+          "caught": 4,
+          "unclear": 0,
+          "of": 4
+        }
+      }
+    },
+    {
+      "sign": "distress",
+      "label": "Tearful or frightened",
+      "generated": 4,
+      "in_test": 1,
+      "gate": "probe",
+      "arms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "B": {
+          "caught": 1,
+          "unclear": 0,
+          "of": 1
+        },
+        "C": {
+          "caught": 1,
+          "unclear": 0,
+          "of": 1
+        }
+      }
+    },
+    {
+      "sign": "slurred",
+      "label": "Slurred speech",
+      "generated": 4,
+      "in_test": 4,
+      "gate": "physician",
+      "arms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 4
+        },
+        "B": {
+          "caught": 2,
+          "unclear": 0,
+          "of": 4
+        },
+        "C": {
+          "caught": 3,
+          "unclear": 0,
+          "of": 4
+        }
+      }
+    }
+  ],
+  "controls_by_voice": [
+    {
+      "kind": "plain",
+      "generated": 5,
+      "in_test": 5,
+      "false_alarms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 5
+        },
+        "B": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 5
+        },
+        "C": {
+          "caught": 0,
+          "unclear": 2,
+          "of": 5
+        }
+      }
+    },
+    {
+      "kind": "slow",
+      "generated": 1,
+      "in_test": 1,
+      "false_alarms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "B": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "C": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        }
+      }
+    },
+    {
+      "kind": "hoarse",
+      "generated": 1,
+      "in_test": 1,
+      "false_alarms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "B": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "C": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        }
+      }
+    },
+    {
+      "kind": "cheerful",
+      "generated": 1,
+      "in_test": 1,
+      "false_alarms": {
+        "A": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "B": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        },
+        "C": {
+          "caught": 0,
+          "unclear": 0,
+          "of": 1
+        }
+      }
+    }
+  ],
+  "left_out_of_the_test": [
+    {
+      "id": "exam-02-breathless",
+      "sign": "breathless",
+      "reason": "short_of_breath only 0.79, needs 0.8",
+      "own_probe": 0.793,
+      "arms": {
+        "A": "missed",
+        "B": "caught",
+        "C": "caught"
+      }
+    },
+    {
+      "id": "exam-13-distress",
+      "sign": "distress",
+      "reason": "distressed only 0.29, needs 0.8",
+      "own_probe": 0.291,
+      "arms": {
+        "A": "missed",
+        "B": "caught",
+        "C": "missed"
+      }
+    },
+    {
+      "id": "exam-14-distress",
+      "sign": "distress",
+      "reason": "distressed only 0.24, needs 0.8",
+      "own_probe": 0.245,
+      "arms": {
+        "A": "missed",
+        "B": "missed",
+        "C": "missed"
+      }
+    },
+    {
+      "id": "exam-15-distress",
+      "sign": "distress",
+      "reason": "distressed only 0.74, needs 0.8",
+      "own_probe": 0.739,
+      "arms": {
+        "A": "missed",
+        "B": "missed",
+        "C": "caught"
+      }
+    }
+  ],
+  "physician_review_queue": [
+    {
+      "id": "exam-10-cough",
+      "sign": "cough",
+      "arm": "B",
+      "grader": 0.313,
+      "note": {
+        "observations": [
+          "Requesting routine prescription renewal before midterms",
+          "States everything is fine",
+          "Audible heavy breathing and frequent throat clearing",
+          "Sounds fatigued or mildly breathless"
+        ],
+        "red_flags": [],
+        "urgency": "routine"
+      }
+    },
+    {
+      "id": "exam-21-none",
+      "sign": "none",
+      "arm": "C",
+      "grader": 0.541,
+      "note": {
+        "observations": [
+          "Reports feeling totally fine",
+          "Requesting to reschedule appointment for next week due to work deadline",
+          "Voice sounds well overall",
+          "Some long pauses noted in speech"
+        ],
+        "red_flags": [],
+        "urgency": "routine"
+      }
+    },
+    {
+      "id": "exam-23-none",
+      "sign": "none",
+      "arm": "C",
+      "grader": 0.42,
+      "note": {
+        "observations": [
+          "Reports doing great today",
+          "Calling for administrative reason to update mailing address",
+          "Voice sounds well",
+          "Moderate probability of long pauses in speech"
+        ],
+        "red_flags": [],
+        "urgency": "routine"
+      }
+    }
+  ],
+  "pass_mark_sensitivity": {
+    "chosen": 0.8,
+    "rows": [
+      {
+        "bar": 0.5,
+        "kept": 14,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 14
+          },
+          "B": {
+            "caught": 11,
+            "unclear": 1,
+            "of": 14
+          },
+          "C": {
+            "caught": 14,
+            "unclear": 0,
+            "of": 14
+          }
+        }
+      },
+      {
+        "bar": 0.6,
+        "kept": 14,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 14
+          },
+          "B": {
+            "caught": 11,
+            "unclear": 1,
+            "of": 14
+          },
+          "C": {
+            "caught": 14,
+            "unclear": 0,
+            "of": 14
+          }
+        }
+      },
+      {
+        "bar": 0.7,
+        "kept": 14,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 14
+          },
+          "B": {
+            "caught": 11,
+            "unclear": 1,
+            "of": 14
+          },
+          "C": {
+            "caught": 14,
+            "unclear": 0,
+            "of": 14
+          }
+        }
+      },
+      {
+        "bar": 0.8,
+        "kept": 12,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 12
+          },
+          "B": {
+            "caught": 10,
+            "unclear": 1,
+            "of": 12
+          },
+          "C": {
+            "caught": 12,
+            "unclear": 0,
+            "of": 12
+          }
+        }
+      },
+      {
+        "bar": 0.9,
+        "kept": 3,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 3
+          },
+          "B": {
+            "caught": 2,
+            "unclear": 1,
+            "of": 3
+          },
+          "C": {
+            "caught": 3,
+            "unclear": 0,
+            "of": 3
+          }
+        }
+      },
+      {
+        "bar": null,
+        "kept": 16,
+        "generated": 16,
+        "arms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 16
+          },
+          "B": {
+            "caught": 12,
+            "unclear": 1,
+            "of": 16
+          },
+          "C": {
+            "caught": 14,
+            "unclear": 0,
+            "of": 16
+          }
+        }
+      }
+    ]
+  },
+  "stress_ladder": {
+    "noise_recording": {
+      "seconds": 32.7,
+      "level_db": -17.3,
+      "uploaded": "2026-11-21T18:42:21.182Z"
+    },
+    "rule": "a rung holds while at least 75 in 100 probe-gated sign clips keep their own probe at 0.5 or higher",
+    "hold_rung": "snr0",
+    "break_rung": "snr-5",
+    "rows": [
+      {
+        "rung": "clean",
+        "label": "Clean",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 12,
+        "at_or_above_pass_mark": 12,
+        "mean_probe": 0.87,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": {
+          "signs": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 12
+            },
+            "B": {
+              "caught": 10,
+              "unclear": 1,
+              "of": 12
+            },
+            "C": {
+              "caught": 12,
+              "unclear": 0,
+              "of": 12
+            }
+          },
+          "false_alarms": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "B": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "C": {
+              "caught": 0,
+              "unclear": 2,
+              "of": 8
+            }
+          }
+        }
+      },
+      {
+        "rung": "phone",
+        "label": "Phone quality",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 12,
+        "at_or_above_pass_mark": 9,
+        "mean_probe": 0.85,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": null
+      },
+      {
+        "rung": "snr10",
+        "label": "Room noise, voice 10 dB above it",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 12,
+        "at_or_above_pass_mark": 8,
+        "mean_probe": 0.83,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": null
+      },
+      {
+        "rung": "snr5",
+        "label": "Room noise, voice 5 dB above it",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 12,
+        "at_or_above_pass_mark": 8,
+        "mean_probe": 0.82,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": null
+      },
+      {
+        "rung": "snr0",
+        "label": "Room noise as loud as the voice",
+        "role": "hold",
+        "sign_clips": 12,
+        "still_heard": 12,
+        "at_or_above_pass_mark": 7,
+        "mean_probe": 0.79,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": {
+          "signs": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 12
+            },
+            "B": {
+              "caught": 9,
+              "unclear": 0,
+              "of": 12
+            },
+            "C": {
+              "caught": 12,
+              "unclear": 0,
+              "of": 12
+            }
+          },
+          "false_alarms": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "B": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "C": {
+              "caught": 0,
+              "unclear": 3,
+              "of": 8
+            }
+          }
+        }
+      },
+      {
+        "rung": "snr-5",
+        "label": "Room noise 5 dB above the voice",
+        "role": "break",
+        "sign_clips": 12,
+        "still_heard": 7,
+        "at_or_above_pass_mark": 3,
+        "mean_probe": 0.59,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": {
+          "signs": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 12
+            },
+            "B": {
+              "caught": 4,
+              "unclear": 0,
+              "of": 12
+            },
+            "C": {
+              "caught": 9,
+              "unclear": 0,
+              "of": 12
+            }
+          },
+          "false_alarms": {
+            "A": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "B": {
+              "caught": 0,
+              "unclear": 0,
+              "of": 8
+            },
+            "C": {
+              "caught": 0,
+              "unclear": 3,
+              "of": 8
+            }
+          }
+        }
+      },
+      {
+        "rung": "snr-10",
+        "label": "Room noise 10 dB above the voice",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 2,
+        "at_or_above_pass_mark": 1,
+        "mean_probe": 0.32,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": null
+      },
+      {
+        "rung": "snr-15",
+        "label": "Room noise 15 dB above the voice",
+        "role": null,
+        "sign_clips": 12,
+        "still_heard": 0,
+        "at_or_above_pass_mark": 0,
+        "mean_probe": 0.16,
+        "controls_with_a_false_sign": 0,
+        "controls": 8,
+        "arms": null
+      }
+    ]
+  },
+  "model_comparison": {
+    "note": "Same clips, same prompts, same grader. Only the clinician model changes.",
+    "rows": [
+      {
+        "model": "gemini-4-hydrogen",
+        "main": true,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 16
+          },
+          "B": {
+            "caught": 12,
+            "unclear": 1,
+            "of": 16
+          },
+          "C": {
+            "caught": 15,
+            "unclear": 0,
+            "of": 16
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 2,
+            "of": 8
+          }
+        }
+      },
+      {
+        "model": "gemini-4-neon",
+        "main": false,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 16
+          },
+          "B": {
+            "caught": 13,
+            "unclear": 0,
+            "of": 16
+          },
+          "C": {
+            "caught": 15,
+            "unclear": 1,
+            "of": 16
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 1,
+            "of": 8
+          }
+        }
+      },
+      {
+        "model": "gemini-4-argon",
+        "main": false,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 16
+          },
+          "B": {
+            "caught": 14,
+            "unclear": 1,
+            "of": 16
+          },
+          "C": {
+            "caught": 15,
+            "unclear": 0,
+            "of": 16
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 2,
+            "of": 8
+          }
+        }
+      },
+      {
+        "model": "gemini-4-carbon",
+        "main": false,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 16
+          },
+          "B": {
+            "caught": 14,
+            "unclear": 0,
+            "of": 16
+          },
+          "C": {
+            "caught": 16,
+            "unclear": 0,
+            "of": 16
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 8
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 1,
+            "of": 8
+          }
+        }
+      }
+    ]
+  },
+  "blind_physician_labels": {
+    "labelled": 16,
+    "with_intended": 14,
+    "gate_decided": 12,
+    "with_gate": 9,
+    "deferred": 4,
+    "deferred_passed": 4,
+    "rows": [
+      {
+        "key": "clip-01",
+        "id": "exam-20-slurred",
+        "intended": "slurred",
+        "heard": "slurred",
+        "gate": "deferred",
+        "gate_by": "two listeners",
+        "agrees_with_gate": null
+      },
+      {
+        "key": "clip-02",
+        "id": "exam-17-slurred",
+        "intended": "slurred",
+        "heard": "slurred",
+        "gate": "deferred",
+        "gate_by": "two listeners",
+        "agrees_with_gate": null
+      },
+      {
+        "key": "clip-03",
+        "id": "exam-05-groaning",
+        "intended": "groaning",
+        "heard": "groaning",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-04",
+        "id": "exam-14-distress",
+        "intended": "distress",
+        "heard": "breathless",
+        "gate": "not kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-05",
+        "id": "exam-12-cough",
+        "intended": "cough",
+        "heard": "cough",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-06",
+        "id": "exam-18-slurred",
+        "intended": "slurred",
+        "heard": "slurred",
+        "gate": "deferred",
+        "gate_by": "two listeners",
+        "agrees_with_gate": null
+      },
+      {
+        "key": "clip-07",
+        "id": "exam-04-breathless",
+        "intended": "breathless",
+        "heard": "distress",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": false
+      },
+      {
+        "key": "clip-08",
+        "id": "exam-24-none",
+        "intended": "none",
+        "heard": "none",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-09",
+        "id": "exam-13-distress",
+        "intended": "distress",
+        "heard": "distress",
+        "gate": "not kept",
+        "gate_by": "probe",
+        "agrees_with_gate": false
+      },
+      {
+        "key": "clip-10",
+        "id": "exam-07-groaning",
+        "intended": "groaning",
+        "heard": "groaning",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-11",
+        "id": "exam-22-none",
+        "intended": "none",
+        "heard": "none",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-12",
+        "id": "exam-26-none",
+        "intended": "none",
+        "heard": "none",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-13",
+        "id": "exam-02-breathless",
+        "intended": "breathless",
+        "heard": "breathless",
+        "gate": "not kept",
+        "gate_by": "probe",
+        "agrees_with_gate": false
+      },
+      {
+        "key": "clip-14",
+        "id": "exam-19-slurred",
+        "intended": "slurred",
+        "heard": "slurred",
+        "gate": "deferred",
+        "gate_by": "two listeners",
+        "agrees_with_gate": null
+      },
+      {
+        "key": "clip-15",
+        "id": "exam-27-none",
+        "intended": "none",
+        "heard": "none",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      },
+      {
+        "key": "clip-16",
+        "id": "exam-10-cough",
+        "intended": "cough",
+        "heard": "cough",
+        "gate": "kept",
+        "gate_by": "probe",
+        "agrees_with_gate": true
+      }
+    ]
+  }
+}

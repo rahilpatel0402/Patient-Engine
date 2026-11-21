@@ -82,9 +82,24 @@ const review = cases.flatMap((c) =>
     : [],
 );
 
+// Slurred clips a physician passed, and what the listening model had scored them.
+const slurredJudged = patients.filter((p) => p.hidden_sign === "slurred" && p.gate.physician);
+const slurredPassed = slurredJudged.filter((p) => p.gate.physician?.valid);
+const slurScores = slurredPassed.map((p) => p.probes.slurred).sort((a, b) => a - b);
+const slurredText =
+  slurredJudged.length === 0
+    ? ""
+    : `A physician heard slurred speech in ${slurredPassed.length} of the ${slurredJudged.length} slurred clips that the automatic listeners could not settle.` +
+      (slurScores.length
+        ? ` The Decisions API had scored those ${slurScores.length} between ${slurScores[0].toFixed(2)} and ${slurScores[slurScores.length - 1].toFixed(2)} on slurred speech${slurScores[slurScores.length - 1] < GATE_SIGN_MIN ? `, every one under the ${GATE_SIGN_MIN.toFixed(2)} pass mark used for the other signs` : ""}.`
+        : "");
+
 const sens = sensitivity(patients, cases);
 const rows = ladder ? ladderRows(patients, ladder, cases) : [];
 const agree = blindLabels(set).length ? agreement(set) : null;
+const agreementText = agree
+  ? `The physician named the sign the clip was written to have on ${agree.with_intended} of ${agree.labelled}. The automatic gate made its own call on ${agree.gate_decided} of the ${agree.labelled}, and the physician agreed with it on ${agree.with_gate}. It handed the other ${agree.deferred} to the physician, who heard the sign in ${agree.deferred_passed}.`
+  : "";
 const comparisonFile = path.join(setDir(set), "comparison.json");
 const comparison = fs.existsSync(comparisonFile) ? readJson<Comparison>(comparisonFile) : null;
 const models = comparison ? comparisonRows(patients, MODELS.hydrogen, cases, comparison) : [];
@@ -133,7 +148,8 @@ writeJson(path.join(ROOT, `${outBase}.json`), result);
 
 const table = (headers: string[], lines: (string | number)[][]) =>
   [`| ${headers.join(" | ")} |`, `|${headers.map(() => "---").join("|")}|`, ...lines.map((l) => `| ${l.join(" | ")} |`)].join("\n");
-const frac = (t: Tally) => `${t.caught} of ${t.of}`;
+// An unclear grade is never counted as caught or as a false alarm, so it is shown beside the count.
+const frac = (t: Tally) => `${t.caught} of ${t.of}${t.unclear ? ` (${t.unclear} unclear)` : ""}`;
 const signName = (s: HiddenSign) => SIGN_LABEL[s];
 const setName = set === "exam" ? "exam set, written by Carbon" : set === "dev" ? "practice set, written by Argon" : set;
 
@@ -151,11 +167,11 @@ md.push(
 md.push(`## Result on the clips in the test`);
 md.push(
   table(
-    ["Arm", "Hidden signs caught", "Unclear, sent to physician review", "False alarms on healthy controls"],
-    ARMS.map((a) => [`${a}. ${ARM_LABEL[a]}`, frac(head.signs[a]), head.signs[a].unclear, frac(head.false_alarms[a])]),
+    ["Arm", "Hidden signs caught", "False alarms on healthy controls"],
+    ARMS.map((a) => [`${a}. ${ARM_LABEL[a]}`, frac(head.signs[a]), frac(head.false_alarms[a])]),
   ),
 );
-md.push(`An unclear grade is one where the grader was under ${REVIEW_BELOW} confident either way. It is not counted as caught.`);
+md.push(`An unclear grade is one where the grader was under ${REVIEW_BELOW} confident either way. It is not counted as caught or as a false alarm, and it goes to physician review.`);
 
 md.push(`## By sign`);
 md.push(
@@ -165,7 +181,7 @@ md.push(
   ),
 );
 md.push(
-  `Slurred speech is gated differently from the other signs. Two models listen to each slurred clip, and a physician decides the ones they disagree on. Its counts are shown on their own row so they can be read apart from the probe-gated signs.`,
+  `Slurred speech is gated differently from the other signs. Two models listen to each slurred clip, and a physician decides the ones they disagree on. Its counts are shown on their own row so they can be read apart from the probe-gated signs.${slurredText ? ` ${slurredText}` : ""}`,
 );
 
 md.push(`## Healthy controls by voice`);
@@ -219,12 +235,12 @@ if (ladder) {
 if (agree) {
   md.push(`## Blind physician labels`);
   md.push(
-    `A physician heard ${agree.labelled} clips in random order under neutral names, with the sign hidden, before any exam result was shown. The physician named the sign the clip was written to have on ${agree.with_intended} of ${agree.labelled}, and agreed with the automatic gate about whether that sign is really there on ${agree.with_gate} of ${agree.labelled}.`,
+    `A physician heard ${agree.labelled} clips in random order under neutral names, with the sign hidden, before any exam result was shown. ${agreementText}`,
   );
   md.push(
     table(
       ["Clip", "Written to have", "Physician heard", "Automatic gate", "Agree"],
-      agree.rows.map((r) => [r.id, signName(r.intended), signName(r.heard), `${r.gate_kept ? "kept" : "not kept"} (${r.gate_by})`, r.agrees_with_gate ? "yes" : "no"]),
+      agree.rows.map((r) => [r.id, signName(r.intended), signName(r.heard), r.gate === "deferred" ? "handed to the physician" : `${r.gate} (${r.gate_by})`, r.agrees_with_gate === null ? "" : r.agrees_with_gate ? "yes" : "no"]),
     ),
   );
 }
@@ -236,7 +252,7 @@ const modelTable = () =>
     models.map((m) => [
       `${modelName(m.model)}${m.main ? " (main run)" : ""}`,
       ...ARMS.map((a) => frac(m.signs[a])),
-      `${ARMS.map((a) => m.false_alarms[a].caught).join(", ")} of ${m.false_alarms.A.of}`,
+      ARMS.map((a) => frac(m.false_alarms[a])).join(" / "),
     ]),
   );
 if (models.length) {
@@ -282,7 +298,7 @@ function readmeBlock(): string {
     ),
   );
   const unclear = ARMS.reduce((n, a) => n + head.signs[a].unclear + head.false_alarms[a].unclear, 0);
-  if (unclear) out.push(`${unclear} graded notes were unclear to the grader. They are counted as not caught and listed in the review queue.`);
+  if (unclear) out.push(`${unclear} graded notes were unclear to the grader. They are not counted as caught or as false alarms, and they are listed in the review queue.`);
 
   out.push(`### By sign`);
   out.push(
@@ -291,6 +307,8 @@ function readmeBlock(): string {
       bySign.map((s) => [s.label, s.generated, s.in_test, s.gate, ...ARMS.map((a) => frac(s.arms[a]))]),
     ),
   );
+
+  if (slurredText) out.push(slurredText);
 
   if (ladder) {
     const holdRow = rows.find((r) => r.role === "hold");
@@ -316,7 +334,7 @@ function readmeBlock(): string {
   if (agree) {
     out.push(`### Blind physician labels`);
     out.push(
-      `A physician heard ${agree.labelled} exam clips in random order with the sign hidden, before any exam result was shown. The physician named the sign the clip was written to have on ${agree.with_intended} of ${agree.labelled}, and agreed with the automatic gate about whether that sign is really there on ${agree.with_gate} of ${agree.labelled}.`,
+      `A physician heard ${agree.labelled} exam clips in random order with the sign hidden, before any exam result was shown. ${agreementText}`,
     );
   }
 

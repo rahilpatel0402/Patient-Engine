@@ -5,8 +5,8 @@
 //   npx tsx scripts/slurred-lab.ts
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { gate, probe } from "../server/engine/probes.ts";
-import { patientsFile, setDir } from "../server/engine/build.ts";
+import { probe } from "../server/engine/probes.ts";
+import { patientsFile, setDir, setPhysicianVerdict } from "../server/engine/build.ts";
 import type { CaseResult, Patient } from "../server/engine/types.ts";
 import { wavSeconds } from "../server/lib/audio.ts";
 import { ROOT, writeJson } from "../server/lib/cache.ts";
@@ -42,16 +42,28 @@ for (const [i, s] of SOURCES.entries()) {
     clip: path.relative(ROOT, clip).replaceAll("\\", "/"),
     seconds: wavSeconds(clip),
     probes,
-    gate: { ...gate("slurred", probes), attempts: 1 },
+    gate: { kept: false, by: "physician", attempts: 1, reason: `waiting for a physician to listen (slurred probe ${probes.slurred.toFixed(2)})` },
   });
 }
 writeJson(patientsFile(SET), patients);
+
+// The physician listened to these four on event day. His verdicts, in his words.
+const VERDICTS: [number, boolean, string][] = [
+  [1, true, "Good slurred speech."],
+  [2, true, "Good slurred speech."],
+  [3, false, "Definitely not slurred. It is slow."],
+  [4, true, "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom."],
+];
+for (const [n, valid, note] of VERDICTS) {
+  const p = patients[n - 1];
+  if (p) p.gate = setPhysicianVerdict(SET, p.id, valid, note).gate;
+}
 
 const cases: CaseResult[] = await Promise.all(patients.map((p) => runCase(p)));
 writeJson(path.join(setDir(SET), "station1.json"), cases);
 
 for (const c of cases) {
-  console.log(`\n${c.patient.id}  slurred probe ${c.patient.probes.slurred.toFixed(2)}  gate: ${c.patient.gate.kept ? "kept" : "dropped"}`);
+  console.log(`\n${c.patient.id}  slurred probe ${c.patient.probes.slurred.toFixed(2)}  gate: ${c.patient.gate.reason}`);
   for (const a of c.arms) {
     console.log(`  ${a.arm}: ${a.grade.caught ? "caught" : "MISSED"} (grader ${a.grade.identifies_sign?.toFixed(2)}), urgency ${a.note.urgency}`);
     console.log(`     ${a.note.observations.join(" | ")}`);

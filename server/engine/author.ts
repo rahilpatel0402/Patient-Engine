@@ -12,7 +12,7 @@ const SIGN_BRIEF: Record<HiddenSign, string> = {
   distress:
     "The patient is frightened and emotionally distressed, not in physical pain. tts_style should describe a shaky, trembling voice close to tears. Use a few inline tags from: <sob>, <whimper>, <sigh>, <short pause>.",
   slurred:
-    "The patient's speech is slurred. tts_style should describe slow, thick, slurred speech with words running together, as if heavily sedated. Use several <long pause> tags. The words themselves must stay coherent and make complete sense.",
+    "The patient's speech is slurred. tts_style should describe heavily slurred speech with mushy consonants and words sliding together. Use no inline tags at all. The words themselves must stay coherent and make complete sense.",
   none: "The patient is a healthy control and sounds completely well. tts_style should describe a calm, relaxed, even conversational tone. Use no inline tags at all.",
 };
 

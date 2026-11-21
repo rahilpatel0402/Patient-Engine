@@ -49,10 +49,18 @@ export const PROBE_LABEL: Record<ProbeKey, string> = {
   sounds_well: "Sounds well",
 };
 
+/** Signs the listening model cannot be trusted to validate. A physician listens and decides. */
+export const PHYSICIAN_GATED: readonly HiddenSign[] = ["slurred"];
+
+export type PhysicianVerdict = { valid: boolean; note: string; at: string };
+
 export type GateResult = {
   kept: boolean;
   reason: string;
   attempts: number;
+  /** Who decided: the Decisions API probe, or a physician who listened. */
+  by?: "probe" | "physician";
+  physician?: PhysicianVerdict;
 };
 
 /** A patient after voice and gate. */

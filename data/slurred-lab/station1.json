@@ -22,9 +22,15 @@
         "sounds_well": 0.31
       },
       "gate": {
-        "kept": false,
-        "reason": "slurred only 0.72, needs 0.8",
-        "attempts": 1
+        "kept": true,
+        "by": "physician",
+        "attempts": 1,
+        "reason": "a physician listened and heard slurred speech (probe 0.72)",
+        "physician": {
+          "valid": true,
+          "note": "Good slurred speech.",
+          "at": "2026-11-21T16:40:14.029Z"
+        }
       }
     },
     "rung": "clean",
@@ -71,12 +77,12 @@
         },
         "ms": 4598,
         "grade": {
-          "identifies_sign": 0.989,
+          "identifies_sign": 0.983,
           "flags_any_sign": 0.975,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.989,
+          "confidence": 0.983,
           "needs_review": false
         }
       },
@@ -98,12 +104,12 @@
         },
         "ms": 6748,
         "grade": {
-          "identifies_sign": 0.956,
+          "identifies_sign": 0.905,
           "flags_any_sign": 0.968,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.956,
+          "confidence": 0.905,
           "needs_review": false
         }
       }
@@ -132,9 +138,15 @@
         "sounds_well": 0.116
       },
       "gate": {
-        "kept": false,
-        "reason": "slurred only 0.65, needs 0.8",
-        "attempts": 1
+        "kept": true,
+        "by": "physician",
+        "attempts": 1,
+        "reason": "a physician listened and heard slurred speech (probe 0.65)",
+        "physician": {
+          "valid": true,
+          "note": "Good slurred speech.",
+          "at": "2026-11-21T16:40:14.031Z"
+        }
       }
     },
     "rung": "clean",
@@ -154,12 +166,12 @@
         },
         "ms": 4194,
         "grade": {
-          "identifies_sign": 0.011,
+          "identifies_sign": 0.02,
           "flags_any_sign": 0.015,
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
-          "confidence": 0.989,
+          "confidence": 0.98,
           "needs_review": false
         }
       },
@@ -181,12 +193,12 @@
         },
         "ms": 6441,
         "grade": {
-          "identifies_sign": 0.985,
+          "identifies_sign": 0.974,
           "flags_any_sign": 0.969,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.985,
+          "confidence": 0.974,
           "needs_review": false
         }
       },
@@ -208,12 +220,12 @@
         },
         "ms": 4829,
         "grade": {
-          "identifies_sign": 0.973,
+          "identifies_sign": 0.959,
           "flags_any_sign": 0.973,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.973,
+          "confidence": 0.959,
           "needs_review": false
         }
       }
@@ -243,8 +255,14 @@
       },
       "gate": {
         "kept": false,
-        "reason": "slurred only 0.57, needs 0.8",
-        "attempts": 1
+        "by": "physician",
+        "attempts": 1,
+        "reason": "a physician listened and did not hear slurred speech (probe 0.57)",
+        "physician": {
+          "valid": false,
+          "note": "Definitely not slurred. It is slow.",
+          "at": "2026-11-21T16:40:14.031Z"
+        }
       }
     },
     "rung": "clean",
@@ -264,12 +282,12 @@
         },
         "ms": 3052,
         "grade": {
-          "identifies_sign": 0.012,
+          "identifies_sign": 0.022,
           "flags_any_sign": 0.023,
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
-          "confidence": 0.988,
+          "confidence": 0.978,
           "needs_review": false
         }
       },
@@ -289,12 +307,12 @@
         },
         "ms": 6648,
         "grade": {
-          "identifies_sign": 0.974,
+          "identifies_sign": 0.066,
           "flags_any_sign": 0.976,
-          "caught": true,
+          "caught": false,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.974,
+          "confidence": 0.934,
           "needs_review": false
         }
       },
@@ -316,12 +334,12 @@
         },
         "ms": 4110,
         "grade": {
-          "identifies_sign": 0.98,
+          "identifies_sign": 0.969,
           "flags_any_sign": 0.984,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.98,
+          "confidence": 0.969,
           "needs_review": false
         }
       }
@@ -350,9 +368,15 @@
         "sounds_well": 0.284
       },
       "gate": {
-        "kept": false,
-        "reason": "slurred only 0.34, needs 0.8",
-        "attempts": 1
+        "kept": true,
+        "by": "physician",
+        "attempts": 1,
+        "reason": "a physician listened and heard slurred speech (probe 0.34)",
+        "physician": {
+          "valid": true,
+          "note": "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom.",
+          "at": "2026-11-21T16:40:14.032Z"
+        }
       }
     },
     "rung": "clean",
@@ -371,12 +395,12 @@
         },
         "ms": 2683,
         "grade": {
-          "identifies_sign": 0.01,
+          "identifies_sign": 0.016,
           "flags_any_sign": 0.016,
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
-          "confidence": 0.99,
+          "confidence": 0.984,
           "needs_review": false
         }
       },
@@ -397,12 +421,12 @@
         },
         "ms": 5138,
         "grade": {
-          "identifies_sign": 0.983,
+          "identifies_sign": 0.982,
           "flags_any_sign": 0.974,
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.983,
+          "confidence": 0.982,
           "needs_review": false
         }
       },
@@ -420,13 +444,13 @@
         },
         "ms": 4713,
         "grade": {
-          "identifies_sign": 0.592,
+          "identifies_sign": 0.083,
           "flags_any_sign": 0.833,
-          "caught": true,
+          "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
-          "confidence": 0.592,
-          "needs_review": true
+          "confidence": 0.917,
+          "needs_review": false
         }
       }
     ]

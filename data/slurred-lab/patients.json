@@ -21,9 +21,15 @@
       "sounds_well": 0.31
     },
     "gate": {
-      "kept": false,
-      "reason": "slurred only 0.72, needs 0.8",
-      "attempts": 1
+      "kept": true,
+      "by": "physician",
+      "attempts": 1,
+      "reason": "a physician listened and heard slurred speech (probe 0.72)",
+      "physician": {
+        "valid": true,
+        "note": "Good slurred speech.",
+        "at": "2026-11-21T16:40:14.029Z"
+      }
     }
   },
   {
@@ -48,9 +54,15 @@
       "sounds_well": 0.116
     },
     "gate": {
-      "kept": false,
-      "reason": "slurred only 0.65, needs 0.8",
-      "attempts": 1
+      "kept": true,
+      "by": "physician",
+      "attempts": 1,
+      "reason": "a physician listened and heard slurred speech (probe 0.65)",
+      "physician": {
+        "valid": true,
+        "note": "Good slurred speech.",
+        "at": "2026-11-21T16:40:14.031Z"
+      }
     }
   },
   {
@@ -76,8 +88,14 @@
     },
     "gate": {
       "kept": false,
-      "reason": "slurred only 0.57, needs 0.8",
-      "attempts": 1
+      "by": "physician",
+      "attempts": 1,
+      "reason": "a physician listened and did not hear slurred speech (probe 0.57)",
+      "physician": {
+        "valid": false,
+        "note": "Definitely not slurred. It is slow.",
+        "at": "2026-11-21T16:40:14.031Z"
+      }
     }
   },
   {
@@ -102,9 +120,15 @@
       "sounds_well": 0.284
     },
     "gate": {
-      "kept": false,
-      "reason": "slurred only 0.34, needs 0.8",
-      "attempts": 1
+      "kept": true,
+      "by": "physician",
+      "attempts": 1,
+      "reason": "a physician listened and heard slurred speech (probe 0.34)",
+      "physician": {
+        "valid": true,
+        "note": "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom.",
+        "at": "2026-11-21T16:40:14.032Z"
+      }
     }
   }
 ]

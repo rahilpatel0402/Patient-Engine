@@ -13,7 +13,7 @@ import {
   type ProbeKey,
   type Probes,
 } from "../../server/engine/types.ts";
-import { clipUrl, getHealth, getSets, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
+import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
 const ARMS: ArmKey[] = ["A", "B", "C"];
 const ARM_SOURCE: Record<ArmKey, string> = {
@@ -53,14 +53,14 @@ export function App() {
       <p className="notice">Every exam patient is synthetic. This tests the AI. Nobody receives medical advice.</p>
       {error && <p className="error">Cannot reach the server: {error}</p>}
       {health && !health.hasKey && <p className="error">No Gemini API key is loaded. Live mode will not work.</p>}
-      {mode === "exam" ? <Exam sets={sets} hasNoise={Boolean(health?.noise)} /> : <Live health={health} onNoise={() => getHealth().then(setHealth)} />}
+      {mode === "exam" ? <Exam sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} /> : <Live health={health} onNoise={() => getHealth().then(setHealth)} />}
     </main>
   );
 }
 
 // ---- exam patients ---------------------------------------------------------------
 
-function Exam({ sets, hasNoise }: { sets: SetData[]; hasNoise: boolean }) {
+function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; reload: () => void }) {
   const ordered = useMemo(() => [...sets].sort((a, b) => (a.set === "exam" ? -1 : b.set === "exam" ? 1 : a.set.localeCompare(b.set))), [sets]);
   const [setName, setSetName] = useState<string | null>(null);
   const [patientId, setPatientId] = useState<string | null>(null);
@@ -91,13 +91,19 @@ function Exam({ sets, hasNoise }: { sets: SetData[]; hasNoise: boolean }) {
                 <button className={p.id === patient?.id ? "on" : ""} onClick={() => setPatientId(p.id)}>
                   <span className="pid">{p.id.replace(/^[a-z]+-/, "").replace(/-.*/, "")}</span>
                   <span className="psign">{SIGN_LABEL[p.hidden_sign]}</span>
-                  {!p.gate.kept ? <span className="tag dropped" title="Left out of the test: the Decisions API did not hear the intended sign clearly enough">dropped</span> : c ? <ArmDots result={c} /> : null}
+                  {p.gate.by === "physician" && !p.gate.physician ? (
+                    <span className="tag review" title="A physician has to listen to this clip and decide">needs you</span>
+                  ) : !p.gate.kept ? (
+                    <span className="tag dropped" title="Left out of the test: the intended sign did not come through">dropped</span>
+                  ) : c ? (
+                    <ArmDots result={c} />
+                  ) : null}
                 </button>
               </li>
             );
           })}
         </ul>
-        {patient && <CaseView key={patient.id} patient={patient} result={result} hasNoise={hasNoise} />}
+        {patient && <CaseView key={patient.id} patient={patient} result={result} hasNoise={hasNoise} reload={reload} />}
       </div>
     </>
   );
@@ -119,11 +125,14 @@ function ArmDots({ result }: { result: CaseResult }) {
 }
 
 function Scoreboard({ data }: { data: SetData }) {
-  const signCases = data.cases.filter((c) => c.patient.hidden_sign !== "none");
-  const controls = data.cases.filter((c) => c.patient.hidden_sign === "none");
+  // Count only clips that are in the test now. A physician can pass or reject a clip after the arms ran.
+  const kept = new Set(data.patients.filter((p) => p.gate.kept).map((p) => p.id));
+  const counted = data.cases.filter((c) => kept.has(c.patient.id));
+  const signCases = counted.filter((c) => c.patient.hidden_sign !== "none");
+  const controls = counted.filter((c) => c.patient.hidden_sign === "none");
   const dropped = data.patients.filter((p) => !p.gate.kept).length;
-  if (!data.cases.length) return null;
-  const review = data.cases.reduce((n, c) => n + c.arms.filter((a) => a.grade.needs_review).length, 0);
+  if (!counted.length) return null;
+  const review = counted.reduce((n, c) => n + c.arms.filter((a) => a.grade.needs_review).length, 0);
   return (
     <section className="score" aria-label="Result of the listening test">
       <h2>Result of the listening test, {SET_NAME[data.set] ?? data.set}</h2>
@@ -143,13 +152,13 @@ function Scoreboard({ data }: { data: SetData }) {
         })}
       </div>
       <p className="sub">
-        {data.patients.length} clips generated, {dropped} dropped by the perception gate, {review} graded notes sent to physician review.
+        {data.patients.length} clips generated, {dropped} left out by the gate, {review} graded notes sent to physician review.
       </p>
     </section>
   );
 }
 
-function CaseView({ patient, result, hasNoise }: { patient: Patient; result?: CaseResult; hasNoise: boolean }) {
+function CaseView({ patient, result, hasNoise, reload }: { patient: Patient; result?: CaseResult; hasNoise: boolean; reload: () => void }) {
   const intended = patient.hidden_sign === "none" ? null : SIGN_PROBE[patient.hidden_sign];
   return (
     <section className="case">
@@ -165,7 +174,7 @@ function CaseView({ patient, result, hasNoise }: { patient: Patient; result?: Ca
         <div className="eyebrow">What a text pipeline gets</div>
         {result?.transcript ?? patient.spoken_text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ")}
       </blockquote>
-      <GateBox patient={patient} />
+      <GateBox patient={patient} reload={reload} />
       <details className="script">
         <summary>What the author wrote for the voice</summary>
         <p><b>Voice direction:</b> {patient.tts_style}</p>
@@ -204,7 +213,8 @@ const GATE_SIGN_MIN = 0.8;
 const GATE_CONTROL_MAX = 0.3;
 
 /** Says in plain words why this clip is in the test or left out of it. */
-function GateBox({ patient }: { patient: Patient }) {
+function GateBox({ patient, reload }: { patient: Patient; reload: () => void }) {
+  if (patient.gate.by === "physician") return <PhysicianGate patient={patient} reload={reload} />;
   const takes = patient.gate.attempts === 1 ? "on the first take" : "after two takes";
   let text: string;
   if (patient.hidden_sign === "none") {
@@ -222,6 +232,42 @@ function GateBox({ patient }: { patient: Patient }) {
     <div className={`gate ${patient.gate.kept ? "kept" : "out"}`}>
       <div className="gatehead">{patient.gate.kept ? "Passed the perception gate" : "Dropped by the perception gate"}</div>
       <p>{text}</p>
+    </div>
+  );
+}
+
+/** Slurred speech is judged by a physician, because the listening model under-detects it. */
+function PhysicianGate({ patient, reload }: { patient: Patient; reload: () => void }) {
+  const [note, setNote] = useState(patient.gate.physician?.note ?? "");
+  const [error, setError] = useState<string | null>(null);
+  const verdict = patient.gate.physician;
+  const heard = patient.probes[SIGN_PROBE[patient.hidden_sign as Exclude<HiddenSign, "none">]].toFixed(2);
+
+  async function decide(valid: boolean) {
+    setError(null);
+    try {
+      await physicianGate(patient.set, patient.id, valid, note);
+      reload();
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
+
+  return (
+    <div className={`gate ${verdict ? (verdict.valid ? "kept" : "out") : "out"}`}>
+      <div className="gatehead">
+        {verdict ? (verdict.valid ? "Passed by a physician" : "Rejected by a physician") : "Waiting for a physician to listen"}
+      </div>
+      <p>
+        The listening model is not trusted to judge this sign, so a physician decides whether the clip is a fair test question. The Decisions API scored it {heard}, and that number is reported but not used as the pass mark.
+      </p>
+      {verdict?.note && <p><b>Physician note:</b> {verdict.note}</p>}
+      <div className="gatebuttons">
+        <input id={`gate-note-${patient.id}`} type="text" placeholder="Note (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
+        <button onClick={() => decide(true)}>I hear the sign. Use it</button>
+        <button onClick={() => decide(false)}>I do not hear it. Leave it out</button>
+      </div>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }

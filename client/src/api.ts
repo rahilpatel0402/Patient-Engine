@@ -41,4 +41,11 @@ export const probeNoise = (clip: string, level: number) =>
     body: JSON.stringify({ clip, level }),
   }).then((r) => json<NoiseProbe>(r));
 
+export const physicianGate = (set: string, id: string, valid: boolean, note: string) =>
+  fetch("/api/physician-gate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ set, id, valid, note }),
+  }).then((r) => json<Patient>(r));
+
 export const clipUrl = (clip: string) => `/${clip}`;

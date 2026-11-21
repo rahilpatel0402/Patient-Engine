@@ -72,7 +72,7 @@ const SIGN_FINDING: Record<Exclude<HiddenSign, "none">, string> = {
   pain: "sounds like they are in physical pain",
   cough: "is coughing",
   distress: "sounds emotionally distressed, frightened, or tearful",
-  slurred: "has slurred or impaired speech",
+  slurred: "has slurred speech (slow or laboured speech alone does not count)",
 };
 
 const ANY_SIGN: Question = {

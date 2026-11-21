@@ -1,7 +1,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import express from "express";
-import { loadSet } from "./engine/build.ts";
+import { loadSet, setPhysicianVerdict } from "./engine/build.ts";
 import type { CaseResult } from "./engine/types.ts";
 import { PORT, hasApiKey } from "./env.ts";
 import { ROOT, readJson } from "./lib/cache.ts";
@@ -70,6 +70,16 @@ app.post("/api/noise/probe", async (req, res) => {
   try {
     const { clip, level } = req.body as { clip: string; level: number };
     res.json(await withKeyRole("live", () => probeWithNoise(clip, level)));
+  } catch (e) {
+    fail(res, e);
+  }
+});
+
+/** A physician listened to a clip and says whether the sign is really there. */
+app.post("/api/physician-gate", (req, res) => {
+  try {
+    const { set, id, valid, note } = req.body as { set: string; id: string; valid: boolean; note?: string };
+    res.json(setPhysicianVerdict(set, id, Boolean(valid), String(note ?? "")));
   } catch (e) {
     fail(res, e);
   }

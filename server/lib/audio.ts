@@ -16,9 +16,11 @@ async function ffmpeg(args: string[]): Promise<void> {
 }
 
 /** Any input format (webm, opus, m4a, wav) to 24 kHz mono 16-bit WAV. */
-export async function normalize(input: string, output: string): Promise<string> {
+export async function normalize(input: string, output: string, opts: { rawPcm?: boolean } = {}): Promise<string> {
   fs.mkdirSync(path.dirname(output), { recursive: true });
-  await ffmpeg(["-i", input, ...WAV_OUT, output]);
+  // Headerless 16-bit PCM has no container, so ffmpeg must be told the format.
+  const format = opts.rawPcm ? ["-f", "s16le", "-ar", "24000", "-ac", "1"] : [];
+  await ffmpeg([...format, "-i", input, ...WAV_OUT, output]);
   return output;
 }
 

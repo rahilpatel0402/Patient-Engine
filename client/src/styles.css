@@ -116,6 +116,9 @@ audio { height: 40px; max-width: 100%; }
 .gate { padding: 10px 14px; border-left: 6px solid var(--good); background: var(--good-soft); }
 .gate.out { border-left-color: var(--warn); background: var(--warn-soft); }
 .gatehead { font-weight: 800; }
+.gatebuttons { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.gatebuttons input { font: inherit; flex: 1 1 200px; padding: 6px 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.gatebuttons button { border: 2px solid var(--ink); background: var(--surface); padding: 6px 14px; font-weight: 700; }
 .script { background: var(--surface); border: 1px solid var(--line); padding: 8px 14px; }
 .script summary { cursor: pointer; font-weight: 700; }
 .script p { margin-top: 6px; }

@@ -202,6 +202,28 @@ export async function speak(opts: { text: string; style: string; voice: string; 
   );
 }
 
+/**
+ * Speech from a model that takes the delivery instruction inside the prompt.
+ * Used for slurred speech, which the main TTS model does not produce.
+ * Returns base64 audio and its mime type (these models return headerless PCM).
+ */
+export async function speakPrompted(opts: { model: string; prompt: string; voice: string; attempt?: number }): Promise<Cached<{ data: string; mime: string }>> {
+  const key = { ...opts, attempt: opts.attempt ?? 1 };
+  return cached("tts-prompted", key, () =>
+    call("tts-prompted", async () => {
+      const interaction = (await ai().interactions.create({
+        model: opts.model,
+        input: opts.prompt,
+        response_format: { type: "audio" },
+        generation_config: { speech_config: [{ voice: opts.voice }] },
+      } as never)) as { output_audio?: { data?: string; mime_type?: string } };
+      const data = interaction.output_audio?.data;
+      if (!data) throw new Error("no output_audio");
+      return { data, mime: interaction.output_audio?.mime_type ?? "audio/wav" };
+    }),
+  );
+}
+
 // ---- decisions -------------------------------------------------------------------
 
 export type NoulQuestion = {

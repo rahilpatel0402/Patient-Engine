@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <groan>, <grunt>, <whimper>, <exhales>, <cough>, <throat-clearing>, <sob>, <sigh>, <short pause>, <long pause>.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 6 for the \"trial\" set.\nWho: a nurse in her forties calling on her break.\nStated reason for the call: updating their address on file.\nHidden sign: none. The patient is a healthy control and sounds completely well. tts_style should describe a calm, relaxed, even conversational tone. Use no inline tags at all.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 1190626,
+ "at": "2026-11-21T16:03:53.814Z",
+ "value": "{\"persona\": \"A nurse in her forties calling on her break to update her address on file.\", \"spoken_text\": \"Hi there, I'm calling on my break to update my home address on file. We just moved into a new place across town last week, and I want to make sure my mail goes to the right spot.\", \"tts_style\": \"Calm, relaxed, and even conversational tone, sounding completely well and unhurried.\", \"voice\": \"Kore\", \"expected_urgency\": \"routine\"}"
+}

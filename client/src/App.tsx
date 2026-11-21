@@ -91,7 +91,7 @@ function Exam({ sets, hasNoise }: { sets: SetData[]; hasNoise: boolean }) {
                 <button className={p.id === patient?.id ? "on" : ""} onClick={() => setPatientId(p.id)}>
                   <span className="pid">{p.id.replace(/^[a-z]+-/, "").replace(/-.*/, "")}</span>
                   <span className="psign">{SIGN_LABEL[p.hidden_sign]}</span>
-                  {!p.gate.kept ? <span className="tag dropped">dropped</span> : c ? <ArmDots result={c} /> : null}
+                  {!p.gate.kept ? <span className="tag dropped" title="Left out of the test: the Decisions API did not hear the intended sign clearly enough">dropped</span> : c ? <ArmDots result={c} /> : null}
                 </button>
               </li>
             );
@@ -165,7 +165,13 @@ function CaseView({ patient, result, hasNoise }: { patient: Patient; result?: Ca
         <div className="eyebrow">What a text pipeline gets</div>
         {result?.transcript ?? patient.spoken_text.replace(/<[^>]+>/g, "").replace(/\s+/g, " ")}
       </blockquote>
-      {!patient.gate.kept && <p className="error">Dropped by the perception gate: {patient.gate.reason}.</p>}
+      <GateBox patient={patient} />
+      <details className="script">
+        <summary>What the author wrote for the voice</summary>
+        <p><b>Voice direction:</b> {patient.tts_style}</p>
+        <p><b>Script with sound tags:</b> {patient.spoken_text}</p>
+        <p className="muted">Written by {patient.author_model}, voiced by Gemini TTS ({patient.voice}), {patient.seconds} seconds.</p>
+      </details>
 
       {result && (
         <div className="arms">
@@ -194,6 +200,32 @@ function CaseView({ patient, result, hasNoise }: { patient: Patient; result?: Ca
   );
 }
 
+const GATE_SIGN_MIN = 0.8;
+const GATE_CONTROL_MAX = 0.3;
+
+/** Says in plain words why this clip is in the test or left out of it. */
+function GateBox({ patient }: { patient: Patient }) {
+  const takes = patient.gate.attempts === 1 ? "on the first take" : "after two takes";
+  let text: string;
+  if (patient.hidden_sign === "none") {
+    text = patient.gate.kept
+      ? `A healthy control must stay at or under ${GATE_CONTROL_MAX.toFixed(2)} on every sign. This clip did, ${takes}, so it is in the test.`
+      : `A healthy control must stay at or under ${GATE_CONTROL_MAX.toFixed(2)} on every sign. This clip did not (${patient.gate.reason}), so it is left out of the test.`;
+  } else {
+    const key = SIGN_PROBE[patient.hidden_sign];
+    const heard = patient.probes[key].toFixed(2);
+    text = patient.gate.kept
+      ? `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard ${heard} ${takes}, so this clip is in the test.`
+      : `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard only ${heard} ${takes}, so this clip is left out of the test. Listen and judge for yourself.`;
+  }
+  return (
+    <div className={`gate ${patient.gate.kept ? "kept" : "out"}`}>
+      <div className="gatehead">{patient.gate.kept ? "Passed the perception gate" : "Dropped by the perception gate"}</div>
+      <p>{text}</p>
+    </div>
+  );
+}
+
 function List({ title, items, none }: { title: string; items: string[]; none?: string }) {
   return (
     <div className="list">
@@ -214,6 +246,7 @@ function ProbeBars({ probes, highlight, baseline }: { probes: Probes; highlight?
           <span className="track">
             {baseline && <i className="ghost" style={{ width: `${baseline[k] * 100}%` }} />}
             <i className="fill" style={{ width: `${probes[k] * 100}%` }} />
+            {k === highlight && <i className="need" style={{ left: `${GATE_SIGN_MIN * 100}%` }} title="The gate needs 0.80 here" />}
           </span>
           <span className="barvalue">{probes[k].toFixed(2)}</span>
         </div>

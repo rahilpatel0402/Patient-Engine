@@ -37,10 +37,10 @@ export async function phoneQuality(input: string, output: string): Promise<strin
 
 // ---- samples -------------------------------------------------------------------
 
-type Wav = { rate: number; samples: Int16Array };
+export type Wav = { rate: number; samples: Int16Array };
 
 /** Reads a mono 16-bit WAV. Walks the chunks, since ffmpeg writes extra ones before the audio. */
-function readWav(file: string): Wav {
+export function readWav(file: string): Wav {
   const b = fs.readFileSync(file);
   if (b.toString("latin1", 0, 4) !== "RIFF" || b.toString("latin1", 8, 12) !== "WAVE") throw new Error(`${path.basename(file)} is not a WAV file`);
   let off = 12;
@@ -67,7 +67,7 @@ function readWav(file: string): Wav {
   throw new Error(`${path.basename(file)} has no audio data`);
 }
 
-function writeWav(file: string, rate: number, samples: Int16Array): void {
+export function writeWav(file: string, rate: number, samples: Int16Array): void {
   const header = Buffer.alloc(44);
   header.write("RIFF", 0, "latin1");
   header.writeUInt32LE(36 + samples.length * 2, 4);

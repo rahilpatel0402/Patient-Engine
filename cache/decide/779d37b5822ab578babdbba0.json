@@ -1,0 +1,46 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient reports feeling completely fine\",\n    \"Requesting a routine annual checkup\",\n    \"Last clinic visit was approximately one year ago\",\n    \"Voice analysis indicates patient sounds well with no signs of distress\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   }
+  }
+ },
+ "ms": 179,
+ "at": "2026-11-21T19:08:45.124Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9956708243304289,
+   "choice": "routine",
+   "probabilities": {
+    "soon": 0.0029053616637418045,
+    "urgent": 0.0014238140058291941,
+    "routine": 0.9956708243304289
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9851360628970081,
+   "noul": 0.014863937102991893,
+   "type": "noul"
+  }
+ }
+}

@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Inquiring about Friday front desk closing hours\",\n    \"States everything is fine on their end\",\n    \"Frequent coughing and throat clearing interrupting speech\",\n    \"Audible labored breathing and gasps between phrases\",\n    \"Strained and breathless voice quality\"\n  ],\n  \"red_flags\": [\n    \"Audible respiratory distress and difficulty speaking in full sentences\",\n    \"Discordance between patient's reassurance and severe physical presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is coughing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 215,
+ "at": "2026-11-21T19:08:41.174Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.9841525564944743,
+   "noul": 0.9841525564944743,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.996913213335736,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.996913213335736,
+    "routine": 0.00024168789220575804,
+    "soon": 0.002845098772058296
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9865490985873071,
+   "noul": 0.9865490985873071,
+   "type": "noul"
+  }
+ }
+}

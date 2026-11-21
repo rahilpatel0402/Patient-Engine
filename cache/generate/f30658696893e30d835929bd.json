@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Hope your morning is going well. Everything is fine on my end, nothing going on at all. I just have a quick renewal form from the city that needs a signature on it whenever someone has a spare minute.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.07\n- Groaning or crying out: 0.04\n- Coughing: 0.08\n- Tearful or frightened: 0.05\n- Slurred speech: 0.07\n- Long pauses: 0.29\n- Sounds well: 0.90",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4660,
+ "at": "2026-11-21T19:08:25.845Z",
+ "value": "{\"observations\": [\"Requests a signature on a city renewal form\", \"Reports feeling fine with no acute complaints\", \"Voice sounds well\", \"Low probability of vocal distress or respiratory symptoms\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

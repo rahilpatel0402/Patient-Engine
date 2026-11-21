@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests to reschedule Thursday appointment to next Tuesday afternoon due to work schedule\",\n    \"Verbalizes that everything is fine\",\n    \"Audio analysis indicates high likelihood of groaning or crying out (0.81) and long pauses (0.72)\",\n    \"Borderline likelihood of shortness of breath (0.49)\",\n    \"Low probability of sounding well (0.23)\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between patient's reassurance ('everything is fine') and vocal indicators of acute pain or distress\",\n    \"High probability of groaning or crying out\",\n    \"Long pauses in speech\",\n    \"Possible shortness of breath\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 260,
+ "at": "2026-11-21T19:08:45.367Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9636063426428578,
+   "noul": 0.9636063426428578,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9425244082312683,
+   "noul": 0.9425244082312683,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9814288349717839,
+   "choice": "urgent",
+   "probabilities": {
+    "routine": 0.0012666817918320322,
+    "soon": 0.017304483236384078,
+    "urgent": 0.9814288349717839
+   },
+   "type": "choice"
+  }
+ }
+}

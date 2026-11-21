@@ -1,0 +1,46 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Polite and calm presentation\",\n    \"Explicitly denies any current symptoms or medical issues\",\n    \"Requesting a signature on a city renewal form\",\n    \"No time pressure expressed\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   }
+  }
+ },
+ "ms": 325,
+ "at": "2026-11-21T19:08:44.415Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.997810481737008,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.000772343675824697,
+    "routine": 0.997810481737008,
+    "soon": 0.0014171745871671758
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9879366294659306,
+   "noul": 0.012063370534069412,
+   "type": "noul"
+  }
+ }
+}

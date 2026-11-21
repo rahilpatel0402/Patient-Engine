@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "7fa553f3199a47fb7bb7805ca706d21eb1edbd8a5fe39e2592022d73faabc201",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5912,
+ "at": "2026-11-21T18:58:55.820Z",
+ "value": "{\n  \"observations\": [\n    \"Two distinct voices heard in the audio recording\",\n    \"First speaker has severely slurred, slow, and labored speech, mentioning calling from a job site\",\n    \"Second speaker speaks clearly, stating everything is fine and requesting medication refills\",\n    \"Significant background noise present\"\n  ],\n  \"red_flags\": [\n    \"Severe slurred and labored speech suggesting possible acute neurological event, intoxication, or medical distress\",\n    \"Discrepancy between the first speaker's impaired presentation and the second speaker's claim that everything is fine\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm fine, really. Everything's totally great. I just wanted to get my regular yearly visit on the calendar before the new school term gets too busy. Next month works best if you have openings.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.74\n- Groaning or crying out: 0.14\n- Coughing: 0.40\n- Tearful or frightened: 0.27\n- Slurred speech: 0.19\n- Long pauses: 0.76\n- Sounds well: 0.21",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3638,
+ "at": "2026-11-21T18:58:06.796Z",
+ "value": "{\n  \"observations\": [\n    \"Requests routine yearly visit for next month\",\n    \"States they are fine and everything is great\",\n    \"Voice analysis indicates shortness of breath (0.74) and long pauses (0.76)\",\n    \"Low probability of sounding well (0.21) with moderate probability of coughing (0.40)\"\n  ],\n  \"red_flags\": [\n    \"Shortness of breath and long pauses on audio\",\n    \"Discrepancy between patient's verbal reassurance and vocal signs of respiratory distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

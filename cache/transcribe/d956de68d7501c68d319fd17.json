@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "9f9293eae9c762a3a238d5a694923dbe80091fa0dff3d9ccbf2b1c1bc5116b97"
+ },
+ "ms": 1681,
+ "at": "2026-11-21T18:57:57.541Z",
+ "value": "Everything is fine with me today. I'm just calling to check on the status of the follow letter we discussed last time. Whenever the office gets a chance to send it over to my email, that would be wonderful. Everything is fine, Dr."
+}

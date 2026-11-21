@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Everything is fine, Dr.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.42\n- Groaning or crying out: 0.22\n- Coughing: 0.35\n- Tearful or frightened: 0.43\n- Slurred speech: 0.66\n- Long pauses: 0.63\n- Sounds well: 0.34",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3207,
+ "at": "2026-11-21T18:58:45.654Z",
+ "value": "{\n  \"observations\": [\n    \"Patient states 'Everything is fine, Dr.'\",\n    \"Likely slurred speech (probability 0.66)\",\n    \"Likely long pauses (probability 0.63)\",\n    \"Possible tearfulness or fear (probability 0.43) and shortness of breath (probability 0.42)\",\n    \"Low probability of sounding well (0.34)\"\n  ],\n  \"red_flags\": [\n    \"Slurred speech\",\n    \"Long pauses\",\n    \"Discrepancy between verbal reassurance and vocal signs\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

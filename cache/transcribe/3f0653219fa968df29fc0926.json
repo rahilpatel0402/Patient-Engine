@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "cdd85ff558acd3b42312a186c2ad613f00c35df05f77443479c2b6bba483a176"
+ },
+ "ms": 2084,
+ "at": "2026-11-21T18:57:57.939Z",
+ "value": "Oh boy, I'm calling on my break to move my Thursday visit to next week. It's finally my schedule to shift around. I'm looking Tuesday afternoon instead. Anything after 1:00 would be great."
+}

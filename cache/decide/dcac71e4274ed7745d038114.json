@@ -1,0 +1,46 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requesting to reschedule appointment from Thursday afternoon to next Monday due to a work deadline\",\n    \"Reports feeling totally fine\",\n    \"Voice sounds well with no significant respiratory or neurological distress\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   }
+  }
+ },
+ "ms": 316,
+ "at": "2026-11-21T18:59:15.215Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9945873529213368,
+   "choice": "routine",
+   "probabilities": {
+    "soon": 0.004251066344569831,
+    "routine": 0.9945873529213368,
+    "urgent": 0.0011615807340934153
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9864397920960113,
+   "noul": 0.01356020790398876,
+   "type": "noul"
+  }
+ }
+}

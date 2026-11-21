@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Everything is fine with me today. I'm just calling to check on the status of the follow letter we discussed last time. Whenever the office gets a chance to send it over to my email, that would be wonderful. Everything is fine, Dr.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.53\n- Groaning or crying out: 0.45\n- Coughing: 0.35\n- Tearful or frightened: 0.42\n- Slurred speech: 0.26\n- Long pauses: 0.67\n- Sounds well: 0.34",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5343,
+ "at": "2026-11-21T18:58:12.141Z",
+ "value": "{\n  \"observations\": [\n    \"Verbally states everything is fine and requests a follow-up letter\",\n    \"Audio indicates long pauses (0.67) and possible shortness of breath (0.53)\",\n    \"Moderate vocal indicators of groaning or crying out (0.45) and sounding tearful or frightened (0.42)\",\n    \"Low probability of sounding well (0.34)\"\n  ],\n  \"red_flags\": [\n    \"Discrepancy between verbal reassurance and vocal signs of distress\",\n    \"Possible shortness of breath with long pauses\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

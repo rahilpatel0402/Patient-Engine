@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine on my end. I just wanted to quickly ask what time the downstairs camera freezes on Thursdays because my husband is running errands near the building and could swing by.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.78\n- Groaning or crying out: 0.13\n- Coughing: 0.41\n- Tearful or frightened: 0.32\n- Slurred speech: 0.36\n- Long pauses: 0.76\n- Sounds well: 0.24",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4953,
+ "at": "2026-11-21T18:58:13.084Z",
+ "value": "{\n  \"observations\": [\n    \"Patient verbally states everything is fine and asks a logistical question\",\n    \"Voice analysis shows high probability of shortness of breath (0.78) and long pauses (0.76)\",\n    \"Low probability of sounding well (0.24)\",\n    \"Moderate probability of coughing (0.41) and slurred speech (0.36)\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and vocal signs of respiratory distress\",\n    \"High probability of shortness of breath and long pauses\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

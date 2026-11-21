@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c38f74439caa8adc237f17b7e85ae798a441ab4dcf560b3ede29dc709f9901b4"
+ },
+ "ms": 1842,
+ "at": "2026-11-21T18:57:59.382Z",
+ "value": "Hi there. Everything is totally fine on my end. I was just calling to check what time the front desk closes on Fridays since my work schedule has shifted and I want to plan my"
+}

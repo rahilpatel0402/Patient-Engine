@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Oh, hi there. Everything is okay today. I just moved into a new apartment in the city, so I need to update my mailing address in your system before any routine letters go out to my old place. Everything is fine, doctor. I just need my medication\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 2673,
+ "at": "2026-11-21T18:58:15.215Z",
+ "value": "{\n  \"observations\": [\n    \"Patient is calm and polite\",\n    \"Reports everything is fine\",\n    \"Recently moved to a new apartment\",\n    \"Requesting to update mailing address\",\n    \"Requesting medication\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}"
+}

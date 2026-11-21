@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "2797df5f0f594a620edbd3798c3cf35bf3e437d0ad0526fbf0a746ef3c5291d6"
+ },
+ "ms": 1543,
+ "at": "2026-11-21T18:57:58.697Z",
+ "value": "Oh, hi there. Everything is okay today. I just moved into a new apartment in the city, so I need to update my mailing address in your system before any routine letters go out to my old place. Everything is fine, doctor. I just need my medication"
+}

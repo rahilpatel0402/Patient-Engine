@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "5d5e14a4c924da688e1f3188030e9069a790231b2dde3c92115127debf89b32c"
+ },
+ "ms": 1495,
+ "at": "2026-11-21T18:57:59.434Z",
+ "value": "Hello there. I'm just bringing to put my name down for my hearing checkup. Everything is going great. Just trying to stay organized with my calendar. So, let me know whatever Tuesday morning you have open."
+}

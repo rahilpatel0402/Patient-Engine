@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "87f0db8b1293b36644f857cc34ca1047c7b6907d91c8ca326967a8e790e8ebd9"
+ },
+ "ms": 1383,
+ "at": "2026-11-21T18:58:00.764Z",
+ "value": "Hello. I hope I'm not bothering anyone. No, everything is completely fine. I just have a quick school district form here that needs a signature. Whenever someone has a free moment to look it over, I can come pick it up."
+}

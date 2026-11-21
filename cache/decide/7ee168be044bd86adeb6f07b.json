@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient states 'Everything is fine, Dr.'\",\n    \"Likely slurred speech (probability 0.66)\",\n    \"Likely long pauses (probability 0.63)\",\n    \"Possible tearfulness or fear (probability 0.43) and shortness of breath (probability 0.42)\",\n    \"Low probability of sounding well (0.34)\"\n  ],\n  \"red_flags\": [\n    \"Slurred speech\",\n    \"Long pauses\",\n    \"Discrepancy between verbal reassurance and vocal signs\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 276,
+ "at": "2026-11-21T18:59:08.735Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9460408067315227,
+   "noul": 0.9460408067315227,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9968922903056255,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.9968922903056255,
+    "routine": 0.00014029000011368982,
+    "soon": 0.00296741969426075
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.8525754197460306,
+   "noul": 0.8525754197460306,
+   "type": "noul"
+  }
+ }
+}

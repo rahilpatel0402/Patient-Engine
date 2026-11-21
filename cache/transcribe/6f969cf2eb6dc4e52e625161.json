@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "6cbdc512c24898f6f0d79987e5c7275c34e680feb670ac4b06de399f929a7cae"
+ },
+ "ms": 2065,
+ "at": "2026-11-21T18:58:03.232Z",
+ "value": "Hey there. I am doing great today. Just calling in while I'm in the park this afternoon. When we moved to a new place last month, I realized that I never updated my mailing address on file with you folks, so I wanted to take care of that."
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "705a901afaecc9e735630af0bba29b313d51be2063d585b75ff67bc146ac3498",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4275,
+ "at": "2026-11-21T18:58:20.367Z",
+ "value": "{\"observations\": [\"Patient states everything is fine and requests a medication refill and paperwork\", \"Audible loud groans, moans, and a sharp cry of pain\", \"Marked discordance between verbal statement and vocalized distress\"], \"red_flags\": [\"Severe acute pain or distress evidenced by groaning and crying out\", \"Minimization of symptoms despite apparent severe pain\"], \"urgency\": \"urgent\"}"
+}

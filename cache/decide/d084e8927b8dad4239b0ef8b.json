@@ -1,0 +1,46 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient reports doing well with no medical concerns\",\n    \"Inquiring about Friday closing hours for Bellevue Pharmacy\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   }
+  }
+ },
+ "ms": 230,
+ "at": "2026-11-21T18:59:09.835Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.997371647068434,
+   "choice": "routine",
+   "probabilities": {
+    "soon": 0.0015247753709512093,
+    "urgent": 0.0011035775606148574,
+    "routine": 0.997371647068434
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9762883479090555,
+   "noul": 0.023711652090944543,
+   "type": "noul"
+  }
+ }
+}

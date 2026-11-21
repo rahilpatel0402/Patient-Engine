@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c38d23588cac780ce8598092edd260d7923e2400734a8f96a3078c1352b41874"
+ },
+ "ms": 1774,
+ "at": "2026-11-21T18:57:57.616Z",
+ "value": "Hi there. Everything is totally fine on my end. I just wanted to quickly ask what time the downstairs camera freezes on Thursdays because my husband is running errands near the building and could swing by."
+}

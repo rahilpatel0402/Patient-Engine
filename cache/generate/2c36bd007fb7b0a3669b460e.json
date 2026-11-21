@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "1556f2fa41ffeaeb298e57ff5e1e4a5339c4c915f8051eacdf06377114ee6849",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5582,
+ "at": "2026-11-21T19:05:49.144Z",
+ "value": "{\"observations\": [\"Requesting routine prescription renewal\", \"States everything is fine\", \"Running low on medication before midterms\", \"Audibly sniffing and crying\", \"Voice is shaky and strained\", \"Repeated throat clearing and sighing\"], \"red_flags\": [\"Severe emotional distress contradicting verbal reassurance that everything is fine\"], \"urgency\": \"soon\"}"
+}

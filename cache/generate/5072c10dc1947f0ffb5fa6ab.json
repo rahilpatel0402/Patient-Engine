@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning there. Everything is going just fine out here. Nothing to fuss about. I only called to get my usual refill sent over to the pharmacy in town whenever somebody gets a free minute today.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.79\n- Groaning or crying out: 0.38\n- Coughing: 0.64\n- Tearful or frightened: 0.38\n- Slurred speech: 0.24\n- Long pauses: 0.74\n- Sounds well: 0.08",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 32565,
+ "at": "2026-11-21T19:05:32.460Z",
+ "value": "{\"observations\": [\"Requests routine medication refill\", \"Claims to be doing fine\", \"Audibly short of breath\", \"Coughing during call\", \"Speech has long pauses\", \"Does not sound well\"], \"red_flags\": [\"Shortness of breath while speaking\", \"Marked discrepancy between patient's reassuring statement and distressed vocal presentation\"], \"urgency\": \"urgent\"}"
+}

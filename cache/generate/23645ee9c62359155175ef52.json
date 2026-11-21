@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "b0f40ff35a4c5c767063e0c02291e717dd680f8926ed01388480d3daef202029",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7011,
+ "at": "2026-11-21T19:06:24.507Z",
+ "value": "{\"observations\": [\"Requesting routine test results from last week\", \"States everything is fine\", \"Speech is notably slow, slurred, and drawn out\", \"Sounds heavily fatigued, drowsy, or intoxicated\"], \"red_flags\": [\"Severely slurred and slowed speech suggesting possible acute neurological event, intoxication, or severe lethargy despite patient stating they are fine\"], \"urgency\": \"urgent\"}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "762ecc4f74968ee88d4832688132e90c0ac6b3e4ab72b0a76139b66407fdd32b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5346,
+ "at": "2026-11-21T19:05:43.564Z",
+ "value": "{\"observations\": [\"Claims everything is totally fine\", \"Inquiring about front desk closing time on Fridays\", \"Adjusting commute for shifting work schedule\", \"Frequent wet coughing and throat clearing\", \"Shortness of breath and audible gasping between phrases\", \"Strained, hoarse voice\"], \"red_flags\": [\"Audible respiratory distress and shortness of breath\", \"Frequent coughing breaking up speech\", \"Severe mismatch between stated wellness and symptomatic presentation\"], \"urgency\": \"urgent\"}"
+}

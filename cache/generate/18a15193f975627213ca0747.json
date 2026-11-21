@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. Everything is going great with me. I am just calling about a quick administrative thing. My campus office needs a standard referral letter on file for next semester, so I wanted to see how to get that sent over.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.11\n- Groaning or crying out: 0.03\n- Coughing: 0.14\n- Tearful or frightened: 0.08\n- Slurred speech: 0.10\n- Long pauses: 0.47\n- Sounds well: 0.84",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4424,
+ "at": "2026-11-21T19:03:34.409Z",
+ "value": "{\"observations\":[\"Requesting a standard referral letter for campus office for next semester\",\"Reports feeling well\",\"Sounds well on audio\",\"Moderate probability of long pauses in speech\"],\"red_flags\":[],\"urgency\":\"routine\"}"
+}

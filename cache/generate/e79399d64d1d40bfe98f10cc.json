@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "9c55751e4cb442ad8b7f88155b874c9588610641a0bb8ae9b117a415c2de2567",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7678,
+ "at": "2026-11-21T19:03:19.862Z",
+ "value": "{\"observations\":[\"Patient states they are doing totally fine and is calling to check Friday pharmacy hours\",\"Speech is markedly slow, drawn-out, and breathy\",\"Audible heavy breathing and gasping between phrases\",\"Notable discrepancy between benign verbal content and severely labored vocal presentation\"],\"red_flags\":[\"Possible acute respiratory distress\",\"Possible severe sedation, intoxication, or altered mental status\",\"Apparent lack of insight or minimization of physical distress\"],\"urgency\":\"urgent\"}"
+}

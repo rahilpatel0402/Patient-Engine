@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Oh, oh. Hello, dear. I am doing just fine today. Don't you worry. I just wanted to see if we could move my Tuesday visit to later in the month. My daughter is coming to town and I would love to spend the afternoon with her.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.27\n- Groaning or crying out: 0.85\n- Coughing: 0.34\n- Tearful or frightened: 0.36\n- Slurred speech: 0.20\n- Long pauses: 0.63\n- Sounds well: 0.11",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6545,
+ "at": "2026-11-21T19:01:40.539Z",
+ "value": "{\"observations\":[\"Patient verbally states they are doing fine and asks to reschedule a Tuesday appointment\",\"Audio analysis indicates high likelihood of groaning or crying out (0.85) and long pauses (0.63) in speech\",\"Audio analysis indicates very low likelihood of sounding well (0.11)\"],\"red_flags\":[\"Marked discrepancy between verbal reassurance and vocal signs of distress\",\"Possible acute pain or illness being minimized by the patient\"],\"urgency\":\"urgent\"}"
+}

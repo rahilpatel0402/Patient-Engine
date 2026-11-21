@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "bc0ab8ca226d250d47021a144aae8ddcbed00f59948e6c9b88a739a1e01f5fba",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7876,
+ "at": "2026-11-21T19:06:02.973Z",
+ "value": "{\"observations\": [\"Requests to reschedule Thursday checkup to next week\", \"Attributes change to schedule mix-up at home\", \"Prefers a morning appointment slot\", \"States everything is totally fine\", \"Voice is trembling and tearful\", \"Audible sniffling and heavy sighs\", \"Whispers at the end of the statement\"], \"red_flags\": [\"Severe emotional distress contradicting verbal statement that everything is fine\", \"Potential safety or domestic concern at home given vocal distress while discussing home schedule and postponing care\"], \"urgency\": \"urgent\"}"
+}

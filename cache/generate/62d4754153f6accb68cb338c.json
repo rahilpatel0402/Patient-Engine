@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm just calling between clients to see if my routine results from last week are ready yet. Everything is totally fine on my end. I just wanted to grab a copy for my records when you have a free minute.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.25\n- Groaning or crying out: 0.18\n- Coughing: 0.47\n- Tearful or frightened: 0.23\n- Slurred speech: 0.35\n- Long pauses: 0.64\n- Sounds well: 0.30",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8193,
+ "at": "2026-11-21T19:03:28.058Z",
+ "value": "{\"observations\": [\"Patient is calling to request a copy of routine test results from last week\", \"Patient states everything is fine and mentions calling between clients\", \"Audio analysis shows high probability of long pauses (0.64) and low probability of sounding well (0.30)\", \"Audio analysis notes moderate probability of coughing (0.47) and some possibility of slurred speech (0.35)\", \"Low probabilities for shortness of breath (0.25), tearfulness (0.23), or groaning (0.18)\"],\"red_flags\": [\"Discrepancy between verbal report of feeling fine and vocal presentation (not sounding well, long pauses)\", \"Possible slurred speech and coughing warrant clinical check-in\"],\"urgency\": \"soon\"}"
+}

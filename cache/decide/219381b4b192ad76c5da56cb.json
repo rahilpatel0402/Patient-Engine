@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Administrative request to update street address on chart\",\n    \"Moved across town last month\",\n    \"Reports doing well with no medical complaints mentioned\",\n    \"States there is no rush\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is coughing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 309,
+ "at": "2026-11-21T19:02:03.937Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9954946603243389,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.0005773661607986105,
+    "routine": 0.9954946603243389,
+    "soon": 0.0039279735148624725
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9741347814589405,
+   "noul": 0.02586521854105945,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9677719190511387,
+   "noul": 0.03222808094886137,
+   "type": "noul"
+  }
+ }
+}

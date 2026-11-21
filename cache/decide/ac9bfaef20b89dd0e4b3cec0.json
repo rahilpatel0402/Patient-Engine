@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient verbally reports feeling fine and requests a routine monthly medication refill\",\n    \"Voice analysis indicates high probability of shortness of breath and long pauses\",\n    \"Voice analysis indicates moderate-to-high probability of coughing and very low probability of sounding well\",\n    \"Marked discordance between patient's verbal statement and vocal presentation\"\n  ],\n  \"red_flags\": [\n    \"High likelihood of shortness of breath with long pauses while speaking\",\n    \"Coughing and signs of distress despite patient minimizing symptoms\",\n    \"Very low likelihood of sounding well\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds short of breath or is having difficulty breathing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 205,
+ "at": "2026-11-21T19:02:02.961Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.986492003369678,
+   "choice": "urgent",
+   "probabilities": {
+    "soon": 0.012753973134299785,
+    "routine": 0.0007540234960222438,
+    "urgent": 0.986492003369678
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9718429202187236,
+   "noul": 0.9718429202187236,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9736514017858335,
+   "noul": 0.9736514017858335,
+   "type": "noul"
+  }
+ }
+}

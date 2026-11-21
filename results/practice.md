@@ -1,6 +1,6 @@
 # Listening station results: practice set, written by Argon
 
-Written by `scripts/write-results.ts` on 2026-11-21 18:57 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
+Written by `scripts/write-results.ts` on 2026-11-21 19:06 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
 
 ## Clips
 
@@ -73,6 +73,15 @@ The same clips were degraded step by step and never re-rendered: phone quality (
 | Room noise 5 dB above the voice | 5 of 6 | 2 of 6 | 0 of 2 | 0 of 6 | 2 of 6 | 5 of 6 | hardest rung that holds |
 | Room noise 10 dB above the voice | 1 of 6 | 0 of 6 | 0 of 2 | 0 of 6 | 0 of 6 | 1 of 6 | breaks here |
 | Room noise 15 dB above the voice | 0 of 6 | 0 of 6 | 0 of 2 |  |  |  |  |
+
+## Same test, four Gemini 4 models as the clinician
+
+Same clips, same prompts, same grader. Only the clinician model changes. Two rows are not fully independent: the model that wrote this set's scripts, and Carbon, which is the second listener for slurred clips.
+
+| Clinician model | A caught | B caught | C caught | False alarms on controls (A, B, C) |
+|---|---|---|---|---|
+| Gemini 4 Hydrogen (main run) | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
+| Gemini 4 Neon | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
 
 ## Physician review queue
 

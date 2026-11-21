@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient verbally reports doing fine and states they are calling to update their address\",\n    \"Voice analysis indicates high probability of shortness of breath\",\n    \"Long pauses present in speech\",\n    \"Audible coughing detected\",\n    \"Voice sounds tearful or frightened\",\n    \"Very low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Marked discordance between verbal reassurance and vocal signs of distress\",\n    \"Indicators of possible acute respiratory distress including shortness of breath and long pauses\",\n    \"Signs of fear or emotional distress\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds emotionally distressed, frightened, or tearful?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 351,
+ "at": "2026-11-21T19:03:53.598Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9850428981995003,
+   "noul": 0.9850428981995003,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9881081578031562,
+   "choice": "urgent",
+   "probabilities": {
+    "routine": 0.0006672169371023666,
+    "urgent": 0.9881081578031562,
+    "soon": 0.011224625259741373
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9834422891226912,
+   "noul": 0.9834422891226912,
+   "type": "noul"
+  }
+ }
+}

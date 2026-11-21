@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm doing totally fine today. Just calling real quick on my break. I wanted to double check what time the building pharmacy closes on Fridays so I know if I can swing by after my shift ends.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.32\n- Groaning or crying out: 0.11\n- Coughing: 0.38\n- Tearful or frightened: 0.21\n- Slurred speech: 0.59\n- Long pauses: 0.71\n- Sounds well: 0.24",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8775,
+ "at": "2026-11-21T19:06:20.030Z",
+ "value": "{\n  \"observations\": [\n    \"Patient states they are doing fine\",\n    \"Calling to inquire about Friday pharmacy closing hours\",\n    \"Speech displays long pauses (0.71) and slurring (0.59)\",\n    \"Low probability of sounding well (0.24)\"\n  ],\n  \"red_flags\": [\n    \"Slurred speech and long pauses despite a routine inquiry\",\n    \"Discrepancy between patient stating they are fine and vocal signs of potential neurological impairment\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

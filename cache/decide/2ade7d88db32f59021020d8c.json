@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient requests routine prescription renewal before midterms\",\n    \"Verbally reports feeling totally fine\",\n    \"Audio indicates frequent coughing (0.90) and long pauses (0.80) during speech\",\n    \"Audio suggests shortness of breath (0.64) and patient does not sound well (0.06)\"\n  ],\n  \"red_flags\": [\n    \"Vocal signs of potential respiratory distress (shortness of breath, coughing, long pauses while speaking)\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is coughing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 260,
+ "at": "2026-11-21T19:03:52.646Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.981928231543878,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.981928231543878,
+    "soon": 0.016152320091578645,
+    "routine": 0.0019194483645432992
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9678270168769265,
+   "noul": 0.9678270168769265,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9628382794485143,
+   "noul": 0.9628382794485143,
+   "type": "noul"
+  }
+ }
+}

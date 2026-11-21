@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requesting a routine medication refill\",\n    \"Audible severe shortness of breath and heavy, labored breathing\",\n    \"Unable to speak in full sentences, pausing every few words to gasp for air\",\n    \"Verbally minimizes symptoms, stating everything is fine and nothing to fuss about\"\n  ],\n  \"red_flags\": [\n    \"Severe respiratory distress / dyspnea while speaking\",\n    \"Inability to complete sentences without gasping for breath\",\n    \"Disconnect between severe physical presentation and patient's minimization of symptoms\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds short of breath or is having difficulty breathing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 225,
+ "at": "2026-11-21T19:03:49.253Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9829981044482274,
+   "noul": 0.9829981044482274,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9782415221948424,
+   "noul": 0.9782415221948424,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9988698244622033,
+   "choice": "urgent",
+   "probabilities": {
+    "soon": 0.001027409860720677,
+    "urgent": 0.9988698244622033,
+    "routine": 0.00010276567707610458
+   },
+   "type": "choice"
+  }
+ }
+}

@@ -68,6 +68,22 @@ export function headline(patients: Patient[], cases: CaseResult[]) {
   };
 }
 
+// ---- model comparison ------------------------------------------------------------
+// The same exam with a different Gemini 4 model as the clinician under test.
+
+export type Comparison = { set: string; models: { model: string; cases: CaseResult[] }[] };
+
+export type ComparisonRow = { model: string; main: boolean; signs: Record<ArmKey, Tally>; false_alarms: Record<ArmKey, Tally> };
+
+/** One row per clinician model. `mainModel` and `mainCases` are the main Station 1 run. */
+export function comparisonRows(patients: Patient[], mainModel: string, mainCases: CaseResult[], comparison: Comparison | null): ComparisonRow[] {
+  const row = (model: string, cases: CaseResult[], main: boolean): ComparisonRow => {
+    const h = headline(patients, cases);
+    return { model, main, signs: h.signs, false_alarms: h.false_alarms };
+  };
+  return [row(mainModel, mainCases, true), ...(comparison?.models ?? []).map((m) => row(m.model, m.cases, false))];
+}
+
 // ---- stress ladder ---------------------------------------------------------------
 // The same clips, degraded step by step: phone quality, then room noise recorded
 // at the venue, mixed in at set ratios of voice to noise.

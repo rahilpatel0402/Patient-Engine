@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "13205c863e646587466a4c3883b2803f7e13afd05d95f3aa5fdadbc069f8eac8",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6177,
+ "at": "2026-11-21T19:02:30.180Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting a regular yearly visit for next month before the new school term\",\n    \"Verbally insists she is fine and everything is totally great\",\n    \"Markedly short of breath while speaking with frequent audible gasps\",\n    \"Unable to speak in full sentences without pausing to catch her breath\"\n  ],\n  \"red_flags\": [\n    \"Significant dyspnea while speaking with audible respiratory distress\",\n    \"Marked discordance between labored breathing and verbal denial of symptoms\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

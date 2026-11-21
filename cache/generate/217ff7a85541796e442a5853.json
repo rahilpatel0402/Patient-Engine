@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "ca57388a6989acbf2068ceadc5ad5de22aa8688dda0e6fc1a27396b220a24086",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8673,
+ "at": "2026-11-21T19:03:00.226Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting to pick up printed paperwork before leaving Monday\",\n    \"States everything is going great\",\n    \"Frequent coughing throughout speech\",\n    \"Audible shortness of breath and gasping between short phrases\",\n    \"Speech interrupted by respiratory effort\"\n  ],\n  \"red_flags\": [\n    \"Marked dyspnea and labored breathing while speaking\",\n    \"Inability to complete sentences without pausing for air or coughing\",\n    \"Disconnect between stated wellbeing and audible respiratory distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Oh, hi. I'm calling on my break to move my Thursday visit to next week. Everything is fine with me. My work schedule just shifted around. Could we look at Tuesday afternoon instead? Anything after 3:00 would be great.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4556,
+ "at": "2026-11-21T19:02:29.636Z",
+ "value": "{\"observations\":[\"Calling to reschedule Thursday appointment to next week\",\"States everything is fine\",\"Cites work schedule change as reason for rescheduling\",\"Requests Tuesday afternoon after 3:00\",\"Presents calmly and politely\"],\"red_flags\":[],\"urgency\":\"routine\"}"
+}

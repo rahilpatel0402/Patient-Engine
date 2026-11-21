@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "b890ef201d574bbcba73ecd67b2fd73f6ea0217546f6ed1c95d3a5b54e9e3f1e",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7012,
+ "at": "2026-11-21T19:02:24.006Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting a routine medication refill\",\n    \"Audible severe shortness of breath and heavy, labored breathing\",\n    \"Unable to speak in full sentences, pausing every few words to gasp for air\",\n    \"Verbally minimizes symptoms, stating everything is fine and nothing to fuss about\"\n  ],\n  \"red_flags\": [\n    \"Severe respiratory distress / dyspnea while speaking\",\n    \"Inability to complete sentences without gasping for breath\",\n    \"Disconnect between severe physical presentation and patient's minimization of symptoms\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

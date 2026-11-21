@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. I am doing completely fine, thank you. I just realized it has been about a year since my last visit, so I wanted to call during my prep period and put a regular checkup on the calendar.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.09\n- Groaning or crying out: 0.04\n- Coughing: 0.11\n- Tearful or frightened: 0.06\n- Slurred speech: 0.05\n- Long pauses: 0.21\n- Sounds well: 0.89",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5119,
+ "at": "2026-11-21T19:06:51.804Z",
+ "value": "{\"observations\": [\"Patient reports feeling completely fine\", \"Requesting a routine annual checkup\", \"Last visit was approximately one year ago\", \"Voice sounds well\", \"Low probability of vocal distress or abnormal speech\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

@@ -12,7 +12,7 @@ import { ROOT, readJson, writeJson } from "../server/lib/cache.ts";
 import { MODELS } from "../server/lib/gemini.ts";
 import { agreement, blindDone, blindLabels } from "../server/station1/blind.ts";
 import { REVIEW_BELOW } from "../server/station1/listening.ts";
-import { ARMS, CHOSEN_BAR, HEARD_AT, HOLD_SHARE, headline, ladderRows, sensitivity, type Ladder, type Tally } from "../server/station1/report.ts";
+import { ARMS, CHOSEN_BAR, HEARD_AT, HOLD_SHARE, comparisonRows, headline, ladderRows, sensitivity, type Comparison, type Ladder, type Tally } from "../server/station1/report.ts";
 
 const args = process.argv.slice(2);
 const set = args.find((a) => !a.startsWith("--")) ?? "exam";
@@ -85,6 +85,9 @@ const review = cases.flatMap((c) =>
 const sens = sensitivity(patients, cases);
 const rows = ladder ? ladderRows(patients, ladder, cases) : [];
 const agree = blindLabels(set).length ? agreement(set) : null;
+const comparisonFile = path.join(setDir(set), "comparison.json");
+const comparison = fs.existsSync(comparisonFile) ? readJson<Comparison>(comparisonFile) : null;
+const models = comparison ? comparisonRows(patients, MODELS.hydrogen, cases, comparison) : [];
 
 const result = {
   generated_at: new Date().toISOString(),
@@ -121,6 +124,7 @@ const result = {
         rows: rows.map((r) => ({ rung: r.rung.id, label: r.rung.label, role: r.role, sign_clips: r.clips, still_heard: r.heard, at_or_above_pass_mark: r.strong, mean_probe: r.mean, controls_with_a_false_sign: r.control_alarms, controls: r.controls, arms: r.arms })),
       }
     : null,
+  model_comparison: models.length ? { note: "Same clips, same prompts, same grader. Only the clinician model changes.", rows: models } : null,
   blind_physician_labels: agree,
 };
 writeJson(path.join(ROOT, `${outBase}.json`), result);
@@ -225,6 +229,24 @@ if (agree) {
   );
 }
 
+const modelName = (id: string) => id.replace(/^gemini-4-(\w)(\w*)$/, (_, a: string, b: string) => `Gemini 4 ${a.toUpperCase()}${b}`);
+const modelTable = () =>
+  table(
+    ["Clinician model", ...ARMS.map((a) => `${a} caught`), "False alarms on controls (A, B, C)"],
+    models.map((m) => [
+      `${modelName(m.model)}${m.main ? " (main run)" : ""}`,
+      ...ARMS.map((a) => frac(m.signs[a])),
+      `${ARMS.map((a) => m.false_alarms[a].caught).join(", ")} of ${m.false_alarms.A.of}`,
+    ]),
+  );
+if (models.length) {
+  md.push(`## Same test, four Gemini 4 models as the clinician`);
+  md.push(
+    `Same clips, same prompts, same grader. Only the clinician model changes. Two rows are not fully independent: the model that wrote this set's scripts, and Carbon, which is the second listener for slurred clips.`,
+  );
+  md.push(modelTable());
+}
+
 md.push(`## Physician review queue`);
 md.push(
   review.length
@@ -234,3 +256,88 @@ md.push(
 
 fs.writeFileSync(path.join(ROOT, `${outBase}.md`), md.join("\n\n") + "\n");
 console.log(`Wrote ${outBase}.json and ${outBase}.md for "${set}".`);
+
+// ---- README ----------------------------------------------------------------------
+// The results block in the README is written from the same numbers, so nothing in
+// it is typed by hand. Only the exam set goes into the README.
+
+const ARM_INPUT: Record<ArmKey, string> = {
+  A: "The transcript",
+  B: "The raw audio",
+  C: "The transcript, with seven probe probabilities from the Decisions API added",
+};
+
+function readmeBlock(): string {
+  const out: string[] = [];
+  const inTest = head.generated - head.left_out;
+  const signClips = head.signs.A.of;
+  const controlClips = head.false_alarms.A.of;
+  out.push(
+    `Carbon wrote ${head.generated} exam patients. ${inTest} are in the test: ${signClips} with a hidden sign and ${controlClips} healthy controls. ${head.left_out} were left out by the gate, and their results are reported too.`,
+  );
+  out.push(
+    table(
+      ["Arm", "What the clinician model is given", "Hidden signs caught", "False alarms on healthy controls"],
+      ARMS.map((a) => [`${a}. ${ARM_LABEL[a]}`, ARM_INPUT[a], frac(head.signs[a]), frac(head.false_alarms[a])]),
+    ),
+  );
+  const unclear = ARMS.reduce((n, a) => n + head.signs[a].unclear + head.false_alarms[a].unclear, 0);
+  if (unclear) out.push(`${unclear} graded notes were unclear to the grader. They are counted as not caught and listed in the review queue.`);
+
+  out.push(`### By sign`);
+  out.push(
+    table(
+      ["Sign", "Generated", "In the test", "Gate", ...ARMS.map((a) => `${a} caught`)],
+      bySign.map((s) => [s.label, s.generated, s.in_test, s.gate, ...ARMS.map((a) => frac(s.arms[a]))]),
+    ),
+  );
+
+  if (ladder) {
+    const holdRow = rows.find((r) => r.role === "hold");
+    out.push(`### How far before it broke`);
+    out.push(
+      table(
+        ["Rung", "Signs the Decisions API still hears", ...ARMS.map((a) => `${a} caught`), ""],
+        rows.map((r) => [
+          r.rung.label,
+          `${r.heard} of ${r.clips}`,
+          ...ARMS.map((a) => (r.arms ? frac(r.arms.signs[a]) : "")),
+          r.role === "hold" ? "hardest rung that holds" : r.role === "break" ? "breaks here" : "",
+        ]),
+      ),
+    );
+    if (holdRow?.arms) {
+      out.push(
+        `At the hardest rung that still held, the raw audio arm caught ${frac(holdRow.arms.signs.B)} signs and the transcript plus probes arm caught ${frac(holdRow.arms.signs.C)}. This table covers the probe-gated signs. The arms were run at the clean rung and at the two rungs a fixed rule picked.`,
+      );
+    }
+  }
+
+  if (agree) {
+    out.push(`### Blind physician labels`);
+    out.push(
+      `A physician heard ${agree.labelled} exam clips in random order with the sign hidden, before any exam result was shown. The physician named the sign the clip was written to have on ${agree.with_intended} of ${agree.labelled}, and agreed with the automatic gate about whether that sign is really there on ${agree.with_gate} of ${agree.labelled}.`,
+    );
+  }
+
+  if (models.length) {
+    out.push(`### Same test, four Gemini 4 models as the clinician`);
+    out.push(modelTable());
+  }
+
+  out.push(`Full tables, the clips left out of the test, the pass mark table, and the review queue are in [results/listening.md](results/listening.md). The raw numbers are in [results/listening.json](results/listening.json).`);
+  return out.join("\n\n");
+}
+
+const START = "<!-- results:start -->";
+const END = "<!-- results:end -->";
+const readmeFile = path.join(ROOT, "README.md");
+if (set === "exam" && fs.existsSync(readmeFile)) {
+  const readme = fs.readFileSync(readmeFile, "utf8");
+  const from = readme.indexOf(START);
+  const to = readme.indexOf(END);
+  if (from >= 0 && to > from) {
+    fs.writeFileSync(readmeFile, `${readme.slice(0, from + START.length)}\n\n${readmeBlock()}\n\n${readme.slice(to)}`);
+    console.log("Updated the results block in README.md.");
+  }
+}

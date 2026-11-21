@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "762ecc4f74968ee88d4832688132e90c0ac6b3e4ab72b0a76139b66407fdd32b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8652,
+ "at": "2026-11-21T19:02:52.960Z",
+ "value": "{\"observations\":[\"Calling to ask about front desk closing hours on Fridays\",\"States everything is totally fine\",\"Frequent coughing interrupting speech\",\"Audible shortness of breath and heavy breathing between short phrases\"],\"red_flags\":[\"Audible respiratory distress with inability to speak in full sentences without pausing to breathe or cough\",\"Discordance between patient stating they are fine and audible signs of distress\"],\"urgency\":\"urgent\"}"
+}

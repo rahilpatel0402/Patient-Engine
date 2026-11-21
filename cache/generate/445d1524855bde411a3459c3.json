@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "be1234a2a31c95b496bbf2bafce9b0793f2a4ddac6592cda91d71f55179dbf29",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8066,
+ "at": "2026-11-21T19:06:11.043Z",
+ "value": "{\"observations\": [\"States she is calling only to update her street address after moving\", \"Explicitly claims to be doing fine with nothing to fuss over\", \"Voice is trembling, tearful, and breathless\", \"Audible sniffing and gasping/sobbing between phrases\"], \"red_flags\": [\"Marked incongruence between stated reason for call and severe emotional distress/crying\", \"Potential acute psychological distress, crisis, or safety concern being masked\"], \"urgency\": \"urgent\"}"
+}

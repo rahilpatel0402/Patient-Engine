@@ -65,6 +65,7 @@ app.get("/api/sets", (_req, res) => {
         patients: loadSet(set),
         cases: fs.existsSync(file) ? readJson<CaseResult[]>(file) : [],
         ladder: fs.existsSync(ladderFile) ? readJson<unknown>(ladderFile) : null,
+        comparison: fs.existsSync(path.join(DATA, set, "comparison.json")) ? readJson<unknown>(path.join(DATA, set, "comparison.json")) : null,
         agreement: blindLabels(set).length ? agreement(set) : null,
       };
     }),

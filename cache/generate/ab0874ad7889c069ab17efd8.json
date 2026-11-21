@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "bc0ab8ca226d250d47021a144aae8ddcbed00f59948e6c9b88a739a1e01f5fba",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8874,
+ "at": "2026-11-21T19:03:07.625Z",
+ "value": "{\n  \"observations\": [\n    \"Requests to reschedule Thursday checkup to a morning slot next week\",\n    \"Cites a mixed-up schedule at home\",\n    \"Explicitly states that everything is totally fine\",\n    \"Audible labored breathing with frequent deep inhales and sighs between short phrases\",\n    \"Voice sounds strained, hesitant, and distressed\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and audible distress\",\n    \"Audible shortness of breath or labored breathing while speaking\",\n    \"Possible acute respiratory distress, panic, or safety concern at home\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

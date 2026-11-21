@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello, I'm just calling to check if my referral letter is ready for pickup yet. Everything is fine on my end. No rush at all. I just wanted to see if I could grab it after school today.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.56\n- Groaning or crying out: 0.22\n- Coughing: 0.82\n- Tearful or frightened: 0.23\n- Slurred speech: 0.19\n- Long pauses: 0.65\n- Sounds well: 0.08",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7431,
+ "at": "2026-11-21T19:01:46.797Z",
+ "value": "{\"observations\":[\"Calling to check if referral letter is ready for pickup after school\",\"States everything is fine and there is no rush\",\"High probability of coughing in voice recording\",\"Moderately high probability of long pauses and shortness of breath\",\"Very low probability of sounding well\"],\"red_flags\":[\"Vocal signs of possible respiratory distress including coughing, long pauses, and shortness of breath\",\"Discrepancy between patient stating everything is fine and sounding unwell\"],\"urgency\":\"urgent\"}"
+}

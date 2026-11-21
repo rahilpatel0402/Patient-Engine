@@ -13,7 +13,7 @@ import {
   type ProbeKey,
   type Probes,
 } from "../../server/engine/types.ts";
-import { CHOSEN_BAR, HEARD_AT, ladderRows, sensitivity } from "../../server/station1/report.ts";
+import { CHOSEN_BAR, HEARD_AT, comparisonRows, ladderRows, sensitivity } from "../../server/station1/report.ts";
 import { blindAudio, getBlind, saveBlind, type BlindState } from "./api.ts";
 import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
@@ -101,6 +101,7 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
       )}
       <Scoreboard data={current} />
       <LadderView data={current} />
+      <ComparisonView data={current} />
       <Sensitivity data={current} />
       {current.agreement && (
         <p className="agree">
@@ -245,6 +246,46 @@ function LadderView({ data }: { data: SetData }) {
         </p>
       )}
     </section>
+  );
+}
+
+const MODEL_NAME = (id: string) => id.replace(/^gemini-4-(\w)(\w*)$/, (_, a: string, b: string) => `Gemini 4 ${a.toUpperCase()}${b}`);
+
+/** The same exam with each Gemini 4 model as the clinician under test. */
+function ComparisonView({ data }: { data: SetData }) {
+  if (!data.comparison?.models.length) return null;
+  const rows = comparisonRows(data.patients, "gemini-4-hydrogen", data.cases, data.comparison);
+  return (
+    <details className="sens">
+      <summary>Same test, four Gemini 4 models as the clinician</summary>
+      <p className="muted">
+        Same clips, same prompts, same grader. Only the clinician model changes. Hydrogen is the main run. Two rows are not fully independent: the model that wrote this set's scripts, and Carbon, which is the second listener for slurred clips.
+      </p>
+      <div className="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Clinician model</th>
+              {ARMS.map((arm) => (
+                <th key={arm}>{arm}. {ARM_LABEL[arm]}</th>
+              ))}
+              <th>False alarms on controls (A, B, C)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.model} className={r.main ? "chosen" : ""}>
+                <td>{MODEL_NAME(r.model)}{r.main ? " (main run)" : ""}</td>
+                {ARMS.map((arm) => (
+                  <td key={arm}>{r.signs[arm].caught} of {r.signs[arm].of} caught</td>
+                ))}
+                <td>{ARMS.map((arm) => r.false_alarms[arm].caught).join(", ")} of {r.false_alarms.A.of}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
   );
 }
 

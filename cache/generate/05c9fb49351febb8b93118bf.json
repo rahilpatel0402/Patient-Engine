@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm feeling totally fine. I just wanted to see about moving my appointment from Thursday afternoon to sometime next week. A project deadline came up at work, so any open slot in the morning would be really great.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.09\n- Groaning or crying out: 0.03\n- Coughing: 0.13\n- Tearful or frightened: 0.04\n- Slurred speech: 0.04\n- Long pauses: 0.41\n- Sounds well: 0.83",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4807,
+ "at": "2026-11-21T19:03:30.289Z",
+ "value": "{\"observations\":[\"Reports feeling totally fine\",\"Requesting to reschedule Thursday afternoon appointment to a morning slot next week due to a work deadline\",\"Voice analysis indicates patient sounds well with low probability of acute distress\",\"Moderate probability of long pauses in speech\"],\"red_flags\":[],\"urgency\":\"routine\"}"
+}

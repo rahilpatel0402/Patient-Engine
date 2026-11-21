@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Oh. Oh. Hi there. Everything is totally fine with me today. I just moved into a new apartment near the salon, so I wanted to quickly update my mailing address in your system before any routine letters go out to my old place. Oh.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.41\n- Groaning or crying out: 0.90\n- Coughing: 0.53\n- Tearful or frightened: 0.40\n- Slurred speech: 0.18\n- Long pauses: 0.63\n- Sounds well: 0.08",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6171,
+ "at": "2026-11-21T19:02:45.226Z",
+ "value": "{\"observations\": [\"Patient states they are calling to update their mailing address and claims everything is fine\", \"Repeated 'Oh' vocalizations at the beginning and end of the statement\", \"Audio indicates high probability of groaning or crying out (0.90)\", \"Audio indicates long pauses (0.63) and coughing (0.53)\", \"Audio indicates very low probability of sounding well (0.08)\", \"Moderate indicators of shortness of breath (0.41) and tearfulness or fear (0.40)\"],\"red_flags\": [\"Significant discrepancy between verbal report of being fine and severe vocal signs of distress\", \"High likelihood of groaning or crying out suggesting acute pain or medical emergency\", \"Possible respiratory distress or difficulty speaking (long pauses, coughing, shortness of breath)\"],\"urgency\": \"urgent\"}"
+}

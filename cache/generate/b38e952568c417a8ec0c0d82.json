@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "08874ec8289d5a72e56ff658d75944e303815791622043e7f56aa8f2d73ad818",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6782,
+ "at": "2026-11-21T19:02:23.770Z",
+ "value": "{\"observations\":[\"Patient calls with an administrative question about Thursday closing hours for the downstairs counter\",\"Verbally states everything is totally fine\",\"Audibly gasping for air and breathing heavily throughout the recording\",\"Speaking in short, broken phrases with frequent pauses to catch breath\"],\"red_flags\":[\"Severe shortness of breath / audible respiratory distress\",\"Inability to speak in full sentences without pausing to breathe\",\"Marked discrepancy between verbal reassurance and observable physical distress\"],\"urgency\":\"urgent\"}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-neon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine on my end. I just wanted to quickly ask what time the downstairs counter closes on Thursdays because my husband is running errands near the building and could swing by.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.89\n- Groaning or crying out: 0.26\n- Coughing: 0.57\n- Tearful or frightened: 0.52\n- Slurred speech: 0.20\n- Long pauses: 0.72\n- Sounds well: 0.08",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6375,
+ "at": "2026-11-21T19:02:23.366Z",
+ "value": "{\"observations\":[\"Patient verbally reports being fine and asks about Thursday closing hours for the downstairs counter\",\"Voice analysis indicates high likelihood of shortness of breath (0.89) and long pauses (0.72)\", \"Moderate likelihood of coughing (0.57) and sounding tearful or frightened (0.52)\", \"Very low likelihood of sounding well (0.08)\"],\"red_flags\":[\"Marked discrepancy between verbal reassurance and vocal signs of distress\",\"High probability of shortness of breath and long pauses during speech\",\"Patient does not sound well and may be frightened or tearful\"],\"urgency\":\"urgent\"}"
+}

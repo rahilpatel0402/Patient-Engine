@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "35db2e0698135351b66fd615e73ea791e5147faee39418b9a106ab052e5265e5",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8709,
+ "at": "2026-11-21T15:53:47.654Z",
+ "value": "{\"observations\": [\"Requests routine prescription renewal before the end of the week\", \"Verbally reports doing fine with nothing to fuss over\", \"Audible heavy breathing and gasping between phrases\", \"Speaking in short, broken bursts\"], \"red_flags\": [\"Significant shortness of breath at rest\", \"Inability to speak in full sentences without pausing for breath\", \"Apparent respiratory distress despite verbal minimization\"], \"urgency\": \"urgent\"}"
+}

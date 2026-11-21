@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello, I'm just calling to check on a standard referral letter that was supposed to be mailed out. Everything is going fine on my end. I just wanted to see if the front desk had sent that paperwork over yet.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.42\n- In pain: 0.22\n- Coughing: 0.82\n- Distressed: 0.17\n- Slurred speech: 0.17\n- Long pauses: 0.64\n- Sounds well: 0.14",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 17442,
+ "at": "2026-11-21T15:53:57.122Z",
+ "value": "{\n  \"observations\": [\n    \"Calling to check on a standard referral letter\",\n    \"Reports everything is going fine\",\n    \"High probability of coughing in voice\",\n    \"Frequent or long pauses noted in speech\",\n    \"Low probability of sounding well\",\n    \"Possible shortness of breath\"\n  ],\n  \"red_flags\": [\n    \"Discordance between patient reporting feeling fine and vocal indicators of respiratory symptoms (coughing, long pauses, possible shortness of breath)\"\n  ],\n  \"urgency\": \"soon\"\n}"
+}

@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <groan>, <grunt>, <whimper>, <exhales>, <cough>, <throat-clearing>, <sob>, <sigh>, <short pause>, <long pause>.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 9 for the \"dev\" set.\nWho: a construction foreman in his fifties.\nStated reason for the call: a prescription refill.\nHidden sign: slurred. The patient's speech is slurred. tts_style should describe slow, thick, slurred speech with words running together, as if heavily sedated. Use several <long pause> tags. The words themselves must stay coherent and make complete sense.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 21268,
+ "at": "2026-11-21T15:52:39.496Z",
+ "value": "{\n  \"persona\": \"A construction foreman in his fifties calling for a routine prescription refill.\",\n  \"spoken_text\": \"Hey there. Everything is fine with me, just calling in from the job site <long pause> to get my regular refill sent over to the usual place. <long pause> No need to change anything, just the standard order whenever you have a minute. <long pause> Thanks.\",\n  \"tts_style\": \"Slow, thick, slurred speech with words running together, sounding heavily sedated and drowsy.\",\n  \"voice\": \"Orus\",\n  \"expected_urgency\": \"urgent\"\n}"
+}

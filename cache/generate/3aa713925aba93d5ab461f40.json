@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. I'm doing just fine today. Nothing to fuss over at all. I only called because I need my regular prescription renewed at the corner shop before the end of the week, if that's all right.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.88\n- In pain: 0.50\n- Coughing: 0.61\n- Distressed: 0.39\n- Slurred speech: 0.20\n- Long pauses: 0.78\n- Sounds well: 0.05",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 9601,
+ "at": "2026-11-21T15:53:48.546Z",
+ "value": "{\"observations\":[\"Requests regular prescription renewal before end of week\",\"Verbally states they are doing just fine\",\"Audio indicates high probability of shortness of breath (0.88) and long pauses (0.78))\",\"Audio indicates coughing (0.61) and possible pain (0.50))\",\"Audio indicates very low probability of sounding well (0.05)\"],\"red_flags\":[\"High probability of shortness of breath with long pauses\",\"Marked discrepancy between verbal reassurance and vocal presentation\"],\"urgency\":\"urgent\"}"
+}

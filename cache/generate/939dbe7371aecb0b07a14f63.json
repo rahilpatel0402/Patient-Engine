@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine here. I'm just calling to check if my routine results from last week are ready to be picked up yet or if you could just send them over to my portal today.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.89\n- In pain: 0.41\n- Coughing: 0.56\n- Distressed: 0.74\n- Slurred speech: 0.35\n- Long pauses: 0.71\n- Sounds well: 0.06",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 16652,
+ "at": "2026-11-21T15:53:55.795Z",
+ "value": "{\"observations\":[\"Patient verbally states everything is fine and requests routine results\",\"Voice analysis shows high probability of shortness of breath (0.89) and distress (0.74)\"],\"red_flags\":[\"Severe discrepancy between verbal denial of symptoms and acoustic signs of respiratory distress\",\"High probability of shortness of breath (0.89) with long pauses (0.71)\"],\"urgency\":\"urgent\"}"
+}

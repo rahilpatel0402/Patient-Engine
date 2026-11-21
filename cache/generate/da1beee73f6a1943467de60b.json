@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <groan>, <grunt>, <whimper>, <exhales>, <cough>, <throat-clearing>, <sob>, <sigh>, <short pause>, <long pause>.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 4 for the \"dev\" set.\nWho: a grandmother in her eighties who lives alone.\nStated reason for the call: rescheduling an appointment.\nHidden sign: pain. The patient is in physical pain. tts_style should describe a strained, tight voice, wincing and speaking through pain. Use several inline tags from: <groan>, <grunt>, <whimper>, <exhales>.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 13898,
+ "at": "2026-11-21T15:52:32.125Z",
+ "value": "{\n  \"persona\": \"A grandmother in her eighties who lives alone, calling to move her upcoming routine visit to another day.\",\n  \"spoken_text\": \"Hello dear, <grunt> I am fine, I just need to move my Tuesday visit to later in the week if that is alright. <groan> Everything is completely normal here, <whimper> I just cannot make it in that morning, <exhales> so any other day works.\",\n  \"tts_style\": \"Strained, tight elderly voice, wincing and speaking through acute physical pain.\",\n  \"voice\": \"Leda\",\n  \"expected_urgency\": \"soon\"\n}"
+}

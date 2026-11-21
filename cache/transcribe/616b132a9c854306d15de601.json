@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "3ade1d967e4d2a5010749f007006caca8878d1276a6d8cff3e51ccc6a306eba9"
+ },
+ "ms": 3977,
+ "at": "2026-11-21T15:53:40.881Z",
+ "value": "Hi, I'm just calling on my break to update my address on file. Everything is totally fine with me, just moved across town last month and realized I never gave the front desk my new street number for the billing statements."
+}

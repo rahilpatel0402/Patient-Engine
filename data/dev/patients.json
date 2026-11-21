@@ -1,0 +1,326 @@
+[
+  {
+    "persona": "A retired bus driver in his seventies calling to request a routine prescription refill.",
+    "spoken_text": "Hello there, <heavy breath> I'm doing just fine today, <gasp> nothing to fuss over at all. <pant> I only called because I need my regular prescription <heavy breath> renewed at the corner shop <breath> before the end of the week, if that's alright.",
+    "tts_style": "Winded, breathless older man whose air keeps running out between short phrases, speaking with labored effort.",
+    "voice": "Charon",
+    "expected_urgency": "urgent",
+    "hidden_sign": "breathless",
+    "id": "dev-01-breathless",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-01-breathless.wav",
+    "seconds": 22.2,
+    "probes": {
+      "short_of_breath": 0.883,
+      "in_pain": 0.498,
+      "coughing": 0.61,
+      "distressed": 0.387,
+      "slurred": 0.195,
+      "long_pauses": 0.783,
+      "sounds_well": 0.053
+    },
+    "gate": {
+      "kept": true,
+      "reason": "short_of_breath 0.88",
+      "attempts": 1
+    }
+  },
+  {
+    "persona": "A new mother in her thirties calling the clinic to pick up routine paperwork.",
+    "spoken_text": "Hi there, <breath> everything is totally fine here, <pant> I am just calling to check if my <heavy breath> routine results from last week are ready to be picked up yet, <gasp> or if you could just <pant> send them over to my portal today.",
+    "tts_style": "Winded, breathless delivery with air running out between short phrases, sounding exhausted.",
+    "voice": "Aoede",
+    "expected_urgency": "urgent",
+    "hidden_sign": "breathless",
+    "id": "dev-02-breathless",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-02-breathless.wav",
+    "seconds": 17.3,
+    "probes": {
+      "short_of_breath": 0.888,
+      "in_pain": 0.411,
+      "coughing": 0.555,
+      "distressed": 0.736,
+      "slurred": 0.35,
+      "long_pauses": 0.709,
+      "sounds_well": 0.061
+    },
+    "gate": {
+      "kept": true,
+      "reason": "short_of_breath 0.89",
+      "attempts": 1
+    }
+  },
+  {
+    "persona": "A farmer in his sixties calling the clinic to book his regular annual check-up.",
+    "spoken_text": "Morning there. <grunt> I am just calling in to set up my regular yearly check-up. <exhales> Nothing pressing at all, everything is going fine out here. <groan> Just figured I ought to get my name on the calendar <whimper> for next month.",
+    "tts_style": "Strained, tight voice, wincing and speaking through clenched teeth as if in acute physical pain.",
+    "voice": "Orus",
+    "expected_urgency": "urgent",
+    "hidden_sign": "pain",
+    "id": "dev-03-pain",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-03-pain.wav",
+    "seconds": 23.1,
+    "probes": {
+      "short_of_breath": 0.84,
+      "in_pain": 0.323,
+      "coughing": 0.675,
+      "distressed": 0.186,
+      "slurred": 0.147,
+      "long_pauses": 0.794,
+      "sounds_well": 0.107
+    },
+    "gate": {
+      "kept": false,
+      "reason": "in_pain only 0.32, needs 0.8",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A grandmother in her eighties who lives alone, calling to move her upcoming routine visit to another day.",
+    "spoken_text": "Hello dear, <grunt> I am fine, I just need to move my Tuesday visit to later in the week if that is alright. <groan> Everything is completely normal here, <whimper> I just cannot make it in that morning, <exhales> so any other day works.",
+    "tts_style": "Strained, tight elderly voice, wincing and speaking through acute physical pain.",
+    "voice": "Leda",
+    "expected_urgency": "soon",
+    "hidden_sign": "pain",
+    "id": "dev-04-pain",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-04-pain.wav",
+    "seconds": 22.4,
+    "probes": {
+      "short_of_breath": 0.801,
+      "in_pain": 0.693,
+      "coughing": 0.791,
+      "distressed": 0.727,
+      "slurred": 0.336,
+      "long_pauses": 0.741,
+      "sounds_well": 0.051
+    },
+    "gate": {
+      "kept": false,
+      "reason": "in_pain only 0.69, needs 0.8",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A schoolteacher in her fifties calling to ask about the status of a routine referral letter.",
+    "spoken_text": "Hello, I'm just calling to check on a standard referral letter that was supposed to be mailed out. <cough> Everything is going fine on my end, <throat-clearing> I just wanted to see if the front desk had <cough> <cough> sent that paperwork over yet.",
+    "tts_style": "A hoarse, raspy voice frequently interrupted by persistent coughing and throat clearing.",
+    "voice": "Leda",
+    "expected_urgency": "soon",
+    "hidden_sign": "cough",
+    "id": "dev-05-cough",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-05-cough.wav",
+    "seconds": 16.2,
+    "probes": {
+      "short_of_breath": 0.418,
+      "in_pain": 0.223,
+      "coughing": 0.823,
+      "distressed": 0.168,
+      "slurred": 0.172,
+      "long_pauses": 0.641,
+      "sounds_well": 0.143
+    },
+    "gate": {
+      "kept": true,
+      "reason": "coughing 0.82",
+      "attempts": 1
+    }
+  },
+  {
+    "persona": "A nurse in her forties calling during her break to update her home address.",
+    "spoken_text": "Hi, I'm just calling on my break to update my address on file. <cough> Everything is totally fine with me, just moved <throat-clearing> across town last month and realized <cough> <cough> I never gave the front desk my new street number <throat-clearing> for the billing statements.",
+    "tts_style": "Speak in a hoarse, scratchy voice that sounds strained and frequently interrupted by coughing.",
+    "voice": "Leda",
+    "expected_urgency": "soon",
+    "hidden_sign": "cough",
+    "id": "dev-06-cough",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-06-cough.wav",
+    "seconds": 21.6,
+    "probes": {
+      "short_of_breath": 0.645,
+      "in_pain": 0.211,
+      "coughing": 0.965,
+      "distressed": 0.098,
+      "slurred": 0.089,
+      "long_pauses": 0.751,
+      "sounds_well": 0.044
+    },
+    "gate": {
+      "kept": true,
+      "reason": "coughing 0.96",
+      "attempts": 1
+    }
+  },
+  {
+    "persona": "A restaurant owner in her sixties calling to get a routine form signed while hiding intense emotional distress.",
+    "spoken_text": "Hi there, <short pause> everything is completely fine with me, I just <whimper> needed to ask about a standard form that requires a signature for my restaurant. <sigh> It is nothing important at all, <sob> just let me know when I can pick it up.",
+    "tts_style": "Shaky, trembling voice close to tears, fighting to hold back frightened crying.",
+    "voice": "Aoede",
+    "expected_urgency": "soon",
+    "hidden_sign": "distress",
+    "id": "dev-07-distress",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-07-distress.wav",
+    "seconds": 19.7,
+    "probes": {
+      "short_of_breath": 0.694,
+      "in_pain": 0.141,
+      "coughing": 0.571,
+      "distressed": 0.864,
+      "slurred": 0.138,
+      "long_pauses": 0.737,
+      "sounds_well": 0.093
+    },
+    "gate": {
+      "kept": true,
+      "reason": "distressed 0.86",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A hairdresser in her twenties calling to check the evening closing time for the pharmacy.",
+    "spoken_text": "Hi, everything is fine, I just have a really quick question. <whimper> I'm working a late shift at the salon today <short pause> and wanted to check what time the building locks up tonight. <sob> I just need to know when the front desk closes, thanks.",
+    "tts_style": "Shaky, trembling voice close to tears, sounding deeply frightened and emotionally distressed throughout.",
+    "voice": "Leda",
+    "expected_urgency": "soon",
+    "hidden_sign": "distress",
+    "id": "dev-08-distress",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-08-distress.wav",
+    "seconds": 17.8,
+    "probes": {
+      "short_of_breath": 0.667,
+      "in_pain": 0.24,
+      "coughing": 0.517,
+      "distressed": 0.475,
+      "slurred": 0.138,
+      "long_pauses": 0.714,
+      "sounds_well": 0.158
+    },
+    "gate": {
+      "kept": false,
+      "reason": "distressed only 0.47, needs 0.8",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A construction foreman in his fifties calling for a routine prescription refill.",
+    "spoken_text": "Hey there. Everything is fine with me, just calling in from the job site <long pause> to get my regular refill sent over to the usual place. <long pause> No need to change anything, just the standard order whenever you have a minute. <long pause> Thanks.",
+    "tts_style": "Slow, thick, slurred speech with words running together, sounding heavily sedated and drowsy.",
+    "voice": "Orus",
+    "expected_urgency": "urgent",
+    "hidden_sign": "slurred",
+    "id": "dev-09-slurred",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-09-slurred.wav",
+    "seconds": 20.5,
+    "probes": {
+      "short_of_breath": 0.211,
+      "in_pain": 0.051,
+      "coughing": 0.255,
+      "distressed": 0.074,
+      "slurred": 0.121,
+      "long_pauses": 0.486,
+      "sounds_well": 0.806
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.12, needs 0.8",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A software engineer in his thirties calling the clinic to pick up his routine test results.",
+    "spoken_text": "Hi there, everything is going fine today. <long pause> I was just calling to see if my routine paperwork is ready to be picked up at the front desk <long pause> whenever I get a chance to swing by the office later this afternoon. <long pause> Thank you.",
+    "tts_style": "Slow, thick, slurred speech with words running together, sounding heavily sedated and sluggish.",
+    "voice": "Puck",
+    "expected_urgency": "urgent",
+    "hidden_sign": "slurred",
+    "id": "dev-10-slurred",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-10-slurred.wav",
+    "seconds": 27.5,
+    "probes": {
+      "short_of_breath": 0.322,
+      "in_pain": 0.088,
+      "coughing": 0.305,
+      "distressed": 0.162,
+      "slurred": 0.188,
+      "long_pauses": 0.751,
+      "sounds_well": 0.685
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.19, needs 0.8",
+      "attempts": 2
+    }
+  },
+  {
+    "persona": "A college student in his twenties calling to book his annual routine check-up.",
+    "spoken_text": "Hi there, I am just calling to get my yearly check-up on the calendar before the new semester starts up. Everything is totally fine with me, I just want to stay on top of my schedule. Next Tuesday or Thursday afternoon works best.",
+    "tts_style": "Calm, relaxed, and even conversational tone with clear, steady pacing.",
+    "voice": "Puck",
+    "expected_urgency": "routine",
+    "hidden_sign": "none",
+    "id": "dev-11-none",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-11-none.wav",
+    "seconds": 15.3,
+    "probes": {
+      "short_of_breath": 0.138,
+      "in_pain": 0.021,
+      "coughing": 0.115,
+      "distressed": 0.05,
+      "slurred": 0.07,
+      "long_pauses": 0.262,
+      "sounds_well": 0.897
+    },
+    "gate": {
+      "kept": true,
+      "reason": "control: every sign probe at or under 0.3",
+      "attempts": 1
+    }
+  },
+  {
+    "persona": "A long-haul trucker in his forties calling to move his regular checkup to next month.",
+    "spoken_text": "Hey there, good afternoon. Everything is going great with me, I am just out on a route that got extended a bit. I was hoping we could push my Tuesday morning slot back to sometime early next month when I am home.",
+    "tts_style": "Calm, relaxed, and even conversational tone, sounding completely healthy and unhurried.",
+    "voice": "Orus",
+    "expected_urgency": "routine",
+    "hidden_sign": "none",
+    "id": "dev-12-none",
+    "set": "dev",
+    "author_model": "gemini-4-argon",
+    "clip": "data/dev/clips/dev-12-none.wav",
+    "seconds": 15.3,
+    "probes": {
+      "short_of_breath": 0.111,
+      "in_pain": 0.045,
+      "coughing": 0.131,
+      "distressed": 0.077,
+      "slurred": 0.109,
+      "long_pauses": 0.292,
+      "sounds_well": 0.879
+    },
+    "gate": {
+      "kept": true,
+      "reason": "control: every sign probe at or under 0.3",
+      "attempts": 1
+    }
+  }
+]

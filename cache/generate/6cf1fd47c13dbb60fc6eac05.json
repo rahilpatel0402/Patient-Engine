@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <groan>, <grunt>, <whimper>, <exhales>, <cough>, <throat-clearing>, <sob>, <sigh>, <short pause>, <long pause>.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 8 for the \"dev\" set.\nWho: a hairdresser in her twenties.\nStated reason for the call: a question about pharmacy hours.\nHidden sign: distress. The patient is frightened and emotionally distressed, not in physical pain. tts_style should describe a shaky, trembling voice close to tears. Use a few inline tags from: <sob>, <whimper>, <sigh>, <short pause>.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 19026,
+ "at": "2026-11-21T15:52:37.254Z",
+ "value": "{\n  \"persona\": \"A hairdresser in her twenties calling to check the evening closing time for the pharmacy.\",\n  \"spoken_text\": \"Hi, everything is fine, I just have a really quick question. <whimper> I'm working a late shift at the salon today <short pause> and wanted to check what time the building locks up tonight. <sob> I just need to know when the front desk closes, thanks.\",\n  \"tts_style\": \"Shaky, trembling voice close to tears, sounding deeply frightened and emotionally distressed throughout.\",\n  \"voice\": \"Leda\",\n  \"expected_urgency\": \"soon\"\n}"
+}

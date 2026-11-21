@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "9f02c6e7486929dce76965b29fed013e1ed3ad6fb7c944434d08b669f6b962d3"
+ },
+ "ms": 2239,
+ "at": "2026-11-21T15:53:39.139Z",
+ "value": "Hi there. Everything is totally fine here. I'm just calling to check if my routine results from last week are ready to be picked up yet or if you could just send them over to my portal today."
+}

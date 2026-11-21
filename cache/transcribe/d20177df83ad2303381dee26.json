@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "35db2e0698135351b66fd615e73ea791e5147faee39418b9a106ab052e5265e5"
+ },
+ "ms": 2017,
+ "at": "2026-11-21T15:53:38.904Z",
+ "value": "Hello there. I'm doing just fine today. Nothing to fuss over at all. I only called because I need my regular prescription renewed at the corner shop before the end of the week, if that's all right."
+}

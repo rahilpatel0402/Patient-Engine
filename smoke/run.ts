@@ -7,13 +7,14 @@ import * as path from "node:path";
 import { promisify } from "node:util";
 import ffmpegPath from "ffmpeg-static";
 import { GoogleGenAI } from "@google/genai";
+import { apiKeyName, requireApiKey } from "../server/env.ts";
 
 const run = promisify(execFile);
 const OUT = path.resolve("smoke/out");
 fs.mkdirSync(OUT, { recursive: true });
 
-const apiKey = process.env.GEMINI_API_KEY?.trim();
-if (!apiKey) throw new Error("GEMINI_API_KEY is not set");
+const apiKey = requireApiKey();
+console.log(`key: ${apiKeyName()}`);
 const ai = new GoogleGenAI({ apiKey, apiVersion: "v1beta" });
 
 const CLIP = path.join(OUT, "breathless.wav");

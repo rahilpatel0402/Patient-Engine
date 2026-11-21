@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "244ebb4f5a5b13e6bfc42f14a466b742de05ecc1bffce891008ddeb4586115b9"
+ },
+ "ms": 5657,
+ "at": "2026-11-21T15:53:42.563Z",
+ "value": "Hey there, good afternoon. Everything is going great with me. I am just out on a route that got extended a bit. I was hoping we could push my Tuesday morning slot back to sometime early next month when I am home."
+}

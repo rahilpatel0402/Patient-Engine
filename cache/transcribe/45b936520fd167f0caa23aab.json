@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "4e504ac7154434248bb6b90e53be2c02d8cecb227b4f7e2d2b6784e6b5633caf"
+ },
+ "ms": 3935,
+ "at": "2026-11-21T15:53:40.840Z",
+ "value": "Hi there. Everything is completely fine with me. I just needed to ask about a standard form that requires a signature for my restaurant. It is nothing important at all. Just let me know when I can pick it up."
+}

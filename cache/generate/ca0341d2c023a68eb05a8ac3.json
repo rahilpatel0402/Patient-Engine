@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "4e504ac7154434248bb6b90e53be2c02d8cecb227b4f7e2d2b6784e6b5633caf",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 21147,
+ "at": "2026-11-21T15:54:02.026Z",
+ "value": "{\n  \"observations\": [\n    \"Requests a signature on a standard form for her restaurant\",\n    \"Verbally states she is completely fine and that the matter is not important\",\n    \"Audible severe shortness of breath and gasping between words\",\n    \"Sniffling and sounds tearful or in physical distress\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and audible respiratory distress\",\n    \"Severe breathlessness requiring immediate clinical assessment\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

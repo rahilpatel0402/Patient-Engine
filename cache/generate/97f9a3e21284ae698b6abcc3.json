@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "3ade1d967e4d2a5010749f007006caca8878d1276a6d8cff3e51ccc6a306eba9",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 28425,
+ "at": "2026-11-21T15:54:09.308Z",
+ "value": "{\n  \"observations\": [\n    \"Calling to update address on file\",\n    \"States everything is fine\",\n    \"Frequent coughing throughout the call\",\n    \"Audible shortness of breath with pauses to catch breath while speaking\"\n  ],\n  \"red_flags\": [\n    \"Shortness of breath while speaking\",\n    \"Frequent coughing despite denying symptoms\"\n  ],\n  \"urgency\": \"soon\"\n}"
+}

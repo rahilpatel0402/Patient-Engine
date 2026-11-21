@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "981fa3341c6b84f095bd5cd10633422c1322cdb14d742c0a35f68c088b3cd313"
+ },
+ "ms": 4261,
+ "at": "2026-11-21T15:53:41.166Z",
+ "value": "Hi there, I am just calling to get my yearly checkup on the calendar before the new semester starts up. Everything is totally fine with me, I just want to stay on top of my schedule. Next Tuesday or Thursday afternoon works best."
+}

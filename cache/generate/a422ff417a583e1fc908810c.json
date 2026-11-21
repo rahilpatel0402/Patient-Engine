@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"Hello, hello. Can, can, can I get the, the, the, the medication refill please? Sorry, sorry, sorry to bother you. Thank you.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the voice:\n- Short of breath: 0.34\n- Groaning or crying out: 0.10\n- Coughing: 0.20\n- Tearful or frightened: 0.38\n- Slurred speech: 0.50\n- Long pauses: 0.56\n- Sounds well: 0.20",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6980,
+ "at": "2026-11-21T18:26:58.445Z",
+ "value": "{\"observations\": [\"Requested a medication refill\", \"Repeated words multiple times\", \"Apologized for bothering\", \"Said thank you\", \"Long pauses in speech\", \"Slurred speech\"]}"
+}

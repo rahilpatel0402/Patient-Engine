@@ -115,7 +115,12 @@ audio { height: 40px; max-width: 100%; }
 
 .bench { background: var(--surface); border: 1px solid var(--line); padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
 .bars { display: flex; flex-direction: column; gap: 6px; }
-.bar { display: grid; grid-template-columns: 10.5em minmax(0, 1fr) 3em; gap: 12px; align-items: center; }
+.barsnote { color: var(--muted); font-size: 0.9rem; max-width: 80ch; }
+.bar { display: grid; grid-template-columns: 10.5em minmax(0, 1fr) 3em 7em; gap: 12px; align-items: center; }
+.barword { font-weight: 700; }
+/* Under 0.50 the sign was probably not heard, so the bar and its word are muted. */
+.bar.low .fill { background: var(--muted); opacity: 0.45; }
+.bar.low .barword { font-weight: 400; color: var(--muted); }
 .barlabel { font-weight: 600; }
 .bar.target .barlabel { font-weight: 800; color: var(--accent); }
 .track { position: relative; height: 22px; background: var(--bg); border: 1px solid var(--line); }
@@ -159,7 +164,7 @@ input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
 
 @media (max-width: 900px) {
   .workbench, .arms, .scorerow { grid-template-columns: minmax(0, 1fr); }
-  .bar { grid-template-columns: 7.5em minmax(0, 1fr) 3em; }
+  .bar { grid-template-columns: 7.5em minmax(0, 1fr) 3em 6em; }
 }
 @media (prefers-reduced-motion: reduce) {
   .track .fill { transition: none; }

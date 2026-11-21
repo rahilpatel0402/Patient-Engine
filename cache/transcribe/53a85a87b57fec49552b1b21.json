@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "0aacf6c92bc73ac6b2d1ff13a7501e6ee54cf54620dd4031eadeea93f2d23c89"
+ },
+ "ms": 1691,
+ "at": "2026-11-21T18:27:32.443Z",
+ "value": "I don't know. I don't know what to say, but can I can I get the medication refill, please? Sorry."
+}

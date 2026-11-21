@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "6c3663f53b1332710b2957f21e3384bcc5d1f3f32ded7c37af69ebffb65ea3fe"
+ },
+ "ms": 56174,
+ "at": "2026-11-21T18:25:49.659Z",
+ "value": "Hello, I don't know what what should I say but can can can you please give me the the the medications?"
+}

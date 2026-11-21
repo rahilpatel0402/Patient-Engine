@@ -17,6 +17,12 @@ const LIVE_SYSTEM = `You are given a short recording or transcript of a person a
 
 List only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.
 
+If you are given listening results, each number is a probability from 0 to 1 that the sign is present. It is not a time in the recording.
+- 0.80 or higher: report the sign as "very likely".
+- 0.50 to 0.79: report the sign as "likely".
+- Below 0.50: the listening model probably did not hear that sign. Do not list it at all.
+Describe each reported sign in plain words and never write the numbers.
+
 Do not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.`;
 
 const LIVE_SCHEMA = {
@@ -25,7 +31,7 @@ const LIVE_SCHEMA = {
   required: ["observations"],
 };
 
-async function observe(arm: ArmKey, transcript: string, clip: string, probes: Probes): Promise<{ observations: string[]; ms: number }> {
+export async function observe(arm: ArmKey, transcript: string, clip: string, probes: Probes): Promise<{ observations: string[]; ms: number }> {
   const said = `Transcript of what the person said:\n"${transcript}"`;
   const text =
     arm === "A"

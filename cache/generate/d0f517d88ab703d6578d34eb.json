@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"Hello, I don't know what what should I say but can can can you please give me the the the medications?\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the voice:\n- Short of breath: 0.51\n- Groaning or crying out: 0.44\n- Coughing: 0.86\n- Tearful or frightened: 0.38\n- Slurred speech: 0.41\n- Long pauses: 0.76\n- Sounds well: 0.05",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4980,
+ "at": "2026-11-21T18:26:56.640Z",
+ "value": "{\"observations\": [\"Said they did not know what to say\", \"Asked for medications\", \"Repeated words ('what', 'can', 'the')\", \"Coughing (0.86)\", \"Long pauses (0.76)\", \"Short of breath (0.51)\", \"Low probability of sounding well (0.05)\"]}"
+}

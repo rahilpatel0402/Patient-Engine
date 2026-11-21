@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"I don't know. I don't know what to say, but can I can I get the medication refill, please? Sorry.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the voice:\n- Short of breath: 0.64\n- Groaning or crying out: 0.43\n- Coughing: 0.36\n- Tearful or frightened: 0.65\n- Slurred speech: 0.72\n- Long pauses: 0.45\n- Sounds well: 0.08",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6319,
+ "at": "2026-11-21T18:27:38.767Z",
+ "value": "{\n  \"observations\": [\n    \"Said 'I don't know' and 'I don't know what to say'\",\n    \"Asked for a medication refill\",\n    \"Said 'Sorry'\",\n    \"Listening model detected slurred speech (0.72)\",\n    \"Listening model detected tearful or frightened voice (0.65)\",\n    \"Listening model detected shortness of breath (0.64)\",\n    \"Listening model detected long pauses (0.45)\",\n    \"Listening model detected groaning or crying out (0.43)\",\n    \"Listening model detected coughing (0.36)\",\n    \"Listening model rated sounding well as 0.08\"\n  ]\n}"
+}

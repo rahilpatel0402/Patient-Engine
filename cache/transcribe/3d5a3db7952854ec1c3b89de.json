@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "34aa34db93ec3a5c987e8c3b981f74980132b93a89d42e2432e20840d8a9cffa"
+ },
+ "ms": 12276,
+ "at": "2026-11-21T18:26:23.023Z",
+ "value": "Hello, hello. Can, can, can I get the, the, the, the medication refill please? Sorry, sorry, sorry to bother you. Thank you."
+}

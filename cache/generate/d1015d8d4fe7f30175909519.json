@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"I don't know. I don't know what to say, but can I can I get the medication refill, please? Sorry.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3062,
+ "at": "2026-11-21T18:27:35.509Z",
+ "value": "{\n  \"observations\": [\n    \"Stated \\\"I don't know\\\" twice\",\n    \"Stated \\\"I don't know what to say\\\"\",\n    \"Repeated \\\"can I\\\"\",\n    \"Asked \\\"can I get the medication refill, please?\\\"\",\n    \"Said \\\"Sorry\\\"\"\n  ]\n}"
+}

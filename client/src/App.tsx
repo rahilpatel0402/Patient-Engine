@@ -369,11 +369,19 @@ function List({ title, items, none }: { title: string; items: string[]; none?: s
 
 // ---- probes and noise ------------------------------------------------------------
 
+/** Plain words for a probability, so that 0.36 is not read as a detection. */
+function likelihood(p: number): string {
+  return p >= 0.8 ? "very likely" : p >= 0.5 ? "likely" : p >= 0.2 ? "unlikely" : "very unlikely";
+}
+
 function ProbeBars({ probes, highlight, baseline, passMark }: { probes: Probes; highlight?: ProbeKey | null; baseline?: Probes; passMark?: boolean }) {
   return (
     <div className="bars">
+      <p className="barsnote">
+        Each number is the probability, from 0 to 1, that the sign is present somewhere in the clip. It is not a time. Below 0.50 means the sign was probably not heard.
+      </p>
       {PROBE_KEYS.map((k) => (
-        <div key={k} className={`bar ${k === highlight ? "target" : ""}`}>
+        <div key={k} className={`bar ${k === highlight ? "target" : ""} ${probes[k] >= 0.5 ? "" : "low"}`}>
           <span className="barlabel">{PROBE_LABEL[k]}</span>
           <span className="track">
             {baseline && <i className="ghost" style={{ width: `${baseline[k] * 100}%` }} />}
@@ -381,6 +389,7 @@ function ProbeBars({ probes, highlight, baseline, passMark }: { probes: Probes; 
             {k === highlight && passMark && <i className="need" style={{ left: `${GATE_SIGN_MIN * 100}%` }} title="The gate needs 0.80 here" />}
           </span>
           <span className="barvalue">{probes[k].toFixed(2)}</span>
+          <span className="barword">{likelihood(probes[k])}</span>
         </div>
       ))}
     </div>

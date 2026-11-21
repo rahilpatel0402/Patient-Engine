@@ -396,20 +396,36 @@ function ProbeBars({ probes, highlight, baseline, passMark }: { probes: Probes; 
   );
 }
 
+// Slider stops for the noise control. Each is how many decibels the voice sits
+// above the room noise. Null is no noise. The mix is measured per clip, so
+// "as loud as the voice" means the same thing on every clip.
+const NOISE_STOPS: (number | null)[] = [null, 15, 10, 5, 0, -5, -10];
+
+function noiseWords(snr: number | null): string {
+  if (snr === null) return "off";
+  if (snr >= 15) return "faint";
+  if (snr >= 10) return "quiet room";
+  if (snr >= 5) return "busy room";
+  if (snr === 0) return "as loud as the voice";
+  if (snr >= -5) return "louder than the voice";
+  return "much louder than the voice";
+}
+
 function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKey | null; passMark?: boolean; hasNoise: boolean; title: string; note?: string }) {
   const [level, setLevel] = useState(0);
-  const [heard, setHeard] = useState<{ probes: Probes; clip: string; ms: number; level: number } | null>(null);
+  const [heard, setHeard] = useState<{ probes: Probes; clip: string; ms: number; snr: number | null } | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const latest = useRef(0);
+  const snr = NOISE_STOPS[level];
 
   async function apply(next: number) {
     const ticket = ++latest.current;
     setBusy(true);
     setError(null);
     try {
-      const r = await probeNoise(props.clip, next);
-      if (ticket === latest.current) setHeard({ probes: r.probes, clip: r.clip, ms: r.probe_ms, level: r.level });
+      const r = await probeNoise(props.clip, NOISE_STOPS[next]);
+      if (ticket === latest.current) setHeard({ probes: r.probes, clip: r.clip, ms: r.probe_ms, snr: r.snr });
     } catch (e) {
       if (ticket === latest.current) setError((e as Error).message);
     } finally {
@@ -422,7 +438,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
     <section className="bench">
       <h3>{props.title}</h3>
       {props.note && <p className="muted">{props.note}</p>}
-      <ProbeBars probes={probes} highlight={props.highlight} passMark={props.passMark} baseline={heard && heard.level > 0 ? props.baseline : undefined} />
+      <ProbeBars probes={probes} highlight={props.highlight} passMark={props.passMark} baseline={heard && heard.snr !== null ? props.baseline : undefined} />
       {props.highlight && props.passMark && (
         <p className="muted">
           The dashed line is this project's pass mark: "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have, and it must reach 0.80 for the clip to be used.
@@ -434,13 +450,16 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
         </p>
       )}
       <div className="noise">
-        <label htmlFor="noise-level">Room noise mixed in: {level}%</label>
+        <label htmlFor="noise-level">
+          Room noise: {noiseWords(snr)}
+          {snr !== null && <span className="snr"> ({snr > 0 ? `voice ${snr} dB above the noise` : snr === 0 ? "equal levels" : `noise ${-snr} dB above the voice`})</span>}
+        </label>
         <input
           id="noise-level"
           type="range"
           min={0}
-          max={100}
-          step={10}
+          max={NOISE_STOPS.length - 1}
+          step={1}
           value={level}
           disabled={!props.hasNoise}
           onChange={(e) => setLevel(Number(e.target.value))}
@@ -456,7 +475,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
                 ? `Probed in ${heard.ms} ms. The faint bar is the clean clip.`
                 : "Move the slider to add noise and probe again."}
         </span>
-        {heard && heard.level > 0 && <audio controls src={clipUrl(heard.clip)} />}
+        {heard && heard.snr !== null && <audio controls src={clipUrl(heard.clip)} />}
       </div>
       {error && <p className="error">{error}</p>}
     </section>
@@ -523,7 +542,7 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
     setNoiseMsg("Converting");
     try {
       const r = await sendNoise(file);
-      setNoiseMsg(`Room noise saved, ${r.seconds} seconds.`);
+      setNoiseMsg(`Saved, ${r.seconds} seconds. This recording is now the one in use. ${r.saved} uploads are kept.`);
       onNoise();
     } catch (e) {
       setNoiseMsg((e as Error).message);
@@ -583,7 +602,12 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
       )}
 
       <div className="noiseupload">
-        <label htmlFor="noise-upload">Room noise recording: {health?.noise ?? "none yet"}</label>
+        <label htmlFor="noise-upload">
+          Room noise recording:{" "}
+          {health?.noise
+            ? `${health.noise.seconds} seconds, uploaded at ${new Date(health.noise.uploaded).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}. Only the most recent upload is used.`
+            : "none yet"}
+        </label>
         <input id="noise-upload" type="file" accept="audio/*,video/*" onChange={(e) => uploadNoise(e.target.files?.[0])} />
         {noiseMsg && <span className="muted">{noiseMsg}</span>}
       </div>

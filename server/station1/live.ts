@@ -5,7 +5,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { probe } from "../engine/probes.ts";
 import { PROBE_KEYS, PROBE_LABEL, type ArmKey, type Probes } from "../engine/types.ts";
-import { mixNoise, normalize, wavSeconds } from "../lib/audio.ts";
+import { levelDb, mixAtSnr, normalize, wavSeconds } from "../lib/audio.ts";
 import { ROOT } from "../lib/cache.ts";
 import { MODELS, generateJson, transcribe } from "../lib/gemini.ts";
 
@@ -80,34 +80,63 @@ export async function runLive(upload: Buffer, ext: string): Promise<LiveResult> 
 
 // ---- noise ---------------------------------------------------------------------
 
-export function noiseSource(): { file: string; label: string } | null {
-  return fs.existsSync(ROOM_NOISE) ? { file: ROOM_NOISE, label: "Room noise recorded at the venue" } : null;
+export type NoiseInfo = { file: string; label: string; seconds: number; level_db: number; uploaded: string; saved: number };
+
+let noiseCache: { mtime: number; info: NoiseInfo } | null = null;
+
+/** The room noise recording in use. The most recent upload is the active one. */
+export function noiseSource(): NoiseInfo | null {
+  if (!fs.existsSync(ROOM_NOISE)) return null;
+  const stat = fs.statSync(ROOM_NOISE);
+  if (noiseCache?.mtime !== stat.mtimeMs) {
+    const saved = fs.readdirSync(NOISE_DIR).filter((f) => /^room-\d+\.wav$/.test(f)).length;
+    noiseCache = {
+      mtime: stat.mtimeMs,
+      info: {
+        file: ROOM_NOISE,
+        label: "Room noise recorded at the venue",
+        seconds: wavSeconds(ROOM_NOISE),
+        level_db: levelDb(ROOM_NOISE),
+        uploaded: stat.mtime.toISOString(),
+        saved: Math.max(saved, 1),
+      },
+    };
+  }
+  return noiseCache.info;
 }
 
-export async function saveRoomNoise(upload: Buffer, ext: string): Promise<number> {
+/** Saves an uploaded room noise recording. Every upload is kept, and the newest becomes the one in use. */
+export async function saveRoomNoise(upload: Buffer, ext: string): Promise<NoiseInfo> {
   fs.mkdirSync(NOISE_DIR, { recursive: true });
-  const raw = path.join(NOISE_DIR, `room.upload.${ext}`);
+  const stamp = Date.now();
+  const raw = path.join(NOISE_DIR, `upload-${stamp}.${ext}`);
+  const kept = path.join(NOISE_DIR, `room-${stamp}.wav`);
   fs.writeFileSync(raw, upload);
-  await normalize(raw, ROOM_NOISE);
+  await normalize(raw, kept);
   fs.rmSync(raw, { force: true });
-  return wavSeconds(ROOM_NOISE);
+  fs.copyFileSync(kept, ROOM_NOISE);
+  return noiseSource()!;
 }
 
-/** Mixes noise under any clip in the repo and probes the result. Level is 0 to 100. */
-export async function probeWithNoise(clipRel: string, level: number): Promise<{ clip: string; probes: Probes; probe_ms: number; level: number }> {
+/** Slider stops for the noise control, as decibels of voice above noise. */
+export const NOISE_STEPS = [15, 10, 5, 0, -5, -10];
+
+/**
+ * Mixes room noise under any clip in the repo and probes the result.
+ * `snr` is how many decibels the voice sits above the noise. Null means no noise.
+ */
+export async function probeWithNoise(clipRel: string, snr: number | null): Promise<{ clip: string; probes: Probes; probe_ms: number; snr: number | null }> {
   const source = path.resolve(ROOT, clipRel);
   if (!source.startsWith(path.join(ROOT, "data")) || !fs.existsSync(source)) throw new Error("Unknown clip");
-  const pct = Math.max(0, Math.min(100, Math.round(level)));
-  if (pct === 0) {
+  if (snr === null || snr === undefined) {
     const heard = await probe({ file: source });
-    return { clip: rel(source), probes: heard.probes, probe_ms: heard.ms, level: 0 };
+    return { clip: rel(source), probes: heard.probes, probe_ms: heard.ms, snr: null };
   }
   const noise = noiseSource();
   if (!noise) throw new Error("No room noise file yet. Upload one first.");
-  // 100 on the slider is the noise at three times its recorded level.
-  const gain = (pct / 100) * 3;
-  const out = path.join(ROOT, "data", "mixed", `${path.basename(source, ".wav")}.noise${pct}.wav`);
-  await mixNoise(source, noise.file, gain, out);
+  const db = Math.max(-20, Math.min(30, Math.round(Number(snr))));
+  const out = path.join(ROOT, "data", "mixed", `${path.basename(source, ".wav")}.snr${db}.wav`);
+  mixAtSnr(source, noise.file, db, out);
   const heard = await probe({ file: out });
-  return { clip: rel(out), probes: heard.probes, probe_ms: heard.ms, level: pct };
+  return { clip: rel(out), probes: heard.probes, probe_ms: heard.ms, snr: db };
 }

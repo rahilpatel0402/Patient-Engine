@@ -43,7 +43,12 @@ function extFor(contentType: string | undefined): string {
 }
 
 app.get("/api/health", (_req, res) => {
-  res.json({ ok: true, hasKey: hasApiKey(), noise: noiseSource()?.label ?? null });
+  const noise = noiseSource();
+  res.json({
+    ok: true,
+    hasKey: hasApiKey(),
+    noise: noise ? { label: noise.label, seconds: noise.seconds, uploaded: noise.uploaded, saved: noise.saved } : null,
+  });
 });
 
 /** Every patient set on disk, with its Station 1 results if they exist. */
@@ -101,8 +106,8 @@ app.post("/api/live", audioBody, async (req, res) => {
 /** Mix room noise under a clip and probe it again. */
 app.post("/api/noise/probe", async (req, res) => {
   try {
-    const { clip, level } = req.body as { clip: string; level: number };
-    res.json(await withKeyRole("live", () => probeWithNoise(clip, level)));
+    const { clip, snr } = req.body as { clip: string; snr: number | null };
+    res.json(await withKeyRole("live", () => probeWithNoise(clip, snr ?? null)));
   } catch (e) {
     fail(res, e);
   }
@@ -122,8 +127,8 @@ app.post("/api/physician-gate", (req, res) => {
 app.post("/api/noise", audioBody, async (req, res) => {
   try {
     if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new Error("No audio received");
-    const seconds = await saveRoomNoise(req.body, extFor(req.headers["content-type"]));
-    res.json({ ok: true, seconds, label: noiseSource()?.label });
+    const noise = await saveRoomNoise(req.body, extFor(req.headers["content-type"]));
+    res.json({ ok: true, seconds: noise.seconds, label: noise.label, saved: noise.saved });
   } catch (e) {
     fail(res, e);
   }

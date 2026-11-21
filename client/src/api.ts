@@ -19,8 +19,10 @@ export type LiveResult = {
   arms: Record<ArmKey, { observations: string[]; ms: number }>;
 };
 
-export type NoiseProbe = { clip: string; probes: Probes; probe_ms: number; level: number };
-export type Health = { ok: boolean; hasKey: boolean; noise: string | null };
+/** snr: decibels of voice above noise. Null means no noise was mixed in. */
+export type NoiseProbe = { clip: string; probes: Probes; probe_ms: number; snr: number | null };
+export type NoiseInfo = { label: string; seconds: number; uploaded: string; saved: number };
+export type Health = { ok: boolean; hasKey: boolean; noise: NoiseInfo | null };
 
 async function json<T>(res: Response): Promise<T> {
   const body = (await res.json().catch(() => ({}))) as T & { error?: string };
@@ -38,14 +40,14 @@ export const sendLive = (audio: Blob) =>
 
 export const sendNoise = (audio: Blob) =>
   fetch("/api/noise", { method: "POST", headers: { "Content-Type": audio.type || "application/octet-stream" }, body: audio }).then((r) =>
-    json<{ ok: boolean; seconds: number; label: string }>(r),
+    json<{ ok: boolean; seconds: number; label: string; saved: number }>(r),
   );
 
-export const probeNoise = (clip: string, level: number) =>
+export const probeNoise = (clip: string, snr: number | null) =>
   fetch("/api/noise/probe", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ clip, level }),
+    body: JSON.stringify({ clip, snr }),
   }).then((r) => json<NoiseProbe>(r));
 
 export const physicianGate = (set: string, id: string, valid: boolean, note: string) =>

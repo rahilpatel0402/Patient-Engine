@@ -72,6 +72,13 @@ audio { height: 40px; max-width: 100%; }
 .count span { color: var(--muted); }
 .sub { color: var(--muted); font-size: 0.9rem; }
 
+.sens { background: var(--surface); border: 1px solid var(--line); padding: 10px 18px; }
+.sens summary { cursor: pointer; font-weight: 700; }
+.sens p { margin: 8px 0; max-width: 90ch; }
+.tablewrap { overflow-x: auto; }
+.sens table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.sens th, .sens td { text-align: left; padding: 6px 12px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.sens tr.chosen td { font-weight: 800; background: var(--accent-soft); }
 .workbench { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 18px; align-items: start; }
 .patients { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
 .patients button { width: 100%; display: grid; grid-template-columns: 2.2em 1fr auto; gap: 8px; align-items: center; text-align: left; border: 1px solid var(--line); background: var(--surface); padding: 7px 10px; }

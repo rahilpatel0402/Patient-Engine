@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is going fine today. I was just calling to see if my routine paperwork is ready to be picked up at the front desk whenever I get a chance to swing by the office later this afternoon. Thank you.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.32\n- In pain: 0.09\n- Coughing: 0.30\n- Distressed: 0.16\n- Slurred speech: 0.19\n- Long pauses: 0.75\n- Sounds well: 0.69",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5601,
+ "at": "2026-11-21T16:53:23.790Z",
+ "value": "{\"observations\": [\"Calling to check on routine paperwork pickup\", \"Reports everything is going fine\", \"Long pauses noted in speech\", \"Sounds well\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

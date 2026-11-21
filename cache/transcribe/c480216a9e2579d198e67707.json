@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "ff5e6e13a7d53b3e6c1d039f2e1b318b314d0a1290cce935aabf2e6f27f937dd"
+ },
+ "ms": 2105,
+ "at": "2026-11-21T16:53:08.641Z",
+ "value": "Hi, everything is fine. I just have a really quick question. I'm working a late shift at the salon today and wanted to check what time the building locks up tonight. I just need to know when the front desk closes. Thanks."
+}

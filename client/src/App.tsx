@@ -13,6 +13,7 @@ import {
   type ProbeKey,
   type Probes,
 } from "../../server/engine/types.ts";
+import { CHOSEN_BAR, sensitivity } from "../../server/station1/report.ts";
 import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
 const ARMS: ArmKey[] = ["A", "B", "C"];
@@ -82,6 +83,7 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
         </div>
       )}
       <Scoreboard data={current} />
+      <Sensitivity data={current} />
       <div className="workbench">
         <ul className="patients" aria-label="Patients">
           {current.patients.map((p) => {
@@ -155,6 +157,41 @@ function Scoreboard({ data }: { data: SetData }) {
         {data.patients.length} clips generated, {dropped} left out by the gate, {review} graded notes sent to physician review.
       </p>
     </section>
+  );
+}
+
+/** Read-only: what the result would have been at other pass marks. Nothing here can be adjusted. */
+function Sensitivity({ data }: { data: SetData }) {
+  const rows = sensitivity(data.patients, data.cases);
+  const all = rows[rows.length - 1];
+  if (!all.generated || !ARMS.some((arm) => all.arms[arm].of === all.generated)) return null;
+  return (
+    <details className="sens">
+      <summary>Would a different pass mark change the result?</summary>
+      <p className="muted">
+        The pass mark of {CHOSEN_BAR.toFixed(2)} was fixed before any result existed. Every generated clip was run through all three arms, so this table shows what each other bar would have given. It covers the signs gated by the listening model. Signs gated by a physician are not included.
+      </p>
+      <div className="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Pass mark</th>
+              <th>Clips kept</th>
+              {ARMS.map((arm) => <th key={arm}>{arm}. {ARM_LABEL[arm]}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={String(r.bar)} className={r.bar === CHOSEN_BAR ? "chosen" : ""}>
+                <td>{r.bar === null ? "No gate" : r.bar.toFixed(2)}{r.bar === CHOSEN_BAR ? " (used)" : ""}</td>
+                <td>{r.kept} of {r.generated}</td>
+                {ARMS.map((arm) => <td key={arm}>{r.arms[arm].caught} of {r.arms[arm].of} caught</td>)}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </details>
   );
 }
 

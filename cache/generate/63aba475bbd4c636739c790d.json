@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello, dear. I am fine. I just need to move my Tuesday visit to later in the week, if that is all right. Everything is completely normal here. I just cannot make it in that morning. So, any other day works.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.80\n- In pain: 0.69\n- Coughing: 0.79\n- Distressed: 0.73\n- Slurred speech: 0.34\n- Long pauses: 0.74\n- Sounds well: 0.05",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6704,
+ "at": "2026-11-21T16:53:20.622Z",
+ "value": "{\"observations\": [\"Patient verbally states they are fine and requests to reschedule their Tuesday visit\", \"Audio analysis indicates high probability of shortness of breath (0.80), coughing (0.79), long pauses (0.74), distress (0.73), and pain (0.69)\", \"Audio analysis indicates very low probability of sounding well (0.05)\", \"Marked discrepancy between verbal statements and vocal presentation\"], \"red_flags\": [\"High probability of shortness of breath\", \"High probability of distress and pain\", \"Patient may be minimizing or downplaying acute symptoms\"], \"urgency\": \"urgent\"}"
+}

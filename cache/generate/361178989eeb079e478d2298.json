@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "5300c4c76eb3658f207fc20f9ccba8e279dba6ac5c35b7b57d939c3605e78e4e",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5136,
+ "at": "2026-11-21T16:53:18.874Z",
+ "value": "{\n  \"observations\": [\n    \"Requests rescheduling Tuesday morning appointment to later in the week\",\n    \"States she is fine and everything is completely normal\",\n    \"Audibly short of breath, gasping, and struggling to speak in full sentences\"\n  ],\n  \"red_flags\": [\n    \"Marked respiratory distress audible during speech\",\n    \"Minimizing symptoms despite apparent breathing difficulty\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

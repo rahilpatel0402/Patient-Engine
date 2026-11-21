@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning there. I um just calling in to set up my regular yearly checkup. Nothing pressing at all. Everything is going fine out here. Just figured I ought to get my name on the calendar for next month.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.84\n- In pain: 0.32\n- Coughing: 0.68\n- Distressed: 0.19\n- Slurred speech: 0.15\n- Long pauses: 0.79\n- Sounds well: 0.11",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5028,
+ "at": "2026-11-21T16:53:13.739Z",
+ "value": "{\n  \"observations\": [\n    \"Requests routine yearly checkup for next month\",\n    \"States everything is going fine with nothing pressing\",\n    \"Vocal presentation indicates shortness of breath\",\n    \"Frequent long pauses in speech\",\n    \"Audible coughing\",\n    \"Does not sound well\"\n  ],\n  \"red_flags\": [\n    \"Shortness of breath while speaking\",\n    \"Coughing with long pauses\",\n    \"Discordance between stated wellness and vocal presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

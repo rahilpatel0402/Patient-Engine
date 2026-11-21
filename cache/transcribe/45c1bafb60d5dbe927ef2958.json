@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "5300c4c76eb3658f207fc20f9ccba8e279dba6ac5c35b7b57d939c3605e78e4e"
+ },
+ "ms": 2149,
+ "at": "2026-11-21T16:53:08.683Z",
+ "value": "Hello, dear. I am fine. I just need to move my Tuesday visit to later in the week, if that is all right. Everything is completely normal here. I just cannot make it in that morning. So, any other day works."
+}

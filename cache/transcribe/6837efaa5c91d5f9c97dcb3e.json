@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "61831c7b93eae1142262c2b8b7a1ac639646cf76b27420fb2e348be3d5bd8175"
+ },
+ "ms": 1749,
+ "at": "2026-11-21T16:53:08.267Z",
+ "value": "Morning there. I um just calling in to set up my regular yearly checkup. Nothing pressing at all. Everything is going fine out here. Just figured I ought to get my name on the calendar for next month."
+}

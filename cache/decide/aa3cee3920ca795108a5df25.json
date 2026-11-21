@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient verbally states they are fine and requests to reschedule their Tuesday visit\",\n    \"Audio analysis indicates high probability of shortness of breath (0.80), coughing (0.79), long pauses (0.74), distress (0.73), and pain (0.69)\",\n    \"Audio analysis indicates very low probability of sounding well (0.05)\",\n    \"Marked discrepancy between verbal statements and vocal presentation\"\n  ],\n  \"red_flags\": [\n    \"High probability of shortness of breath\",\n    \"High probability of distress and pain\",\n    \"Patient may be minimizing or downplaying acute symptoms\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, pain, coughing, emotional distress, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds like they are in physical pain?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 189,
+ "at": "2026-11-21T16:53:20.812Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9866260185146682,
+   "choice": "urgent",
+   "probabilities": {
+    "soon": 0.012620881938698831,
+    "routine": 0.0007530995466329892,
+    "urgent": 0.9866260185146682
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9805032705595808,
+   "noul": 0.9805032705595808,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.981460322176312,
+   "noul": 0.981460322176312,
+   "type": "noul"
+  }
+ }
+}

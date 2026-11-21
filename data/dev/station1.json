@@ -216,6 +216,225 @@
   },
   {
     "patient": {
+      "persona": "A farmer in his sixties calling the clinic to book his regular annual check-up.",
+      "spoken_text": "Morning there. <grunt> I am just calling in to set up my regular yearly check-up. <exhales> Nothing pressing at all, everything is going fine out here. <groan> Just figured I ought to get my name on the calendar <whimper> for next month.",
+      "tts_style": "Strained, tight voice, wincing and speaking through clenched teeth as if in acute physical pain.",
+      "voice": "Orus",
+      "expected_urgency": "urgent",
+      "hidden_sign": "pain",
+      "id": "dev-03-pain",
+      "set": "dev",
+      "author_model": "gemini-4-argon",
+      "clip": "data/dev/clips/dev-03-pain.wav",
+      "seconds": 23.1,
+      "probes": {
+        "short_of_breath": 0.84,
+        "in_pain": 0.323,
+        "coughing": 0.675,
+        "distressed": 0.186,
+        "slurred": 0.147,
+        "long_pauses": 0.794,
+        "sounds_well": 0.107
+      },
+      "gate": {
+        "kept": false,
+        "reason": "in_pain only 0.32, needs 0.8",
+        "attempts": 2
+      }
+    },
+    "rung": "clean",
+    "transcript": "Morning there. I um just calling in to set up my regular yearly checkup. Nothing pressing at all. Everything is going fine out here. Just figured I ought to get my name on the calendar for next month.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Calling to schedule a routine annual checkup",
+            "Reports no pressing concerns or active symptoms",
+            "Requests an appointment for next month"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 3824,
+        "grade": {
+          "identifies_sign": 0.025,
+          "flags_any_sign": 0.022,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.975,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Requests routine yearly checkup for next month",
+            "States nothing is pressing and everything is fine",
+            "Audibly short of breath with labored breathing",
+            "Frequent pauses to catch breath while speaking",
+            "Initial cough or throat clearing"
+          ],
+          "red_flags": [
+            "Marked dyspnea while speaking",
+            "Discordance between reported well-being and audible respiratory distress"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 4955,
+        "grade": {
+          "identifies_sign": 0.559,
+          "flags_any_sign": 0.974,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.559,
+          "needs_review": true
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Requests routine yearly checkup for next month",
+            "States everything is going fine with nothing pressing",
+            "Vocal presentation indicates shortness of breath",
+            "Frequent long pauses in speech",
+            "Audible coughing",
+            "Does not sound well"
+          ],
+          "red_flags": [
+            "Shortness of breath while speaking",
+            "Coughing with long pauses",
+            "Discordance between stated wellness and vocal presentation"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 5028,
+        "grade": {
+          "identifies_sign": 0.621,
+          "flags_any_sign": 0.971,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.621,
+          "needs_review": true
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "persona": "A grandmother in her eighties who lives alone, calling to move her upcoming routine visit to another day.",
+      "spoken_text": "Hello dear, <grunt> I am fine, I just need to move my Tuesday visit to later in the week if that is alright. <groan> Everything is completely normal here, <whimper> I just cannot make it in that morning, <exhales> so any other day works.",
+      "tts_style": "Strained, tight elderly voice, wincing and speaking through acute physical pain.",
+      "voice": "Leda",
+      "expected_urgency": "soon",
+      "hidden_sign": "pain",
+      "id": "dev-04-pain",
+      "set": "dev",
+      "author_model": "gemini-4-argon",
+      "clip": "data/dev/clips/dev-04-pain.wav",
+      "seconds": 22.4,
+      "probes": {
+        "short_of_breath": 0.801,
+        "in_pain": 0.693,
+        "coughing": 0.791,
+        "distressed": 0.727,
+        "slurred": 0.336,
+        "long_pauses": 0.741,
+        "sounds_well": 0.051
+      },
+      "gate": {
+        "kept": false,
+        "reason": "in_pain only 0.69, needs 0.8",
+        "attempts": 2
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hello, dear. I am fine. I just need to move my Tuesday visit to later in the week, if that is all right. Everything is completely normal here. I just cannot make it in that morning. So, any other day works.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Polite and pleasant tone",
+            "Reports feeling fine and that everything is normal",
+            "Requesting to reschedule a Tuesday morning visit to later in the week",
+            "Flexible with alternative appointment days"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 3881,
+        "grade": {
+          "identifies_sign": 0.022,
+          "flags_any_sign": 0.01,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.978,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Requests rescheduling Tuesday morning appointment to later in the week",
+            "States she is fine and everything is completely normal",
+            "Audibly short of breath, gasping, and struggling to speak in full sentences"
+          ],
+          "red_flags": [
+            "Marked respiratory distress audible during speech",
+            "Minimizing symptoms despite apparent breathing difficulty"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 5136,
+        "grade": {
+          "identifies_sign": 0.645,
+          "flags_any_sign": 0.982,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.645,
+          "needs_review": true
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Patient verbally states they are fine and requests to reschedule their Tuesday visit",
+            "Audio analysis indicates high probability of shortness of breath (0.80), coughing (0.79), long pauses (0.74), distress (0.73), and pain (0.69)",
+            "Audio analysis indicates very low probability of sounding well (0.05)",
+            "Marked discrepancy between verbal statements and vocal presentation"
+          ],
+          "red_flags": [
+            "High probability of shortness of breath",
+            "High probability of distress and pain",
+            "Patient may be minimizing or downplaying acute symptoms"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 6704,
+        "grade": {
+          "identifies_sign": 0.981,
+          "flags_any_sign": 0.981,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.981,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
       "persona": "A schoolteacher in her fifties calling to ask about the status of a routine referral letter.",
       "spoken_text": "Hello, I'm just calling to check on a standard referral letter that was supposed to be mailed out. <cough> Everything is going fine on my end, <throat-clearing> I just wanted to see if the front desk had <cough> <cough> sent that paperwork over yet.",
       "tts_style": "A hoarse, raspy voice frequently interrupted by persistent coughing and throat clearing.",
@@ -530,6 +749,322 @@
           "false_alarm": null,
           "graded_urgency": "urgent",
           "confidence": 0.824,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "persona": "A hairdresser in her twenties calling to check the evening closing time for the pharmacy.",
+      "spoken_text": "Hi, everything is fine, I just have a really quick question. <whimper> I'm working a late shift at the salon today <short pause> and wanted to check what time the building locks up tonight. <sob> I just need to know when the front desk closes, thanks.",
+      "tts_style": "Shaky, trembling voice close to tears, sounding deeply frightened and emotionally distressed throughout.",
+      "voice": "Leda",
+      "expected_urgency": "soon",
+      "hidden_sign": "distress",
+      "id": "dev-08-distress",
+      "set": "dev",
+      "author_model": "gemini-4-argon",
+      "clip": "data/dev/clips/dev-08-distress.wav",
+      "seconds": 17.8,
+      "probes": {
+        "short_of_breath": 0.667,
+        "in_pain": 0.24,
+        "coughing": 0.517,
+        "distressed": 0.475,
+        "slurred": 0.138,
+        "long_pauses": 0.714,
+        "sounds_well": 0.158
+      },
+      "gate": {
+        "kept": false,
+        "reason": "distressed only 0.47, needs 0.8",
+        "attempts": 2
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hi, everything is fine. I just have a really quick question. I'm working a late shift at the salon today and wanted to check what time the building locks up tonight. I just need to know when the front desk closes. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Reports everything is fine",
+            "Polite and brief",
+            "Inquiring about building lock-up and front desk closing times",
+            "Mentions working a late shift at a salon"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 2705,
+        "grade": {
+          "identifies_sign": 0.042,
+          "flags_any_sign": 0.059,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.958,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Asks about building lock-up and front desk closing time",
+            "States everything is fine",
+            "Audible shortness of breath and heavy breathing between phrases",
+            "Voice sounds strained and breathless"
+          ],
+          "red_flags": [
+            "Audible shortness of breath while speaking",
+            "Potential minimization of symptoms"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 6503,
+        "grade": {
+          "identifies_sign": 0.172,
+          "flags_any_sign": 0.971,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.828,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Asks routine administrative question about building hours",
+            "States everything is fine",
+            "Voice analysis indicates probable long pauses and shortness of breath",
+            "Moderate probability of coughing and distress",
+            "Low probability of sounding well"
+          ],
+          "red_flags": [
+            "Discrepancy between verbal reassurance and vocal signs of respiratory distress",
+            "Probable shortness of breath and long pauses"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 10625,
+        "grade": {
+          "identifies_sign": 0.484,
+          "flags_any_sign": 0.961,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.516,
+          "needs_review": true
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "persona": "A construction foreman in his fifties calling for a routine prescription refill.",
+      "spoken_text": "Hey there. Everything is fine with me, just calling in from the job site <long pause> to get my regular refill sent over to the usual place. <long pause> No need to change anything, just the standard order whenever you have a minute. <long pause> Thanks.",
+      "tts_style": "Slow, thick, slurred speech with words running together, sounding heavily sedated and drowsy.",
+      "voice": "Orus",
+      "expected_urgency": "urgent",
+      "hidden_sign": "slurred",
+      "id": "dev-09-slurred",
+      "set": "dev",
+      "author_model": "gemini-4-argon",
+      "clip": "data/dev/clips/dev-09-slurred.wav",
+      "seconds": 20.5,
+      "probes": {
+        "short_of_breath": 0.211,
+        "in_pain": 0.051,
+        "coughing": 0.255,
+        "distressed": 0.074,
+        "slurred": 0.121,
+        "long_pauses": 0.486,
+        "sounds_well": 0.806
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.12, needs 0.8",
+        "attempts": 2
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hey there, everything is fine with me. Just calling in from the job site to get my regular refill sent over to the usual place. No need to change anything, just the standard order whenever you have a minute. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Reports feeling fine with no acute complaints",
+            "Calling from job site",
+            "Requesting a regular medication refill",
+            "No changes to current regimen requested"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 2967,
+        "grade": {
+          "identifies_sign": 0.016,
+          "flags_any_sign": 0.025,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.984,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Requests regular medication refill",
+            "States everything is fine",
+            "Calling from a job site",
+            "Audible heavy breathing and sighing between phrases",
+            "Slow, low-energy speech"
+          ],
+          "red_flags": [
+            "Audible labored breathing or fatigue despite denying any issues"
+          ],
+          "urgency": "soon"
+        },
+        "ms": 5229,
+        "grade": {
+          "identifies_sign": 0.044,
+          "flags_any_sign": 0.97,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "soon",
+          "confidence": 0.956,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Requesting regular medication refill",
+            "Reports feeling fine",
+            "Calling from job site",
+            "Voice sounds well overall"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 6927,
+        "grade": {
+          "identifies_sign": 0.012,
+          "flags_any_sign": 0.019,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.988,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "persona": "A software engineer in his thirties calling the clinic to pick up his routine test results.",
+      "spoken_text": "Hi there, everything is going fine today. <long pause> I was just calling to see if my routine paperwork is ready to be picked up at the front desk <long pause> whenever I get a chance to swing by the office later this afternoon. <long pause> Thank you.",
+      "tts_style": "Slow, thick, slurred speech with words running together, sounding heavily sedated and sluggish.",
+      "voice": "Puck",
+      "expected_urgency": "urgent",
+      "hidden_sign": "slurred",
+      "id": "dev-10-slurred",
+      "set": "dev",
+      "author_model": "gemini-4-argon",
+      "clip": "data/dev/clips/dev-10-slurred.wav",
+      "seconds": 27.5,
+      "probes": {
+        "short_of_breath": 0.322,
+        "in_pain": 0.088,
+        "coughing": 0.305,
+        "distressed": 0.162,
+        "slurred": 0.188,
+        "long_pauses": 0.751,
+        "sounds_well": 0.685
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.19, needs 0.8",
+        "attempts": 2
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hi there. Everything is going fine today. I was just calling to see if my routine paperwork is ready to be picked up at the front desk whenever I get a chance to swing by the office later this afternoon. Thank you.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Calling to check on status of routine paperwork for pickup",
+            "Reports everything is going fine",
+            "Polite and calm presentation",
+            "No symptoms or medical concerns mentioned"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 2994,
+        "grade": {
+          "identifies_sign": 0.016,
+          "flags_any_sign": 0.017,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.984,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Calling to check if routine paperwork is ready for pickup",
+            "States everything is going fine today",
+            "Speech is notably slow, flat, and low-energy",
+            "Audible heavy sighing during the call"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 5560,
+        "grade": {
+          "identifies_sign": 0.044,
+          "flags_any_sign": 0.964,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.956,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Calling to check on routine paperwork pickup",
+            "Reports everything is going fine",
+            "Long pauses noted in speech",
+            "Sounds well"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 5601,
+        "grade": {
+          "identifies_sign": 0.037,
+          "flags_any_sign": 0.394,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.963,
           "needs_review": false
         }
       }

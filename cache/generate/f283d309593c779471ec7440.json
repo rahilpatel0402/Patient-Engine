@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Good morning, folks. Hope you are enjoying this fine weather. Everything is going great out here on the farm. I am doing just dandy. I only called to get my regular prescription sent over to the local pharmacy whenever you have a spare minute.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3508,
+ "at": "2026-11-21T18:57:49.885Z",
+ "value": "{\n  \"observations\": [\n    \"Pleasant and cheerful demeanor\",\n    \"Reports feeling well\",\n    \"Requesting routine prescription refill sent to local pharmacy\",\n    \"No acute symptoms or distress reported\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}"
+}

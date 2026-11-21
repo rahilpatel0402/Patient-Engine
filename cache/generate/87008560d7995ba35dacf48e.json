@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "78e7b4f5c2b4e4a007c4c3c975eb8e89c2ef12abb89e29200867c9c5e081410b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4891,
+ "at": "2026-11-21T18:56:48.760Z",
+ "value": "{\"observations\": [\"Patient emits loud groans, moans, and sharp cries of pain\", \"Verbally states everything is 'totally fine'\", \"Requests a quick piece of paperwork and a medication refill\", \"Marked discrepancy between audible distress and verbal reassurance\"], \"red_flags\": [\"Audible signs of severe pain despite verbal denial of distress\"], \"urgency\": \"urgent\"}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm doing great today. Just calling from the restaurant for the drink refills. Everything is fine with me. I just need to get my renewal prescription for my blood pressure medication to be sent to the Main Street pharmacy.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.41\n- Groaning or crying out: 0.20\n- Coughing: 0.33\n- Tearful or frightened: 0.21\n- Slurred speech: 0.38\n- Long pauses: 0.69\n- Sounds well: 0.33",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4225,
+ "at": "2026-11-21T18:57:28.810Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting renewal of blood pressure medication to Main Street pharmacy\",\n    \"States they are doing great and everything is fine\",\n    \"Mentions calling from a restaurant for drink refills\",\n    \"High probability of long pauses in speech\",\n    \"Low probability of sounding well\",\n    \"Moderate probabilities for shortness of breath and slurred speech\"\n  ],\n  \"red_flags\": [\n    \"Discrepancy between patient's reassuring statement and vocal cues\",\n    \"Long pauses and possible slurred speech or confusion\"\n  ],\n  \"urgency\": \"soon\"\n}"
+}

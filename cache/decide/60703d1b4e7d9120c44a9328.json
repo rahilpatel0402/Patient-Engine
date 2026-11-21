@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests medication refill and states everything is fine\",\n    \"Speech trails off mid-sentence\",\n    \"High probability of groaning or crying out\",\n    \"Moderately high probability of sounding tearful or frightened\",\n    \"Low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Severe vocal distress (groaning or crying out) despite claiming to be fine\",\n    \"Incomplete or fragmented speech\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 335,
+ "at": "2026-11-21T18:57:55.368Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.995487612619056,
+   "choice": "urgent",
+   "probabilities": {
+    "routine": 0.00027951545149388344,
+    "urgent": 0.995487612619056,
+    "soon": 0.0042328719294501245
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9423017531807879,
+   "noul": 0.9423017531807879,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9729397569612896,
+   "noul": 0.9729397569612896,
+   "type": "noul"
+  }
+ }
+}

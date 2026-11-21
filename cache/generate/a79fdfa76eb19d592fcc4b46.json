@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine on my end. I was just calling to check what time the front desk closes on Fridays since my work schedule is shifting and I want to plan my Everything is fine,\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.78\n- Groaning or crying out: 0.20\n- Coughing: 0.96\n- Tearful or frightened: 0.18\n- Slurred speech: 0.13\n- Long pauses: 0.65\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 40625,
+ "at": "2026-11-21T18:57:05.936Z",
+ "value": "{\"observations\":[\"Patient asks about Friday front desk hours and states everything is fine\",\"Speech cuts off mid-sentence and repeats 'Everything is fine'\",\"High probability of coughing (0.96) and shortness of breath (0.78) on audio\",\"Long pauses noted (0.65) with very low probability of sounding well (0.07)\"],\"red_flags\":[\"Marked discrepancy between verbal reassurance and vocal signs of respiratory distress\",\"High probability of shortness of breath and coughing\",\"Abrupt speech interruption and repetition\"],\"urgency\":\"urgent\"}"
+}

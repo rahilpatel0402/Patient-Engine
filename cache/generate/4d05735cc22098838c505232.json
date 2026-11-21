@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm doing totally fine today. Just calling real quick on my break. I wanted to double check what time the building pharmacy closes on Fridays so I know if I can come by after lunch.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.26\n- Groaning or crying out: 0.13\n- Coughing: 0.15\n- Tearful or frightened: 0.19\n- Slurred speech: 0.38\n- Long pauses: 0.49\n- Sounds well: 0.47",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4361,
+ "at": "2026-11-21T18:57:33.051Z",
+ "value": "{\"observations\": [\"Patient states they are doing fine\", \"Calling for a routine administrative inquiry regarding pharmacy hours\", \"Voice model notes borderline probabilities for long pauses (0.49) and sounding well (0.47)\", \"Low probabilities for acute distress markers such as shortness of breath, groaning, or coughing\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

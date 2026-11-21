@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "2f7ccaa46a338376b76627f276c81e0ebdffb4da885d01cb7e01a96ff99fc81f",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4350,
+ "at": "2026-11-21T18:56:18.824Z",
+ "value": "{\"observations\":[\"States everything is completely fine and calling to check on routine results from last month\",\"Audible shortness of breath and heavy breathing while speaking\",\"Frequent pauses to catch breath mid-sentence\",\"Background noise suggests a public setting\"],\"red_flags\":[\"Marked dyspnea while speaking despite denying symptoms\"],\"urgency\":\"urgent\"}"
+}

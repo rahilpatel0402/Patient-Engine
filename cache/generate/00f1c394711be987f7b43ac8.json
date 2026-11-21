@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello dear. Everything is completely fine with me today. I am just calling to see if my routine results from last month are printed out yet so I can stop by the front desk whenever it is quiet.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.81\n- Groaning or crying out: 0.20\n- Coughing: 0.55\n- Tearful or frightened: 0.56\n- Slurred speech: 0.24\n- Long pauses: 0.77\n- Sounds well: 0.17",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4603,
+ "at": "2026-11-21T18:56:19.573Z",
+ "value": "{\"observations\":[\"States everything is completely fine and asks about routine results\",\"Voice indicates shortness of breath (0.81) and long pauses (0.77) despite calm wording\",\"Moderate probability of coughing (0.55) and sounding tearful or frightened (0.56)\"],\"red_flags\":[\"Marked shortness of breath and long pauses\",\"Significant discrepancy between verbal statement and vocal presentation\",\"Low probability of sounding well (0.17)\"],\"urgency\":\"urgent\"}"
+}

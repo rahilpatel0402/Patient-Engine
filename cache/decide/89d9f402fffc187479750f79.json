@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient states they are doing fine\",\n    \"Calling for a routine administrative inquiry regarding pharmacy hours\",\n    \"Voice model notes borderline probabilities for long pauses (0.49) and sounding well (0.47)\",\n    \"Low probabilities for acute distress markers such as shortness of breath, groaning, or coughing\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 219,
+ "at": "2026-11-21T18:57:54.585Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9924664637425719,
+   "choice": "routine",
+   "probabilities": {
+    "soon": 0.005782014644272962,
+    "routine": 0.9924664637425719,
+    "urgent": 0.0017515216131550038
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.7878788400250718,
+   "noul": 0.21212115997492823,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9543775212137772,
+   "noul": 0.04562247878622286,
+   "type": "noul"
+  }
+ }
+}

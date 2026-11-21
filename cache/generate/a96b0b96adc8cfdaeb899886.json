@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "43469adcf7905cf1677c5c81c5065732d52985e850ec17740007a1edf6dbfce5",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3881,
+ "at": "2026-11-21T18:57:42.970Z",
+ "value": "{\n  \"observations\": [\n    \"Patient states they are doing great today\",\n    \"Calling for an administrative request to update mailing address after moving last month\",\n    \"No medical complaints or symptoms reported\",\n    \"Sounds calm and conversational\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}"
+}

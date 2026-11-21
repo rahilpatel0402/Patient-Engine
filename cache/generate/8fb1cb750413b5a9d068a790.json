@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "78d2ce61332b3bf4c8d1be95861821d2d3f52875e53590d1246dcf4a2a563e57",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 25048,
+ "at": "2026-11-21T18:56:43.873Z",
+ "value": "{\n  \"observations\": [\n    \"Audibly groaning, gasping, and straining to speak\",\n    \"Verbally claims everything is fine and requests a routine mailing address update\",\n    \"Marked discrepancy between verbal statement and vocal presentation of distress\",\n    \"Second male voice heard at the end of the recording\"\n  ],\n  \"red_flags\": [\n    \"Audible respiratory distress or severe pain despite verbal denial\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

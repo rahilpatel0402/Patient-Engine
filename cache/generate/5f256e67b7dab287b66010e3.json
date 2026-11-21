@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "0f98f984d786ff2425e9fe6e72a6b8173ea8a2757c788ea147dc3bcf3b00a8d2",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5117,
+ "at": "2026-11-21T18:57:46.429Z",
+ "value": "{\"observations\": [\"Primary speaker has very slow, slurred, and strained speech\", \"States they are calling from a job site for a standard yearly appointment\", \"Second voice overlaps, stating everything is fine and requesting a medication refill\", \"Significant background noise present\"], \"red_flags\": [\"Severe dysarthria / slurred speech\", \"Possible acute neurological event or intoxication\"], \"urgency\": \"urgent\"}"
+}

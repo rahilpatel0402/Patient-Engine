@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "bc1bdb162ce3ba1bcd1bf06c6a96457a9297a2c7d9a24fbbd82ba3db4315ae42",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 26035,
+ "at": "2026-11-21T18:56:49.892Z",
+ "value": "{\"observations\": [\"Patient states everything is fine and asks about Friday front desk closing times\", \"Frequent coughing and throat clearing throughout the call\", \"Speech interrupted multiple times by coughing\", \"Background noise present\"], \"red_flags\": [\"Persistent coughing interrupting speech despite patient denying any issues\"], \"urgency\": \"soon\"}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "38da58e2529bfcbb3984c9e768218a883dc38233541653b7a6c90f9949d10033",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4217,
+ "at": "2026-11-21T18:57:24.585Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting a signature on a school district form\",\n    \"Audibly short of breath with rapid, shallow breathing and frequent pauses\",\n    \"Apologetic and hesitant tone\",\n    \"States 'everything is completely fine' despite audible physical distress\",\n    \"Background noise consistent with a busy public setting\"\n  ],\n  \"red_flags\": [\n    \"Audible respiratory distress or dyspnea\",\n    \"Incongruence between verbal reassurance and physical presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

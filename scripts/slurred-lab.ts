@@ -47,7 +47,7 @@ for (const [i, s] of SOURCES.entries()) {
 }
 writeJson(patientsFile(SET), patients);
 
-// The physician listened to these four on event day. His verdicts, in his words.
+// The physician listened to these four on event day. The verdicts are in the physician's own words.
 const VERDICTS: [number, boolean, string][] = [
   [1, true, "Good slurred speech."],
   [2, true, "Good slurred speech."],

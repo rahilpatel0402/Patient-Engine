@@ -12,6 +12,9 @@ Every patient is synthetic. No PHI. This is a test harness for AI. It does not g
 
 Built solo at the Gemini 4 NYC hackathon on Saturday, November 21, 2026, for Problem Statement Two (Element 119).
 
+- **One-minute video:** https://youtu.be/zazTTe202CE
+- **Read-only showcase of the results:** https://patient-engine.netlify.app/
+
 ## Results
 
 <!-- results:start -->

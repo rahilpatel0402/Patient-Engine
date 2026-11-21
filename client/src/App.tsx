@@ -25,10 +25,20 @@ const ARM_SOURCE: Record<ArmKey, string> = {
 };
 const SET_NAME: Record<string, string> = { dev: "Practice set (Argon)", exam: "Exam set (Carbon)", "slurred-lab": "Slurred speech lab" };
 
+type Mode = "exam" | "results" | "live" | "blind";
+
 export function App() {
   const [health, setHealth] = useState<Health | null>(null);
   const [sets, setSets] = useState<SetData[]>([]);
-  const [mode, setMode] = useState<"exam" | "results" | "live" | "blind">("exam");
+  // The open tab is kept in the address, so a reload or a server restart returns to it.
+  const [mode, setModeState] = useState<Mode>(() => {
+    const h = window.location.hash.replace("#", "");
+    return h === "results" || h === "live" || h === "blind" ? h : "exam";
+  });
+  const setMode = (next: Mode) => {
+    setModeState(next);
+    window.history.replaceState(null, "", next === "exam" ? window.location.pathname : `#${next}`);
+  };
   const [blind, setBlind] = useState<BlindState | null>(null);
   const refreshBlind = () => getBlind("exam").then(setBlind).catch(() => setBlind(null));
   const [error, setError] = useState<string | null>(null);
@@ -72,12 +82,12 @@ export function App() {
           The exam set is ready, and its results are hidden until you finish the blind labels. Open "Blind labels" first.
         </p>
       )}
-      {mode === "blind" && blind ? (
+      {mode === "blind" && blind && blindPending ? (
         <Blind state={blind} onSaved={() => { void refreshBlind(); getSets().then(setSets); setMode("exam"); }} />
-      ) : mode === "exam" || mode === "results" ? (
-        <Exam view={mode} sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} />
-      ) : (
+      ) : mode === "live" ? (
         <Live health={health} onNoise={() => getHealth().then(setHealth)} />
+      ) : (
+        <Exam view={mode === "results" ? "results" : "exam"} sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} />
       )}
     </main>
   );

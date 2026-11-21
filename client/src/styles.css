@@ -79,6 +79,7 @@ audio { height: 40px; max-width: 100%; }
 .ladder table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
 .ladder th, .ladder td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .ladder th { font-size: 0.85rem; color: var(--muted); }
+.ladder td:nth-child(n + 2) { white-space: nowrap; }
 .ladder tr.hold td { background: var(--good-soft); font-weight: 700; }
 .ladder tr.break td { background: var(--bad-soft); font-weight: 700; }
 .ladder .tag { margin-left: 10px; white-space: nowrap; }

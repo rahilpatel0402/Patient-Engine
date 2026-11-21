@@ -106,6 +106,7 @@ These came up during the build. Each one changed the test.
 - **Synthetic voices.** This shows whether a model can use vocal cues at all. It says nothing yet about real patients.
 - **One simulator.** Every voice comes from Gemini TTS. The results may partly reflect how that voice model renders a sign.
 - **Small sample.** Results are reported as counts, never percentages.
+- **One sign per patient.** Each test patient is written with a single hidden sign, so a catch or a miss is unambiguous. Real patients can show several at once. The clinician model's note is free to report anything it hears, but the grader only asks about the one sign the patient was written to have, so a correct extra finding earns no credit.
 - **The gate and the repair share a model.** The Decisions API selects the clips and also supplies the probes in arm C. On clean audio arm C is high by construction, so the repair is judged under noise. Results on the clips the gate left out are reported, and the pass mark table shows every alternative.
 - **One physician, who is also the builder.** The exam labels are collected blind, before any exam result is shown. The four lab verdicts on slurred speech were not blind.
 - **Slurred means one kind of slurring.** The voice is told to sound heavily intoxicated. That is not stroke dysarthria or any other pattern.
@@ -164,6 +165,7 @@ Model results are cached in `cache/`, so a rerun on the same clips repeats nothi
 ## Roadmap
 
 - Consented recordings from standardized patient actors, in place of synthetic voices.
+- Patients with more than one sign, graded sign by sign against physician labels.
 - Stations 2, 3 and 4.
 - More kinds of slurred speech, validated by more than one physician.
 - Overlapping speakers, accents and other languages on the stress ladder.

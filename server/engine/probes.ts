@@ -14,12 +14,13 @@ export const PROBE_QUESTIONS: Record<(typeof PROBE_KEYS)[number], Question> = {
       false_description: "Breathing sounds easy and unremarkable.",
     },
   },
-  in_pain: {
+  // Pain cannot be heard. Groaning and crying out can.
+  groaning: {
     type: "noul",
-    instructions: `Does the speaker sound like they are in physical pain? ${LISTEN}`,
+    instructions: "Does the speaker groan, moan, wince, or cry out during the recording?",
     criteria: {
-      true_description: "Groans, grunts, winces, or a strained voice that suggests physical pain.",
-      false_description: "No sound of physical pain in the voice.",
+      true_description: "There are audible groans, moans, grunts of effort, or sharp cries, as when something hurts.",
+      false_description: "No groaning or moaning. Panting, gasping for air, coughing, or sobbing alone does not count.",
     },
   },
   coughing: {

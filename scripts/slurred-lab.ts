@@ -65,7 +65,7 @@ writeJson(path.join(setDir(SET), "station1.json"), cases);
 for (const c of cases) {
   console.log(`\n${c.patient.id}\n  automatic: ${c.patient.gate.auto?.decision} (${c.patient.gate.auto?.why})\n  final:     ${c.patient.gate.reason}`);
   for (const a of c.arms) {
-    console.log(`  ${a.arm}: ${a.grade.caught ? "caught" : "MISSED"} (grader ${a.grade.identifies_sign?.toFixed(2)}), urgency ${a.note.urgency}`);
+    console.log(`  ${a.arm}: ${a.grade.status} (grader ${a.grade.identifies_sign?.toFixed(2)}), urgency ${a.note.urgency}`);
     console.log(`     ${a.note.observations.join(" | ")}`);
   }
 }

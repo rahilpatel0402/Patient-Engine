@@ -14,7 +14,7 @@
       "seconds": 15.5,
       "probes": {
         "short_of_breath": 0.28,
-        "in_pain": 0.181,
+        "groaning": 0.13,
         "coughing": 0.307,
         "distressed": 0.249,
         "slurred": 0.716,
@@ -31,12 +31,12 @@
           "decision": "keep",
           "why": "both listeners heard slurred speech (probe 0.72, second listener: clear)"
         },
-        "reason": "a physician listened and heard slurred speech (probe 0.72)",
+        "reason": "a physician listened and heard the sign (slurred probe 0.72)",
         "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Good slurred speech.",
-          "at": "2026-11-21T17:09:11.594Z"
+          "at": "2026-11-21T17:48:20.531Z"
         }
       }
     },
@@ -59,7 +59,8 @@
         "ms": 3710,
         "grade": {
           "identifies_sign": 0.012,
-          "flags_any_sign": 0.012,
+          "flags_any_sign": 0.013,
+          "status": "missed",
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
@@ -85,7 +86,8 @@
         "ms": 4598,
         "grade": {
           "identifies_sign": 0.983,
-          "flags_any_sign": 0.975,
+          "flags_any_sign": 0.972,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
@@ -97,26 +99,25 @@
         "arm": "C",
         "note": {
           "observations": [
-            "Patient verbally requests a regular medication refill and states everything is fine",
-            "High probability of slurred speech (0.72)",
-            "Moderate probability of long pauses (0.56)",
-            "Low probability of sounding well (0.31)"
+            "Patient states everything is fine and requests a regular medication refill",
+            "Voice analysis shows high probability of slurred speech (0.72) and long pauses (0.56)"
           ],
           "red_flags": [
-            "Slurred speech (0.72)",
-            "Long pauses in speech (0.56)",
-            "Discrepancy between patient stating they are fine and vocal presentation"
+            "Slurred speech",
+            "Long pauses",
+            "Discrepancy between patient's reassuring statement and vocal presentation"
           ],
           "urgency": "urgent"
         },
-        "ms": 6748,
+        "ms": 3829,
         "grade": {
-          "identifies_sign": 0.905,
-          "flags_any_sign": 0.968,
+          "identifies_sign": 0.951,
+          "flags_any_sign": 0.973,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.905,
+          "confidence": 0.951,
           "needs_review": false
         }
       }
@@ -137,7 +138,7 @@
       "seconds": 20.6,
       "probes": {
         "short_of_breath": 0.347,
-        "in_pain": 0.335,
+        "groaning": 0.532,
         "coughing": 0.265,
         "distressed": 0.192,
         "slurred": 0.648,
@@ -154,12 +155,12 @@
           "decision": "review",
           "why": "the listeners are not sure or disagree (probe 0.65, second listener: clear)"
         },
-        "reason": "a physician listened and heard slurred speech (probe 0.65)",
+        "reason": "a physician listened and heard the sign (slurred probe 0.65)",
         "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Good slurred speech.",
-          "at": "2026-11-21T17:09:11.595Z"
+          "at": "2026-11-21T17:48:20.531Z"
         }
       }
     },
@@ -181,7 +182,8 @@
         "ms": 4194,
         "grade": {
           "identifies_sign": 0.02,
-          "flags_any_sign": 0.015,
+          "flags_any_sign": 0.018,
+          "status": "missed",
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
@@ -208,7 +210,8 @@
         "ms": 6441,
         "grade": {
           "identifies_sign": 0.974,
-          "flags_any_sign": 0.969,
+          "flags_any_sign": 0.968,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
@@ -220,26 +223,28 @@
         "arm": "C",
         "note": {
           "observations": [
-            "Patient requests regular medication refills",
+            "Requests regular medication refills with no changes",
             "States everything is fine",
-            "Voice analysis shows high probability of slurred speech and long pauses",
-            "Low probability of sounding well"
+            "Voice analysis indicates slurred speech (0.65) and long pauses (0.60)",
+            "Voice analysis indicates groaning or crying out (0.53)",
+            "Low probability of sounding well (0.12)"
           ],
           "red_flags": [
-            "Slurred speech",
-            "Long pauses",
-            "Discrepancy between stated well-being and vocal presentation"
+            "Marked discrepancy between patient's statement of being fine and vocal indicators of distress",
+            "Slurred speech and long pauses raising concern for acute neurological event or altered mental status",
+            "Groaning or crying out"
           ],
           "urgency": "urgent"
         },
-        "ms": 4829,
+        "ms": 4516,
         "grade": {
-          "identifies_sign": 0.959,
-          "flags_any_sign": 0.973,
+          "identifies_sign": 0.969,
+          "flags_any_sign": 0.966,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.959,
+          "confidence": 0.969,
           "needs_review": false
         }
       }
@@ -260,7 +265,7 @@
       "seconds": 18.8,
       "probes": {
         "short_of_breath": 0.344,
-        "in_pain": 0.32,
+        "groaning": 0.317,
         "coughing": 0.426,
         "distressed": 0.305,
         "slurred": 0.571,
@@ -277,12 +282,12 @@
           "decision": "review",
           "why": "the listeners are not sure or disagree (probe 0.57, second listener: clear)"
         },
-        "reason": "a physician listened and did not hear slurred speech (probe 0.57)",
+        "reason": "a physician listened and did not hear the sign (slurred probe 0.57)",
         "attempts": 1,
         "physician": {
           "valid": false,
           "note": "Definitely not slurred. It is slow.",
-          "at": "2026-11-21T17:09:11.595Z"
+          "at": "2026-11-21T17:48:20.532Z"
         }
       }
     },
@@ -304,7 +309,8 @@
         "ms": 3052,
         "grade": {
           "identifies_sign": 0.022,
-          "flags_any_sign": 0.023,
+          "flags_any_sign": 0.02,
+          "status": "missed",
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
@@ -329,7 +335,8 @@
         "ms": 6648,
         "grade": {
           "identifies_sign": 0.066,
-          "flags_any_sign": 0.976,
+          "flags_any_sign": 0.972,
+          "status": "missed",
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "urgent",
@@ -343,24 +350,26 @@
           "observations": [
             "Requests regular medication refill",
             "States everything is fine",
-            "Voice shows slurred speech (0.57) and long pauses (0.68)",
-            "Low probability of sounding well (0.29)"
+            "Audio indicates long pauses",
+            "Audio indicates slurred speech",
+            "Low probability of sounding well"
           ],
           "red_flags": [
             "Slurred speech",
             "Long pauses",
-            "Discrepancy between vocal presentation and patient stating everything is fine"
+            "Discrepancy between patient stating they are fine and vocal presentation"
           ],
           "urgency": "urgent"
         },
-        "ms": 4110,
+        "ms": 5516,
         "grade": {
-          "identifies_sign": 0.969,
-          "flags_any_sign": 0.984,
+          "identifies_sign": 0.958,
+          "flags_any_sign": 0.97,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
-          "confidence": 0.969,
+          "confidence": 0.958,
           "needs_review": false
         }
       }
@@ -381,7 +390,7 @@
       "seconds": 17,
       "probes": {
         "short_of_breath": 0.303,
-        "in_pain": 0.168,
+        "groaning": 0.091,
         "coughing": 0.296,
         "distressed": 0.207,
         "slurred": 0.344,
@@ -398,12 +407,12 @@
           "decision": "review",
           "why": "the listeners are not sure or disagree (probe 0.34, second listener: clear)"
         },
-        "reason": "a physician listened and heard slurred speech (probe 0.34)",
+        "reason": "a physician listened and heard the sign (slurred probe 0.34)",
         "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom.",
-          "at": "2026-11-21T17:09:11.596Z"
+          "at": "2026-11-21T17:48:20.532Z"
         }
       }
     },
@@ -424,7 +433,8 @@
         "ms": 2683,
         "grade": {
           "identifies_sign": 0.016,
-          "flags_any_sign": 0.016,
+          "flags_any_sign": 0.018,
+          "status": "missed",
           "caught": false,
           "false_alarm": null,
           "graded_urgency": "routine",
@@ -451,6 +461,7 @@
         "grade": {
           "identifies_sign": 0.982,
           "flags_any_sign": 0.974,
+          "status": "caught",
           "caught": true,
           "false_alarm": null,
           "graded_urgency": "urgent",
@@ -462,23 +473,27 @@
         "arm": "C",
         "note": {
           "observations": [
-            "Requests regular medication refill",
-            "Reports feeling fine with no changes needed",
-            "Long pauses noted in speech",
-            "Low probability of sounding well"
+            "Requests regular medication refill and states everything is fine",
+            "Long pauses in speech (0.58)",
+            "Low probability of sounding well (0.28)",
+            "Mildly elevated probabilities for slurred speech (0.34), shortness of breath (0.30), and coughing (0.30)"
           ],
-          "red_flags": [],
-          "urgency": "routine"
+          "red_flags": [
+            "Mismatch between verbal report of feeling fine and vocal presentation",
+            "Long pauses and possible slurred speech"
+          ],
+          "urgency": "soon"
         },
-        "ms": 4713,
+        "ms": 4284,
         "grade": {
-          "identifies_sign": 0.083,
-          "flags_any_sign": 0.833,
+          "identifies_sign": 0.461,
+          "flags_any_sign": 0.952,
+          "status": "unclear",
           "caught": false,
           "false_alarm": null,
-          "graded_urgency": "routine",
-          "confidence": 0.917,
-          "needs_review": false
+          "graded_urgency": "soon",
+          "confidence": 0.539,
+          "needs_review": true
         }
       }
     ]

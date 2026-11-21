@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. Doing totally fine today. No problems at all. I was just calling to see if I could get my usual monthly refill sent over to the pharmacy on Main Street whenever someone gets a free moment.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.88\n- Groaning or crying out: 0.33\n- Coughing: 0.62\n- Tearful or frightened: 0.42\n- Slurred speech: 0.28\n- Long pauses: 0.81\n- Sounds well: 0.06",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6521,
+ "at": "2026-11-21T17:37:53.278Z",
+ "value": "{\"observations\":[\"Requests routine monthly medication refill\",\"Verbally reports doing fine with no problems\",\"Voice analysis indicates high probability of shortness of breath and long pauses\",\"Voice analysis indicates coughing and low probability of sounding well\"],\"red_flags\":[\"Significant shortness of breath and long pauses during speech\",\"Discrepancy between verbal denial of symptoms and vocal signs of respiratory distress\"],\"urgency\":\"urgent\"}"
+}

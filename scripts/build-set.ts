@@ -1,6 +1,6 @@
 // Builds a patient set and prints the gate table.
 //   npx tsx scripts/build-set.ts dev                       Argon, 12 patients
-//   npx tsx scripts/build-set.ts exam                      Carbon, 24 patients
+//   npx tsx scripts/build-set.ts exam                      Carbon, 28 patients
 //   npx tsx scripts/build-set.ts trial --model gemini-4-hydrogen --per-sign 1 --controls 1
 import { buildSet } from "../server/engine/build.ts";
 import { PROBE_KEYS, SIGNS, type HiddenSign, type Patient } from "../server/engine/types.ts";
@@ -18,10 +18,10 @@ const signList = (flag("signs")?.split(",") as HiddenSign[] | undefined) ?? [...
 
 function plan(): HiddenSign[] {
   if (set === "exam" && !flag("per-sign")) {
-    // 16 sign patients and 8 controls. Spread evenly, extras go to the first signs.
-    const out: HiddenSign[] = [];
-    for (let i = 0; i < 16; i++) out.push(signList[i % signList.length]);
-    return [...out.sort((a, b) => signList.indexOf(a as never) - signList.indexOf(b as never)), ...Array<HiddenSign>(8).fill("none")];
+    // Four patients for each sign and 8 controls. The plan's target was 16 sign
+    // patients. Four per sign across five signs gives 20, which leaves room for
+    // the clips the gate drops.
+    return [...signList.flatMap((s) => Array<HiddenSign>(4).fill(s)), ...Array<HiddenSign>(8).fill("none")];
   }
   const perSign = Number(flag("per-sign") ?? 2);
   const controls = Number(flag("controls") ?? 2);
@@ -30,7 +30,7 @@ function plan(): HiddenSign[] {
 
 export function printGateTable(patients: Patient[]) {
   const short: Record<string, string> = {
-    short_of_breath: "breath", in_pain: "pain", coughing: "cough", distressed: "distr", slurred: "slur", long_pauses: "pause", sounds_well: "well",
+    short_of_breath: "breath", groaning: "groan", coughing: "cough", distressed: "distr", slurred: "slur", long_pauses: "pause", sounds_well: "well",
   };
   console.log(["patient".padEnd(24), "sign".padEnd(11), ...PROBE_KEYS.map((k) => short[k].padStart(6)), " gate"].join(" "));
   for (const p of patients) {

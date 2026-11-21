@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Polite and pleasant demeanor\",\n    \"Reports feeling fine today\",\n    \"Requesting to reschedule Tuesday visit to later in the month\",\n    \"Reason for rescheduling is spending time with visiting daughter\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 771,
+ "at": "2026-11-21T17:38:30.712Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9828734662017296,
+   "noul": 0.017126533798270442,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9851819595927256,
+   "noul": 0.014818040407274448,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9959874828924509,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.0014571670037686207,
+    "routine": 0.9959874828924509,
+    "soon": 0.002555350103780566
+   },
+   "type": "choice"
+  }
+ }
+}

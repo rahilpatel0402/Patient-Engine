@@ -1,4 +1,7 @@
-export const SIGNS = ["breathless", "pain", "cough", "distress", "slurred"] as const;
+// Every sign is something a listener can hear. None is a diagnosis or a symptom
+// the patient would have to report. Pain itself cannot be heard, so the sign is
+// the behaviour that goes with it: groaning or crying out.
+export const SIGNS = ["breathless", "groaning", "cough", "distress", "slurred"] as const;
 export type Sign = (typeof SIGNS)[number];
 export type HiddenSign = Sign | "none";
 
@@ -15,16 +18,18 @@ export type PatientScript = {
   voice: string;
   hidden_sign: HiddenSign;
   expected_urgency: Urgency;
+  /** For healthy controls: plain, or a harmless voice trait that could be mistaken for a sign. */
+  control_kind?: string;
 };
 
-export const PROBE_KEYS = ["short_of_breath", "in_pain", "coughing", "distressed", "slurred", "long_pauses", "sounds_well"] as const;
+export const PROBE_KEYS = ["short_of_breath", "groaning", "coughing", "distressed", "slurred", "long_pauses", "sounds_well"] as const;
 export type ProbeKey = (typeof PROBE_KEYS)[number];
 export type Probes = Record<ProbeKey, number>;
 
 /** The probe that should fire for each sign. */
 export const SIGN_PROBE: Record<Sign, ProbeKey> = {
   breathless: "short_of_breath",
-  pain: "in_pain",
+  groaning: "groaning",
   cough: "coughing",
   distress: "distressed",
   slurred: "slurred",
@@ -32,18 +37,18 @@ export const SIGN_PROBE: Record<Sign, ProbeKey> = {
 
 export const SIGN_LABEL: Record<HiddenSign, string> = {
   breathless: "Short of breath",
-  pain: "In pain",
+  groaning: "Groaning or crying out",
   cough: "Coughing",
-  distress: "Distressed",
+  distress: "Tearful or frightened",
   slurred: "Slurred speech",
   none: "Healthy control",
 };
 
 export const PROBE_LABEL: Record<ProbeKey, string> = {
   short_of_breath: "Short of breath",
-  in_pain: "In pain",
+  groaning: "Groaning or crying out",
   coughing: "Coughing",
-  distressed: "Distressed",
+  distressed: "Tearful or frightened",
   slurred: "Slurred speech",
   long_pauses: "Long pauses",
   sounds_well: "Sounds well",
@@ -103,6 +108,12 @@ export type Grade = {
   identifies_sign: number | null;
   /** P(the note reports any abnormal sign in how the patient sounds). */
   flags_any_sign: number;
+  /**
+   * Sign patients: caught, missed, or unclear. Controls: quiet, alarm, or unclear.
+   * Unclear means the grader was not confident either way. It is never counted
+   * as caught. It goes to physician review.
+   */
+  status: "caught" | "missed" | "quiet" | "alarm" | "unclear";
   caught: boolean | null;
   false_alarm: boolean | null;
   graded_urgency: Urgency;

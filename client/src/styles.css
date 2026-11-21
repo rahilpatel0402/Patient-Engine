@@ -89,6 +89,7 @@ audio { height: 40px; max-width: 100%; }
 .dots i { font-style: normal; font-size: 0.7rem; font-weight: 800; width: 1.5em; height: 1.5em; display: grid; place-items: center; border-radius: 50%; }
 .dots i.good { background: var(--good-soft); color: var(--good); }
 .dots i.bad { background: var(--bad-soft); color: var(--bad); }
+.dots i.unsure { background: var(--warn-soft); color: var(--warn); }
 .tag { font-size: 0.75rem; font-weight: 700; padding: 2px 8px; }
 .tag.dropped, .tag.review { background: var(--warn-soft); color: var(--warn); }
 
@@ -102,10 +103,12 @@ audio { height: 40px; max-width: 100%; }
 .arm { background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--line); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
 .arm.good { border-top-color: var(--good); }
 .arm.bad { border-top-color: var(--bad); }
+.arm.unsure { border-top-color: var(--warn); }
 .armsource { color: var(--muted); font-size: 0.9rem; }
 .verdict { font-size: 1.35rem; font-weight: 800; }
 .verdict.good { color: var(--good); }
 .verdict.bad { color: var(--bad); }
+.verdict.unsure { color: var(--warn); }
 .urgency { font-weight: 700; text-transform: capitalize; }
 .list ul { margin: 2px 0 0; padding-left: 1.1em; }
 .list li { margin: 2px 0; }

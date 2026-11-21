@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "1564bd80194ab06082bf3702af049eeceb49bb611d514d62332736857f5d25e7"
+ },
+ "ms": 24430,
+ "at": "2026-11-21T17:37:34.146Z",
+ "value": "Hi there. Everything is totally fine with me. I just had a quick question about the building. I was wondering what time the downstairs counter closes on Thursdays because I finish at the salon around 6:00. Thank you."
+}

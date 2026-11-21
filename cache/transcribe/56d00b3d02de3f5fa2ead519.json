@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "5ab024283b88a38c5b059165eb98afd0550b8f439a4952a930f331d166ebb078"
+ },
+ "ms": 25516,
+ "at": "2026-11-21T17:37:09.717Z",
+ "value": "Morning. Look, I am totally fine. I just got a slow morning out in the yard and thought I ought to book my regular checkup. Nothing going on with me. Just trying to keep the wife happy. Any day next month works fine."
+}

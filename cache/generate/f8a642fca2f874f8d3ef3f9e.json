@@ -1,0 +1,13 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "text": "In one sentence, describe the non-speech sounds and the quality of this person's voice. Do not summarize the words.",
+  "audio": "953a8d5e329a4bb9e3dfa4d8b7a41012074c82f6d86a8c6251878c1aa3b57c68",
+  "schema": null,
+  "thinking": "low"
+ },
+ "ms": 5182,
+ "at": "2026-11-21T17:27:31.523Z",
+ "value": "The person's voice sounds strained, shaky, and breathless, punctuated by heavy panting, sharp gasps for air, and labored breathing throughout."
+}

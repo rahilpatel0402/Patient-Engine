@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "14a4969f5afe3a0fe85fb643cdb8c85e8fabfc7dfb9f6ef5146801de0e8db1e7",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 18857,
+ "at": "2026-11-21T17:38:16.737Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting a medication refill to be sent to usual pharmacy\",\n    \"Reports being at a job site and states everything is fine\",\n    \"Speech is markedly slow, slurred, and drawn out\",\n    \"Audible heavy, labored breathing and sighing between phrases\"\n  ],\n  \"red_flags\": [\n    \"Severe slurring of speech and apparent sedation or altered mental status\",\n    \"Audible respiratory effort or distress despite claiming to be fine\",\n    \"Patient is currently at a job site, raising immediate safety concerns\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

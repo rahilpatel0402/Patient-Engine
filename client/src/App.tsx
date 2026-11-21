@@ -111,16 +111,25 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
   );
 }
 
-function hit(a: ArmResult, sign: HiddenSign): "good" | "bad" {
-  return sign === "none" ? (a.grade.false_alarm ? "bad" : "good") : a.grade.caught ? "good" : "bad";
+function hit(a: ArmResult): "good" | "bad" | "unsure" {
+  const s = a.grade.status;
+  return s === "unclear" ? "unsure" : s === "caught" || s === "quiet" ? "good" : "bad";
 }
+
+const VERDICT_TEXT: Record<ArmResult["grade"]["status"], string> = {
+  caught: "Caught the sign",
+  missed: "Missed the sign",
+  quiet: "No false alarm",
+  alarm: "False alarm",
+  unclear: "Unclear, needs physician review",
+};
 
 function ArmDots({ result }: { result: CaseResult }) {
   return (
     <span className="dots" aria-hidden="true">
       {ARMS.map((arm) => {
         const a = result.arms.find((x) => x.arm === arm);
-        return a ? <i key={arm} className={hit(a, result.patient.hidden_sign)}>{arm}</i> : null;
+        return a ? <i key={arm} className={hit(a)}>{arm}</i> : null;
       })}
     </span>
   );
@@ -141,6 +150,7 @@ function Scoreboard({ data }: { data: SetData }) {
       <div className="scorerow">
         {ARMS.map((arm) => {
           const caught = signCases.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.caught).length;
+          const unclear = signCases.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.needs_review).length;
           const alarms = controls.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.false_alarm).length;
           return (
             <div key={arm} className="scorecell">
@@ -148,7 +158,7 @@ function Scoreboard({ data }: { data: SetData }) {
               <div className="count">
                 <b>{caught}</b> of {signCases.length} <span>hidden signs caught</span>
               </div>
-              <div className="sub">{alarms} of {controls.length} false alarms on healthy controls</div>
+              <div className="sub">{alarms} of {controls.length} false alarms on healthy controls{unclear ? `, ${unclear} unclear` : ""}</div>
             </div>
           );
         })}
@@ -224,8 +234,8 @@ function CaseView({ patient, result, hasNoise, reload }: { patient: Patient; res
           {ARMS.map((arm) => {
             const a = result.arms.find((x) => x.arm === arm);
             if (!a) return null;
-            const verdict = hit(a, patient.hidden_sign);
-            const label = patient.hidden_sign === "none" ? (verdict === "good" ? "No false alarm" : "False alarm") : verdict === "good" ? "Caught the sign" : "Missed the sign";
+            const verdict = hit(a);
+            const label = VERDICT_TEXT[a.grade.status];
             return (
               <article key={arm} className={`arm ${verdict}`}>
                 <div className="armname">{arm}. {ARM_LABEL[arm]}</div>
@@ -234,7 +244,7 @@ function CaseView({ patient, result, hasNoise, reload }: { patient: Patient; res
                 <div className="urgency">Urgency: {a.note.urgency}</div>
                 <List title="Observations" items={a.note.observations} />
                 <List title="Red flags" items={a.note.red_flags} none="None" />
-                {a.grade.needs_review && <div className="tag review">Sent to physician review, grader confidence {a.grade.confidence.toFixed(2)}</div>}
+                {a.grade.needs_review && <div className="tag review">The grader was not sure this note names the sign (confidence {a.grade.confidence.toFixed(2)}). Not counted as caught.</div>}
               </article>
             );
           })}
@@ -493,7 +503,7 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
     <section className="live">
       <h2>Act a patient. Say you are fine.</h2>
       <p className="lede">
-        Pick something to hide: short of breath, in pain, or coughing. Deny it in words for 10 to 15 seconds. The page shows only what the model observed, never what to do.
+        Pick something to hide: short of breath, groaning, or coughing. Deny it in words for 10 to 15 seconds. The page shows only what the model observed, never what to do.
       </p>
       <div className="controls">
         {state === "recording" ? (

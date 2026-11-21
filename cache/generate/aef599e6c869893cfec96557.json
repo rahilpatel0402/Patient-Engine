@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "530dfbfad60aac7a53b6b4fc410fd0a1fbc0b66e8f8b1dd1090c652bf8fad05e",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 16077,
+ "at": "2026-11-21T17:38:32.336Z",
+ "value": "{\n  \"observations\": [\n    \"Requests status of routine paperwork and last week's results\",\n    \"States everything is going fine\",\n    \"Audible labored breathing and breathlessness throughout speech\",\n    \"Slow, effortful speech with frequent pauses to breathe\"\n  ],\n  \"red_flags\": [\n    \"Marked shortness of breath / labored breathing audible during call\",\n    \"Discordance between patient's reassuring statement and apparent respiratory distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

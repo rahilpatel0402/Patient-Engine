@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c37ec95352ece41708df5c90d03ecb014cb3edb4a094ee5d9aeb9bf74b3fd058"
+ },
+ "ms": 23818,
+ "at": "2026-11-21T17:37:21.629Z",
+ "value": "Hi there. I'm sorry to bother you. Everything is completely fine here. I just have a basic kitchen inspection paperwork form that needs a quick signature from the office. There is no rush at all. Whenever someone has a minute."
+}

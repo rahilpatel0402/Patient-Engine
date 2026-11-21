@@ -5,7 +5,8 @@ export const ARMS: ArmKey[] = ["A", "B", "C"];
 export const BARS = [0.5, 0.6, 0.7, 0.8, 0.9];
 export const CHOSEN_BAR = 0.8;
 
-export type Tally = { caught: number; of: number };
+/** unclear: the grader was not confident either way. Not counted as caught. */
+export type Tally = { caught: number; unclear: number; of: number };
 
 export type SensitivityRow = {
   /** The pass mark tried. Null means no gate at all: every generated clip counts. */
@@ -21,7 +22,8 @@ function tally(cases: CaseResult[]): Record<ArmKey, Tally> {
   const out = {} as Record<ArmKey, Tally>;
   for (const arm of ARMS) {
     const ran = cases.filter((c) => c.arms.some((a) => a.arm === arm));
-    out[arm] = { caught: ran.filter((c) => c.arms.find((a) => a.arm === arm)!.grade.caught).length, of: ran.length };
+    const grades = ran.map((c) => c.arms.find((a) => a.arm === arm)!.grade);
+    out[arm] = { caught: grades.filter((g) => g.caught).length, unclear: grades.filter((g) => g.needs_review).length, of: ran.length };
   }
   return out;
 }
@@ -54,7 +56,8 @@ export function headline(patients: Patient[], cases: CaseResult[]) {
   const controls = counted.filter((c) => c.patient.hidden_sign === "none");
   const falseAlarms = {} as Record<ArmKey, Tally>;
   for (const arm of ARMS) {
-    falseAlarms[arm] = { caught: controls.filter((c) => c.arms.find((a) => a.arm === arm)?.grade.false_alarm).length, of: controls.length };
+    const grades = controls.map((c) => c.arms.find((a) => a.arm === arm)?.grade);
+    falseAlarms[arm] = { caught: grades.filter((g) => g?.false_alarm).length, unclear: grades.filter((g) => g?.needs_review).length, of: controls.length };
   }
   return {
     generated: patients.length,

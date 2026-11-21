@@ -24,8 +24,7 @@ settled.forEach((r, i) => {
 console.log(["patient".padEnd(24), "in test", "arm".padEnd(26), "sign".padEnd(11), "urgency".padEnd(8), "conf", " review"].join(" "));
 for (const c of cases) {
   for (const a of c.arms) {
-    const verdict =
-      c.patient.hidden_sign === "none" ? (a.grade.false_alarm ? "FALSE ALARM" : "quiet") : a.grade.caught ? "caught" : "MISSED";
+    const verdict = { caught: "caught", missed: "MISSED", quiet: "quiet", alarm: "FALSE ALARM", unclear: "unclear" }[a.grade.status];
     console.log(
       [
         c.patient.id.padEnd(24),
@@ -44,7 +43,7 @@ const h = headline(patients, cases);
 console.log(`\nClips in the test (${h.generated - h.left_out} of ${h.generated} generated):`);
 for (const arm of ARMS) {
   console.log(
-    `  ${arm}. ${ARM_LABEL[arm].padEnd(24)} caught ${h.signs[arm].caught} of ${h.signs[arm].of} signs, false alarms ${h.false_alarms[arm].caught} of ${h.false_alarms[arm].of} controls`,
+    `  ${arm}. ${ARM_LABEL[arm].padEnd(24)} caught ${h.signs[arm].caught} of ${h.signs[arm].of} signs (${h.signs[arm].unclear} unclear), false alarms ${h.false_alarms[arm].caught} of ${h.false_alarms[arm].of} controls`,
   );
 }
 

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "95afb5db50e08a29fd11657f47cec79735cd73678f02f79ad3538bbc8b0d6ab0"
+ },
+ "ms": 35512,
+ "at": "2026-11-21T17:37:19.720Z",
+ "value": "Hi there. Everything is going really well with me. I'm just calling on my break to update the street address on my chart since we moved across town last month. There's no rush on it at all."
+}

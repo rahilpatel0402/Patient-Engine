@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c3093de5c0df384a0474ad7adab1877017d8c55cca4757a9b6f2d306b6c2d40d"
+ },
+ "ms": 14820,
+ "at": "2026-11-21T17:37:36.448Z",
+ "value": "Hey there. I'm fine and everything is going great. I just wanted to get a routine checkup on the calendar before the new semester kicks off. Whenever you have an opening next month, on a Tuesday or a Thursday afternoon works for me."
+}

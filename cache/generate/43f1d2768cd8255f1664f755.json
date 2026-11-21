@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "d32f7eea122cf11e916ce5d725dd7078cd255acb370df68a9b8a8d1836ff4a22",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4990,
+ "at": "2026-11-21T17:48:05.511Z",
+ "value": "{\"observations\":[\"Requests a routine checkup for next month, stating he is 'totally fine'\",\"Audible heavy, labored breathing throughout the recording\",\"Loud groan or cry of pain mid-sentence\",\"Marked discrepancy between verbal reassurance and audible physical distress\"],\"red_flags\":[\"Audible respiratory distress or labored breathing\",\"Sudden vocalization of acute pain\",\"Minimizing symptoms despite apparent acute distress\"],\"urgency\":\"urgent\"}"
+}

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "14a4969f5afe3a0fe85fb643cdb8c85e8fabfc7dfb9f6ef5146801de0e8db1e7"
+ },
+ "ms": 6957,
+ "at": "2026-11-21T17:37:26.666Z",
+ "value": "Hey there, good morning. Everything's totally fine on my end. I'm just out at the job site and realized I need a refill sent over to my usual pharmacy. If you could put that through whenever you get a minute, I would appreciate it."
+}

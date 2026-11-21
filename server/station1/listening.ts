@@ -69,7 +69,7 @@ export async function runArm(arm: ArmKey, input: ArmInput, model: string = MODEL
 
 const SIGN_FINDING: Record<Exclude<HiddenSign, "none">, string> = {
   breathless: "sounds short of breath or is having difficulty breathing",
-  pain: "sounds like they are in physical pain",
+  groaning: "is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)",
   cough: "is coughing",
   distress: "sounds emotionally distressed, frightened, or tearful",
   slurred: "has slurred speech (slow or laboured speech alone does not count)",
@@ -78,7 +78,7 @@ const SIGN_FINDING: Record<Exclude<HiddenSign, "none">, string> = {
 const ANY_SIGN: Question = {
   type: "noul",
   instructions:
-    "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, pain, coughing, emotional distress, or slurred speech?",
+    "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
   criteria: {
     true_description: "The note reports at least one abnormal finding in the patient's voice or presentation.",
     false_description: "The note reports nothing abnormal, or says the patient seems well.",
@@ -113,14 +113,19 @@ export async function grade(note: Note, sign: HiddenSign): Promise<Grade> {
   const urgency = out.value.urgency;
   const decisive = identifies ?? flags;
   const confidence = Math.max(decisive, 1 - decisive);
+  // A grade counts only when the grader is confident. In between is unclear:
+  // never counted as caught, and sent to physician review.
+  const sure = confidence >= REVIEW_BELOW;
+  const status: Grade["status"] = !sure ? "unclear" : sign === "none" ? (flags >= 0.5 ? "alarm" : "quiet") : identifies! >= 0.5 ? "caught" : "missed";
   return {
     identifies_sign: identifies === null ? null : Number(identifies.toFixed(3)),
     flags_any_sign: Number(flags.toFixed(3)),
-    caught: identifies === null ? null : identifies >= 0.5,
-    false_alarm: sign === "none" ? flags >= 0.5 : null,
+    status,
+    caught: sign === "none" ? null : status === "caught",
+    false_alarm: sign === "none" ? status === "alarm" : null,
     graded_urgency: (urgency?.type === "choice" ? urgency.choice : note.urgency) as Urgency,
     confidence: Number(confidence.toFixed(3)),
-    needs_review: confidence < REVIEW_BELOW,
+    needs_review: !sure,
   };
 }
 

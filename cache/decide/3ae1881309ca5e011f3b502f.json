@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests to reschedule Tuesday appointment to later in the month\",\n    \"Verbally states she is doing fine\",\n    \"Audible groaning at the beginning and end of the recording\",\n    \"Heavy, labored breathing and gasping between phrases\",\n    \"Strained vocal quality\"\n  ],\n  \"red_flags\": [\n    \"Audible signs of acute pain or physical distress\",\n    \"Possible dyspnea or respiratory distress\",\n    \"Discrepancy between verbal reassurance and auditory presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 282,
+ "at": "2026-11-21T17:48:10.211Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.974959297488638,
+   "noul": 0.974959297488638,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9797494224951666,
+   "noul": 0.9797494224951666,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9954821751473151,
+   "choice": "urgent",
+   "probabilities": {
+    "soon": 0.004218044088969735,
+    "urgent": 0.9954821751473151,
+    "routine": 0.00029978076371506654
+   },
+   "type": "choice"
+  }
+ }
+}

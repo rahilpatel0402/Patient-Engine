@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "a3db94af9dc19c7519d46f88bbb66e6c0dfdd343dac32f533c26f601ab63109d"
+ },
+ "ms": 12440,
+ "at": "2026-11-21T17:37:39.106Z",
+ "value": "Hello there. Everything is fine with me. I just got a new dispatch schedule for the next two weeks and I will be out on the road. I need to push my Thursday slot back to next month, whenever you have an opening."
+}

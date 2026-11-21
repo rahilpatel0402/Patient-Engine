@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning. Look, I am totally fine. I just got a slow morning out in the yard and thought I ought to book my regular checkup. Nothing going on with me. Just trying to keep the wife happy. Any day next month works fine.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.82\n- Groaning or crying out: 0.43\n- Coughing: 0.54\n- Tearful or frightened: 0.46\n- Slurred speech: 0.17\n- Long pauses: 0.74\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5358,
+ "at": "2026-11-21T17:37:46.757Z",
+ "value": "{\n  \"observations\": [\n    \"Patient verbally denies symptoms and requests a routine checkup next month\",\n    \"Marked discrepancy between verbal report and vocal presentation\",\n    \"High probability of shortness of breath (0.82) and long pauses (0.74)\",\n    \"Moderate probability of coughing (0.54), tearfulness or fright (0.46), and groaning (0.43)\",\n    \"Very low probability of sounding well (0.07)\"\n  ],\n  \"red_flags\": [\n    \"Probable shortness of breath with long pauses\",\n    \"Patient minimizes symptoms despite sounding unwell and distressed\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

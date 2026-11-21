@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient calls requesting a regular medication refill to be sent to the usual pharmacy\",\n    \"States 'everything's fine' and 'no need to change anything'\",\n    \"Speech is noticeably slow, slurred, and drawled\",\n    \"Audible heavy sighing and labored exhalations throughout the recording\"\n  ],\n  \"red_flags\": [\n    \"Markedly slow, slurred speech suggestive of possible sedation, intoxication, or acute neurological change\",\n    \"Discordance between patient's statement that they are fine and their lethargic vocal presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 608,
+ "at": "2026-11-21T17:48:22.096Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.9819561443934679,
+   "noul": 0.9819561443934679,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9773744279051676,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.9773744279051676,
+    "routine": 0.0016866824838601957,
+    "soon": 0.02093888961097236
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.974007324779518,
+   "noul": 0.974007324779518,
+   "type": "noul"
+  }
+ }
+}

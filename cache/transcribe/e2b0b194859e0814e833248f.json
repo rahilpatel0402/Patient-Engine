@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "98fb539d3d9f6f3cbec085d51d2f83b5f3e06c1a242d92be590d4dfb33998c78"
+ },
+ "ms": 69079,
+ "at": "2026-11-21T17:37:53.282Z",
+ "value": "Hello dear. I'm doing just fine today. Don't you worry. I just wanted to see if we could move my Tuesday visit to later in the month. My daughter is coming to town and I would love to spend the afternoon with her."
+}

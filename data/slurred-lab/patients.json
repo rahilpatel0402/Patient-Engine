@@ -13,7 +13,7 @@
     "seconds": 15.5,
     "probes": {
       "short_of_breath": 0.28,
-      "in_pain": 0.181,
+      "groaning": 0.13,
       "coughing": 0.307,
       "distressed": 0.249,
       "slurred": 0.716,
@@ -30,12 +30,12 @@
         "decision": "keep",
         "why": "both listeners heard slurred speech (probe 0.72, second listener: clear)"
       },
-      "reason": "a physician listened and heard slurred speech (probe 0.72)",
+      "reason": "a physician listened and heard the sign (slurred probe 0.72)",
       "attempts": 1,
       "physician": {
         "valid": true,
         "note": "Good slurred speech.",
-        "at": "2026-11-21T17:09:11.594Z"
+        "at": "2026-11-21T17:48:20.531Z"
       }
     }
   },
@@ -53,7 +53,7 @@
     "seconds": 20.6,
     "probes": {
       "short_of_breath": 0.347,
-      "in_pain": 0.335,
+      "groaning": 0.532,
       "coughing": 0.265,
       "distressed": 0.192,
       "slurred": 0.648,
@@ -70,12 +70,12 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.65, second listener: clear)"
       },
-      "reason": "a physician listened and heard slurred speech (probe 0.65)",
+      "reason": "a physician listened and heard the sign (slurred probe 0.65)",
       "attempts": 1,
       "physician": {
         "valid": true,
         "note": "Good slurred speech.",
-        "at": "2026-11-21T17:09:11.595Z"
+        "at": "2026-11-21T17:48:20.531Z"
       }
     }
   },
@@ -93,7 +93,7 @@
     "seconds": 18.8,
     "probes": {
       "short_of_breath": 0.344,
-      "in_pain": 0.32,
+      "groaning": 0.317,
       "coughing": 0.426,
       "distressed": 0.305,
       "slurred": 0.571,
@@ -110,12 +110,12 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.57, second listener: clear)"
       },
-      "reason": "a physician listened and did not hear slurred speech (probe 0.57)",
+      "reason": "a physician listened and did not hear the sign (slurred probe 0.57)",
       "attempts": 1,
       "physician": {
         "valid": false,
         "note": "Definitely not slurred. It is slow.",
-        "at": "2026-11-21T17:09:11.595Z"
+        "at": "2026-11-21T17:48:20.532Z"
       }
     }
   },
@@ -133,7 +133,7 @@
     "seconds": 17,
     "probes": {
       "short_of_breath": 0.303,
-      "in_pain": 0.168,
+      "groaning": 0.091,
       "coughing": 0.296,
       "distressed": 0.207,
       "slurred": 0.344,
@@ -150,12 +150,12 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.34, second listener: clear)"
       },
-      "reason": "a physician listened and heard slurred speech (probe 0.34)",
+      "reason": "a physician listened and heard the sign (slurred probe 0.34)",
       "attempts": 1,
       "physician": {
         "valid": true,
         "note": "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom.",
-        "at": "2026-11-21T17:09:11.596Z"
+        "at": "2026-11-21T17:48:20.532Z"
       }
     }
   }

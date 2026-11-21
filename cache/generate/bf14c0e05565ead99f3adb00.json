@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "2e4697dc230c17d63d60fb59991833fd71bee55861fbf6ae39707fcc9da2a858",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4392,
+ "at": "2026-11-21T17:48:05.441Z",
+ "value": "{\n  \"observations\": [\n    \"Patient states everything is fine and requests routine paperwork and results from last week\",\n    \"Speech is slow and labored with audible heavy breathing between phrases\",\n    \"Voice sounds fatigued and strained\"\n  ],\n  \"red_flags\": [\n    \"Audible shortness of breath and labored breathing while speaking\",\n    \"Marked discrepancy between verbal reassurance and apparent respiratory distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

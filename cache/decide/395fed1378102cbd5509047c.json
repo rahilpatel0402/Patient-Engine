@@ -1,0 +1,54 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "e0b66a356869a26edb8635820c7334a5ee34a4ab8325abbb9d8d3c0330f084ef",
+  "questions": {
+   "in_pain": {
+    "type": "noul",
+    "instructions": "Does the speaker sound like they are in physical pain? Judge only from how the voice sounds, not from the meaning of the words."
+   },
+   "groaning": {
+    "type": "noul",
+    "instructions": "Does the speaker groan, moan, wince, or cry out during the recording?",
+    "criteria": {
+     "true_description": "There are audible groans, moans, grunts of effort, or sharp cries, as when something hurts.",
+     "false_description": "No groaning or moaning. Panting, gasping for air, coughing, or sobbing alone does not count."
+    }
+   },
+   "breath": {
+    "type": "noul",
+    "instructions": "Does the speaker sound short of breath?"
+   },
+   "distress": {
+    "type": "noul",
+    "instructions": "Does the speaker sound emotionally distressed, frightened, or close to tears?"
+   }
+  }
+ },
+ "ms": 816,
+ "at": "2026-11-21T17:27:21.605Z",
+ "value": {
+  "in_pain": {
+   "confidence": 0.732278057334137,
+   "noul": 0.26772194266586297,
+   "type": "noul"
+  },
+  "groaning": {
+   "confidence": 0.5312312487870419,
+   "noul": 0.4687687512129581,
+   "type": "noul"
+  },
+  "distress": {
+   "confidence": 0.8649024064840456,
+   "noul": 0.13509759351595443,
+   "type": "noul"
+  },
+  "breath": {
+   "confidence": 0.8872238697084794,
+   "noul": 0.8872238697084794,
+   "type": "noul"
+  }
+ }
+}

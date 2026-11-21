@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "941108de98cdc5a2f456680419e86a673b4c9748659c500822018cee3e7a5237"
+ },
+ "ms": 53170,
+ "at": "2026-11-21T17:37:37.367Z",
+ "value": "Hi there. Everything is totally fine. I'm just calling to see if my routine paperwork from last month is ready at the front desk. I can just swing by and pick up the envelope whenever it's convenient."
+}

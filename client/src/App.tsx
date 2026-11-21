@@ -3,6 +3,7 @@ import {
   ARM_LABEL,
   PROBE_KEYS,
   PROBE_LABEL,
+  SIGNS,
   SIGN_LABEL,
   SIGN_PROBE,
   type ArmKey,
@@ -446,10 +447,23 @@ function GateBox({ patient, reload }: { patient: Patient; reload: () => void }) 
       ? `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard ${heard} ${takes}, so this clip is in the test. It would stay in at any pass mark up to ${heard}.`
       : `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard only ${heard} ${takes}, so this clip is left out of the test. It would be in only if the pass mark were ${heard} or lower. Listen and judge for yourself.`;
   }
+  // Other signs that came through strongly. They do not help the clip pass: a clip
+  // written to sound tearful that mostly sounds like coughing is a mislabelled question.
+  const others =
+    patient.hidden_sign === "none"
+      ? []
+      : SIGNS.filter((s) => s !== patient.hidden_sign && patient.probes[SIGN_PROBE[s]] >= GATE_SIGN_MIN).map(
+          (s) => `${PROBE_LABEL[SIGN_PROBE[s]]} ${patient.probes[SIGN_PROBE[s]].toFixed(2)}`,
+        );
   return (
     <div className={`gate ${patient.gate.kept ? "kept" : "out"}`}>
       <div className="gatehead">{patient.gate.kept ? "Passed the perception gate" : "Dropped by the perception gate"}</div>
       <p>{text}</p>
+      {others.length > 0 && (
+        <p>
+          The model did hear other signs at {GATE_SIGN_MIN.toFixed(2)} or higher here: {others.join(", ")}. Those do not count. The gate checks only the sign this patient was written to have, and a strong score on a different sign means the voice came out as the wrong thing.
+        </p>
+      )}
     </div>
   );
 }

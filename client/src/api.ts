@@ -35,14 +35,19 @@ export type NoiseProbe = { clip: string; probes: Probes; probe_ms: number; snr: 
 export type NoiseInfo = { label: string; seconds: number; uploaded: string; saved: number };
 export type Health = { ok: boolean; hasKey: boolean; noise: NoiseInfo | null };
 
+/** True in the read-only showcase build, which has no server behind it. */
+export const STATIC = import.meta.env.VITE_STATIC === "1";
+
 async function json<T>(res: Response): Promise<T> {
   const body = (await res.json().catch(() => ({}))) as T & { error?: string };
   if (!res.ok) throw new Error(body.error ?? `Request failed (${res.status})`);
   return body;
 }
 
-export const getHealth = () => fetch("/api/health").then((r) => json<Health>(r));
-export const getSets = () => fetch("/api/sets").then((r) => json<SetData[]>(r));
+export const getHealth = (): Promise<Health> =>
+  STATIC ? Promise.resolve({ ok: true, hasKey: true, noise: null }) : fetch("/api/health").then((r) => json<Health>(r));
+// The showcase reads the saved runs from a file that sits next to the page.
+export const getSets = () => fetch(STATIC ? "sets.json" : "/api/sets").then((r) => json<SetData[]>(r));
 
 export const sendLive = (audio: Blob) =>
   fetch("/api/live", { method: "POST", headers: { "Content-Type": audio.type || "application/octet-stream" }, body: audio }).then((r) =>
@@ -68,11 +73,12 @@ export const physicianGate = (set: string, id: string, valid: boolean, note: str
     body: JSON.stringify({ set, id, valid, note }),
   }).then((r) => json<Patient>(r));
 
-export const getBlind = (set: string) => fetch(`/api/blind/${set}`).then((r) => json<BlindState>(r));
+export const getBlind = (set: string): Promise<BlindState> =>
+  STATIC ? Promise.resolve({ set, done: true, clips: [] }) : fetch(`/api/blind/${set}`).then((r) => json<BlindState>(r));
 export const blindAudio = (set: string, key: string) => `/api/blind/${set}/audio/${key}`;
 export const saveBlind = (set: string, labels: Record<string, HiddenSign>) =>
   fetch(`/api/blind/${set}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ labels }) }).then((r) =>
     json<{ saved: number; verdicts: number }>(r),
   );
 
-export const clipUrl = (clip: string) => `/${clip}`;
+export const clipUrl = (clip: string) => (STATIC ? clip : `/${clip}`);

@@ -16,7 +16,7 @@ import {
 } from "../../server/engine/types.ts";
 import { CHOSEN_BAR, HEARD_AT, comparisonRows, ladderRows, sensitivity } from "../../server/station1/report.ts";
 import { blindAudio, getBlind, saveBlind, type BlindState } from "./api.ts";
-import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
+import { STATIC, clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
 const ARMS: ArmKey[] = ["A", "B", "C"];
 const ARM_SOURCE: Record<ArmKey, string> = {
@@ -34,7 +34,7 @@ export function App() {
   // The open tab is kept in the address, so a reload or a server restart returns to it.
   const [mode, setModeState] = useState<Mode>(() => {
     const h = window.location.hash.replace("#", "");
-    return h === "results" || h === "live" || h === "blind" ? h : "exam";
+    return h === "results" || (h === "live" && !STATIC) || h === "blind" ? h : "exam";
   });
   const setMode = (next: Mode) => {
     setModeState(next);
@@ -62,9 +62,11 @@ export function App() {
           <button className={mode === "exam" ? "on" : ""} onClick={() => setMode("exam")}>
             Patients
           </button>
-          <button className={mode === "live" ? "on" : ""} onClick={() => setMode("live")}>
-            Live mic
-          </button>
+          {!STATIC && (
+            <button className={mode === "live" ? "on" : ""} onClick={() => setMode("live")}>
+              Live mic
+            </button>
+          )}
           <button className={mode === "results" ? "on" : ""} onClick={() => setMode("results")}>
             Results
           </button>
@@ -76,6 +78,12 @@ export function App() {
         </nav>
       </header>
       <p className="notice">Every exam patient is synthetic. This tests the AI. Nobody receives medical advice.</p>
+      {STATIC && (
+        <p className="setnote">
+          This is a read-only copy of the saved results from the Gemini 4 NYC hackathon, November 21, 2026. Recording your own voice and adding room noise only run in the local app. The code, the method and the limits are in the{" "}
+          <a href="https://github.com/rahilpatel0402/Patient-Engine">repository</a>.
+        </p>
+      )}
       {error && <p className="error">Cannot reach the server: {error}</p>}
       {health && !health.hasKey && <p className="error">No Gemini API key is loaded. Live mode will not work.</p>}
       {blindPending && mode !== "blind" && (
@@ -496,7 +504,7 @@ function PhysicianGate({ patient, reload }: { patient: Patient; reload: () => vo
         Two models listen to every clip of this sign. A physician is asked only when they are unsure or disagree, as here: {patient.gate.auto?.why ?? `the Decisions API scored it ${heard}`}.
       </p>
       {verdict?.note && <p><b>Physician note:</b> {verdict.note}</p>}
-      <div className="gatebuttons">
+      <div className="gatebuttons" hidden={STATIC}>
         <input id={`gate-note-${patient.id}`} type="text" placeholder="Note (optional)" value={note} onChange={(e) => setNote(e.target.value)} />
         <button onClick={() => decide(true)}>I hear the sign. Use it</button>
         <button onClick={() => decide(false)}>I do not hear it. Leave it out</button>
@@ -597,7 +605,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
           "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have. There is no single pass mark on this bar. Two models listen, and a physician settles the clips they disagree on.
         </p>
       )}
-      <div className="noise">
+      <div className="noise" hidden={STATIC}>
         <label htmlFor="noise-level">
           Room noise: {noiseWords(snr)}
           {snr !== null && <span className="snr"> ({snr > 0 ? `voice ${snr} dB above the noise` : snr === 0 ? "equal levels" : `noise ${-snr} dB above the voice`})</span>}

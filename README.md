@@ -200,6 +200,17 @@ npx tsx scripts/write-results.ts exam    # writes results/ and the Results secti
 
 Model results are cached in `cache/`, so a rerun on the same clips repeats nothing. Rebuilding a set renders new audio, so its numbers will differ from the ones here.
 
+## Read-only showcase
+
+The saved runs can be published as a static site with no server and no API key:
+
+```
+npm run export:static    # writes the saved runs and compressed clips to client/public-static
+npm run build:static     # builds the site into dist/static
+```
+
+It shows the patients, their audio, the three notes and the results. Live mode and the noise control are left out, because they need a server and a key. The site uses relative paths, so it works at a domain root or under a sub-path. `netlify.toml` builds it on Netlify.
+
 ## Repository map
 
 | Path | What is in it |

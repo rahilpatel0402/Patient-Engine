@@ -10,7 +10,9 @@
     "client": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "smoke": "tsx smoke/run.ts"
+    "smoke": "tsx smoke/run.ts",
+    "export:static": "tsx scripts/export-static.ts",
+    "build:static": "vite build --mode static"
   },
   "dependencies": {
     "@google/genai": "^3.6.1",

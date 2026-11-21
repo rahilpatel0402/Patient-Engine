@@ -15,3 +15,6 @@ build/
 *.log
 .DS_Store
 Thumbs.db
+
+# Smoke test audio output
+smoke/out/

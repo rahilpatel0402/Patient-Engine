@@ -1,0 +1,34 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are listening to a short recording of a person speaking. Judge only the articulation of the words: are they slurred? Slow, breathless, hoarse, coughing, or tearful speech is not slurred unless the words themselves are blurred.",
+  "text": "Recording attached.",
+  "audio": "4e504ac7154434248bb6b90e53be2c02d8cecb227b4f7e2d2b6784e6b5633caf",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "articulation": {
+     "type": "string",
+     "description": "One sentence on how the words are articulated."
+    },
+    "slurred": {
+     "type": "string",
+     "enum": [
+      "no",
+      "mild",
+      "clear"
+     ]
+    }
+   },
+   "required": [
+    "articulation",
+    "slurred"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3737,
+ "at": "2026-11-21T17:07:53.824Z",
+ "value": "{\n  \"articulation\": \"The speaker sounds breathless and tearful, but the words themselves are pronounced clearly without blurring.\",\n  \"slurred\": \"no\"\n}"
+}

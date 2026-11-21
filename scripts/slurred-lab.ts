@@ -6,7 +6,7 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { probe } from "../server/engine/probes.ts";
-import { patientsFile, setDir, setPhysicianVerdict } from "../server/engine/build.ts";
+import { autoSlurGate, patientsFile, setDir, setPhysicianVerdict } from "../server/engine/build.ts";
 import type { CaseResult, Patient } from "../server/engine/types.ts";
 import { wavSeconds } from "../server/lib/audio.ts";
 import { ROOT, writeJson } from "../server/lib/cache.ts";
@@ -42,7 +42,7 @@ for (const [i, s] of SOURCES.entries()) {
     clip: path.relative(ROOT, clip).replaceAll("\\", "/"),
     seconds: wavSeconds(clip),
     probes,
-    gate: { kept: false, by: "physician", attempts: 1, reason: `waiting for a physician to listen (slurred probe ${probes.slurred.toFixed(2)})` },
+    gate: { ...(await autoSlurGate(clip, probes)), attempts: 1 },
   });
 }
 writeJson(patientsFile(SET), patients);
@@ -63,7 +63,7 @@ const cases: CaseResult[] = await Promise.all(patients.map((p) => runCase(p)));
 writeJson(path.join(setDir(SET), "station1.json"), cases);
 
 for (const c of cases) {
-  console.log(`\n${c.patient.id}  slurred probe ${c.patient.probes.slurred.toFixed(2)}  gate: ${c.patient.gate.reason}`);
+  console.log(`\n${c.patient.id}\n  automatic: ${c.patient.gate.auto?.decision} (${c.patient.gate.auto?.why})\n  final:     ${c.patient.gate.reason}`);
   for (const a of c.arms) {
     console.log(`  ${a.arm}: ${a.grade.caught ? "caught" : "MISSED"} (grader ${a.grade.identifies_sign?.toFixed(2)}), urgency ${a.note.urgency}`);
     console.log(`     ${a.note.observations.join(" | ")}`);

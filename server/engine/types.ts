@@ -49,8 +49,16 @@ export const PROBE_LABEL: Record<ProbeKey, string> = {
   sounds_well: "Sounds well",
 };
 
-/** Signs the listening model cannot be trusted to validate. A physician listens and decides. */
+/** Signs one probe number cannot be trusted to validate. Two listeners vote, and a physician settles disagreements. */
 export const PHYSICIAN_GATED: readonly HiddenSign[] = ["slurred"];
+
+export type AutoGate = {
+  decision: "keep" | "drop" | "review";
+  probe: number;
+  listener: "no" | "mild" | "clear";
+  listener_model: string;
+  why: string;
+};
 
 export type PhysicianVerdict = { valid: boolean; note: string; at: string };
 
@@ -58,8 +66,10 @@ export type GateResult = {
   kept: boolean;
   reason: string;
   attempts: number;
-  /** Who decided: the Decisions API probe, or a physician who listened. */
-  by?: "probe" | "physician";
+  /** Who decided: the probe alone, two automatic listeners agreeing, or a physician who listened. */
+  by?: "probe" | "consensus" | "physician";
+  /** What the automatic listeners said, kept even after a physician decides. */
+  auto?: AutoGate;
   physician?: PhysicianVerdict;
 };
 

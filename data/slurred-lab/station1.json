@@ -24,12 +24,19 @@
       "gate": {
         "kept": true,
         "by": "physician",
-        "attempts": 1,
+        "auto": {
+          "probe": 0.716,
+          "listener": "clear",
+          "listener_model": "gemini-4-carbon",
+          "decision": "keep",
+          "why": "both listeners heard slurred speech (probe 0.72, second listener: clear)"
+        },
         "reason": "a physician listened and heard slurred speech (probe 0.72)",
+        "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Good slurred speech.",
-          "at": "2026-11-21T16:40:14.029Z"
+          "at": "2026-11-21T17:09:11.594Z"
         }
       }
     },
@@ -140,12 +147,19 @@
       "gate": {
         "kept": true,
         "by": "physician",
-        "attempts": 1,
+        "auto": {
+          "probe": 0.648,
+          "listener": "clear",
+          "listener_model": "gemini-4-carbon",
+          "decision": "review",
+          "why": "the listeners are not sure or disagree (probe 0.65, second listener: clear)"
+        },
         "reason": "a physician listened and heard slurred speech (probe 0.65)",
+        "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Good slurred speech.",
-          "at": "2026-11-21T16:40:14.031Z"
+          "at": "2026-11-21T17:09:11.595Z"
         }
       }
     },
@@ -256,12 +270,19 @@
       "gate": {
         "kept": false,
         "by": "physician",
-        "attempts": 1,
+        "auto": {
+          "probe": 0.571,
+          "listener": "clear",
+          "listener_model": "gemini-4-carbon",
+          "decision": "review",
+          "why": "the listeners are not sure or disagree (probe 0.57, second listener: clear)"
+        },
         "reason": "a physician listened and did not hear slurred speech (probe 0.57)",
+        "attempts": 1,
         "physician": {
           "valid": false,
           "note": "Definitely not slurred. It is slow.",
-          "at": "2026-11-21T16:40:14.031Z"
+          "at": "2026-11-21T17:09:11.595Z"
         }
       }
     },
@@ -370,12 +391,19 @@
       "gate": {
         "kept": true,
         "by": "physician",
-        "attempts": 1,
+        "auto": {
+          "probe": 0.344,
+          "listener": "clear",
+          "listener_model": "gemini-4-carbon",
+          "decision": "review",
+          "why": "the listeners are not sure or disagree (probe 0.34, second listener: clear)"
+        },
         "reason": "a physician listened and heard slurred speech (probe 0.34)",
+        "attempts": 1,
         "physician": {
           "valid": true,
           "note": "Less slurred. Sounds more like drunk, on drugs, or some neurological symptom.",
-          "at": "2026-11-21T16:40:14.032Z"
+          "at": "2026-11-21T17:09:11.596Z"
         }
       }
     },

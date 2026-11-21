@@ -1,0 +1,81 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "ab8ad50def7ba74f010f75ce9958407edddc640f0afec7ab4d44f9cb667743b9",
+  "questions": {
+   "q_current": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech slurred?",
+    "criteria": {
+     "true_description": "Words are slurred, thick, or run together, as if sedated or impaired.",
+     "false_description": "Words are clearly articulated."
+    }
+   },
+   "q_consonants": {
+    "type": "noul",
+    "instructions": "Listen to how the consonants are formed. Are they imprecise, mushy, or blurred, so that words smear into each other?",
+    "criteria": {
+     "true_description": "Consonants are imprecise or blurred. Speech sounds thick-tongued or drunk, even if the words can still be understood.",
+     "false_description": "Consonants are crisp and distinct. Speech that is only slow, tired, breathy, hoarse, or tearful still counts as no."
+    }
+   },
+   "q_dysarthria": {
+    "type": "noul",
+    "instructions": "Would a clinician describe this person's speech as dysarthric or slurred?",
+    "criteria": {
+     "true_description": "Yes. Articulation is impaired: slurred, thick, or drunken-sounding speech.",
+     "false_description": "No. Articulation is normal, even if the person is slow, breathless, coughing, upset, or in pain."
+    }
+   },
+   "q_drunk": {
+    "type": "noul",
+    "instructions": "Does the speaker sound drunk, sedated, or otherwise impaired in how they form words?"
+   },
+   "q_scale": {
+    "type": "choice",
+    "instructions": "Which best describes the speaker's articulation?",
+    "criteria": {
+     "crisp": "Normal, clear articulation. May still be slow, breathless, hoarse, or emotional.",
+     "mildly_slurred": "Some words are slurred or imprecise.",
+     "clearly_slurred": "Most words are slurred, thick, or run together."
+    }
+   }
+  }
+ },
+ "ms": 704,
+ "at": "2026-11-21T17:07:27.724Z",
+ "value": {
+  "q_drunk": {
+   "confidence": 0.5539618246412256,
+   "noul": 0.5539618246412256,
+   "type": "noul"
+  },
+  "q_scale": {
+   "confidence": 0.4313665468446251,
+   "choice": "mildly_slurred",
+   "probabilities": {
+    "clearly_slurred": 0.27420265726559157,
+    "mildly_slurred": 0.4313665468446251,
+    "crisp": 0.2944307958897833
+   },
+   "type": "choice"
+  },
+  "q_dysarthria": {
+   "confidence": 0.6625941188469596,
+   "noul": 0.3374058811530404,
+   "type": "noul"
+  },
+  "q_consonants": {
+   "confidence": 0.517247183492187,
+   "noul": 0.48275281650781293,
+   "type": "noul"
+  },
+  "q_current": {
+   "confidence": 0.5710882543749721,
+   "noul": 0.5710882543749721,
+   "type": "noul"
+  }
+ }
+}

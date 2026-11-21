@@ -245,7 +245,7 @@ function CaseView({ patient, result, hasNoise, reload }: { patient: Patient; res
         clip={patient.clip}
         baseline={patient.probes}
         highlight={intended}
-        passMark={patient.gate.by !== "physician"}
+        passMark={!patient.gate.by || patient.gate.by === "probe"}
         hasNoise={hasNoise}
         title="What the Decisions API heard in the raw audio"
       />
@@ -259,6 +259,16 @@ const GATE_CONTROL_MAX = 0.3;
 /** Says in plain words why this clip is in the test or left out of it. */
 function GateBox({ patient, reload }: { patient: Patient; reload: () => void }) {
   if (patient.gate.by === "physician") return <PhysicianGate patient={patient} reload={reload} />;
+  if (patient.gate.by === "consensus") {
+    return (
+      <div className={`gate ${patient.gate.kept ? "kept" : "out"}`}>
+        <div className="gatehead">{patient.gate.kept ? "Passed automatically: two listeners agree" : "Dropped automatically: two listeners agree"}</div>
+        <p>
+          For this sign two models listen to the clip: the Decisions API and {patient.gate.auto?.listener_model}. Here {patient.gate.reason}, so no physician was needed.
+        </p>
+      </div>
+    );
+  }
   const takes = patient.gate.attempts === 1 ? "on the first take" : "after two takes";
   let text: string;
   if (patient.hidden_sign === "none") {
@@ -303,7 +313,7 @@ function PhysicianGate({ patient, reload }: { patient: Patient; reload: () => vo
         {verdict ? (verdict.valid ? "Passed by a physician" : "Rejected by a physician") : "Waiting for a physician to listen"}
       </div>
       <p>
-        The listening model is not trusted to judge this sign, so a physician decides whether the clip is a fair test question. The Decisions API scored it {heard}, and that number is reported but not used as the pass mark.
+        Two models listen to every clip of this sign. A physician is asked only when they are unsure or disagree, as here: {patient.gate.auto?.why ?? `the Decisions API scored it ${heard}`}.
       </p>
       {verdict?.note && <p><b>Physician note:</b> {verdict.note}</p>}
       <div className="gatebuttons">
@@ -379,7 +389,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
       )}
       {props.highlight && props.passMark === false && (
         <p className="muted">
-          "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have. There is no pass mark on this bar, because a physician decides this sign by listening.
+          "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have. There is no single pass mark on this bar. Two models listen, and a physician settles the clips they disagree on.
         </p>
       )}
       <div className="noise">

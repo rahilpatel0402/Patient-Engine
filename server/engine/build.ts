@@ -5,6 +5,7 @@ import { normalize, wavSeconds } from "../lib/audio.ts";
 import { ROOT, readJson, writeJson } from "../lib/cache.ts";
 import { speak, speakPrompted } from "../lib/gemini.ts";
 import { writePatient, type Slot } from "./author.ts";
+import { secondListener, slurConsensus } from "./listener.ts";
 import { gate, probe } from "./probes.ts";
 import { PHYSICIAN_GATED, type GateResult, type Patient, type PatientScript, type Probes, type HiddenSign } from "./types.ts";
 
@@ -58,7 +59,7 @@ async function buildOne(model: string, slot: Slot): Promise<Patient> {
     fs.copyFileSync(best!.clip, final);
     for (let take = 1; take <= SLUR_TAKES; take++) fs.rmSync(path.join(setDir(slot.set), "clips", `${id}.take${take}.wav`), { force: true });
     probes = best!.probes;
-    verdict = { kept: false, by: "physician", attempts: SLUR_TAKES, reason: `waiting for a physician to listen (${signProbe} probe ${probes[signProbe].toFixed(2)})` };
+    verdict = { ...(await autoSlurGate(final, probes)), attempts: SLUR_TAKES };
   } else {
     // Render, probe, gate. One fresh take if the gate rejects the first.
     let attempts = 0;
@@ -83,6 +84,14 @@ async function buildOne(model: string, slot: Slot): Promise<Patient> {
     probes,
     gate: verdict,
   };
+}
+
+/** Two automatic listeners vote on a slurred clip. A physician is needed only when they disagree. */
+export async function autoSlurGate(clip: string, probes: Probes): Promise<Omit<GateResult, "attempts">> {
+  const heard = await secondListener({ file: clip });
+  const auto = slurConsensus(probes.slurred, heard.slurred);
+  if (auto.decision === "review") return { kept: false, by: "physician", auto, reason: `waiting for a physician: ${auto.why}` };
+  return { kept: auto.decision === "keep", by: "consensus", auto, reason: auto.why };
 }
 
 export async function buildSet(opts: { set: string; model: string; signs: HiddenSign[] }): Promise<Patient[]> {

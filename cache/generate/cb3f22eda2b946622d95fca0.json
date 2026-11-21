@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "f00f4b3c758c7eef8d4b4c0924f80c18b2ef9984a34406300f4994c472a49cc9",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6441,
+ "at": "2026-11-21T16:30:43.577Z",
+ "value": "{\n  \"observations\": [\n    \"Requests regular medication refills to usual pharmacy\",\n    \"States everything is fine and no changes are needed\",\n    \"Speech is markedly slow, slurred, and drawn-out\",\n    \"Heavy sighing and groaning audible at start and end of recording\"\n  ],\n  \"red_flags\": [\n    \"Severe slurring and slowing of speech\",\n    \"Apparent marked lethargy or sedation\",\n    \"Discrepancy between vocal presentation and verbal report of being fine\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

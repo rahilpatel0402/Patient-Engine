@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "eef870ea35c9fb34677ad60cdb2ff740bea970e30ecd1bc14334e226fa4d306c"
+ },
+ "ms": 1658,
+ "at": "2026-11-21T16:30:03.508Z",
+ "value": "Hey there. Everything is fine with me. Just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks."
+}

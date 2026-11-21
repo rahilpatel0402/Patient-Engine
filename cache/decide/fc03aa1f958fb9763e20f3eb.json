@@ -1,0 +1,32 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "976d2e3ef9cf717ad131b6d2ad04741b445a39bb4aacb4d5c44c0f3ea598ac65",
+  "questions": {
+   "slurred": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech slurred?"
+   },
+   "normal_speech": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech clear, crisp, and normally paced?"
+   }
+  }
+ },
+ "ms": 520,
+ "at": "2026-11-21T16:29:20.871Z",
+ "value": {
+  "normal_speech": {
+   "confidence": 0.5774581058636992,
+   "noul": 0.4225418941363009,
+   "type": "noul"
+  },
+  "slurred": {
+   "confidence": 0.5840206237325875,
+   "noul": 0.5840206237325875,
+   "type": "noul"
+  }
+ }
+}

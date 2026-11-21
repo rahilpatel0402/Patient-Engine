@@ -1,0 +1,13 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "text": "Describe how this person's speech sounds: articulation, pace, and clarity. Two sentences. Do not summarize what they say.",
+  "audio": "25c10e9e2a4492bf7f86684e5b02ba45fcd9ebe8b2c59d2a1419a71ee2f627b7",
+  "schema": null,
+  "thinking": "low"
+ },
+ "ms": 4516,
+ "at": "2026-11-21T16:27:48.369Z",
+ "value": "The speaker's pace is slow and unhurried, punctuated by heavy breaths and pauses that give the delivery a weary, casual quality. Their articulation is relaxed and slightly gravelly, yet their speech remains clear and easily understandable despite the low energy."
+}

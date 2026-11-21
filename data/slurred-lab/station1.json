@@ -1,0 +1,434 @@
+[
+  {
+    "patient": {
+      "id": "slurred-lab-01-slurred",
+      "set": "slurred-lab",
+      "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+      "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+      "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+      "tts_style": "very drunk, heavily slurred, mushy consonants, words sliding together",
+      "voice": "Charon",
+      "hidden_sign": "slurred",
+      "expected_urgency": "urgent",
+      "clip": "data/slurred-lab/clips/slurred-lab-01-slurred.wav",
+      "seconds": 15.5,
+      "probes": {
+        "short_of_breath": 0.28,
+        "in_pain": 0.181,
+        "coughing": 0.307,
+        "distressed": 0.249,
+        "slurred": 0.716,
+        "long_pauses": 0.561,
+        "sounds_well": 0.31
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.72, needs 0.8",
+        "attempts": 1
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hey there. Everything is fine with me. Just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Reports feeling well",
+            "Requesting a regular medication refill",
+            "Requests refill be sent to the usual pharmacy",
+            "States no changes are needed",
+            "Polite and calm demeanor"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 3710,
+        "grade": {
+          "identifies_sign": 0.012,
+          "flags_any_sign": 0.012,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.988,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Requests regular prescription refill at usual pharmacy",
+            "States everything is fine",
+            "Speech is noticeably slow, slurred, and labored",
+            "Audible heavy breathing and sighing"
+          ],
+          "red_flags": [
+            "Marked discrepancy between verbal statement and vocal presentation",
+            "Slow, slurred, and labored speech suggesting possible sedation, neurological event, or respiratory distress"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 4598,
+        "grade": {
+          "identifies_sign": 0.989,
+          "flags_any_sign": 0.975,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.989,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Patient verbally requests a regular medication refill and states everything is fine",
+            "High probability of slurred speech (0.72)",
+            "Moderate probability of long pauses (0.56)",
+            "Low probability of sounding well (0.31)"
+          ],
+          "red_flags": [
+            "Slurred speech (0.72)",
+            "Long pauses in speech (0.56)",
+            "Discrepancy between patient stating they are fine and vocal presentation"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 6748,
+        "grade": {
+          "identifies_sign": 0.956,
+          "flags_any_sign": 0.968,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.956,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "id": "slurred-lab-02-slurred",
+      "set": "slurred-lab",
+      "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+      "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+      "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+      "tts_style": "extremely intoxicated, barely forming words, smearing every consonant",
+      "voice": "Kore",
+      "hidden_sign": "slurred",
+      "expected_urgency": "urgent",
+      "clip": "data/slurred-lab/clips/slurred-lab-02-slurred.wav",
+      "seconds": 20.6,
+      "probes": {
+        "short_of_breath": 0.347,
+        "in_pain": 0.335,
+        "coughing": 0.265,
+        "distressed": 0.192,
+        "slurred": 0.648,
+        "long_pauses": 0.601,
+        "sounds_well": 0.116
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.65, needs 0.8",
+        "attempts": 1
+      }
+    },
+    "rung": "clean",
+    "transcript": "Everything's fine with me, just calling to get my regular refills sent over to the usual place. No need to change anything. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Reports feeling fine",
+            "Requesting regular medication refills",
+            "Requests no changes to current regimen",
+            "Polite and straightforward tone"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 4194,
+        "grade": {
+          "identifies_sign": 0.011,
+          "flags_any_sign": 0.015,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.989,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Requests regular medication refills to usual pharmacy",
+            "States everything is fine and no changes are needed",
+            "Speech is markedly slow, slurred, and drawn-out",
+            "Heavy sighing and groaning audible at start and end of recording"
+          ],
+          "red_flags": [
+            "Severe slurring and slowing of speech",
+            "Apparent marked lethargy or sedation",
+            "Discrepancy between vocal presentation and verbal report of being fine"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 6441,
+        "grade": {
+          "identifies_sign": 0.985,
+          "flags_any_sign": 0.969,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.985,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Patient requests regular medication refills",
+            "States everything is fine",
+            "Voice analysis shows high probability of slurred speech and long pauses",
+            "Low probability of sounding well"
+          ],
+          "red_flags": [
+            "Slurred speech",
+            "Long pauses",
+            "Discrepancy between stated well-being and vocal presentation"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 4829,
+        "grade": {
+          "identifies_sign": 0.973,
+          "flags_any_sign": 0.973,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.973,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "id": "slurred-lab-03-slurred",
+      "set": "slurred-lab",
+      "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+      "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+      "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+      "tts_style": "extremely intoxicated, barely forming words, smearing every consonant",
+      "voice": "Orus",
+      "hidden_sign": "slurred",
+      "expected_urgency": "urgent",
+      "clip": "data/slurred-lab/clips/slurred-lab-03-slurred.wav",
+      "seconds": 18.8,
+      "probes": {
+        "short_of_breath": 0.344,
+        "in_pain": 0.32,
+        "coughing": 0.426,
+        "distressed": 0.305,
+        "slurred": 0.571,
+        "long_pauses": 0.677,
+        "sounds_well": 0.286
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.57, needs 0.8",
+        "attempts": 1
+      }
+    },
+    "rung": "clean",
+    "transcript": "It's there. Everything's fine with me. Just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Patient reports everything is fine",
+            "Requesting a regular medication refill",
+            "Wants refill sent to usual pharmacy",
+            "No changes to regimen requested"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 3052,
+        "grade": {
+          "identifies_sign": 0.012,
+          "flags_any_sign": 0.023,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.988,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "States everything is fine and requests regular medication refills",
+            "Speech is notably slow, raspy, and labored",
+            "Heavy sighing or breathing audible at the end of the call"
+          ],
+          "red_flags": [
+            "Labored, strained speech despite stating everything is fine",
+            "Possible respiratory distress, acute illness, or sedation"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 6648,
+        "grade": {
+          "identifies_sign": 0.974,
+          "flags_any_sign": 0.976,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.974,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Requests regular medication refill",
+            "States everything is fine",
+            "Voice shows slurred speech (0.57) and long pauses (0.68)",
+            "Low probability of sounding well (0.29)"
+          ],
+          "red_flags": [
+            "Slurred speech",
+            "Long pauses",
+            "Discrepancy between vocal presentation and patient stating everything is fine"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 4110,
+        "grade": {
+          "identifies_sign": 0.98,
+          "flags_any_sign": 0.984,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.98,
+          "needs_review": false
+        }
+      }
+    ]
+  },
+  {
+    "patient": {
+      "id": "slurred-lab-04-slurred",
+      "set": "slurred-lab",
+      "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+      "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+      "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+      "tts_style": "very drunk, heavily slurred, mushy consonants, words sliding together",
+      "voice": "Orus",
+      "hidden_sign": "slurred",
+      "expected_urgency": "urgent",
+      "clip": "data/slurred-lab/clips/slurred-lab-04-slurred.wav",
+      "seconds": 17,
+      "probes": {
+        "short_of_breath": 0.303,
+        "in_pain": 0.168,
+        "coughing": 0.296,
+        "distressed": 0.207,
+        "slurred": 0.344,
+        "long_pauses": 0.578,
+        "sounds_well": 0.284
+      },
+      "gate": {
+        "kept": false,
+        "reason": "slurred only 0.34, needs 0.8",
+        "attempts": 1
+      }
+    },
+    "rung": "clean",
+    "transcript": "Hey there, everything's fine with me. Just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "arms": [
+      {
+        "arm": "A",
+        "note": {
+          "observations": [
+            "Patient reports feeling fine",
+            "Requesting a regular medication refill to the usual pharmacy",
+            "States no changes are needed"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 2683,
+        "grade": {
+          "identifies_sign": 0.01,
+          "flags_any_sign": 0.016,
+          "caught": false,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.99,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "B",
+        "note": {
+          "observations": [
+            "Patient calls requesting a regular medication refill to be sent to the usual pharmacy",
+            "States 'everything's fine' and 'no need to change anything'",
+            "Speech is noticeably slow, slurred, and drawled",
+            "Audible heavy sighing and labored exhalations throughout the recording"
+          ],
+          "red_flags": [
+            "Markedly slow, slurred speech suggestive of possible sedation, intoxication, or acute neurological change",
+            "Discordance between patient's statement that they are fine and their lethargic vocal presentation"
+          ],
+          "urgency": "urgent"
+        },
+        "ms": 5138,
+        "grade": {
+          "identifies_sign": 0.983,
+          "flags_any_sign": 0.974,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "urgent",
+          "confidence": 0.983,
+          "needs_review": false
+        }
+      },
+      {
+        "arm": "C",
+        "note": {
+          "observations": [
+            "Requests regular medication refill",
+            "Reports feeling fine with no changes needed",
+            "Long pauses noted in speech",
+            "Low probability of sounding well"
+          ],
+          "red_flags": [],
+          "urgency": "routine"
+        },
+        "ms": 4713,
+        "grade": {
+          "identifies_sign": 0.592,
+          "flags_any_sign": 0.833,
+          "caught": true,
+          "false_alarm": null,
+          "graded_urgency": "routine",
+          "confidence": 0.592,
+          "needs_review": true
+        }
+      }
+    ]
+  }
+]

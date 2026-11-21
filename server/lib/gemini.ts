@@ -179,12 +179,13 @@ export async function transcribe(audio: AudioRef): Promise<Cached<string>> {
 // ---- speech --------------------------------------------------------------------
 
 /** Renders speech and returns base64 WAV (24 kHz, mono, 16-bit). `attempt` forces a fresh take. */
-export async function speak(opts: { text: string; style: string; voice: string; attempt?: number }): Promise<Cached<string>> {
-  const key = { model: MODELS.tts, ...opts, attempt: opts.attempt ?? 1 };
+export async function speak(opts: { text: string; style: string; voice: string; attempt?: number; model?: string }): Promise<Cached<string>> {
+  const model = opts.model ?? MODELS.tts;
+  const key = { ...opts, model, attempt: opts.attempt ?? 1 };
   return cached("tts", key, () =>
     call("tts", async () => {
       const interaction = (await ai().interactions.create({
-        model: MODELS.tts,
+        model,
         input: [
           {
             type: "user_input",

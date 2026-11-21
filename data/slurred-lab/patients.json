@@ -1,0 +1,110 @@
+[
+  {
+    "id": "slurred-lab-01-slurred",
+    "set": "slurred-lab",
+    "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+    "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+    "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "tts_style": "very drunk, heavily slurred, mushy consonants, words sliding together",
+    "voice": "Charon",
+    "hidden_sign": "slurred",
+    "expected_urgency": "urgent",
+    "clip": "data/slurred-lab/clips/slurred-lab-01-slurred.wav",
+    "seconds": 15.5,
+    "probes": {
+      "short_of_breath": 0.28,
+      "in_pain": 0.181,
+      "coughing": 0.307,
+      "distressed": 0.249,
+      "slurred": 0.716,
+      "long_pauses": 0.561,
+      "sounds_well": 0.31
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.72, needs 0.8",
+      "attempts": 1
+    }
+  },
+  {
+    "id": "slurred-lab-02-slurred",
+    "set": "slurred-lab",
+    "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+    "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+    "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "tts_style": "extremely intoxicated, barely forming words, smearing every consonant",
+    "voice": "Kore",
+    "hidden_sign": "slurred",
+    "expected_urgency": "urgent",
+    "clip": "data/slurred-lab/clips/slurred-lab-02-slurred.wav",
+    "seconds": 20.6,
+    "probes": {
+      "short_of_breath": 0.347,
+      "in_pain": 0.335,
+      "coughing": 0.265,
+      "distressed": 0.192,
+      "slurred": 0.648,
+      "long_pauses": 0.601,
+      "sounds_well": 0.116
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.65, needs 0.8",
+      "attempts": 1
+    }
+  },
+  {
+    "id": "slurred-lab-03-slurred",
+    "set": "slurred-lab",
+    "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+    "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+    "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "tts_style": "extremely intoxicated, barely forming words, smearing every consonant",
+    "voice": "Orus",
+    "hidden_sign": "slurred",
+    "expected_urgency": "urgent",
+    "clip": "data/slurred-lab/clips/slurred-lab-03-slurred.wav",
+    "seconds": 18.8,
+    "probes": {
+      "short_of_breath": 0.344,
+      "in_pain": 0.32,
+      "coughing": 0.426,
+      "distressed": 0.305,
+      "slurred": 0.571,
+      "long_pauses": 0.677,
+      "sounds_well": 0.286
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.57, needs 0.8",
+      "attempts": 1
+    }
+  },
+  {
+    "id": "slurred-lab-04-slurred",
+    "set": "slurred-lab",
+    "author_model": "gemini-3.1-flash-tts-preview, delivery instruction in the prompt",
+    "persona": "A synthetic voice asked to deny any problem while speaking with slurred speech.",
+    "spoken_text": "Hey there. Everything is fine with me, just calling to get my regular refill sent over to the usual place. No need to change anything. Thanks.",
+    "tts_style": "very drunk, heavily slurred, mushy consonants, words sliding together",
+    "voice": "Orus",
+    "hidden_sign": "slurred",
+    "expected_urgency": "urgent",
+    "clip": "data/slurred-lab/clips/slurred-lab-04-slurred.wav",
+    "seconds": 17,
+    "probes": {
+      "short_of_breath": 0.303,
+      "in_pain": 0.168,
+      "coughing": 0.296,
+      "distressed": 0.207,
+      "slurred": 0.344,
+      "long_pauses": 0.578,
+      "sounds_well": 0.284
+    },
+    "gate": {
+      "kept": false,
+      "reason": "slurred only 0.34, needs 0.8",
+      "attempts": 1
+    }
+  }
+]

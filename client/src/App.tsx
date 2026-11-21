@@ -21,7 +21,7 @@ const ARM_SOURCE: Record<ArmKey, string> = {
   B: "Hydrogen heard the audio",
   C: "Hydrogen read the transcript and the probe results",
 };
-const SET_NAME: Record<string, string> = { dev: "Practice set (Argon)", exam: "Exam set (Carbon)" };
+const SET_NAME: Record<string, string> = { dev: "Practice set (Argon)", exam: "Exam set (Carbon)", "slurred-lab": "Slurred speech lab" };
 
 export function App() {
   const [health, setHealth] = useState<Health | null>(null);

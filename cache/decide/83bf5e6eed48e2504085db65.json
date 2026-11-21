@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "25c10e9e2a4492bf7f86684e5b02ba45fcd9ebe8b2c59d2a1419a71ee2f627b7",
+  "questions": {
+   "slurred": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech slurred?"
+   },
+   "articulation": {
+    "type": "noul",
+    "instructions": "Is the speaker's articulation imprecise, mumbled, or mushy, with consonants that are not crisp?"
+   },
+   "impaired": {
+    "type": "noul",
+    "instructions": "Does the speaker sound intoxicated, sedated, or drowsy?"
+   },
+   "slow": {
+    "type": "noul",
+    "instructions": "Is the speaker talking unusually slowly, dragging out syllables?"
+   },
+   "normal_speech": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech clear, crisp, and normally paced?"
+   }
+  }
+ },
+ "ms": 626,
+ "at": "2026-11-21T16:27:44.476Z",
+ "value": {
+  "normal_speech": {
+   "confidence": 0.6164650553125727,
+   "noul": 0.6164650553125727,
+   "type": "noul"
+  },
+  "slow": {
+   "confidence": 0.5177056146517779,
+   "noul": 0.5177056146517779,
+   "type": "noul"
+  },
+  "articulation": {
+   "confidence": 0.5732146040923378,
+   "noul": 0.42678539590766223,
+   "type": "noul"
+  },
+  "slurred": {
+   "confidence": 0.6601200476133604,
+   "noul": 0.33987995238663954,
+   "type": "noul"
+  },
+  "impaired": {
+   "confidence": 0.705008131087538,
+   "noul": 0.29499186891246204,
+   "type": "noul"
+  }
+ }
+}

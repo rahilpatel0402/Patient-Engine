@@ -1,0 +1,13 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "text": "Describe how this person's speech sounds: articulation, pace, and clarity. Two sentences. Do not summarize what they say.",
+  "audio": "981fa3341c6b84f095bd5cd10633422c1322cdb14d742c0a35f68c088b3cd313",
+  "schema": null,
+  "thinking": "low"
+ },
+ "ms": 4609,
+ "at": "2026-11-21T16:27:42.533Z",
+ "value": "The speaker's articulation is crisp and conversational, with every word pronounced distinctly. They maintain a steady, moderate pace with natural pauses, resulting in high overall clarity that makes their speech easy to follow."
+}

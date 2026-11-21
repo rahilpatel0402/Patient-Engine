@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "514e8695c24800cda893b58873a906957841696f509f92a259a54e6c53b488f1"
+ },
+ "ms": 1435,
+ "at": "2026-11-21T16:03:02.073Z",
+ "value": "Doctor, I'm I'm here for the my my my medications only."
+}

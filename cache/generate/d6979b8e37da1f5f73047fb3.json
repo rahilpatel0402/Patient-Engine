@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Audio recording attached.",
+  "audio": "9d41f8dcecf91a72e3d11c1e10a8a9a45e8a7fd6c3643803e33ad94b55d245be",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4285,
+ "at": "2026-11-21T16:02:09.678Z",
+ "value": "{\"observations\": [\"Said, \\\"Hi doctor, I just need my refills\\\"\", \"Audible heavy breath before speaking\", \"Voice sounded low, breathy, and slow\"]}"
+}

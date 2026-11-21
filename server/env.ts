@@ -2,24 +2,37 @@ import "dotenv/config";
 
 export const PORT = Number(process.env.PORT ?? 8787);
 
-// First match wins. GEMINI_API_KEY is the documented name. The other two are
-// accepted so a workshop key and a personal key can sit side by side in .env.
-const KEY_NAMES = ["GEMINI_API_KEY", "Workshop_API_key", "Default_gemini_API_Key"] as const;
+// Two keys can sit side by side in .env. Each is its own quota pool.
+//   batch: patient sets, the three arms, the grader, the stress ladder
+//   live:  the mic path used in front of judges, so a batch run can never starve it
+// Either role falls back to the other key when its own key is missing or rate limited.
+// GEMINI_API_KEY, the documented name, is used for both roles if it is the only one set.
+const ROLE_KEYS = {
+  batch: ["Workshop_API_key", "GEMINI_API_KEY", "Default_gemini_API_Key"],
+  live: ["Default_gemini_API_Key", "GEMINI_API_KEY", "Workshop_API_key"],
+} as const;
 
-export function apiKeyName(): string | null {
-  const forced = process.env.GEMINI_KEY_NAME?.trim();
-  if (forced) return process.env[forced]?.trim() ? forced : null;
-  return KEY_NAMES.find((name) => process.env[name]?.trim()) ?? null;
+export type KeyRole = keyof typeof ROLE_KEYS;
+
+/** Key names for a role, best first, limited to the ones that are set. */
+export function keyNames(role: KeyRole = "batch"): string[] {
+  return ROLE_KEYS[role].filter((name) => process.env[name]?.trim());
 }
 
-export function requireApiKey(): string {
-  const name = apiKeyName();
-  if (!name) {
-    throw new Error("No Gemini API key found. Copy .env.example to .env and set GEMINI_API_KEY.");
-  }
+export function keyValue(name: string): string {
   return process.env[name]!.trim();
 }
 
+export function requireApiKey(role: KeyRole = "batch"): string {
+  const [name] = keyNames(role);
+  if (!name) throw new Error("No Gemini API key found. Copy .env.example to .env and set GEMINI_API_KEY.");
+  return keyValue(name);
+}
+
+export function apiKeyName(role: KeyRole = "batch"): string | null {
+  return keyNames(role)[0] ?? null;
+}
+
 export function hasApiKey(): boolean {
-  return apiKeyName() !== null;
+  return keyNames("batch").length > 0;
 }

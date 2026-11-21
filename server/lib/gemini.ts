@@ -2,7 +2,8 @@
 // Every call goes through a concurrency limit, a retry, and the disk cache.
 import * as fs from "node:fs";
 import { GoogleGenAI } from "@google/genai";
-import { requireApiKey } from "../env.ts";
+import { AsyncLocalStorage } from "node:async_hooks";
+import { keyNames, keyValue, type KeyRole } from "../env.ts";
 import { cached, fileSha, type Cached } from "./cache.ts";
 
 export const MODELS = {
@@ -15,15 +16,36 @@ export const MODELS = {
   transcribe: "gemini-3.5-transcribe",
 } as const;
 
-let client: GoogleGenAI | null = null;
+// ---- keys --------------------------------------------------------------------
+// Batch work and the live mic path use different keys, so each has its own quota.
+// A call that hits a rate limit moves to the next key for its role.
+
+const roleStore = new AsyncLocalStorage<KeyRole>();
+const attemptStore = new AsyncLocalStorage<{ keyIndex: number }>();
+const clients = new Map<string, GoogleGenAI>();
+
+/** Runs `fn` with every model call inside it billed to the given key role. */
+export function withKeyRole<T>(role: KeyRole, fn: () => Promise<T>): Promise<T> {
+  return roleStore.run(role, fn);
+}
+
+const currentRole = (): KeyRole => roleStore.getStore() ?? "batch";
+
 function ai(): GoogleGenAI {
-  client ??= new GoogleGenAI({ apiKey: requireApiKey(), apiVersion: "v1beta" });
+  const names = keyNames(currentRole());
+  if (!names.length) throw new Error("No Gemini API key found. Copy .env.example to .env and set GEMINI_API_KEY.");
+  const name = names[(attemptStore.getStore()?.keyIndex ?? 0) % names.length];
+  let client = clients.get(name);
+  if (!client) {
+    client = new GoogleGenAI({ apiKey: keyValue(name), apiVersion: "v1beta" });
+    clients.set(name, client);
+  }
   return client;
 }
 
 // ---- concurrency and retry -------------------------------------------------
 
-const MAX_CONCURRENT = Number(process.env.GEMINI_CONCURRENCY ?? 3);
+const MAX_CONCURRENT = Number(process.env.GEMINI_CONCURRENCY ?? 6);
 let active = 0;
 const waiting: Array<() => void> = [];
 
@@ -50,10 +72,14 @@ async function withRetry<T>(label: string, fn: () => Promise<T>): Promise<T> {
     } catch (e) {
       last = e;
       const text = errorText(e);
-      const quotaIsZero = /limit: 0 /.test(text);
-      const retryable = /429|500|502|503|504|overloaded|ECONNRESET|ETIMEDOUT|fetch failed/i.test(text);
-      if (quotaIsZero || !retryable || attempt === 4) break;
-      const wait = 1500 * 2 ** (attempt - 1);
+      const rateLimited = /429|rate limit|quota/i.test(text);
+      const retryable = rateLimited || /500|502|503|504|overloaded|ECONNRESET|ETIMEDOUT|fetch failed/i.test(text);
+      if (!retryable || attempt === 4) break;
+      const slot = attemptStore.getStore();
+      const otherKey = rateLimited && slot && keyNames(currentRole()).length > 1;
+      if (otherKey) slot.keyIndex++;
+      // With another key to try, go again at once. Otherwise back off.
+      const wait = otherKey && attempt === 1 ? 0 : 1500 * 2 ** (attempt - 1);
       console.warn(`[retry ${attempt}] ${label}: ${text.slice(0, 120)} (waiting ${wait} ms)`);
       await new Promise((r) => setTimeout(r, wait));
     }
@@ -72,14 +98,18 @@ function withTimeout<T>(label: string, fn: () => Promise<T>): Promise<T> {
 }
 
 /** Runs one model call and reports how long the successful attempt took. */
-const call = <T>(label: string, fn: () => Promise<T>) =>
-  limited(() =>
-    withRetry(label, async () => {
-      const t0 = Date.now();
-      const value = await withTimeout(label, fn);
-      return { value, ms: Date.now() - t0 };
-    }),
-  );
+const call = <T>(label: string, fn: () => Promise<T>) => {
+  const attempt = () =>
+    attemptStore.run({ keyIndex: 0 }, () =>
+      withRetry(label, async () => {
+        const t0 = Date.now();
+        const value = await withTimeout(label, fn);
+        return { value, ms: Date.now() - t0 };
+      }),
+    );
+  // The live path skips the batch queue, so a running batch never delays the demo.
+  return currentRole() === "live" ? attempt() : limited(attempt);
+};
 
 // ---- inputs ----------------------------------------------------------------
 

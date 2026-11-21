@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"Doctor, I'm I'm here for the my my my medications only.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the voice:\n- Short of breath: 0.47\n- In pain: 0.46\n- Coughing: 0.95\n- Distressed: 0.15\n- Slurred speech: 0.10\n- Long pauses: 0.67\n- Sounds well: 0.04",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4893,
+ "at": "2026-11-21T16:03:06.978Z",
+ "value": "{\"observations\":[\"Said they are here for medications only\",\"Repeated words ('I'm I'm', 'my my my')\",\"Coughing\",\"Long pauses in speech\"]}"
+}

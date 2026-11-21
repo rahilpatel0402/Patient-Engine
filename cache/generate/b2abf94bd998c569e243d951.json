@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Transcript of what the person said:\n\"Hi doctor, I just need my refills.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the voice:\n- Short of breath: 0.71\n- In pain: 0.26\n- Coughing: 0.34\n- Distressed: 0.44\n- Slurred speech: 0.27\n- Long pauses: 0.50\n- Sounds well: 0.11",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3357,
+ "at": "2026-11-21T16:02:08.754Z",
+ "value": "{\"observations\": [\"Said: \\\"Hi doctor, I just need my refills.\\\"\", \"Voice sounded short of breath (0.71)\", \"Long pauses in speech (0.50)\", \"Voice sounded distressed (0.44)\", \"Low probability of sounding well (0.11)\"]}"
+}

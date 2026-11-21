@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "9d41f8dcecf91a72e3d11c1e10a8a9a45e8a7fd6c3643803e33ad94b55d245be"
+ },
+ "ms": 1475,
+ "at": "2026-11-21T16:02:05.391Z",
+ "value": "Hi doctor, I just need my refills."
+}

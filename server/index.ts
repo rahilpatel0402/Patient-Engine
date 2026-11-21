@@ -5,6 +5,7 @@ import { loadSet } from "./engine/build.ts";
 import type { CaseResult } from "./engine/types.ts";
 import { PORT, hasApiKey } from "./env.ts";
 import { ROOT, readJson } from "./lib/cache.ts";
+import { withKeyRole } from "./lib/gemini.ts";
 import { noiseSource, probeWithNoise, runLive, saveRoomNoise } from "./station1/live.ts";
 
 const app = express();
@@ -57,7 +58,8 @@ app.get("/api/sets", (_req, res) => {
 app.post("/api/live", audioBody, async (req, res) => {
   try {
     if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new Error("No audio received");
-    res.json(await runLive(req.body, extFor(req.headers["content-type"])));
+    const body = req.body;
+    res.json(await withKeyRole("live", () => runLive(body, extFor(req.headers["content-type"]))));
   } catch (e) {
     fail(res, e);
   }
@@ -67,7 +69,7 @@ app.post("/api/live", audioBody, async (req, res) => {
 app.post("/api/noise/probe", async (req, res) => {
   try {
     const { clip, level } = req.body as { clip: string; level: number };
-    res.json(await probeWithNoise(clip, level));
+    res.json(await withKeyRole("live", () => probeWithNoise(clip, level)));
   } catch (e) {
     fail(res, e);
   }

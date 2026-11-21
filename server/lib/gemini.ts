@@ -71,7 +71,15 @@ function withTimeout<T>(label: string, fn: () => Promise<T>): Promise<T> {
   return Promise.race([fn(), timeout]).finally(() => clearTimeout(timer));
 }
 
-const call = <T>(label: string, fn: () => Promise<T>) => limited(() => withRetry(label, () => withTimeout(label, fn)));
+/** Runs one model call and reports how long the successful attempt took. */
+const call = <T>(label: string, fn: () => Promise<T>) =>
+  limited(() =>
+    withRetry(label, async () => {
+      const t0 = Date.now();
+      const value = await withTimeout(label, fn);
+      return { value, ms: Date.now() - t0 };
+    }),
+  );
 
 // ---- inputs ----------------------------------------------------------------
 

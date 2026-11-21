@@ -17,16 +17,15 @@ export function fileSha(file: string): string {
 
 export type Cached<T> = { value: T; ms: number; cached: boolean };
 
-export async function cached<T>(kind: string, key: unknown, fn: () => Promise<T>): Promise<Cached<T>> {
+/** `fn` reports its own duration, so time spent queued behind the concurrency limit is not counted. */
+export async function cached<T>(kind: string, key: unknown, fn: () => Promise<{ value: T; ms: number }>): Promise<Cached<T>> {
   const hash = sha(JSON.stringify({ kind, key })).slice(0, 24);
   const file = path.join(CACHE_DIR, kind, `${hash}.json`);
   if (fs.existsSync(file)) {
     const hit = JSON.parse(fs.readFileSync(file, "utf8")) as { value: T; ms: number };
     return { value: hit.value, ms: hit.ms, cached: true };
   }
-  const t0 = Date.now();
-  const value = await fn();
-  const ms = Date.now() - t0;
+  const { value, ms } = await fn();
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, JSON.stringify({ kind, key, ms, at: new Date().toISOString(), value }, null, 1));
   return { value, ms, cached: false };

@@ -21,3 +21,8 @@ smoke/out/
 
 # TTS cache holds base64 audio. The rendered clips live in data/.
 cache/tts/
+
+# Live recordings and room noise can contain real voices. Never commit them.
+data/live/
+data/mixed/
+data/noise/

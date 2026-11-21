@@ -13,7 +13,7 @@ Every patient is synthetic. No PHI. This is a test harness for AI. It does not g
 Built solo at the Gemini 4 NYC hackathon on Saturday, November 21, 2026, for Problem Statement Two (Element 119).
 
 - **One-minute video:** https://youtu.be/zazTTe202CE
-- **Read-only showcase of the results:** https://patient-engine.netlify.app/ (also at https://patient-engine.rahilpatel.dev/)
+- **Read-only showcase of the results:** https://patient-engine.rahilpatel.dev/ (also at https://patient-engine.netlify.app/)
 
 ## Results
 
@@ -205,7 +205,7 @@ Model results are cached in `cache/`, so a rerun on the same clips repeats nothi
 
 ## Read-only showcase
 
-The saved runs are published as a static site with no server and no API key. The built site is committed in `docs/`, so any static host can serve that folder as it is. `netlify.toml` tells Netlify to publish it with no build step.
+The saved runs are published as a static site with no server and no API key, live at https://patient-engine.rahilpatel.dev/. The built site is committed in `docs/`, so any static host can serve that folder as it is. `netlify.toml` tells Netlify to publish it with no build step.
 
 It shows the patients, their audio, the three notes and the results. Live mode and the noise control are left out, because they need a server and a key. The site uses relative paths, so it works at a domain root or under a sub-path.
 

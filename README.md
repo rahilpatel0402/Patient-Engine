@@ -72,6 +72,8 @@ The pass mark of 0.80 is a design choice made before any result existed. It is n
 
 Planning was done before the event: the idea, the station design, and written notes. No code existed before 10:30 AM on event day. All code in this repository was written on site, and the commit history shows the build one step at a time.
 
+One thing was tried before the event: a single breathless voice sample, made by hand in Google AI Studio, to check that the voice model could do it at all. No code or audio from that is in this repository.
+
 The builder is a physician. The test design and every clinical call are theirs. The code was written on site with an AI coding agent, Claude Code. Everything the product does at runtime is Gemini.
 
 | Station | What it tests | Status |

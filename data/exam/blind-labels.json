@@ -1,0 +1,98 @@
+[
+  {
+    "key": "clip-01",
+    "id": "exam-20-slurred",
+    "heard": "slurred",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-02",
+    "id": "exam-17-slurred",
+    "heard": "slurred",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-03",
+    "id": "exam-05-groaning",
+    "heard": "groaning",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-04",
+    "id": "exam-14-distress",
+    "heard": "breathless",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-05",
+    "id": "exam-12-cough",
+    "heard": "cough",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-06",
+    "id": "exam-18-slurred",
+    "heard": "slurred",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-07",
+    "id": "exam-04-breathless",
+    "heard": "distress",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-08",
+    "id": "exam-24-none",
+    "heard": "none",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-09",
+    "id": "exam-13-distress",
+    "heard": "distress",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-10",
+    "id": "exam-07-groaning",
+    "heard": "groaning",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-11",
+    "id": "exam-22-none",
+    "heard": "none",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-12",
+    "id": "exam-26-none",
+    "heard": "none",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-13",
+    "id": "exam-02-breathless",
+    "heard": "breathless",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-14",
+    "id": "exam-19-slurred",
+    "heard": "slurred",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-15",
+    "id": "exam-27-none",
+    "heard": "none",
+    "at": "2026-11-21T19:42:46.101Z"
+  },
+  {
+    "key": "clip-16",
+    "id": "exam-10-cough",
+    "heard": "cough",
+    "at": "2026-11-21T19:42:46.101Z"
+  }
+]

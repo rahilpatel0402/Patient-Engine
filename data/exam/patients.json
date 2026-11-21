@@ -469,7 +469,7 @@
       "sounds_well": 0.245
     },
     "gate": {
-      "kept": false,
+      "kept": true,
       "by": "physician",
       "auto": {
         "probe": 0.595,
@@ -478,8 +478,13 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.59, second listener: clear)"
       },
-      "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.59, second listener: clear)",
-      "attempts": 5
+      "reason": "a physician listened and heard the sign (slurred probe 0.59)",
+      "attempts": 5,
+      "physician": {
+        "valid": true,
+        "note": "Blind label: heard \"Slurred speech\".",
+        "at": "2026-11-21T19:42:46.104Z"
+      }
     }
   },
   {
@@ -504,7 +509,7 @@
       "sounds_well": 0.156
     },
     "gate": {
-      "kept": false,
+      "kept": true,
       "by": "physician",
       "auto": {
         "probe": 0.484,
@@ -513,8 +518,13 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.48, second listener: clear)"
       },
-      "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.48, second listener: clear)",
-      "attempts": 5
+      "reason": "a physician listened and heard the sign (slurred probe 0.48)",
+      "attempts": 5,
+      "physician": {
+        "valid": true,
+        "note": "Blind label: heard \"Slurred speech\".",
+        "at": "2026-11-21T19:42:46.105Z"
+      }
     }
   },
   {
@@ -539,7 +549,7 @@
       "sounds_well": 0.3
     },
     "gate": {
-      "kept": false,
+      "kept": true,
       "by": "physician",
       "auto": {
         "probe": 0.355,
@@ -548,8 +558,13 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.35, second listener: clear)"
       },
-      "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.35, second listener: clear)",
-      "attempts": 5
+      "reason": "a physician listened and heard the sign (slurred probe 0.35)",
+      "attempts": 5,
+      "physician": {
+        "valid": true,
+        "note": "Blind label: heard \"Slurred speech\".",
+        "at": "2026-11-21T19:42:46.106Z"
+      }
     }
   },
   {
@@ -574,7 +589,7 @@
       "sounds_well": 0.178
     },
     "gate": {
-      "kept": false,
+      "kept": true,
       "by": "physician",
       "auto": {
         "probe": 0.696,
@@ -583,8 +598,13 @@
         "decision": "review",
         "why": "the listeners are not sure or disagree (probe 0.70, second listener: clear)"
       },
-      "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.70, second listener: clear)",
-      "attempts": 5
+      "reason": "a physician listened and heard the sign (slurred probe 0.70)",
+      "attempts": 5,
+      "physician": {
+        "valid": true,
+        "note": "Blind label: heard \"Slurred speech\".",
+        "at": "2026-11-21T19:42:46.103Z"
+      }
     }
   },
   {

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "1564bd80194ab06082bf3702af049eeceb49bb611d514d62332736857f5d25e7",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6793,
+ "at": "2026-11-21T19:11:10.385Z",
+ "value": "{\"observations\": [\"Asks about Thursday closing time for the downstairs counter\", \"Verbalizes that everything is fine\", \"Severe shortness of breath\", \"Gasping and audible breathing between short phrases\", \"Whispering and strained voice at end of message\"], \"red_flags\": [\"Severe dyspnea, speaking in short phrases and gasping for air\", \"Marked discrepancy between stated lack of symptoms and audible respiratory distress\"], \"urgency\": \"urgent\"}"
+}

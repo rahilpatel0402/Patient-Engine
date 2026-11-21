@@ -1,6 +1,6 @@
 # Listening station results: practice set, written by Argon
 
-Written by `scripts/write-results.ts` on 2026-11-21 19:06 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
+Written by `scripts/write-results.ts` on 2026-11-21 19:11 UTC from the saved runs in `data/dev`. Every number is computed from those files. Counts are used, not percentages, because the sample is small. Every patient is synthetic.
 
 ## Clips
 
@@ -82,6 +82,8 @@ Same clips, same prompts, same grader. Only the clinician model changes. Two row
 |---|---|---|---|---|
 | Gemini 4 Hydrogen (main run) | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
 | Gemini 4 Neon | 0 of 6 | 6 of 6 | 6 of 6 | 0, 0, 0 of 2 |
+| Gemini 4 Argon | 0 of 6 | 5 of 6 | 6 of 6 | 0, 0, 0 of 2 |
+| Gemini 4 Carbon | 0 of 6 | 5 of 6 | 6 of 6 | 0, 0, 0 of 2 |
 
 ## Physician review queue
 

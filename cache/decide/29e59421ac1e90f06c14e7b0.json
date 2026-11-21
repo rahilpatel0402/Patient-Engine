@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Polite and warm tone\",\n    \"Reports feeling fine\",\n    \"Coherent speech\",\n    \"Requesting to reschedule upcoming Tuesday appointment to later in the month due to family visit\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 401,
+ "at": "2026-11-21T19:11:16.784Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9852256526050474,
+   "noul": 0.014774347394952644,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9955656025904062,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.002260897345297772,
+    "soon": 0.002173500064295876,
+    "routine": 0.9955656025904062
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.985686917872845,
+   "noul": 0.014313082127154934,
+   "type": "noul"
+  }
+ }
+}

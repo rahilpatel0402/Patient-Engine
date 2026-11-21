@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "2e4697dc230c17d63d60fb59991833fd71bee55861fbf6ae39707fcc9da2a858",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7560,
+ "at": "2026-11-21T19:10:40.175Z",
+ "value": "{\"observations\": [\"Stated reason for call is to pick up routine paperwork and results from last week\", \"States everything is going fine\", \"Markedly slurred, slow, and dragged speech\", \"Sounds heavily sedated, intoxicated, or neurologically impaired\"], \"red_flags\": [\"Severe dysarthria / slurred speech\", \"Potential acute neurological event (e.g., stroke) or severe intoxication/overdose\", \"Discordance between reassuring verbal content and severely impaired vocal delivery\"], \"urgency\": \"urgent\"}"
+}

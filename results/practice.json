@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-21T19:06:15.582Z",
+  "generated_at": "2026-11-21T19:11:33.910Z",
   "set": "dev",
   "note": "Counts, not percentages. The sample is small. Every patient is synthetic.",
   "setup": {
@@ -701,6 +701,82 @@
           "C": {
             "caught": 0,
             "unclear": 0,
+            "of": 2
+          }
+        }
+      },
+      {
+        "model": "gemini-4-argon",
+        "main": false,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 6
+          },
+          "B": {
+            "caught": 5,
+            "unclear": 0,
+            "of": 6
+          },
+          "C": {
+            "caught": 6,
+            "unclear": 0,
+            "of": 6
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 2
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 2
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 1,
+            "of": 2
+          }
+        }
+      },
+      {
+        "model": "gemini-4-carbon",
+        "main": false,
+        "signs": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 6
+          },
+          "B": {
+            "caught": 5,
+            "unclear": 1,
+            "of": 6
+          },
+          "C": {
+            "caught": 6,
+            "unclear": 0,
+            "of": 6
+          }
+        },
+        "false_alarms": {
+          "A": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 2
+          },
+          "B": {
+            "caught": 0,
+            "unclear": 0,
+            "of": 2
+          },
+          "C": {
+            "caught": 0,
+            "unclear": 1,
             "of": 2
           }
         }

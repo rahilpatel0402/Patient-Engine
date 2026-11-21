@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests to postpone Tuesday appointment to later in the month\",\n    \"Verbalizes feeling fine and tells clinician not to worry\",\n    \"Transcript begins with 'Oh, oh'\",\n    \"Audio shows high probability of groaning or crying out\",\n    \"Moderate probability of long pauses in speech\",\n    \"Low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Audible groaning or crying out\",\n    \"Marked discrepancy between verbal reassurance and vocal signs of distress\",\n    \"Requesting to delay care while sounding acutely unwell\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 466,
+ "at": "2026-11-21T19:11:17.248Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9696720834324765,
+   "noul": 0.9696720834324765,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9898946132159264,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.9898946132159264,
+    "soon": 0.009403099377949267,
+    "routine": 0.0007022874061242348
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9596603183528415,
+   "noul": 0.9596603183528415,
+   "type": "noul"
+  }
+ }
+}

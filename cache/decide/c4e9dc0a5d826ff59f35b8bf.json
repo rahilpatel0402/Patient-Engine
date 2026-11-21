@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Asks administrative question regarding downstairs counter Thursday closing time\",\n    \"Explicitly states everything is totally fine\",\n    \"Voice model indicates likely long pauses (0.74) and shortness of breath (0.67), moderate coughing (0.42), and low probability of sounding well (0.10)\"\n  ],\n  \"red_flags\": [\n    \"Audible shortness of breath and long pauses during speech\",\n    \"Strong mismatch between verbal reassurance and distressed vocal presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds emotionally distressed, frightened, or tearful?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 296,
+ "at": "2026-11-21T19:11:17.542Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9871952636365211,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.9871952636365211,
+    "routine": 0.00113886311283007,
+    "soon": 0.011665873250648785
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.6207638088020009,
+   "noul": 0.37923619119799906,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9752441380615695,
+   "noul": 0.9752441380615695,
+   "type": "noul"
+  }
+ }
+}

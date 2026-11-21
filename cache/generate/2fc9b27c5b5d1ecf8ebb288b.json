@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning. Look, I am totally fine. I just got a slow morning out in the yard and thought I ought to book my regular checkup. Nothing going on with me. Just trying to keep the wife happy. Any day next month works fine.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.48\n- Groaning or crying out: 0.91\n- Coughing: 0.44\n- Tearful or frightened: 0.59\n- Slurred speech: 0.10\n- Long pauses: 0.68\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7151,
+ "at": "2026-11-21T19:10:11.024Z",
+ "value": "{\"observations\": [\"Patient requests a routine checkup for next month\", \"Patient repeatedly insists they are fine and that nothing is wrong\", \"Patient mentions being out in the yard\", \"Audio analysis indicates high likelihood of groaning or crying out\", \"Audio analysis detects long pauses and a tearful or frightened tone\", \"Moderate indicators of shortness of breath and coughing\", \"Very low probability that the patient sounds well\"],\"red_flags\": [\"Audible groaning or crying out indicating severe acute pain or distress\", \"Severe mismatch between verbal denial of symptoms and vocal signs of distress\", \"Signs of fear, long pauses, and possible shortness of breath while doing yard work\"],\"urgency\": \"urgent\"}"
+}

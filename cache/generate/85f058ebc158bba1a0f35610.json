@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "941108de98cdc5a2f456680419e86a673b4c9748659c500822018cee3e7a5237",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5656,
+ "at": "2026-11-21T19:10:52.862Z",
+ "value": "{\"observations\": [\"States everything is totally fine\", \"Calling to inquire about routine paperwork from last month\", \"Audibly breathless and panting throughout the recording\", \"Speaking in short, interrupted phrases with frequent gasps for air\"], \"red_flags\": [\"Severe dyspnea at rest\", \"Inability to speak in full sentences without gasping\", \"Marked incongruence between stated well-being and acute respiratory/emotional distress\"], \"urgency\": \"urgent\"}"
+}

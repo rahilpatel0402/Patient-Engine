@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient reports feeling fine\",\n    \"Currently at a job site\",\n    \"Requesting a routine medication refill to usual pharmacy\",\n    \"Polite and non-urgent demeanor\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 253,
+ "at": "2026-11-21T19:10:44.241Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9855796440881897,
+   "noul": 0.014420355911810293,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9983673152374263,
+   "choice": "routine",
+   "probabilities": {
+    "soon": 0.0008683636626473288,
+    "urgent": 0.0007643210999263007,
+    "routine": 0.9983673152374263
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9818939741682533,
+   "noul": 0.018106025831746746,
+   "type": "noul"
+  }
+ }
+}

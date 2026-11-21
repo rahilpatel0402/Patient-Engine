@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is going really well with me. I'm just calling on my break to update the street address on my chart since we moved across town last month. There's no rush on it at all.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5311,
+ "at": "2026-11-21T19:11:03.594Z",
+ "value": "{\"observations\":[\"Reports doing well overall\",\"Calling for administrative update (street address change after recent move across town) during break\",\"Calm, polite demeanor\",\"Explicitly states no rush\",\"No medical complaints or symptoms reported\"],\"red_flags\":[],\"urgency\":\"routine\"}"
+}

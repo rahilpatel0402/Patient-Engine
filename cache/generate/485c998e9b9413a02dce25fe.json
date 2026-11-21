@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "95afb5db50e08a29fd11657f47cec79735cd73678f02f79ad3538bbc8b0d6ab0",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7627,
+ "at": "2026-11-21T19:10:22.535Z",
+ "value": "{\"observations\": [\"Patient calls to update street address on chart\", \"States everything is going well and there is no rush\", \"Audibly breathless, gasping for air between short phrases\", \"Frequent coughing and throat clearing throughout statement\", \"Voice sounds strained and raspy\"], \"red_flags\": [\"Marked shortness of breath while speaking\", \"Inability to complete full sentences without gasping or coughing\", \"Severe discrepancy between stated well-being and audible respiratory distress\"], \"urgency\": \"urgent\"}"
+}

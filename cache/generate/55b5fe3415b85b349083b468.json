@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "e0e91eb412b30df7e7e80c9a49495206ba357ae609936a071700c2a4168a0a9b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7356,
+ "at": "2026-11-21T19:10:03.872Z",
+ "value": "{\"observations\": [\"Patient requests routine monthly prescription refill to pharmacy on Main Street\", \"Patient states they are 'doing totally fine today' with 'no problems at all'\", \"Audible heavy breathing, gasping, and panting throughout the recording\", \"Unable to speak in full sentences without pausing for breath\"], \"red_flags\": [\"Severe shortness of breath and laboured breathing while speaking\", \"Marked discrepancy between patient's claim of being fine and audible respiratory distress\"], \"urgency\": \"urgent\"}"
+}

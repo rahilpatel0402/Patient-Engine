@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient sounds acutely short of breath\",\n    \"Audible gasping and heavy breathing between short phrases\",\n    \"Tremulous, strained vocal quality\",\n    \"States 'everything is completely fine' despite severe respiratory effort\",\n    \"Requests non-medical paperwork ('kitchen inspection paperwork')\"\n  ],\n  \"red_flags\": [\n    \"Severe shortness of breath / difficulty speaking in full sentences\",\n    \"Marked discrepancy between calm verbal content and acute physical distress\",\n    \"Unusual/coded phrasing ('kitchen inspection') coupled with distress, raising concern for medical emergency or unsafe situation/coercion\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds emotionally distressed, frightened, or tearful?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 292,
+ "at": "2026-11-21T19:11:17.540Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.6604778756835128,
+   "noul": 0.6604778756835128,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9987170634081598,
+   "choice": "urgent",
+   "probabilities": {
+    "urgent": 0.9987170634081598,
+    "routine": 0.00013002315396095013,
+    "soon": 0.001152913437879163
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9753944060295244,
+   "noul": 0.9753944060295244,
+   "type": "noul"
+  }
+ }
+}

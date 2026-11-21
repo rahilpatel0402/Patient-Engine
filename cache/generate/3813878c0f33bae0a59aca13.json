@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-argon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. Doing totally fine today. No problems at all. I was just calling to see if I could get my usual monthly refill sent over to the pharmacy on Main Street whenever someone gets a free moment.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7009,
+ "at": "2026-11-21T19:10:03.517Z",
+ "value": "{\"observations\": [\"Patient reports feeling totally fine\", \"No new health problems or symptoms reported\", \"Requesting a routine monthly medication refill to pharmacy on Main Street\", \"Calm and unhurried demeanor\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

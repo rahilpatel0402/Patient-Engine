@@ -1,8 +1,7 @@
 # Read-only showcase of the saved results.
-# It needs no server and no API key: the saved runs and clips are in client/public-static.
+# The site is already built and committed in docs/, so there is nothing to install
+# or build here. Netlify only publishes the folder. No server and no API key.
+# To refresh it after new runs: npm run showcase
 [build]
-  command = "npm run build:static"
-  publish = "dist/static"
-
-[build.environment]
-  NODE_VERSION = "22"
+  publish = "docs"
+  command = "echo 'The showcase is prebuilt in docs/'"

@@ -202,14 +202,15 @@ Model results are cached in `cache/`, so a rerun on the same clips repeats nothi
 
 ## Read-only showcase
 
-The saved runs can be published as a static site with no server and no API key:
+The saved runs are published as a static site with no server and no API key. The built site is committed in `docs/`, so any static host can serve that folder as it is. `netlify.toml` tells Netlify to publish it with no build step.
+
+It shows the patients, their audio, the three notes and the results. Live mode and the noise control are left out, because they need a server and a key. The site uses relative paths, so it works at a domain root or under a sub-path.
+
+To refresh it after new runs:
 
 ```
-npm run export:static    # writes the saved runs and compressed clips to client/public-static
-npm run build:static     # builds the site into dist/static
+npm run showcase    # exports the saved runs and clips, builds the site, and copies it to docs/
 ```
-
-It shows the patients, their audio, the three notes and the results. Live mode and the noise control are left out, because they need a server and a key. The site uses relative paths, so it works at a domain root or under a sub-path. `netlify.toml` builds it on Netlify.
 
 ## Repository map
 

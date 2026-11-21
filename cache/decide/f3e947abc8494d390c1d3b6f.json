@@ -1,0 +1,23 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "d32f7eea122cf11e916ce5d725dd7078cd255acb370df68a9b8a8d1836ff4a22",
+  "questions": {
+   "flac_check": {
+    "type": "noul",
+    "instructions": "Does the speaker groan, moan, wince, or cry out during the recording?"
+   }
+  }
+ },
+ "ms": 2755,
+ "at": "2026-11-21T18:14:06.920Z",
+ "value": {
+  "flac_check": {
+   "confidence": 0.910133756105845,
+   "noul": 0.910133756105845,
+   "type": "noul"
+  }
+ }
+}

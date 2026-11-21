@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <cough>, <throat-clearing>, <sob>, <whimper>, <sigh>, <short pause>, <laugh>. Use them only when the brief for the sign asks for tags.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 20 for the \"exam\" set.\nWho: a construction foreman in his fifties.\nStated reason for the call: a routine check-up booking.\nHidden sign: slurred. The patient's speech is slurred. tts_style should describe heavily slurred speech with mushy consonants and words sliding together. Use no inline tags at all. The words themselves must stay coherent and make complete sense.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6557,
+ "at": "2026-11-21T17:58:51.770Z",
+ "value": "{\"persona\": \"A construction foreman in his fifties calling to book a routine annual check-up.\", \"spoken_text\": \"Hello there, I am just calling from the job site to get my standard yearly appointment on the calendar. Everything is going completely fine with me, I just want to stay up to date on my paperwork whenever you have an opening.\", \"tts_style\": \"Heavily slurred speech with mushy consonants, sluggish articulation, and words sliding loosely together.\", \"voice\": \"Orus\", \"expected_urgency\": \"urgent\"}"
+}

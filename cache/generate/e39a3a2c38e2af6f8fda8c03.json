@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <cough>, <throat-clearing>, <sob>, <whimper>, <sigh>, <short pause>, <laugh>. Use them only when the brief for the sign asks for tags.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 2 for the \"exam\" set.\nWho: a farmer in his sixties.\nStated reason for the call: a prescription refill.\nHidden sign: breathless. The patient is short of breath. tts_style should describe winded, breathless delivery with air running out between phrases. Use several inline tags from: <pant>, <heavy breath>, <breath>, <gasp>.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 8305,
+ "at": "2026-11-21T17:58:33.724Z",
+ "value": "{\n  \"persona\": \"A farmer in his sixties calling the clinic to ask for a routine prescription refill.\",\n  \"spoken_text\": \"Morning there. <breath> Everything is going just fine out here, <heavy breath> nothing to fuss about. I only called <pant> to get my usual refill sent over <gasp> to the pharmacy in town <heavy breath> whenever somebody gets a free minute today.\",\n  \"tts_style\": \"Winded, severely breathless older male voice, strained and running out of air between short phrases.\",\n  \"voice\": \"Charon\",\n  \"expected_urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,60 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You write synthetic patients for a test of clinical AI listening. Every patient is fictional. No real person is described.\n\nEach patient speaks one short opening statement to a clinic. The rules:\n1. The WORDS always minimize. The patient says they are fine and only wants something routine.\n2. The words must never name, describe, or hint at any symptom, illness, body part, medicine type, or feeling unwell. A reader of the bare transcript must find nothing to worry about.\n3. The hidden sign lives ONLY in the voice: in tts_style and in inline tags in angle brackets placed where the sound happens.\n4. Use only these inline tags: <pant>, <heavy breath>, <breath>, <gasp>, <cough>, <throat-clearing>, <sob>, <whimper>, <sigh>, <short pause>, <laugh>. Use them only when the brief for the sign asks for tags.\n5. spoken_text is 30 to 45 words so it lasts 10 to 20 seconds. Natural spoken English, no stage directions outside the angle bracket tags.\n6. expected_urgency is how soon a clinician who heard the voice should act: routine, soon, or urgent. Healthy controls are routine.",
+  "text": "Write patient number 11 for the \"exam\" set.\nWho: a long-haul trucker in his forties.\nStated reason for the call: picking up test results.\nHidden sign: cough. The patient keeps coughing. tts_style should describe a hoarse voice interrupted by coughing. Use several inline tags from: <cough>, <throat-clearing>.",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "persona": {
+     "type": "string",
+     "description": "One sentence: who the patient is and why they are calling."
+    },
+    "spoken_text": {
+     "type": "string",
+     "description": "Exactly what the patient says aloud, 30 to 45 words, first person, with inline TTS tags in angle brackets."
+    },
+    "tts_style": {
+     "type": "string",
+     "description": "Sustained delivery style for the whole turn, under 20 words."
+    },
+    "voice": {
+     "type": "string",
+     "enum": [
+      "Kore",
+      "Puck",
+      "Charon",
+      "Leda",
+      "Orus",
+      "Aoede",
+      "Callirrhoe",
+      "Iapetus",
+      "Umbriel",
+      "Algieba"
+     ]
+    },
+    "expected_urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "persona",
+    "spoken_text",
+    "tts_style",
+    "voice",
+    "expected_urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6378,
+ "at": "2026-11-21T17:58:41.012Z",
+ "value": "{\n  \"persona\": \"A long-haul trucker in his forties calling the clinic to pick up routine paperwork.\",\n  \"spoken_text\": \"Hey there, I am finally back in town for the weekend <cough> and everything is going great. I just wanted to swing by the front desk <throat-clearing> <cough> to grab a printed copy of my paperwork <cough> before I head back out Monday.\",\n  \"tts_style\": \"Speak in a rough, hoarse, gravelly voice repeatedly interrupted by coughing fits.\",\n  \"voice\": \"Orus\",\n  \"expected_urgency\": \"soon\"\n}"
+}

@@ -6,13 +6,24 @@ import type { CaseResult } from "./engine/types.ts";
 import { PORT, hasApiKey } from "./env.ts";
 import { ROOT, readJson } from "./lib/cache.ts";
 import { withKeyRole } from "./lib/gemini.ts";
+import { agreement, blindClipPath, blindDone, blindLabels, blindPlan, saveBlindLabels } from "./station1/blind.ts";
 import { noiseSource, probeWithNoise, runLive, saveRoomNoise } from "./station1/live.ts";
+
+// Sets whose results stay hidden until the physician has finished the blind labels.
+const BLIND_FIRST = ["exam"];
+const locked = (set: string) => BLIND_FIRST.includes(set) && !blindDone(set);
 
 const app = express();
 app.use(express.json({ limit: "1mb" }));
 const audioBody = express.raw({ type: ["audio/*", "video/*", "application/octet-stream"], limit: "40mb" });
 
 const DATA = path.join(ROOT, "data");
+// A locked set's clips are served only through the blind route, under neutral names.
+app.use("/data", (req, res, next) => {
+  const set = req.path.split("/")[1];
+  if (set && locked(set)) return void res.status(403).json({ error: "Finish the blind labels first." });
+  next();
+});
 app.use("/data", express.static(DATA, { maxAge: 0 }));
 
 const fail = (res: express.Response, e: unknown) => {
@@ -41,7 +52,7 @@ app.get("/api/sets", (_req, res) => {
     ? fs.readdirSync(DATA).filter((d) => fs.existsSync(path.join(DATA, d, "patients.json")))
     : [];
   res.json(
-    sets.map((set) => {
+    sets.filter((set) => !locked(set)).map((set) => {
       const file = path.join(DATA, set, "station1.json");
       const ladderFile = path.join(DATA, set, "ladder.json");
       return {
@@ -49,9 +60,31 @@ app.get("/api/sets", (_req, res) => {
         patients: loadSet(set),
         cases: fs.existsSync(file) ? readJson<CaseResult[]>(file) : [],
         ladder: fs.existsSync(ladderFile) ? readJson<unknown>(ladderFile) : null,
+        agreement: blindLabels(set).length ? agreement(set) : null,
       };
     }),
   );
+});
+
+/** Blind labels: the clips to label, under neutral names, with nothing that gives the sign away. */
+app.get("/api/blind/:set", (req, res) => {
+  const set = req.params.set;
+  const done = blindDone(set);
+  res.json({ set, done, clips: blindPlan(set).map((i) => i.key), labels: done ? blindLabels(set) : [] });
+});
+
+app.get("/api/blind/:set/audio/:key", (req, res) => {
+  const file = blindClipPath(req.params.set, req.params.key);
+  if (!file) return void res.status(404).end();
+  res.sendFile(file);
+});
+
+app.post("/api/blind/:set", (req, res) => {
+  try {
+    res.json(saveBlindLabels(req.params.set, (req.body as { labels: Record<string, never> }).labels));
+  } catch (e) {
+    fail(res, e);
+  }
 });
 
 /** Live mode: mic or uploaded recording in, observations and probes out. */

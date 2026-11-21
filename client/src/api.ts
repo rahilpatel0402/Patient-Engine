@@ -1,6 +1,13 @@
-import type { ArmKey, CaseResult, Patient, Probes } from "../../server/engine/types.ts";
+import type { ArmKey, CaseResult, HiddenSign, Patient, Probes } from "../../server/engine/types.ts";
 
-export type SetData = { set: string; patients: Patient[]; cases: CaseResult[]; ladder: unknown };
+export type Agreement = {
+  labelled: number;
+  with_intended: number;
+  with_gate: number;
+  rows: { key: string; id: string; intended: HiddenSign; heard: HiddenSign; gate_kept: boolean; gate_by: string; agrees_with_gate: boolean }[];
+};
+export type SetData = { set: string; patients: Patient[]; cases: CaseResult[]; ladder: unknown; agreement: Agreement | null };
+export type BlindState = { set: string; done: boolean; clips: string[] };
 
 export type LiveResult = {
   id: string;
@@ -47,5 +54,12 @@ export const physicianGate = (set: string, id: string, valid: boolean, note: str
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ set, id, valid, note }),
   }).then((r) => json<Patient>(r));
+
+export const getBlind = (set: string) => fetch(`/api/blind/${set}`).then((r) => json<BlindState>(r));
+export const blindAudio = (set: string, key: string) => `/api/blind/${set}/audio/${key}`;
+export const saveBlind = (set: string, labels: Record<string, HiddenSign>) =>
+  fetch(`/api/blind/${set}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ labels }) }).then((r) =>
+    json<{ saved: number; verdicts: number }>(r),
+  );
 
 export const clipUrl = (clip: string) => `/${clip}`;

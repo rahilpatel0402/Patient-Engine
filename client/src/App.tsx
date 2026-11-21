@@ -14,6 +14,7 @@ import {
   type Probes,
 } from "../../server/engine/types.ts";
 import { CHOSEN_BAR, sensitivity } from "../../server/station1/report.ts";
+import { blindAudio, getBlind, saveBlind, type BlindState } from "./api.ts";
 import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
 const ARMS: ArmKey[] = ["A", "B", "C"];
@@ -27,13 +28,17 @@ const SET_NAME: Record<string, string> = { dev: "Practice set (Argon)", exam: "E
 export function App() {
   const [health, setHealth] = useState<Health | null>(null);
   const [sets, setSets] = useState<SetData[]>([]);
-  const [mode, setMode] = useState<"exam" | "live">("exam");
+  const [mode, setMode] = useState<"exam" | "live" | "blind">("exam");
+  const [blind, setBlind] = useState<BlindState | null>(null);
+  const refreshBlind = () => getBlind("exam").then(setBlind).catch(() => setBlind(null));
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     getHealth().then(setHealth).catch((e: Error) => setError(e.message));
     getSets().then(setSets).catch((e: Error) => setError(e.message));
+    void refreshBlind();
   }, []);
+  const blindPending = Boolean(blind && blind.clips.length && !blind.done);
 
   return (
     <main>
@@ -49,12 +54,24 @@ export function App() {
           <button className={mode === "live" ? "on" : ""} onClick={() => setMode("live")}>
             Live mic
           </button>
+          {blindPending && (
+            <button className={mode === "blind" ? "on" : "attn"} onClick={() => setMode("blind")}>
+              Blind labels
+            </button>
+          )}
         </nav>
       </header>
       <p className="notice">Every exam patient is synthetic. This tests the AI. Nobody receives medical advice.</p>
       {error && <p className="error">Cannot reach the server: {error}</p>}
       {health && !health.hasKey && <p className="error">No Gemini API key is loaded. Live mode will not work.</p>}
-      {mode === "exam" ? <Exam sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} /> : <Live health={health} onNoise={() => getHealth().then(setHealth)} />}
+      {blindPending && mode !== "blind" && (
+        <p className="notice">
+          The exam set is ready, and its results are hidden until you finish the blind labels. Open "Blind labels" first.
+        </p>
+      )}
+      {mode === "blind" && blind ? (
+        <Blind state={blind} onSaved={() => { void refreshBlind(); getSets().then(setSets); setMode("exam"); }} />
+      ) : mode === "exam" ? <Exam sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} /> : <Live health={health} onNoise={() => getHealth().then(setHealth)} />}
     </main>
   );
 }
@@ -84,6 +101,11 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
       )}
       <Scoreboard data={current} />
       <Sensitivity data={current} />
+      {current.agreement && (
+        <p className="agree">
+          Blind physician labels: on {current.agreement.labelled} clips heard with the sign hidden, the physician named the intended sign on {current.agreement.with_intended} and agreed with the automatic gate on {current.agreement.with_gate}.
+        </p>
+      )}
       <div className="workbench">
         <ul className="patients" aria-label="Patients">
           {current.patients.map((p) => {
@@ -555,6 +577,72 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
         <label htmlFor="noise-upload">Room noise recording: {health?.noise ?? "none yet"}</label>
         <input id="noise-upload" type="file" accept="audio/*,video/*" onChange={(e) => uploadNoise(e.target.files?.[0])} />
         {noiseMsg && <span className="muted">{noiseMsg}</span>}
+      </div>
+    </section>
+  );
+}
+
+// ---- blind physician labels -------------------------------------------------------
+
+const BLIND_CHOICES: HiddenSign[] = ["breathless", "groaning", "cough", "distress", "slurred", "none"];
+
+function Blind({ state, onSaved }: { state: BlindState; onSaved: () => void }) {
+  const [labels, setLabels] = useState<Record<string, HiddenSign>>(() => {
+    try {
+      return JSON.parse(localStorage.getItem("blind-" + state.set) ?? "{}") as Record<string, HiddenSign>;
+    } catch {
+      return {};
+    }
+  });
+  const [error, setError] = useState<string | null>(null);
+  const done = state.clips.filter((k) => labels[k]).length;
+
+  function pick(key: string, heard: HiddenSign) {
+    const next = { ...labels, [key]: heard };
+    setLabels(next);
+    try {
+      localStorage.setItem("blind-" + state.set, JSON.stringify(next));
+    } catch {
+      // The labels still live in memory until saved.
+    }
+  }
+
+  async function save() {
+    setError(null);
+    try {
+      await saveBlind(state.set, labels);
+      onSaved();
+    } catch (e) {
+      setError((e as Error).message);
+    }
+  }
+
+  return (
+    <section className="blind">
+      <h2>Blind labels: what do you hear?</h2>
+      <p className="lede">
+        {state.clips.length} exam clips in random order, with the sign hidden. Every speaker says they are fine. Pick the one thing you hear most clearly in the voice, or "Sounds well". Exam results stay hidden until you save.
+      </p>
+      <ol className="blindlist">
+        {state.clips.map((key, i) => (
+          <li key={key} className={labels[key] ? "done" : ""}>
+            <span className="pid">{String(i + 1).padStart(2, "0")}</span>
+            <audio controls preload="none" src={blindAudio(state.set, key)} />
+            <div className="choices" role="radiogroup" aria-label={"Clip " + (i + 1)}>
+              {BLIND_CHOICES.map((c) => (
+                <button key={c} role="radio" aria-checked={labels[key] === c} className={labels[key] === c ? "on" : ""} onClick={() => pick(key, c)}>
+                  {c === "none" ? "Sounds well" : SIGN_LABEL[c]}
+                </button>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+      <div className="controls">
+        <button className="rec" disabled={done < state.clips.length} onClick={save}>
+          Save labels ({done} of {state.clips.length})
+        </button>
+        {error && <span className="error">{error}</span>}
       </div>
     </section>
   );

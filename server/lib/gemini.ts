@@ -1,6 +1,10 @@
 // Thin wrappers over the Gemini Interactions API and Decisions API.
 // Every call goes through a concurrency limit, a retry, and the disk cache.
+import { execFileSync } from "node:child_process";
 import * as fs from "node:fs";
+import * as os from "node:os";
+import * as path from "node:path";
+import ffmpegStatic from "ffmpeg-static";
 import { GoogleGenAI } from "@google/genai";
 import { AsyncLocalStorage } from "node:async_hooks";
 import { keyNames, keyValue, type KeyRole } from "../env.ts";
@@ -115,7 +119,25 @@ const call = <T>(label: string, fn: () => Promise<T>) => {
 
 export type AudioRef = { file: string; mime?: string };
 
+const FLAC_DIR = path.join(os.tmpdir(), "patient-engine-flac");
+
+/**
+ * WAV clips are sent as FLAC. FLAC is lossless, so the model receives exactly
+ * the same samples, in about half the bytes. That matters on a slow connection.
+ */
 function audioBlock(audio: AudioRef) {
+  if (!audio.mime || audio.mime === "audio/wav") {
+    try {
+      fs.mkdirSync(FLAC_DIR, { recursive: true });
+      const flac = path.join(FLAC_DIR, `${fileSha(audio.file).slice(0, 32)}.flac`);
+      if (!fs.existsSync(flac)) {
+        execFileSync(ffmpegStatic as unknown as string, ["-y", "-loglevel", "error", "-i", audio.file, "-c:a", "flac", "-compression_level", "8", flac]);
+      }
+      return { type: "audio", data: fs.readFileSync(flac, { encoding: "base64" }), mime_type: "audio/flac" };
+    } catch {
+      // Fall through and send the WAV as it is.
+    }
+  }
   return {
     type: "audio",
     data: fs.readFileSync(audio.file, { encoding: "base64" }),

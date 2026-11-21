@@ -282,6 +282,11 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
       <h3>{props.title}</h3>
       {props.note && <p className="muted">{props.note}</p>}
       <ProbeBars probes={probes} highlight={props.highlight} baseline={heard && heard.level > 0 ? props.baseline : undefined} />
+      {props.highlight && (
+        <p className="muted">
+          The dashed line is the pass mark: "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have, and it must reach 0.80 for the clip to be used.
+        </p>
+      )}
       <div className="noise">
         <label htmlFor="noise-level">Room noise mixed in: {level}%</label>
         <input

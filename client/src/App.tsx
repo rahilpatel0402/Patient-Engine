@@ -28,7 +28,7 @@ const SET_NAME: Record<string, string> = { dev: "Practice set (Argon)", exam: "E
 export function App() {
   const [health, setHealth] = useState<Health | null>(null);
   const [sets, setSets] = useState<SetData[]>([]);
-  const [mode, setMode] = useState<"exam" | "live" | "blind">("exam");
+  const [mode, setMode] = useState<"exam" | "results" | "live" | "blind">("exam");
   const [blind, setBlind] = useState<BlindState | null>(null);
   const refreshBlind = () => getBlind("exam").then(setBlind).catch(() => setBlind(null));
   const [error, setError] = useState<string | null>(null);
@@ -49,10 +49,13 @@ export function App() {
         </div>
         <nav className="modes" aria-label="Mode">
           <button className={mode === "exam" ? "on" : ""} onClick={() => setMode("exam")}>
-            Exam patients
+            Patients
           </button>
           <button className={mode === "live" ? "on" : ""} onClick={() => setMode("live")}>
             Live mic
+          </button>
+          <button className={mode === "results" ? "on" : ""} onClick={() => setMode("results")}>
+            Results
           </button>
           {blindPending && (
             <button className={mode === "blind" ? "on" : "attn"} onClick={() => setMode("blind")}>
@@ -71,14 +74,19 @@ export function App() {
       )}
       {mode === "blind" && blind ? (
         <Blind state={blind} onSaved={() => { void refreshBlind(); getSets().then(setSets); setMode("exam"); }} />
-      ) : mode === "exam" ? <Exam sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} /> : <Live health={health} onNoise={() => getHealth().then(setHealth)} />}
+      ) : mode === "exam" || mode === "results" ? (
+        <Exam view={mode} sets={sets} hasNoise={Boolean(health?.noise)} reload={() => getSets().then(setSets)} />
+      ) : (
+        <Live health={health} onNoise={() => getHealth().then(setHealth)} />
+      )}
     </main>
   );
 }
 
 // ---- exam patients ---------------------------------------------------------------
 
-function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; reload: () => void }) {
+/** One component for both tabs, so the chosen set and patient survive a switch between them. */
+function Exam({ view, sets, hasNoise, reload }: { view: "exam" | "results"; sets: SetData[]; hasNoise: boolean; reload: () => void }) {
   const ordered = useMemo(() => [...sets].sort((a, b) => (a.set === "exam" ? -1 : b.set === "exam" ? 1 : a.set.localeCompare(b.set))), [sets]);
   const [setName, setSetName] = useState<string | null>(null);
   const [patientId, setPatientId] = useState<string | null>(null);
@@ -99,16 +107,21 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
           ))}
         </div>
       )}
-      <Scoreboard data={current} />
-      <LadderView data={current} />
-      <ComparisonView data={current} />
-      <Sensitivity data={current} />
-      {current.agreement && (
-        <p className="agree">
-          Blind physician labels: on {current.agreement.labelled} clips heard with the sign hidden, the physician named the intended sign on {current.agreement.with_intended} and agreed with the automatic gate on {current.agreement.with_gate}.
-        </p>
+      {view === "results" && (
+        <>
+          <Scoreboard data={current} />
+          <LadderView data={current} />
+          {current.agreement && (
+            <p className="agree">
+              Blind physician labels: on {current.agreement.labelled} clips heard with the sign hidden, the physician named the intended sign on {current.agreement.with_intended} and agreed with the automatic gate on {current.agreement.with_gate}.
+            </p>
+          )}
+          <ComparisonView data={current} />
+          <Sensitivity data={current} />
+          {!current.cases.length && <p className="empty">This set has no results yet.</p>}
+        </>
       )}
-      <div className="workbench">
+      <div className="workbench" hidden={view !== "exam"}>
         <ul className="patients" aria-label="Patients">
           {current.patients.map((p) => {
             const c = current.cases.find((x) => x.patient.id === p.id);

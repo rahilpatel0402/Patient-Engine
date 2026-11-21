@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning there. Everything is going fine out here. Nothing to fuss over at all. I just wanted to check on picking up that standard referral letter whenever the office gets around to typing it. No rush on my account, really.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.56\n- Groaning or crying out: 0.24\n- Coughing: 0.73\n- Tearful or frightened: 0.24\n- Slurred speech: 0.16\n- Long pauses: 0.63\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6339,
+ "at": "2026-11-21T19:07:43.072Z",
+ "value": "{\n  \"observations\": [\n    \"Requests status update on a standard referral letter\",\n    \"Verbalizes that everything is fine and there is no rush\",\n    \"Vocal analysis indicates coughing, long pauses, and likely shortness of breath\",\n    \"Very low probability of sounding well (0.07) despite reassuring words\"\n  ],\n  \"red_flags\": [\n    \"Significant discrepancy between reassuring verbal statements and distressed vocal biomarkers\",\n    \"Audible shortness of breath, coughing, and long pauses suggesting respiratory distress or difficulty speaking in full sentences\",\n    \"Potential minimization of acute symptoms\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "f4d0f874c610cca9a21efe3e1e42b231761b9e0f7a68ded76f014e3002657f36",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 19100,
+ "at": "2026-11-21T19:07:32.462Z",
+ "value": "{\"observations\": [\"Audible loud groans, moans, and cries of pain\", \"Labored breathing and strained, breathless speech\", \"Reads stage directions for vocalizing pain aloud prior to main message\", \"Verbally insists everything is fine despite audible distress\", \"Requests routine work clearance form signed before Monday morning\"], \"red_flags\": [\"Severe audible distress, pain vocalizations, and labored breathing\", \"Stark incongruence between audible acute distress and verbal denial of symptoms\", \"Bizarre speech content (reading acting prompts aloud), raising concern for altered mental status or malingering\"], \"urgency\": \"urgent\"}"
+}

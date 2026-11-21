@@ -1,0 +1,46 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Polite and calm demeanor\",\n    \"Reports feeling fine with no acute symptoms\",\n    \"Inquiring about the status of routine paperwork from last week\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   }
+  }
+ },
+ "ms": 262,
+ "at": "2026-11-21T19:06:54.907Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9844648928063924,
+   "noul": 0.01553510719360766,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9987904860084584,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.0005344520398566335,
+    "soon": 0.0006750619516849524,
+    "routine": 0.9987904860084584
+   },
+   "type": "choice"
+  }
+ }
+}

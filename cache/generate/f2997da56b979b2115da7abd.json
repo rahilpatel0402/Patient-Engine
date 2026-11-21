@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "ca57388a6989acbf2068ceadc5ad5de22aa8688dda0e6fc1a27396b220a24086",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6025,
+ "at": "2026-11-21T19:07:32.479Z",
+ "value": "{\"observations\": [\"Requests a printed copy of paperwork\", \"States everything is going great\", \"In town only for the weekend, leaving Monday\", \"Frequent coughing and throat clearing throughout speech\", \"Hoarse, strained voice\", \"Audible labored breathing and gasping between phrases\", \"Unable to speak a full sentence without interruption\"], \"red_flags\": [\"Severe shortness of breath interfering with speech\", \"Frequent, persistent coughing\", \"Discrepancy between stated well-being and audible respiratory distress\", \"Potential infectious respiratory illness while planning to visit the clinic in person\"], \"urgency\": \"urgent\"}"
+}

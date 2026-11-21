@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-carbon",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "31c9b3fe39f986abcef163ff60a8536700a12de7894ecdadbd755fcb8e19076e",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6574,
+ "at": "2026-11-21T19:08:04.086Z",
+ "value": "{\n  \"observations\": [\n    \"Patient states they are doing great and everything is fine\",\n    \"Requesting routine prescription refill sent to Main Street pharmacy\",\n    \"Calling from workplace (restaurant) prior to dinner shift\",\n    \"Markedly slow, slurred, and labored speech\",\n    \"Heavy, audible sighing and breathiness throughout recording\",\n    \"Presentation sounds severely fatigued, sedated, or intoxicated, contradicting verbal report of feeling fine\"\n  ],\n  \"red_flags\": [\n    \"Acute dysarthria / slurred speech\",\n    \"Apparent altered mental status, heavy sedation, or intoxication\",\n    \"Discordance between stated well-being and impaired vocal presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requesting a routine yearly checkup\",\n    \"States they are completely fine\",\n    \"Audible coughing (0.88)\",\n    \"Long pauses in speech (0.60)\",\n    \"Low probability of sounding well (0.13)\",\n    \"Mildly short of breath (0.31) and groaning (0.26) signals\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal report of feeling fine and vocal presentation (coughing, long pauses, not sounding well)\",\n    \"Prominent coughing (0.88) warranting earlier evaluation than a routine checkup\"\n  ],\n  \"urgency\": \"soon\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is coughing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 246,
+ "at": "2026-11-21T18:19:48.932Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.993984190916239,
+   "choice": "soon",
+   "probabilities": {
+    "urgent": 0.003934277618832376,
+    "routine": 0.0020815314649285585,
+    "soon": 0.993984190916239
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.970463598863607,
+   "noul": 0.970463598863607,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9716351707647377,
+   "noul": 0.9716351707647377,
+   "type": "noul"
+  }
+ }
+}

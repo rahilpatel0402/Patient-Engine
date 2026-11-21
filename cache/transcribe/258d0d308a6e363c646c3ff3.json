@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "be1234a2a31c95b496bbf2bafce9b0793f2a4ddac6592cda91d71f55179dbf29"
+ },
+ "ms": 3056,
+ "at": "2026-11-21T18:17:57.326Z",
+ "value": "Hello, dear. I'm doing just fine today. Nothing to fuss over at all. I only called because I moved to a new apartment last week and I need to give you my updated street address for your records."
+}

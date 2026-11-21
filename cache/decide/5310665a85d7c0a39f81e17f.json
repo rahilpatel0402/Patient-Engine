@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests routine yearly visit for next month\",\n    \"States they are fine and everything is great\",\n    \"Voice analysis indicates high probability of shortness of breath\",\n    \"Voice analysis indicates long pauses and coughing\",\n    \"Voice analysis indicates low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Shortness of breath\",\n    \"Long pauses in speech\",\n    \"Discordance between verbal report of feeling fine and vocal presentation\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds short of breath or is having difficulty breathing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 1137,
+ "at": "2026-11-21T18:19:45.071Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9720586011339775,
+   "noul": 0.9720586011339775,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9711824122515058,
+   "noul": 0.9711824122515058,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9917291689677215,
+   "choice": "urgent",
+   "probabilities": {
+    "routine": 0.0002930069957507553,
+    "urgent": 0.9917291689677215,
+    "soon": 0.007977824036527914
+   },
+   "type": "choice"
+  }
+ }
+}

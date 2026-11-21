@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello there. I'm just ringing to put my name down for my yearly checkup. Everything is going great. I'm completely fine. Just trying to stay organized with my calendar. So, let me know whatever Tuesday morning you have open.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.31\n- Groaning or crying out: 0.26\n- Coughing: 0.88\n- Tearful or frightened: 0.13\n- Slurred speech: 0.13\n- Long pauses: 0.60\n- Sounds well: 0.13",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7066,
+ "at": "2026-11-21T18:19:02.027Z",
+ "value": "{\"observations\": [\"Requesting a routine yearly checkup\", \"States they are completely fine\", \"Audible coughing (0.88)\", \"Long pauses in speech (0.60)\", \"Low probability of sounding well (0.13)\", \"Mildly short of breath (0.31) and groaning (0.26) signals\"], \"red_flags\": [\"Marked discrepancy between verbal report of feeling fine and vocal presentation (coughing, long pauses, not sounding well)\", \"Prominent coughing (0.88) warranting earlier evaluation than a routine checkup\"], \"urgency\": \"soon\"}"
+}

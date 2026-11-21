@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "953ea11e110cc53deec7788185a71bf9c1feef9cad5f7c19418951855bfdcc66",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 12719,
+ "at": "2026-11-21T18:19:08.692Z",
+ "value": "{\n  \"observations\": [\n    \"Patient inquiring about picking up a standard referral letter\",\n    \"Minimizes symptoms, stating everything is fine and there is no rush\",\n    \"Audible labored breathing, gasping, and frequent pauses to catch breath\",\n    \"Speaks in short, fragmented phrases due to shortness of breath\"\n  ],\n  \"red_flags\": [\n    \"Marked dyspnea / shortness of breath\",\n    \"Difficulty speaking in full sentences without pausing to breathe\",\n    \"Minimization of potentially severe respiratory distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

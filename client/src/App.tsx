@@ -199,9 +199,9 @@ function Sensitivity({ data }: { data: SetData }) {
   if (!all.generated || !ARMS.some((arm) => all.arms[arm].of === all.generated)) return null;
   return (
     <details className="sens">
-      <summary>Would a different pass mark change the result?</summary>
+      <summary>Would a different pass mark change the result for this whole set?</summary>
       <p className="muted">
-        The pass mark of {CHOSEN_BAR.toFixed(2)} was fixed before any result existed. Every generated clip was run through all three arms, so this table shows what each other bar would have given. It covers the signs gated by the listening model. Signs gated by a physician are not included.
+        The pass mark of {CHOSEN_BAR.toFixed(2)} was fixed before any result existed. Every generated clip was run through all three arms, so this table shows what each other bar would have given. It counts every clip in the set, so it does not change when you select a patient. It covers the signs gated by the listening model. Signs gated by a physician are not included.
       </p>
       <div className="tablewrap">
         <table>
@@ -301,7 +301,7 @@ function GateBox({ patient, reload }: { patient: Patient; reload: () => void }) 
       </div>
     );
   }
-  const takes = patient.gate.attempts === 1 ? "on the first take" : "after two takes";
+  const takes = patient.gate.attempts === 1 ? "on the first take" : `after ${patient.gate.attempts} takes`;
   let text: string;
   if (patient.hidden_sign === "none") {
     text = patient.gate.kept
@@ -311,8 +311,8 @@ function GateBox({ patient, reload }: { patient: Patient; reload: () => void }) 
     const key = SIGN_PROBE[patient.hidden_sign];
     const heard = patient.probes[key].toFixed(2);
     text = patient.gate.kept
-      ? `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard ${heard} ${takes}, so this clip is in the test.`
-      : `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard only ${heard} ${takes}, so this clip is left out of the test. Listen and judge for yourself.`;
+      ? `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard ${heard} ${takes}, so this clip is in the test. It would stay in at any pass mark up to ${heard}.`
+      : `To count as a "${PROBE_LABEL[key]}" patient, the Decisions API must hear that sign in the audio at ${GATE_SIGN_MIN.toFixed(2)} or higher. It heard only ${heard} ${takes}, so this clip is left out of the test. It would be in only if the pass mark were ${heard} or lower. Listen and judge for yourself.`;
   }
   return (
     <div className={`gate ${patient.gate.kept ? "kept" : "out"}`}>

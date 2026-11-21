@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Oh, hi. I'm calling on my break to move my Thursday visit to next week. Everything is fine with me. My work schedule just shifted around. Could we look at Tuesday afternoon instead? Anything after 3:00 would be great.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.49\n- Groaning or crying out: 0.81\n- Coughing: 0.34\n- Tearful or frightened: 0.39\n- Slurred speech: 0.14\n- Long pauses: 0.72\n- Sounds well: 0.23",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5520,
+ "at": "2026-11-21T18:18:17.981Z",
+ "value": "{\n  \"observations\": [\n    \"Requests to reschedule Thursday visit to next Tuesday afternoon\",\n    \"States everything is fine\",\n    \"Voice analysis indicates high probability of groaning or crying out (0.81) and long pauses (0.72)\",\n    \"Voice analysis shows low probability of sounding well (0.23) and moderate shortness of breath (0.49)\"\n  ],\n  \"red_flags\": [\n    \"Discrepancy between verbal report of being fine and vocal signs of distress\",\n    \"High likelihood of groaning or crying out\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

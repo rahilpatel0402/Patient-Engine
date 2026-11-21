@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "9c55751e4cb442ad8b7f88155b874c9588610641a0bb8ae9b117a415c2de2567",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6913,
+ "at": "2026-11-21T18:19:31.609Z",
+ "value": "{\"observations\": [\"Patient states they are doing fine and is calling to check Friday pharmacy closing hours.\", \"Speech is markedly slow, slurred, and breathy/raspy, sounding heavily sedated or fatigued.\"], \"red_flags\": [\"Markedly slurred and slowed speech\", \"Apparent sedation or altered mental status despite claiming to be fine\"], \"urgency\": \"urgent\"}"
+}

@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requests a printed copy of paperwork before leaving town on Monday\",\n    \"States that everything is going great\",\n    \"Frequent coughing throughout the recording\",\n    \"Audible shortness of breath with pauses to catch breath\",\n    \"Hoarse and strained voice\"\n  ],\n  \"red_flags\": [\n    \"Frequent coughing and audible shortness of breath while speaking\",\n    \"Discordance between verbal report of feeling great and apparent respiratory symptoms\"\n  ],\n  \"urgency\": \"soon\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is coughing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 422,
+ "at": "2026-11-21T18:19:49.595Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.9824903057279865,
+   "noul": 0.9824903057279865,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9934200663818293,
+   "choice": "soon",
+   "probabilities": {
+    "routine": 0.0007513317908551083,
+    "urgent": 0.005828601827315679,
+    "soon": 0.9934200663818293
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9667575081768114,
+   "noul": 0.9667575081768114,
+   "type": "noul"
+  }
+ }
+}

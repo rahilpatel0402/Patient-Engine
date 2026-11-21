@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine on my end. I was just calling to check what time the front desk closes on Fridays since my work schedule is shifting and I want to plan my commute around it.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.68\n- Groaning or crying out: 0.14\n- Coughing: 0.96\n- Tearful or frightened: 0.13\n- Slurred speech: 0.14\n- Long pauses: 0.63\n- Sounds well: 0.06",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 7299,
+ "at": "2026-11-21T18:18:55.460Z",
+ "value": "{\"observations\": [\"Patient states everything is fine and asks about Friday front desk hours\", \"Marked coughing detected in voice (0.96)\", \"Shortness of breath (0.68) and long pauses (0.63) detected\", \"Does not sound well (0.06) despite reassuring statement\"], \"red_flags\": [\"Vocal signs of possible respiratory distress (coughing, shortness of breath, long pauses)\", \"Discrepancy between patient's reassuring words and unwell vocal presentation\"], \"urgency\": \"urgent\"}"
+}

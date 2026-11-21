@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient reports feeling totally fine\",\n    \"Calling during a work break\",\n    \"Inquiring about Friday pharmacy closing hours\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 460,
+ "at": "2026-11-21T18:19:51.231Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9974741661279293,
+   "choice": "routine",
+   "probabilities": {
+    "routine": 0.9974741661279293,
+    "urgent": 0.0012206987811482122,
+    "soon": 0.0013051350909225798
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.982599615611711,
+   "noul": 0.017400384388288993,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9860878044448582,
+   "noul": 0.013912195555141775,
+   "type": "noul"
+  }
+ }
+}

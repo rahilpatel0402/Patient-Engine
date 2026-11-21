@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Requesting routine test results from last week for personal records\",\n    \"Reports feeling totally fine\",\n    \"Voice analysis indicates long pauses (0.64) and possible coughing (0.47)\",\n    \"Low probability of sounding well (0.30)\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient has slurred speech (slow or laboured speech alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 314,
+ "at": "2026-11-21T18:19:50.964Z",
+ "value": {
+  "flags_any_sign": {
+   "confidence": 0.8386185123946629,
+   "noul": 0.8386185123946629,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9384691256343353,
+   "noul": 0.06153087436566472,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.948722360857891,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.014228610411738625,
+    "routine": 0.948722360857891,
+    "soon": 0.03704902873037028
+   },
+   "type": "choice"
+  }
+ }
+}

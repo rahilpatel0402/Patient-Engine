@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "8dae08a02b1e62d0a88a9a14d0916f1739b3057b4f8d1f5232113aa614cf974b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 6710,
+ "at": "2026-11-21T18:19:15.499Z",
+ "value": "{\n  \"observations\": [\n    \"Requests signature for a school district form\",\n    \"Audibly crying, sniffling, and speaking with a shaky voice\",\n    \"States everything is completely fine despite clear emotional distress\",\n    \"Apologetic tone, expressing concern about bothering anyone\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal minimization and audible emotional distress\",\n    \"Possible unexpressed acute crisis or emotional distress\"\n  ],\n  \"urgency\": \"soon\"\n}"
+}

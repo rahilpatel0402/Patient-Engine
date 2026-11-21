@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "12d315037edc38a5dffb69e8c4edf3ffbec8f61b5cd70abe80130e0866e9fdc4"
+ },
+ "ms": 7835,
+ "at": "2026-11-21T18:17:48.529Z",
+ "value": "Wow. Oh. Hi there. Everything is completely fine with me today. I am just calling to check on that standard referral letter we discussed last time. Whenever the office gets a chance to send it over to my email, that would be wonderful."
+}

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "b890ef201d574bbcba73ecd67b2fd73f6ea0217546f6ed1c95d3a5b54e9e3f1e"
+ },
+ "ms": 7199,
+ "at": "2026-11-21T18:17:47.666Z",
+ "value": "Morning there. Everything is going just fine out here. Nothing to fuss about. I only called to get my usual refill sent over to the pharmacy in town whenever somebody gets a free minute today."
+}

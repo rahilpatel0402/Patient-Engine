@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is totally fine with me. I just had a quick question. I was wondering what time the dance class starts on Tuesdays? Cuz I practice the song at 6:00.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.40\n- Groaning or crying out: 0.16\n- Coughing: 0.37\n- Tearful or frightened: 0.38\n- Slurred speech: 0.23\n- Long pauses: 0.64\n- Sounds well: 0.45",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3238,
+ "at": "2026-11-21T18:53:58.088Z",
+ "value": "{\"observations\": [\"Asks non-medical question about dance class schedule\", \"States everything is fine\", \"Long pauses noted in speech (0.64)\", \"Moderate probabilities for shortness of breath (0.40) and tearfulness (0.38)\", \"Sounds well probability is 0.45\"], \"red_flags\": [], \"urgency\": \"routine\"}"
+}

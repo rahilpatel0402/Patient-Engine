@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"No verbal statement in transcript\",\n    \"Voice sounds well (0.77)\",\n    \"Moderate probability of long pauses (0.39)\",\n    \"Low probability of acute distress markers\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient is groaning, moaning, or crying out, or may be in physical pain (breathlessness alone does not count)?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 386,
+ "at": "2026-11-21T18:53:55.761Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9917421942039689,
+   "choice": "routine",
+   "probabilities": {
+    "urgent": 0.0027171554879063726,
+    "soon": 0.005540650308124683,
+    "routine": 0.9917421942039689
+   },
+   "type": "choice"
+  },
+  "identifies_sign": {
+   "confidence": 0.9171104429546666,
+   "noul": 0.08288955704533346,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.8712910621383252,
+   "noul": 0.12870893786167484,
+   "type": "noul"
+  }
+ }
+}

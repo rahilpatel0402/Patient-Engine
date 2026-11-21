@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"I'm calling on my break to move my Thursday visit to next week. Everything is fine with me. My work schedule just shifted around. Could we look at Tuesday afternoon instead? Anything after 3:00 would be great.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.61\n- Groaning or crying out: 0.64\n- Coughing: 0.30\n- Tearful or frightened: 0.34\n- Slurred speech: 0.18\n- Long pauses: 0.69\n- Sounds well: 0.22",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4754,
+ "at": "2026-11-21T18:56:03.668Z",
+ "value": "{\n  \"observations\": [\n    \"Requests to reschedule Thursday visit to Tuesday afternoon due to work schedule\",\n    \"States everything is fine\",\n    \"Voice analysis indicates shortness of breath, groaning or crying out, and long pauses\",\n    \"Low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Signs of potential acute distress or pain (shortness of breath, groaning or crying out, long pauses) contradicting verbal statement\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

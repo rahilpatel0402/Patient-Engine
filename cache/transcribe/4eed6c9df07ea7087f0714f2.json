@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "8ee550ce7dd2d2849c7589bb131539a5cb8a590448cf1ff31f84633922191687"
+ },
+ "ms": 1633,
+ "at": "2026-11-21T18:55:55.127Z",
+ "value": "Hi, um everything is totally fine here. I just need to move my checkup from Thursday to sometime next week if that works. Our schedule at home just got a little bit mixed up. So, any morning slot is completely great."
+}

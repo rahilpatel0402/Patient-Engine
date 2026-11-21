@@ -72,6 +72,19 @@ audio { height: 40px; max-width: 100%; }
 .count span { color: var(--muted); }
 .sub { color: var(--muted); font-size: 0.9rem; }
 
+.ladder { background: var(--surface); border: 1px solid var(--line); padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
+.ladder p { max-width: 100ch; }
+.ladder table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+.ladder th, .ladder td { text-align: left; padding: 7px 14px 7px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.ladder th { font-size: 0.85rem; color: var(--muted); }
+.ladder tr.hold td { background: var(--good-soft); font-weight: 700; }
+.ladder tr.break td { background: var(--bad-soft); font-weight: 700; }
+.ladder .tag { margin-left: 10px; white-space: nowrap; }
+.tag.kept { background: var(--good); color: var(--surface); }
+.tag.broke { background: var(--bad); color: var(--surface); }
+.meter { display: inline-block; width: 120px; height: 14px; margin-right: 10px; background: var(--bg); border: 1px solid var(--line); vertical-align: middle; }
+.meter i { display: block; height: 100%; background: var(--accent); }
+.ladderline { font-size: 1.15rem; font-weight: 700; }
 .sens { background: var(--surface); border: 1px solid var(--line); padding: 10px 18px; }
 .sens summary { cursor: pointer; font-weight: 700; }
 .sens p { margin: 8px 0; max-width: 90ch; }

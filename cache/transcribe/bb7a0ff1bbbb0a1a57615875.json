@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "cfba596fd5d312a1ea82c6f0b71f713cb12a37c8039fec50287e5b587868e3fd"
+ },
+ "ms": 7343,
+ "at": "2026-11-21T18:53:39.804Z",
+ "value": "Hi there. Everything is totally fine with me. I just had a quick question. I was wondering what time the dance class starts on Tuesdays? Cuz I practice the song at 6:00."
+}

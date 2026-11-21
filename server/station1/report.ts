@@ -1,5 +1,5 @@
 // Pure summaries of Station 1 results. No Node imports, so the client can use these too.
-import { PHYSICIAN_GATED, SIGN_PROBE, type ArmKey, type CaseResult, type HiddenSign, type Patient } from "../engine/types.ts";
+import { PHYSICIAN_GATED, SIGNS, SIGN_PROBE, type ArmKey, type CaseResult, type HiddenSign, type Patient, type Probes, type Sign } from "../engine/types.ts";
 
 export const ARMS: ArmKey[] = ["A", "B", "C"];
 export const BARS = [0.5, 0.6, 0.7, 0.8, 0.9];
@@ -66,4 +66,100 @@ export function headline(patients: Patient[], cases: CaseResult[]) {
     false_alarms: falseAlarms,
     review: counted.reduce((n, c) => n + c.arms.filter((a) => a.grade.needs_review).length, 0),
   };
+}
+
+// ---- stress ladder ---------------------------------------------------------------
+// The same clips, degraded step by step: phone quality, then room noise recorded
+// at the venue, mixed in at set ratios of voice to noise.
+
+export type LadderRung = { id: string; label: string; kind: "clean" | "phone" | "noise"; snr: number | null };
+
+export type Ladder = {
+  set: string;
+  noise: { seconds: number; level_db: number; uploaded: string } | null;
+  rungs: LadderRung[];
+  /** Probe results for every clip at every degraded rung: rung id, then patient id. */
+  probes: Record<string, Record<string, Probes>>;
+  /** The hardest rung where the probes still hold, and the first rung where they do not. */
+  hold_rung: string;
+  break_rung: string | null;
+  /** All three arms on every clip, at the rungs the rule picked. */
+  arms: Record<string, CaseResult[]>;
+};
+
+/** A sign counts as still heard at a rung while its own probe stays at or above this. */
+export const HEARD_AT = 0.5;
+/** The probes hold at a rung while at least this share of the sign clips are still heard. */
+export const HOLD_SHARE = 0.75;
+
+/** The clips the hold rule is judged on: sign clips in the test whose gate was the probe. */
+const ladderClips = (patients: Patient[]) => patients.filter((p) => p.gate.kept && probeGated(p.hidden_sign));
+
+export type RungStats = { clips: number; heard: number; strong: number; mean: number; holds: boolean };
+
+export function rungStats(patients: Patient[], probes: Record<string, Probes> | undefined): RungStats {
+  const values = ladderClips(patients).map((p) => probes?.[p.id]?.[SIGN_PROBE[p.hidden_sign as Sign]] ?? 0);
+  const heard = values.filter((v) => v >= HEARD_AT).length;
+  return {
+    clips: values.length,
+    heard,
+    strong: values.filter((v) => v >= CHOSEN_BAR).length,
+    mean: values.length ? Number((values.reduce((a, b) => a + b, 0) / values.length).toFixed(2)) : 0,
+    holds: values.length > 0 && heard / values.length >= HOLD_SHARE,
+  };
+}
+
+/**
+ * The rule for picking rungs, written before any exam rung was looked at.
+ * Walk the noise rungs from easiest to hardest. The break rung is the first one
+ * that fails to hold. The hold rung is the one just before it.
+ */
+export function chooseRungs(patients: Patient[], rungs: LadderRung[], probes: Ladder["probes"]): { hold: string; brk: string | null } {
+  let hold = "clean";
+  for (const r of rungs.filter((x) => x.kind === "noise")) {
+    if (!rungStats(patients, probes[r.id]).holds) return { hold, brk: r.id };
+    hold = r.id;
+  }
+  return { hold, brk: null };
+}
+
+/** Healthy controls in the test where noise made any sign probe fire. */
+export function controlAlarms(patients: Patient[], probes: Record<string, Probes> | undefined): { alarms: number; of: number } {
+  const controls = patients.filter((p) => p.gate.kept && p.hidden_sign === "none");
+  const signKeys = SIGNS.map((s) => SIGN_PROBE[s]);
+  return { alarms: controls.filter((p) => signKeys.some((k) => (probes?.[p.id]?.[k] ?? 0) >= HEARD_AT)).length, of: controls.length };
+}
+
+export type LadderRow = RungStats & {
+  rung: LadderRung;
+  role: "hold" | "break" | null;
+  control_alarms: number;
+  controls: number;
+  /** Arm results at this rung, where the arms were run. */
+  arms: { signs: Record<ArmKey, Tally>; false_alarms: Record<ArmKey, Tally> } | null;
+};
+
+/**
+ * One row per rung, for the page and the results file. `cleanCases` is the main
+ * Station 1 run. Every column counts the same clips: the sign clips whose gate
+ * was the probe, and the healthy controls. Physician-gated signs are left out,
+ * because their probe is not their pass mark.
+ */
+export function ladderRows(patients: Patient[], ladder: Ladder, cleanCases: CaseResult[]): LadderRow[] {
+  const cleanProbes = Object.fromEntries(patients.map((p) => [p.id, p.probes]));
+  const scope = patients.filter((p) => p.hidden_sign === "none" || probeGated(p.hidden_sign));
+  return ladder.rungs.map((rung) => {
+    const probes = rung.id === "clean" ? cleanProbes : ladder.probes[rung.id];
+    const cases = rung.id === "clean" ? cleanCases : ladder.arms[rung.id];
+    const alarms = controlAlarms(patients, probes);
+    const h = cases?.length ? headline(scope, cases) : null;
+    return {
+      ...rungStats(patients, probes),
+      rung,
+      role: rung.id === ladder.hold_rung ? "hold" : rung.id === ladder.break_rung ? "break" : null,
+      control_alarms: alarms.alarms,
+      controls: alarms.of,
+      arms: h ? { signs: h.signs, false_alarms: h.false_alarms } : null,
+    };
+  });
 }

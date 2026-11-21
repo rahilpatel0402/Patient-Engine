@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Calling to check if test results from last week are ready\",\n    \"Offering to swing by and pick up the envelope when convenient\",\n    \"Speaking softly/whispering in a loud, crowded environment\",\n    \"Calm and polite tone, no apparent distress\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds short of breath or is having difficulty breathing?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 306,
+ "at": "2026-11-21T18:53:56.881Z",
+ "value": {
+  "urgency": {
+   "confidence": 0.9936263720414362,
+   "choice": "routine",
+   "probabilities": {
+    "routine": 0.9936263720414362,
+    "urgent": 0.0012781923258422293,
+    "soon": 0.005095435632721511
+   },
+   "type": "choice"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9359225949889729,
+   "noul": 0.06407740501102716,
+   "type": "noul"
+  },
+  "identifies_sign": {
+   "confidence": 0.9537995118177697,
+   "noul": 0.04620048818223037,
+   "type": "noul"
+  }
+ }
+}

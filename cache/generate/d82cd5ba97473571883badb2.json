@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is going really well with me. I'm just calling on my break to update the street address on my chart. Since we moved across town last month, there's no rush on it.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.52\n- Groaning or crying out: 0.18\n- Coughing: 0.92\n- Tearful or frightened: 0.18\n- Slurred speech: 0.13\n- Long pauses: 0.69\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4088,
+ "at": "2026-11-21T18:53:10.509Z",
+ "value": "{\"observations\":[\"Calling to update street address and states everything is going well\",\"Voice analysis indicates prominent coughing, long pauses, and possible shortness of breath\",\"Patient does not sound well despite reassuring verbal statement\"],\"red_flags\":[\"Discrepancy between verbal report of feeling well and vocal signs of potential respiratory distress (coughing, long pauses, possible shortness of breath)\"],\"urgency\":\"soon\"}"
+}

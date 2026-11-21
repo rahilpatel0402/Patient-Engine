@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "fd8d323e33c02613f7bb9fb17fc2448e348cb10a6c2f4166a9f9a3ef23867ba3"
+ },
+ "ms": 6747,
+ "at": "2026-11-21T18:53:39.798Z",
+ "value": "Everything is fine, doctor. I just need my medication refill to be sent. Nothing, I just want my"
+}

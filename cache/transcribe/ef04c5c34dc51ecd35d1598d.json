@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "193bc1d8e6b6226dc0dbfc45c34e8f21af5d47bd2a689c6779edd2356711c96a"
+ },
+ "ms": 6062,
+ "at": "2026-11-21T18:53:03.589Z",
+ "value": "I'm just calling to check if the referral letters are ready for pickup yet. Everything is fine on my end. No rush at all. I just wanted to see if I could grab it after school today."
+}

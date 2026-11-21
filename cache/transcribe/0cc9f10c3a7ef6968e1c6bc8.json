@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "726cb6c709cbba9af85430f22733c48af9d9adbf62e28948a415f1a8e21d4534"
+ },
+ "ms": 5880,
+ "at": "2026-11-21T18:53:39.117Z",
+ "value": "Hey there. I'm fine and everything is going great. I just wanted to get a routine checkup."
+}

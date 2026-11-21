@@ -1,4 +1,5 @@
 import type { ArmKey, CaseResult, HiddenSign, Patient, Probes } from "../../server/engine/types.ts";
+import type { Ladder } from "../../server/station1/report.ts";
 
 export type Agreement = {
   labelled: number;
@@ -6,7 +7,7 @@ export type Agreement = {
   with_gate: number;
   rows: { key: string; id: string; intended: HiddenSign; heard: HiddenSign; gate_kept: boolean; gate_by: string; agrees_with_gate: boolean }[];
 };
-export type SetData = { set: string; patients: Patient[]; cases: CaseResult[]; ladder: unknown; agreement: Agreement | null };
+export type SetData = { set: string; patients: Patient[]; cases: CaseResult[]; ladder: Ladder | null; agreement: Agreement | null };
 export type BlindState = { set: string; done: boolean; clips: string[] };
 
 export type LiveResult = {

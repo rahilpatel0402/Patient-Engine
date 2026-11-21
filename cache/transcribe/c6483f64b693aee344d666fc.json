@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "3d2effadc50cc83eeb8132169d95861e60a9335ce1c6127a83fb55b981557618"
+ },
+ "ms": 6027,
+ "at": "2026-11-21T18:53:03.546Z",
+ "value": "Hi there. I'm just calling to see if my routine for last month is ready at the front desk. I can just swing by and pick up the envelope whenever it's convenient."
+}

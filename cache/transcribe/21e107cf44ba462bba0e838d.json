@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "250ed8151218c40d3e800e0ba1630ee23b3e882d2118c71c10a963fada816e3a"
+ },
+ "ms": 1617,
+ "at": "2026-11-21T18:55:56.105Z",
+ "value": "Hi there. I'm doing great today. Just calling from the restaurant for the drink refills. Everything is fine with me. I just need to get my renewal prescription for my blood pressure medication to be sent to the Main Street pharmacy."
+}

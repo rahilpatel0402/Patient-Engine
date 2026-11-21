@@ -1,0 +1,101 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "8587ae9246b7edb9f632632f071c101bae6338d6071bd3fd67c04453b9b3d17f",
+  "questions": {
+   "short_of_breath": {
+    "type": "noul",
+    "instructions": "Does the speaker sound short of breath? Judge only from how the voice sounds, not from the meaning of the words.",
+    "criteria": {
+     "true_description": "Audible panting, gasping, or labored breathing, or running out of air between phrases.",
+     "false_description": "Breathing sounds easy and unremarkable."
+    }
+   },
+   "groaning": {
+    "type": "noul",
+    "instructions": "Does the speaker groan, moan, wince, or cry out during the recording?",
+    "criteria": {
+     "true_description": "There are audible groans, moans, grunts of effort, or sharp cries, as when something hurts.",
+     "false_description": "No groaning or moaning. Panting, gasping for air, coughing, or sobbing alone does not count."
+    }
+   },
+   "coughing": {
+    "type": "noul",
+    "instructions": "Does the speaker cough during the recording?",
+    "criteria": {
+     "true_description": "One or more audible coughs or repeated throat clearing.",
+     "false_description": "No coughing is heard."
+    }
+   },
+   "distressed": {
+    "type": "noul",
+    "instructions": "Does the speaker sound emotionally distressed, frightened, or close to tears? Judge only from how the voice sounds, not from the meaning of the words.",
+    "criteria": {
+     "true_description": "A shaky, trembling, tearful, or frightened voice.",
+     "false_description": "The voice sounds emotionally steady."
+    }
+   },
+   "slurred": {
+    "type": "noul",
+    "instructions": "Is the speaker's speech slurred?",
+    "criteria": {
+     "true_description": "Words are slurred, thick, or run together, as if sedated or impaired.",
+     "false_description": "Words are clearly articulated."
+    }
+   },
+   "long_pauses": {
+    "type": "noul",
+    "instructions": "Does the speaker take unusually long pauses in the middle of sentences?"
+   },
+   "sounds_well": {
+    "type": "noul",
+    "instructions": "Does the speaker sound physically well and comfortable? Judge only from how the voice sounds, not from the meaning of the words.",
+    "criteria": {
+     "true_description": "A relaxed, healthy sounding voice with nothing unusual.",
+     "false_description": "Something in the voice suggests the speaker is unwell or struggling."
+    }
+   }
+  }
+ },
+ "ms": 706,
+ "at": "2026-11-21T18:55:03.822Z",
+ "value": {
+  "groaning": {
+   "confidence": 0.9442115155172065,
+   "noul": 0.055788484482793464,
+   "type": "noul"
+  },
+  "distressed": {
+   "confidence": 0.9562541988392377,
+   "noul": 0.04374580116076231,
+   "type": "noul"
+  },
+  "long_pauses": {
+   "confidence": 0.7495500796034904,
+   "noul": 0.25044992039650965,
+   "type": "noul"
+  },
+  "slurred": {
+   "confidence": 0.9102825644852077,
+   "noul": 0.08971743551479225,
+   "type": "noul"
+  },
+  "coughing": {
+   "confidence": 0.8811973181273243,
+   "noul": 0.11880268187267573,
+   "type": "noul"
+  },
+  "sounds_well": {
+   "confidence": 0.8873024517840479,
+   "noul": 0.8873024517840479,
+   "type": "noul"
+  },
+  "short_of_breath": {
+   "confidence": 0.8954327636218179,
+   "noul": 0.10456723637818209,
+   "type": "noul"
+  }
+ }
+}

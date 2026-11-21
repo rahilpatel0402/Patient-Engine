@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "e72bd46c6997e68de14b0b9ee358682c6531350d99bad293ea98a40246f22e2f"
+ },
+ "ms": 2308,
+ "at": "2026-11-21T18:55:54.140Z",
+ "value": "Hi. Yeah. I am just calling to get my usual prescription renewed. Everything is totally fine on my end. I just realized I'm running low before midterms start. Whenever the doctor can send it to the campus pharmacy. Everything is fine, doctor."
+}

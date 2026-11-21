@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "b2495f94ca72dedd6826142c2896a1448c1f99a6a90dbd93aadf8b8dd438d568"
+ },
+ "ms": 3447,
+ "at": "2026-11-21T18:53:33.512Z",
+ "value": "Hi there. Everything is going really well. I'm just calling to let you know that since we moved across town last month, we're still in our old neighborhood."
+}

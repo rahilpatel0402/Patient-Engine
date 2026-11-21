@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "6c909b75f0ffa2f29f0996cc1f84f3b8abe8d8f3e7d4f080fad6fbd656d43403"
+ },
+ "ms": 2634,
+ "at": "2026-11-21T18:55:54.489Z",
+ "value": "Hey there. I am finally back in town for the weekend and everything is going great. I just wanted to swing by the front desk to grab a printed copy of my paperwork before I head back out Monday."
+}

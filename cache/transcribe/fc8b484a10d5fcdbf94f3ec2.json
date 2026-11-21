@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "9614e9ad74cd93b4882acc34d5a73a6fa67be836ebc4eeac745f50092c9487b1"
+ },
+ "ms": 5538,
+ "at": "2026-11-21T18:53:39.047Z",
+ "value": "Hello there. Just so you know, everything is fine with me. I just got a new dispatch schedule for the next two weeks and I was wondering if we could push my Thursday shift back to next week whenever you have time."
+}

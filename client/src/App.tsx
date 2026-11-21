@@ -13,7 +13,7 @@ import {
   type ProbeKey,
   type Probes,
 } from "../../server/engine/types.ts";
-import { CHOSEN_BAR, sensitivity } from "../../server/station1/report.ts";
+import { CHOSEN_BAR, HEARD_AT, ladderRows, sensitivity } from "../../server/station1/report.ts";
 import { blindAudio, getBlind, saveBlind, type BlindState } from "./api.ts";
 import { clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
 
@@ -100,6 +100,7 @@ function Exam({ sets, hasNoise, reload }: { sets: SetData[]; hasNoise: boolean; 
         </div>
       )}
       <Scoreboard data={current} />
+      <LadderView data={current} />
       <Sensitivity data={current} />
       {current.agreement && (
         <p className="agree">
@@ -188,6 +189,61 @@ function Scoreboard({ data }: { data: SetData }) {
       <p className="sub">
         {data.patients.length} clips generated, {dropped} left out by the gate, {review} graded notes sent to physician review.
       </p>
+    </section>
+  );
+}
+
+/** The stress ladder, shown as the result of the test: how far before the listening broke, and what repaired it. */
+function LadderView({ data }: { data: SetData }) {
+  if (!data.ladder) return null;
+  const rows = ladderRows(data.patients, data.ladder, data.cases);
+  const hold = rows.find((r) => r.role === "hold");
+  return (
+    <section className="ladder" aria-label="Stress ladder">
+      <h2>How far before it broke</h2>
+      <p className="muted">
+        The same clips, degraded step by step: phone quality, then noise recorded in this room, mixed in at set levels. Nothing is recorded again. A sign is still heard while its own probe stays at {HEARD_AT.toFixed(2)} or higher. The three arms were run at the clean rung and at the two rungs a fixed rule picked. Slurred clips are left out of this table, because their probe is not their pass mark.
+      </p>
+      <div className="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rung</th>
+              <th>Signs the Decisions API still hears</th>
+              <th>Healthy controls with a false sign</th>
+              {ARMS.map((arm) => (
+                <th key={arm}>{arm}. {ARM_LABEL[arm]}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.rung.id} className={r.role ?? ""}>
+                <td>
+                  {r.rung.label}
+                  {r.role === "hold" && <span className="tag kept">hardest rung that holds</span>}
+                  {r.role === "break" && <span className="tag broke">breaks here</span>}
+                </td>
+                <td>
+                  <span className="meter" aria-hidden="true">
+                    <i style={{ width: `${r.clips ? (r.heard / r.clips) * 100 : 0}%` }} />
+                  </span>
+                  {r.heard} of {r.clips}
+                </td>
+                <td>{r.control_alarms} of {r.controls}</td>
+                {ARMS.map((arm) => (
+                  <td key={arm}>{r.arms ? `${r.arms.signs[arm].caught} of ${r.arms.signs[arm].of} caught` : ""}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {hold?.arms && (
+        <p className="ladderline">
+          At the hardest rung that still holds, hearing the raw audio caught {hold.arms.signs.B.caught} of {hold.arms.signs.B.of} signs. Reading the transcript with the probe results added caught {hold.arms.signs.C.caught} of {hold.arms.signs.C.of}.
+        </p>
+      )}
     </section>
   );
 }

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "410574207f1d90fa6e5f58019abd292231ae8cb9d7870bf145c5cee8cb73b7d6"
+ },
+ "ms": 2995,
+ "at": "2026-11-21T18:53:05.337Z",
+ "value": "Everything is fine, doctor. I"
+}

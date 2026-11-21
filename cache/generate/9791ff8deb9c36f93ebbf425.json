@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "f4e534473c819a6e694cb25e89c0cefec5c6427cd79922d4960ed9347d82f834",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5478,
+ "at": "2026-11-21T18:53:25.010Z",
+ "value": "{\"observations\": [\"Patient states everything is fine and asks a logistical question about building hours\", \"Audibly short of breath and panting while speaking\", \"Speaks in a quiet, strained voice with heavy breathing between phrases\", \"Background noise suggests a public or crowded setting\"], \"red_flags\": [\"Audible respiratory distress or shortness of breath while speaking\", \"Potential minimization of symptoms despite apparent physical distress\"], \"urgency\": \"urgent\"}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hey there. I'm fine and everything is going great. I just wanted to get every team check on the calendar. Whenever you have an opening next week, Tuesday or Thursday afternoon, let's meet.\"",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3517,
+ "at": "2026-11-21T18:53:24.528Z",
+ "value": "{\"observations\":[\"Patient states they are fine and everything is going great\",\"Requesting a routine check-up (transcribed as 'every team check')\",\"Asking to schedule for next week, Tuesday or Thursday afternoon\",\"Calm and casual tone\"],\"red_flags\":[],\"urgency\":\"routine\"}"
+}

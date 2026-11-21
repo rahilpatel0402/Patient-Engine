@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "11b4f59f72bff53c2a6ad64d9dfc0d6b3f00dfd6b5578db0c79156da73267788"
+ },
+ "ms": 1919,
+ "at": "2026-11-21T18:55:57.046Z",
+ "value": "Hi there. I'm just calling between clients to see if my blood test results from last week are ready yet. Everything's pretty fine on my end. I just wanted to have a copy for my records. Everything is fine, Dr."
+}

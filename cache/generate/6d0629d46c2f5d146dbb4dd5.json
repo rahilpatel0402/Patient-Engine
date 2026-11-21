@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "8de7c336df9cc619c7ff8c9c44b896dad02574abe5970f63d879872544969944",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4824,
+ "at": "2026-11-21T18:56:03.552Z",
+ "value": "{\"observations\": [\"Patient requesting to reschedule Thursday appointment to next week (Tuesday after 3 PM) due to work schedule change\", \"States 'everything is fine with me'\", \"Audibly short of breath, panting, and groaning throughout the call\", \"Labored, broken speech\"], \"red_flags\": [\"Marked shortness of breath and labored breathing while speaking\", \"Audible groaning and signs of physical distress contradicting verbal reassurance\"], \"urgency\": \"urgent\"}"
+}

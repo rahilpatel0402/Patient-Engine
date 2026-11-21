@@ -1,0 +1,3433 @@
+{
+  "set": "dev",
+  "noise": {
+    "seconds": 32.7,
+    "level_db": -17.3,
+    "uploaded": "2026-11-21T18:42:21.182Z"
+  },
+  "rungs": [
+    {
+      "id": "clean",
+      "label": "Clean",
+      "kind": "clean",
+      "snr": null
+    },
+    {
+      "id": "phone",
+      "label": "Phone quality",
+      "kind": "phone",
+      "snr": null
+    },
+    {
+      "id": "snr10",
+      "label": "Room noise, voice 10 dB above it",
+      "kind": "noise",
+      "snr": 10
+    },
+    {
+      "id": "snr5",
+      "label": "Room noise, voice 5 dB above it",
+      "kind": "noise",
+      "snr": 5
+    },
+    {
+      "id": "snr0",
+      "label": "Room noise as loud as the voice",
+      "kind": "noise",
+      "snr": 0
+    },
+    {
+      "id": "snr-5",
+      "label": "Room noise 5 dB above the voice",
+      "kind": "noise",
+      "snr": -5
+    },
+    {
+      "id": "snr-10",
+      "label": "Room noise 10 dB above the voice",
+      "kind": "noise",
+      "snr": -10
+    },
+    {
+      "id": "snr-15",
+      "label": "Room noise 15 dB above the voice",
+      "kind": "noise",
+      "snr": -15
+    }
+  ],
+  "probes": {
+    "phone": {
+      "dev-12-none": {
+        "short_of_breath": 0.076,
+        "groaning": 0.036,
+        "coughing": 0.153,
+        "distressed": 0.063,
+        "slurred": 0.091,
+        "long_pauses": 0.396,
+        "sounds_well": 0.88
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.143,
+        "groaning": 0.035,
+        "coughing": 0.091,
+        "distressed": 0.04,
+        "slurred": 0.047,
+        "long_pauses": 0.281,
+        "sounds_well": 0.908
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.727,
+        "groaning": 0.226,
+        "coughing": 0.598,
+        "distressed": 0.441,
+        "slurred": 0.163,
+        "long_pauses": 0.701,
+        "sounds_well": 0.111
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.47,
+        "groaning": 0.177,
+        "coughing": 0.282,
+        "distressed": 0.25,
+        "slurred": 0.567,
+        "long_pauses": 0.706,
+        "sounds_well": 0.292
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.438,
+        "groaning": 0.172,
+        "coughing": 0.427,
+        "distressed": 0.278,
+        "slurred": 0.331,
+        "long_pauses": 0.768,
+        "sounds_well": 0.143
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.354,
+        "groaning": 0.877,
+        "coughing": 0.473,
+        "distressed": 0.331,
+        "slurred": 0.122,
+        "long_pauses": 0.7,
+        "sounds_well": 0.057
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.313,
+        "groaning": 0.081,
+        "coughing": 0.971,
+        "distressed": 0.084,
+        "slurred": 0.104,
+        "long_pauses": 0.621,
+        "sounds_well": 0.055
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.766,
+        "groaning": 0.203,
+        "coughing": 0.67,
+        "distressed": 0.709,
+        "slurred": 0.152,
+        "long_pauses": 0.656,
+        "sounds_well": 0.07
+      },
+      "dev-01-breathless": {
+        "short_of_breath": 0.936,
+        "groaning": 0.412,
+        "coughing": 0.67,
+        "distressed": 0.634,
+        "slurred": 0.313,
+        "long_pauses": 0.814,
+        "sounds_well": 0.055
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.891,
+        "groaning": 0.278,
+        "coughing": 0.618,
+        "distressed": 0.767,
+        "slurred": 0.224,
+        "long_pauses": 0.713,
+        "sounds_well": 0.048
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.354,
+        "groaning": 0.842,
+        "coughing": 0.223,
+        "distressed": 0.559,
+        "slurred": 0.231,
+        "long_pauses": 0.713,
+        "sounds_well": 0.108
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.488,
+        "groaning": 0.238,
+        "coughing": 0.872,
+        "distressed": 0.17,
+        "slurred": 0.16,
+        "long_pauses": 0.725,
+        "sounds_well": 0.072
+      }
+    },
+    "snr10": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.801,
+        "groaning": 0.239,
+        "coughing": 0.476,
+        "distressed": 0.533,
+        "slurred": 0.295,
+        "long_pauses": 0.736,
+        "sounds_well": 0.134
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.65,
+        "groaning": 0.746,
+        "coughing": 0.493,
+        "distressed": 0.484,
+        "slurred": 0.192,
+        "long_pauses": 0.618,
+        "sounds_well": 0.077
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.728,
+        "groaning": 0.208,
+        "coughing": 0.884,
+        "distressed": 0.206,
+        "slurred": 0.156,
+        "long_pauses": 0.539,
+        "sounds_well": 0.084
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.077,
+        "groaning": 0.057,
+        "coughing": 0.124,
+        "distressed": 0.04,
+        "slurred": 0.047,
+        "long_pauses": 0.227,
+        "sounds_well": 0.894
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.399,
+        "groaning": 0.092,
+        "coughing": 0.96,
+        "distressed": 0.197,
+        "slurred": 0.085,
+        "long_pauses": 0.645,
+        "sounds_well": 0.07
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.944,
+        "groaning": 0.265,
+        "coughing": 0.459,
+        "distressed": 0.751,
+        "slurred": 0.261,
+        "long_pauses": 0.722,
+        "sounds_well": 0.063
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.437,
+        "groaning": 0.831,
+        "coughing": 0.41,
+        "distressed": 0.561,
+        "slurred": 0.208,
+        "long_pauses": 0.626,
+        "sounds_well": 0.137
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.789,
+        "groaning": 0.237,
+        "coughing": 0.655,
+        "distressed": 0.587,
+        "slurred": 0.185,
+        "long_pauses": 0.797,
+        "sounds_well": 0.11
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.331,
+        "groaning": 0.135,
+        "coughing": 0.147,
+        "distressed": 0.241,
+        "slurred": 0.405,
+        "long_pauses": 0.716,
+        "sounds_well": 0.233
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.791,
+        "groaning": 0.232,
+        "coughing": 0.67,
+        "distressed": 0.607,
+        "slurred": 0.154,
+        "long_pauses": 0.658,
+        "sounds_well": 0.132
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.271,
+        "groaning": 0.047,
+        "coughing": 0.267,
+        "distressed": 0.104,
+        "slurred": 0.134,
+        "long_pauses": 0.606,
+        "sounds_well": 0.834
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.248,
+        "groaning": 0.133,
+        "coughing": 0.213,
+        "distressed": 0.148,
+        "slurred": 0.289,
+        "long_pauses": 0.709,
+        "sounds_well": 0.388
+      }
+    },
+    "snr5": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.731,
+        "groaning": 0.206,
+        "coughing": 0.467,
+        "distressed": 0.305,
+        "slurred": 0.243,
+        "long_pauses": 0.714,
+        "sounds_well": 0.176
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.674,
+        "groaning": 0.829,
+        "coughing": 0.481,
+        "distressed": 0.506,
+        "slurred": 0.219,
+        "long_pauses": 0.649,
+        "sounds_well": 0.093
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.564,
+        "groaning": 0.152,
+        "coughing": 0.904,
+        "distressed": 0.201,
+        "slurred": 0.167,
+        "long_pauses": 0.544,
+        "sounds_well": 0.08
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.121,
+        "groaning": 0.064,
+        "coughing": 0.177,
+        "distressed": 0.047,
+        "slurred": 0.079,
+        "long_pauses": 0.244,
+        "sounds_well": 0.895
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.913,
+        "groaning": 0.263,
+        "coughing": 0.515,
+        "distressed": 0.66,
+        "slurred": 0.314,
+        "long_pauses": 0.686,
+        "sounds_well": 0.081
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.433,
+        "groaning": 0.83,
+        "coughing": 0.385,
+        "distressed": 0.674,
+        "slurred": 0.355,
+        "long_pauses": 0.554,
+        "sounds_well": 0.115
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.315,
+        "groaning": 0.102,
+        "coughing": 0.892,
+        "distressed": 0.127,
+        "slurred": 0.112,
+        "long_pauses": 0.596,
+        "sounds_well": 0.066
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.745,
+        "groaning": 0.19,
+        "coughing": 0.532,
+        "distressed": 0.502,
+        "slurred": 0.185,
+        "long_pauses": 0.683,
+        "sounds_well": 0.177
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.507,
+        "groaning": 0.157,
+        "coughing": 0.174,
+        "distressed": 0.168,
+        "slurred": 0.834,
+        "long_pauses": 0.618,
+        "sounds_well": 0.205
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.298,
+        "groaning": 0.16,
+        "coughing": 0.35,
+        "distressed": 0.221,
+        "slurred": 0.533,
+        "long_pauses": 0.683,
+        "sounds_well": 0.297
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.178,
+        "groaning": 0.062,
+        "coughing": 0.205,
+        "distressed": 0.102,
+        "slurred": 0.072,
+        "long_pauses": 0.48,
+        "sounds_well": 0.885
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.858,
+        "groaning": 0.277,
+        "coughing": 0.715,
+        "distressed": 0.672,
+        "slurred": 0.156,
+        "long_pauses": 0.679,
+        "sounds_well": 0.061
+      }
+    },
+    "snr0": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.695,
+        "groaning": 0.274,
+        "coughing": 0.527,
+        "distressed": 0.45,
+        "slurred": 0.287,
+        "long_pauses": 0.807,
+        "sounds_well": 0.15
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.612,
+        "groaning": 0.877,
+        "coughing": 0.56,
+        "distressed": 0.431,
+        "slurred": 0.24,
+        "long_pauses": 0.622,
+        "sounds_well": 0.101
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.709,
+        "groaning": 0.286,
+        "coughing": 0.937,
+        "distressed": 0.256,
+        "slurred": 0.145,
+        "long_pauses": 0.498,
+        "sounds_well": 0.076
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.162,
+        "groaning": 0.079,
+        "coughing": 0.306,
+        "distressed": 0.083,
+        "slurred": 0.171,
+        "long_pauses": 0.424,
+        "sounds_well": 0.834
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.458,
+        "groaning": 0.866,
+        "coughing": 0.533,
+        "distressed": 0.433,
+        "slurred": 0.327,
+        "long_pauses": 0.632,
+        "sounds_well": 0.14
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.875,
+        "groaning": 0.229,
+        "coughing": 0.522,
+        "distressed": 0.367,
+        "slurred": 0.291,
+        "long_pauses": 0.681,
+        "sounds_well": 0.094
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.381,
+        "groaning": 0.086,
+        "coughing": 0.946,
+        "distressed": 0.129,
+        "slurred": 0.088,
+        "long_pauses": 0.742,
+        "sounds_well": 0.069
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.8,
+        "groaning": 0.228,
+        "coughing": 0.741,
+        "distressed": 0.602,
+        "slurred": 0.244,
+        "long_pauses": 0.765,
+        "sounds_well": 0.066
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.781,
+        "groaning": 0.194,
+        "coughing": 0.423,
+        "distressed": 0.602,
+        "slurred": 0.163,
+        "long_pauses": 0.684,
+        "sounds_well": 0.171
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.169,
+        "groaning": 0.133,
+        "coughing": 0.159,
+        "distressed": 0.17,
+        "slurred": 0.42,
+        "long_pauses": 0.546,
+        "sounds_well": 0.264
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.095,
+        "groaning": 0.057,
+        "coughing": 0.121,
+        "distressed": 0.058,
+        "slurred": 0.103,
+        "long_pauses": 0.536,
+        "sounds_well": 0.911
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.271,
+        "groaning": 0.209,
+        "coughing": 0.227,
+        "distressed": 0.224,
+        "slurred": 0.369,
+        "long_pauses": 0.628,
+        "sounds_well": 0.487
+      }
+    },
+    "snr-5": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.621,
+        "groaning": 0.211,
+        "coughing": 0.482,
+        "distressed": 0.301,
+        "slurred": 0.464,
+        "long_pauses": 0.823,
+        "sounds_well": 0.423
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.466,
+        "groaning": 0.625,
+        "coughing": 0.348,
+        "distressed": 0.334,
+        "slurred": 0.308,
+        "long_pauses": 0.684,
+        "sounds_well": 0.288
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.595,
+        "groaning": 0.169,
+        "coughing": 0.912,
+        "distressed": 0.197,
+        "slurred": 0.161,
+        "long_pauses": 0.627,
+        "sounds_well": 0.098
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.163,
+        "groaning": 0.073,
+        "coughing": 0.221,
+        "distressed": 0.096,
+        "slurred": 0.11,
+        "long_pauses": 0.552,
+        "sounds_well": 0.812
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.72,
+        "groaning": 0.218,
+        "coughing": 0.344,
+        "distressed": 0.363,
+        "slurred": 0.351,
+        "long_pauses": 0.769,
+        "sounds_well": 0.248
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.203,
+        "groaning": 0.309,
+        "coughing": 0.296,
+        "distressed": 0.335,
+        "slurred": 0.37,
+        "long_pauses": 0.69,
+        "sounds_well": 0.38
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.515,
+        "groaning": 0.178,
+        "coughing": 0.923,
+        "distressed": 0.178,
+        "slurred": 0.134,
+        "long_pauses": 0.686,
+        "sounds_well": 0.065
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.739,
+        "groaning": 0.279,
+        "coughing": 0.355,
+        "distressed": 0.612,
+        "slurred": 0.337,
+        "long_pauses": 0.714,
+        "sounds_well": 0.126
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.129,
+        "groaning": 0.054,
+        "coughing": 0.145,
+        "distressed": 0.069,
+        "slurred": 0.118,
+        "long_pauses": 0.532,
+        "sounds_well": 0.898
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.22,
+        "groaning": 0.14,
+        "coughing": 0.2,
+        "distressed": 0.145,
+        "slurred": 0.308,
+        "long_pauses": 0.548,
+        "sounds_well": 0.675
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.198,
+        "groaning": 0.099,
+        "coughing": 0.128,
+        "distressed": 0.143,
+        "slurred": 0.428,
+        "long_pauses": 0.609,
+        "sounds_well": 0.516
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.813,
+        "groaning": 0.328,
+        "coughing": 0.563,
+        "distressed": 0.616,
+        "slurred": 0.234,
+        "long_pauses": 0.745,
+        "sounds_well": 0.112
+      }
+    },
+    "snr-10": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.276,
+        "groaning": 0.135,
+        "coughing": 0.204,
+        "distressed": 0.146,
+        "slurred": 0.302,
+        "long_pauses": 0.617,
+        "sounds_well": 0.701
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.19,
+        "groaning": 0.167,
+        "coughing": 0.19,
+        "distressed": 0.164,
+        "slurred": 0.241,
+        "long_pauses": 0.39,
+        "sounds_well": 0.765
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.215,
+        "groaning": 0.149,
+        "coughing": 0.314,
+        "distressed": 0.183,
+        "slurred": 0.209,
+        "long_pauses": 0.756,
+        "sounds_well": 0.649
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.177,
+        "groaning": 0.144,
+        "coughing": 0.224,
+        "distressed": 0.151,
+        "slurred": 0.207,
+        "long_pauses": 0.406,
+        "sounds_well": 0.762
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.202,
+        "groaning": 0.177,
+        "coughing": 0.193,
+        "distressed": 0.211,
+        "slurred": 0.278,
+        "long_pauses": 0.479,
+        "sounds_well": 0.691
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.188,
+        "groaning": 0.153,
+        "coughing": 0.159,
+        "distressed": 0.16,
+        "slurred": 0.19,
+        "long_pauses": 0.307,
+        "sounds_well": 0.78
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.247,
+        "groaning": 0.096,
+        "coughing": 0.135,
+        "distressed": 0.167,
+        "slurred": 0.181,
+        "long_pauses": 0.61,
+        "sounds_well": 0.648
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.404,
+        "groaning": 0.157,
+        "coughing": 0.374,
+        "distressed": 0.384,
+        "slurred": 0.234,
+        "long_pauses": 0.638,
+        "sounds_well": 0.448
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.355,
+        "groaning": 0.215,
+        "coughing": 0.225,
+        "distressed": 0.322,
+        "slurred": 0.374,
+        "long_pauses": 0.642,
+        "sounds_well": 0.514
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.207,
+        "groaning": 0.114,
+        "coughing": 0.342,
+        "distressed": 0.184,
+        "slurred": 0.182,
+        "long_pauses": 0.607,
+        "sounds_well": 0.764
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.176,
+        "groaning": 0.083,
+        "coughing": 0.181,
+        "distressed": 0.154,
+        "slurred": 0.18,
+        "long_pauses": 0.578,
+        "sounds_well": 0.748
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.256,
+        "groaning": 0.208,
+        "coughing": 0.799,
+        "distressed": 0.246,
+        "slurred": 0.295,
+        "long_pauses": 0.678,
+        "sounds_well": 0.285
+      }
+    },
+    "snr-15": {
+      "dev-01-breathless": {
+        "short_of_breath": 0.207,
+        "groaning": 0.144,
+        "coughing": 0.177,
+        "distressed": 0.146,
+        "slurred": 0.242,
+        "long_pauses": 0.407,
+        "sounds_well": 0.751
+      },
+      "dev-02-breathless": {
+        "short_of_breath": 0.173,
+        "groaning": 0.122,
+        "coughing": 0.172,
+        "distressed": 0.173,
+        "slurred": 0.232,
+        "long_pauses": 0.34,
+        "sounds_well": 0.741
+      },
+      "dev-04-groaning": {
+        "short_of_breath": 0.203,
+        "groaning": 0.164,
+        "coughing": 0.165,
+        "distressed": 0.154,
+        "slurred": 0.235,
+        "long_pauses": 0.369,
+        "sounds_well": 0.786
+      },
+      "dev-05-cough": {
+        "short_of_breath": 0.164,
+        "groaning": 0.147,
+        "coughing": 0.182,
+        "distressed": 0.161,
+        "slurred": 0.192,
+        "long_pauses": 0.37,
+        "sounds_well": 0.716
+      },
+      "dev-03-groaning": {
+        "short_of_breath": 0.173,
+        "groaning": 0.147,
+        "coughing": 0.178,
+        "distressed": 0.225,
+        "slurred": 0.246,
+        "long_pauses": 0.368,
+        "sounds_well": 0.762
+      },
+      "dev-06-cough": {
+        "short_of_breath": 0.184,
+        "groaning": 0.143,
+        "coughing": 0.17,
+        "distressed": 0.18,
+        "slurred": 0.196,
+        "long_pauses": 0.355,
+        "sounds_well": 0.744
+      },
+      "dev-11-none": {
+        "short_of_breath": 0.262,
+        "groaning": 0.153,
+        "coughing": 0.157,
+        "distressed": 0.156,
+        "slurred": 0.281,
+        "long_pauses": 0.326,
+        "sounds_well": 0.718
+      },
+      "dev-12-none": {
+        "short_of_breath": 0.167,
+        "groaning": 0.16,
+        "coughing": 0.162,
+        "distressed": 0.149,
+        "slurred": 0.192,
+        "long_pauses": 0.316,
+        "sounds_well": 0.759
+      },
+      "dev-08-distress": {
+        "short_of_breath": 0.147,
+        "groaning": 0.169,
+        "coughing": 0.159,
+        "distressed": 0.166,
+        "slurred": 0.224,
+        "long_pauses": 0.404,
+        "sounds_well": 0.723
+      },
+      "dev-09-slurred": {
+        "short_of_breath": 0.26,
+        "groaning": 0.12,
+        "coughing": 0.166,
+        "distressed": 0.163,
+        "slurred": 0.195,
+        "long_pauses": 0.669,
+        "sounds_well": 0.748
+      },
+      "dev-07-distress": {
+        "short_of_breath": 0.176,
+        "groaning": 0.117,
+        "coughing": 0.123,
+        "distressed": 0.131,
+        "slurred": 0.167,
+        "long_pauses": 0.415,
+        "sounds_well": 0.751
+      },
+      "dev-10-slurred": {
+        "short_of_breath": 0.146,
+        "groaning": 0.128,
+        "coughing": 0.138,
+        "distressed": 0.141,
+        "slurred": 0.195,
+        "long_pauses": 0.267,
+        "sounds_well": 0.822
+      }
+    }
+  },
+  "hold_rung": "snr-5",
+  "break_rung": "snr-10",
+  "arms": {
+    "snr-5": [
+      {
+        "patient": {
+          "persona": "A retired bus driver in his seventies calling to get a routine prescription refill.",
+          "spoken_text": "Hello there, <breath> I'm doing totally fine today, <heavy breath> no problems at all. I was just calling <gasp> to see if I could get my usual monthly refill sent over <pant> to the pharmacy on Main Street <heavy breath> whenever someone gets a free moment.",
+          "tts_style": "Winded and breathless delivery, speaking in short bursts with air running out before each phrase finishes.",
+          "voice": "Charon",
+          "expected_urgency": "urgent",
+          "hidden_sign": "breathless",
+          "id": "dev-01-breathless",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-01-breathless.wav",
+          "seconds": 21.5,
+          "probes": {
+            "short_of_breath": 0.879,
+            "groaning": 0.326,
+            "coughing": 0.621,
+            "distressed": 0.42,
+            "slurred": 0.279,
+            "long_pauses": 0.814,
+            "sounds_well": 0.057
+          },
+          "gate": {
+            "kept": true,
+            "reason": "short_of_breath 0.88",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hello there. Doing totally fine today. I was just coming in to see if I could get my usual monthly refill sent over to the pharmacy on Main Street. Whenever someone gets a free",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Reports feeling fine",
+                "Requesting routine monthly medication refill",
+                "Specifies pharmacy on Main Street"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3083,
+            "grade": {
+              "identifies_sign": 0.015,
+              "flags_any_sign": 0.02,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.985,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Reports feeling totally fine with no problems",
+                "Requesting usual monthly medication refill",
+                "Requests refill sent to pharmacy on Main Street",
+                "Calm, polite, and unhurried demeanor",
+                "Background ambient noise present"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4035,
+            "grade": {
+              "identifies_sign": 0.01,
+              "flags_any_sign": 0.024,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.99,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Patient requests a routine monthly medication refill",
+                "Patient states they are doing totally fine",
+                "Transcript trails off mid-sentence",
+                "Voice analysis indicates high probability of long pauses (0.82) and shortness of breath (0.62)",
+                "Moderate probability of coughing (0.48) and slurred speech (0.46)"
+              ],
+              "red_flags": [
+                "Shortness of breath",
+                "Long pauses in speech",
+                "Possible slurred speech",
+                "Discrepancy between patient's statement of feeling fine and vocal signs of distress"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3553,
+            "grade": {
+              "identifies_sign": 0.961,
+              "flags_any_sign": 0.976,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.961,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A new mother in her thirties calling the clinic to pick up routine test results.",
+          "spoken_text": "Hi there, <breath> everything is totally fine, <pant> I'm just calling to see if my routine paperwork <heavy breath> from last month is ready at the front desk. <gasp> I can just swing by <pant> and pick up the envelope whenever it's convenient.",
+          "tts_style": "Winded, breathless delivery with air running out between phrases, sounding severely short of breath.",
+          "voice": "Leda",
+          "expected_urgency": "urgent",
+          "hidden_sign": "breathless",
+          "id": "dev-02-breathless",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-02-breathless.wav",
+          "seconds": 18.8,
+          "probes": {
+            "short_of_breath": 0.903,
+            "groaning": 0.304,
+            "coughing": 0.694,
+            "distressed": 0.536,
+            "slurred": 0.211,
+            "long_pauses": 0.673,
+            "sounds_well": 0.076
+          },
+          "gate": {
+            "kept": true,
+            "reason": "short_of_breath 0.90",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hi there. I'm just calling to see if my routine for last month is ready at the front desk. I can just swing by and pick up the envelope whenever it's convenient.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Calling to check if routine paperwork or results from last month are ready at the front desk",
+                "Willing to pick up the envelope at a convenient time",
+                "No acute symptoms or distress mentioned"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3035,
+            "grade": {
+              "identifies_sign": 0.017,
+              "flags_any_sign": 0.021,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.983,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Calling to check if routine test results from last month are ready",
+                "Wants to pick up the envelope at a convenient time",
+                "Speaking softly or whispering with significant background noise"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3653,
+            "grade": {
+              "identifies_sign": 0.084,
+              "flags_any_sign": 0.413,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.916,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Calling to check on routine paperwork or results from last month",
+                "Sounds short of breath",
+                "Speaking with long pauses",
+                "Does not sound well"
+              ],
+              "red_flags": [
+                "Shortness of breath",
+                "Long pauses in speech"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 2782,
+            "grade": {
+              "identifies_sign": 0.981,
+              "flags_any_sign": 0.961,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.981,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A farmer in his sixties calling to schedule an annual check-up while hiding severe physical pain.",
+          "spoken_text": "Morning. Look, I am totally fine, just got a slow morning out in the yard and thought I ought to book my regular check-up. Nothing going on with me, just trying to keep the wife happy. Any day next month works fine.",
+          "tts_style": "Speaking through gritted teeth with low groans, sharp cries of pain, and winces between phrases.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "groaning",
+          "id": "dev-03-groaning",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-03-groaning.wav",
+          "seconds": 20.6,
+          "probes": {
+            "short_of_breath": 0.481,
+            "groaning": 0.906,
+            "coughing": 0.436,
+            "distressed": 0.594,
+            "slurred": 0.102,
+            "long_pauses": 0.675,
+            "sounds_well": 0.069
+          },
+          "gate": {
+            "kept": true,
+            "reason": "groaning 0.91",
+            "attempts": 4,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "No opening statement provided"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3713,
+            "grade": {
+              "identifies_sign": 0.087,
+              "flags_any_sign": 0.134,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.913,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Requesting a regular check-up for next month",
+                "States he feels fine and has no active complaints",
+                "Mentions booking the appointment to keep his wife happy",
+                "Audible groan of discomfort heard during the recording",
+                "Significant background noise present"
+              ],
+              "red_flags": [
+                "Audible expression of pain or discomfort despite verbally denying symptoms"
+              ],
+              "urgency": "routine"
+            },
+            "ms": 5483,
+            "grade": {
+              "identifies_sign": 0.961,
+              "flags_any_sign": 0.955,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.961,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Empty transcript with no verbal statement",
+                "Long pauses in audio",
+                "Groaning or crying out",
+                "Possible shortness of breath",
+                "Low probability of sounding well"
+              ],
+              "red_flags": [
+                "Unable to speak or no verbal response",
+                "Groaning or crying out",
+                "Possible respiratory distress"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 2772,
+            "grade": {
+              "identifies_sign": 0.968,
+              "flags_any_sign": 0.972,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.968,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A grandmother in her eighties who lives alone is calling the clinic to reschedule her routine appointment.",
+          "spoken_text": "Hello dear, I am doing just fine today, don't you worry. I just wanted to see if we could move my Tuesday visit to later in the month. My daughter is coming to town and I would love to spend the afternoon with her.",
+          "tts_style": "Speaking through gritted teeth, interrupted by low groans, winces, and sharp cries of pain between phrases.",
+          "voice": "Aoede",
+          "expected_urgency": "urgent",
+          "hidden_sign": "groaning",
+          "id": "dev-04-groaning",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-04-groaning.wav",
+          "seconds": 21.5,
+          "probes": {
+            "short_of_breath": 0.272,
+            "groaning": 0.852,
+            "coughing": 0.335,
+            "distressed": 0.359,
+            "slurred": 0.202,
+            "long_pauses": 0.626,
+            "sounds_well": 0.108
+          },
+          "gate": {
+            "kept": true,
+            "reason": "groaning 0.85",
+            "attempts": 4,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Everything is",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Incomplete opening statement",
+                "Unable to determine clinical complaint from truncated message"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2990,
+            "grade": {
+              "identifies_sign": 0.164,
+              "flags_any_sign": 0.188,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.836,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Requests to reschedule Tuesday visit to later in the week",
+                "States she is doing fine and wants to spend time with visiting daughter",
+                "Initial groan or sigh at start of recording, otherwise calm and conversational"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4978,
+            "grade": {
+              "identifies_sign": 0.302,
+              "flags_any_sign": 0.578,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.698,
+              "needs_review": true
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Incomplete opening statement",
+                "Long pauses in speech",
+                "Low probability of sounding well"
+              ],
+              "red_flags": [
+                "Incomplete statement with long pauses"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 3676,
+            "grade": {
+              "identifies_sign": 0.112,
+              "flags_any_sign": 0.879,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.888,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A schoolteacher in her fifties calling to ask about the status of a routine referral letter.",
+          "spoken_text": "Hello, I am just calling to check if my referral letter is ready for pickup yet. <cough> <cough> Everything is fine on my end, <throat-clearing> no rush at all, I just wanted to see <cough> if I could grab it after school <throat-clearing> today.",
+          "tts_style": "Speak in a hoarse, scratchy voice, frequently interrupted by dry coughing and throat clearing.",
+          "voice": "Aoede",
+          "expected_urgency": "soon",
+          "hidden_sign": "cough",
+          "id": "dev-05-cough",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-05-cough.wav",
+          "seconds": 21.3,
+          "probes": {
+            "short_of_breath": 0.555,
+            "groaning": 0.222,
+            "coughing": 0.82,
+            "distressed": 0.225,
+            "slurred": 0.189,
+            "long_pauses": 0.646,
+            "sounds_well": 0.076
+          },
+          "gate": {
+            "kept": true,
+            "reason": "coughing 0.82",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "I'm just calling to check if the referral letters are ready for pickup yet. Everything is fine on my end. No rush at all. I just wanted to see if I could grab it after school today.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Calling to check status of referral letters for pickup",
+                "Reports everything is fine",
+                "Explicitly states no rush",
+                "Plans to pick up after school today"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2026,
+            "grade": {
+              "identifies_sign": 0.016,
+              "flags_any_sign": 0.021,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.984,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Calling to check if referral letter is ready for pickup after school",
+                "States everything is fine and there is no rush",
+                "Frequent throat clearing throughout the call",
+                "Background noise present during the call"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 5398,
+            "grade": {
+              "identifies_sign": 0.139,
+              "flags_any_sign": 0.685,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.861,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Calling to check if referral letters are ready for pickup",
+                "States everything is fine and there is no rush",
+                "High probability of coughing",
+                "Moderate probability of long pauses and shortness of breath",
+                "Low probability of sounding well"
+              ],
+              "red_flags": [
+                "Vocal signs of respiratory symptoms (coughing, shortness of breath, long pauses) despite stating everything is fine"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 5038,
+            "grade": {
+              "identifies_sign": 0.947,
+              "flags_any_sign": 0.958,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.947,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A nurse in her forties calling during her break to update the home address on her file.",
+          "spoken_text": "Hi there, <cough> everything is going really well with me. I'm just calling on my break <throat-clearing> to update the street address on my chart <cough> since we moved across town last month. <cough> There is no rush on it at all.",
+          "tts_style": "Hoarse, scratchy voice frequently interrupted by coughing.",
+          "voice": "Leda",
+          "expected_urgency": "soon",
+          "hidden_sign": "cough",
+          "id": "dev-06-cough",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-06-cough.wav",
+          "seconds": 20.4,
+          "probes": {
+            "short_of_breath": 0.364,
+            "groaning": 0.086,
+            "coughing": 0.971,
+            "distressed": 0.124,
+            "slurred": 0.108,
+            "long_pauses": 0.738,
+            "sounds_well": 0.051
+          },
+          "gate": {
+            "kept": true,
+            "reason": "coughing 0.97",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hi there. Everything is going really well with me. I'm just calling on my break to update the street address on my chart. Since we moved across town last month, there's no rush on it.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Reports doing well overall",
+                "Calling for an administrative request to update street address",
+                "States there is no rush"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2477,
+            "grade": {
+              "identifies_sign": 0.013,
+              "flags_any_sign": 0.013,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.987,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Calling to update street address on chart",
+                "States everything is going well and there is no rush",
+                "Frequent coughing and throat clearing throughout the call",
+                "Background noise present"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 5267,
+            "grade": {
+              "identifies_sign": 0.983,
+              "flags_any_sign": 0.978,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.983,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Calling to update street address and states everything is going well",
+                "Voice analysis indicates prominent coughing, long pauses, and possible shortness of breath",
+                "Patient does not sound well despite reassuring verbal statement"
+              ],
+              "red_flags": [
+                "Discrepancy between verbal report of feeling well and vocal signs of potential respiratory distress (coughing, long pauses, possible shortness of breath)"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 4088,
+            "grade": {
+              "identifies_sign": 0.978,
+              "flags_any_sign": 0.976,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.978,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A restaurant owner in her sixties calling to get a routine form signed.",
+          "spoken_text": "Hi there, <sigh> I am sorry to bother you. Everything is completely fine here, <whimper> I just have a basic kitchen inspection paperwork form that needs a quick signature from the office. <short pause> There is no rush at all, <sob> whenever someone has a minute.",
+          "tts_style": "Shaky, trembling voice close to tears, sounding deeply frightened and emotionally overwhelmed while trying to sound normal.",
+          "voice": "Aoede",
+          "expected_urgency": "soon",
+          "hidden_sign": "distress",
+          "id": "dev-07-distress",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-07-distress.wav",
+          "seconds": 22.6,
+          "probes": {
+            "short_of_breath": 0.835,
+            "groaning": 0.297,
+            "coughing": 0.838,
+            "distressed": 0.667,
+            "slurred": 0.181,
+            "long_pauses": 0.79,
+            "sounds_well": 0.069
+          },
+          "gate": {
+            "kept": false,
+            "reason": "distressed only 0.67, needs 0.8",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Everything is fine, doctor. I",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Statement abruptly cuts off mid-sentence"
+              ],
+              "red_flags": [
+                "Abruptly interrupted speech"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3821,
+            "grade": {
+              "identifies_sign": 0.31,
+              "flags_any_sign": 0.937,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.69,
+              "needs_review": true
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Female caller requesting signature for kitchen inspection paperwork",
+                "States everything is completely fine and there is no rush",
+                "Audibly breathless, strained, and pausing frequently",
+                "Background chatter and ambient noise present",
+                "Male voice interrupts at the end stating everything is fine"
+              ],
+              "red_flags": [
+                "Possible coercion or duress with male voice interrupting the call",
+                "Marked shortness of breath or physical distress despite claiming to be fine"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 5716,
+            "grade": {
+              "identifies_sign": 0.5,
+              "flags_any_sign": 0.97,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.5,
+              "needs_review": true
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Patient states 'Everything is fine, doctor. I' with an incomplete sentence",
+                "High probability of shortness of breath (0.81) and long pauses (0.74)",
+                "Moderate-high probability of sounding tearful or frightened (0.62)",
+                "Moderate probability of coughing (0.56)",
+                "Very low probability of sounding well (0.11)"
+              ],
+              "red_flags": [
+                "Significant shortness of breath (0.81)",
+                "Abruptly incomplete speech",
+                "Discrepancy between verbal reassurance and vocal distress"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3598,
+            "grade": {
+              "identifies_sign": 0.963,
+              "flags_any_sign": 0.974,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.963,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A hairdresser in her twenties calling to check the clinic pharmacy hours.",
+          "spoken_text": "Hi there, everything is totally fine with me, <whimper> I just had a quick question about the building. <short pause> I was wondering what time the downstairs counter closes on Thursdays, <sob> because I finish at the salon around six. <sigh> Thank you.",
+          "tts_style": "Shaky, trembling voice close to tears, speaking with fragile and frightened emotional distress.",
+          "voice": "Leda",
+          "expected_urgency": "soon",
+          "hidden_sign": "distress",
+          "id": "dev-08-distress",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-08-distress.wav",
+          "seconds": 20,
+          "probes": {
+            "short_of_breath": 0.666,
+            "groaning": 0.202,
+            "coughing": 0.417,
+            "distressed": 0.368,
+            "slurred": 0.152,
+            "long_pauses": 0.74,
+            "sounds_well": 0.099
+          },
+          "gate": {
+            "kept": false,
+            "reason": "distressed only 0.37, needs 0.8",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hi there. Everything is totally fine with me. I just had a quick question about the building. I was wondering what time the downstairs closes on Fridays because I finish at the salon at 6:00. Thank you.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Asking about building closing hours on Fridays",
+                "Polite and clear presentation"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2178,
+            "grade": {
+              "identifies_sign": 0.011,
+              "flags_any_sign": 0.02,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.989,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient states everything is fine and asks a logistical question about building hours",
+                "Audibly short of breath and panting while speaking",
+                "Speaks in a quiet, strained voice with heavy breathing between phrases",
+                "Background noise suggests a public or crowded setting"
+              ],
+              "red_flags": [
+                "Audible respiratory distress or shortness of breath while speaking",
+                "Potential minimization of symptoms despite apparent physical distress"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 5478,
+            "grade": {
+              "identifies_sign": 0.122,
+              "flags_any_sign": 0.974,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.878,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "States everything is fine and asks a routine question about building closing times",
+                "Voice analysis indicates high probability of shortness of breath (0.74) and long pauses (0.71)",
+                "Voice analysis indicates probable tearfulness or fear (0.61)",
+                "Low probability of sounding well (0.13)",
+                "Marked discrepancy between verbal content and vocal presentation"
+              ],
+              "red_flags": [
+                "Potential respiratory distress (shortness of breath, long pauses)",
+                "Signs of emotional distress or fear",
+                "Patient minimizing or masking symptoms"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3386,
+            "grade": {
+              "identifies_sign": 0.972,
+              "flags_any_sign": 0.977,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.972,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A construction foreman in his fifties calling to ask for a routine prescription refill.",
+          "spoken_text": "Hey there, good morning. Everything is totally fine on my end, I am just out at the job site and realized I need a refill sent over to my usual pharmacy. If you could put that through whenever you get a minute, I would appreciate it.",
+          "tts_style": "Heavily slurred speech with thick, mushy consonants and words sliding together.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "slurred",
+          "id": "dev-09-slurred",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-09-slurred.wav",
+          "seconds": 29,
+          "probes": {
+            "short_of_breath": 0.342,
+            "groaning": 0.129,
+            "coughing": 0.253,
+            "distressed": 0.22,
+            "slurred": 0.601,
+            "long_pauses": 0.758,
+            "sounds_well": 0.327
+          },
+          "gate": {
+            "kept": false,
+            "by": "physician",
+            "auto": {
+              "probe": 0.601,
+              "listener": "clear",
+              "listener_model": "gemini-4-carbon",
+              "decision": "review",
+              "why": "the listeners are not sure or disagree (probe 0.60, second listener: clear)"
+            },
+            "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.60, second listener: clear)",
+            "attempts": 5
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Everything is fine doctor. I just need my medication refill to be sent. Nothing, I just want my",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Reports everything is fine",
+                "Requesting a medication refill",
+                "Statement cuts off mid-sentence"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2082,
+            "grade": {
+              "identifies_sign": 0.096,
+              "flags_any_sign": 0.389,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.904,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient states everything is fine",
+                "Requests medication refill to be sent",
+                "Significant background noise in recording",
+                "Audio cuts off mid-sentence"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3916,
+            "grade": {
+              "identifies_sign": 0.071,
+              "flags_any_sign": 0.181,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.929,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Requests medication refill",
+                "States everything is fine",
+                "Statement cuts off mid-sentence",
+                "Long pauses in speech (0.61)",
+                "Possible slurred speech (0.43)",
+                "Sounds well (0.52), low distress"
+              ],
+              "red_flags": [
+                "Abruptly trails off mid-sentence",
+                "Long pauses and possible slurred speech despite claiming to be fine"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3446,
+            "grade": {
+              "identifies_sign": 0.65,
+              "flags_any_sign": 0.927,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.65,
+              "needs_review": true
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A software engineer in his thirties calling the clinic to pick up routine test results.",
+          "spoken_text": "Hi there, everything is going fine on my end, just checking in to see if my routine paperwork and results from last week are ready for me to come pick up at the front desk whenever you have a minute.",
+          "tts_style": "Heavily slurred speech with mushy consonants, thick tongue, and words sliding together.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "slurred",
+          "id": "dev-10-slurred",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-10-slurred.wav",
+          "seconds": 22,
+          "probes": {
+            "short_of_breath": 0.373,
+            "groaning": 0.18,
+            "coughing": 0.457,
+            "distressed": 0.282,
+            "slurred": 0.516,
+            "long_pauses": 0.671,
+            "sounds_well": 0.199
+          },
+          "gate": {
+            "kept": false,
+            "by": "physician",
+            "auto": {
+              "probe": 0.516,
+              "listener": "clear",
+              "listener_model": "gemini-4-carbon",
+              "decision": "review",
+              "why": "the listeners are not sure or disagree (probe 0.52, second listener: clear)"
+            },
+            "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.52, second listener: clear)",
+            "attempts": 5
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Everything is fine",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Patient states everything is fine",
+                "No specific complaint or symptom reported"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2946,
+            "grade": {
+              "identifies_sign": 0.02,
+              "flags_any_sign": 0.024,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.98,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient reports everything is going fine",
+                "Checking on routine results",
+                "Significant background noise present",
+                "No acute distress noted in voice"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4499,
+            "grade": {
+              "identifies_sign": 0.014,
+              "flags_any_sign": 0.028,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.986,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Patient states 'Everything is fine'",
+                "Sounds generally well (0.68 probability) with no significant respiratory distress or emotional distress",
+                "Moderate probability of long pauses (0.55) and mild slurred speech (0.31)"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3977,
+            "grade": {
+              "identifies_sign": 0.291,
+              "flags_any_sign": 0.555,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.709,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A college student in his twenties calling to schedule a routine annual check-up before classes start.",
+          "spoken_text": "Hey there, I'm fine and everything is going great, I just wanted to get a routine check-up on the calendar before the new semester kicks off. Whenever you have an opening next month on a Tuesday or Thursday afternoon works for me.",
+          "tts_style": "Speak in a calm, relaxed, and even conversational tone with a steady pace.",
+          "voice": "Puck",
+          "expected_urgency": "routine",
+          "hidden_sign": "none",
+          "control_kind": "plain",
+          "id": "dev-11-none",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-11-none.wav",
+          "seconds": 13.4,
+          "probes": {
+            "short_of_breath": 0.076,
+            "groaning": 0.065,
+            "coughing": 0.108,
+            "distressed": 0.061,
+            "slurred": 0.057,
+            "long_pauses": 0.213,
+            "sounds_well": 0.919
+          },
+          "gate": {
+            "kept": true,
+            "reason": "control: every sign probe at or under 0.3",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hey there. I'm fine and everything is going great. I just wanted to get every team check on the calendar. Whenever you have an opening next week, Tuesday or Thursday afternoon, let's meet.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Patient states they are fine and everything is going great",
+                "Requesting a routine check-up (transcribed as 'every team check')",
+                "Asking to schedule for next week, Tuesday or Thursday afternoon",
+                "Calm and casual tone"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3517,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.01,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.99,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient states they are fine and everything is going great",
+                "Requesting a routine checkup for next month",
+                "Prefers Tuesday or Thursday afternoon",
+                "Calm and casual tone, speaking from a noisy environment"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3666,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.026,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.974,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "States they are fine and everything is going great",
+                "Requesting to schedule an appointment next week on Tuesday or Thursday afternoon",
+                "Voice sounds well with moderate long pauses",
+                "No significant shortness of breath, coughing, slurred speech, or distress noted"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2851,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.09,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.91,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A long-haul trucker in his forties calling the clinic to reschedule an upcoming appointment.",
+          "spoken_text": "Hello there. Everything is fine with me, I just got a new dispatch schedule for the next two weeks and I will be out on the road. I need to push my Thursday slot back to next month whenever you have an opening.",
+          "tts_style": "Unhurried, slow, measured delivery with clear, crisp articulation and steady pacing.",
+          "voice": "Orus",
+          "expected_urgency": "routine",
+          "hidden_sign": "none",
+          "control_kind": "slow",
+          "id": "dev-12-none",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-12-none.wav",
+          "seconds": 16.2,
+          "probes": {
+            "short_of_breath": 0.104,
+            "groaning": 0.039,
+            "coughing": 0.114,
+            "distressed": 0.065,
+            "slurred": 0.057,
+            "long_pauses": 0.322,
+            "sounds_well": 0.907
+          },
+          "gate": {
+            "kept": true,
+            "reason": "control: every sign probe at or under 0.3",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-5",
+        "transcript": "Hello there. Everything is fine with me. I just got a new dispatch schedule for the next two weeks and I will be out. I need to push my Thursday slot back to next Monday, whenever you have an opening.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Patient reports feeling fine",
+                "Requesting to reschedule Thursday appointment to next Monday",
+                "Reason given is a new two-week dispatch schedule"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2441,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.025,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.975,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Requesting to reschedule Thursday appointment to next month due to work dispatch schedule",
+                "Calm and conversational tone with background noise"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3012,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.022,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.978,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Requesting to reschedule Thursday appointment to next Monday due to a new dispatch schedule",
+                "Reports everything is fine",
+                "Voice sounds well (0.90) with some long pauses (0.53)"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2969,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.207,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.793,
+              "needs_review": false
+            }
+          }
+        ]
+      }
+    ],
+    "snr-10": [
+      {
+        "patient": {
+          "persona": "A retired bus driver in his seventies calling to get a routine prescription refill.",
+          "spoken_text": "Hello there, <breath> I'm doing totally fine today, <heavy breath> no problems at all. I was just calling <gasp> to see if I could get my usual monthly refill sent over <pant> to the pharmacy on Main Street <heavy breath> whenever someone gets a free moment.",
+          "tts_style": "Winded and breathless delivery, speaking in short bursts with air running out before each phrase finishes.",
+          "voice": "Charon",
+          "expected_urgency": "urgent",
+          "hidden_sign": "breathless",
+          "id": "dev-01-breathless",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-01-breathless.wav",
+          "seconds": 21.5,
+          "probes": {
+            "short_of_breath": 0.879,
+            "groaning": 0.326,
+            "coughing": 0.621,
+            "distressed": 0.42,
+            "slurred": 0.279,
+            "long_pauses": 0.814,
+            "sounds_well": 0.057
+          },
+          "gate": {
+            "kept": true,
+            "reason": "short_of_breath 0.88",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything is",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Incomplete opening statement",
+                "Unable to determine clinical complaint from truncated message"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2990,
+            "grade": {
+              "identifies_sign": 0.104,
+              "flags_any_sign": 0.188,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.896,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient reports feeling totally fine today",
+                "Requesting a usual monthly prescription refill sent to the pharmacy on Main Street",
+                "Calling from a noisy background environment"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3874,
+            "grade": {
+              "identifies_sign": 0.025,
+              "flags_any_sign": 0.039,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.975,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Incomplete opening statement",
+                "Long pauses in speech",
+                "Sounds well overall"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3211,
+            "grade": {
+              "identifies_sign": 0.105,
+              "flags_any_sign": 0.466,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.895,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A new mother in her thirties calling the clinic to pick up routine test results.",
+          "spoken_text": "Hi there, <breath> everything is totally fine, <pant> I'm just calling to see if my routine paperwork <heavy breath> from last month is ready at the front desk. <gasp> I can just swing by <pant> and pick up the envelope whenever it's convenient.",
+          "tts_style": "Winded, breathless delivery with air running out between phrases, sounding severely short of breath.",
+          "voice": "Leda",
+          "expected_urgency": "urgent",
+          "hidden_sign": "breathless",
+          "id": "dev-02-breathless",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-02-breathless.wav",
+          "seconds": 18.8,
+          "probes": {
+            "short_of_breath": 0.903,
+            "groaning": 0.304,
+            "coughing": 0.694,
+            "distressed": 0.536,
+            "slurred": 0.211,
+            "long_pauses": 0.673,
+            "sounds_well": 0.076
+          },
+          "gate": {
+            "kept": true,
+            "reason": "short_of_breath 0.90",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "No opening statement provided"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3713,
+            "grade": {
+              "identifies_sign": 0.048,
+              "flags_any_sign": 0.134,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.952,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Calling to check if test results from last week are ready",
+                "Offering to swing by and pick up the envelope when convenient",
+                "Speaking softly/whispering in a loud, crowded environment",
+                "Calm and polite tone, no apparent distress"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3876,
+            "grade": {
+              "identifies_sign": 0.046,
+              "flags_any_sign": 0.064,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.954,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "No verbal statement provided (empty transcript)",
+                "Long pauses in speech",
+                "Moderate probability of sounding well"
+              ],
+              "red_flags": [
+                "Unable to provide verbal statement"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 3769,
+            "grade": {
+              "identifies_sign": 0.325,
+              "flags_any_sign": 0.751,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.675,
+              "needs_review": true
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A farmer in his sixties calling to schedule an annual check-up while hiding severe physical pain.",
+          "spoken_text": "Morning. Look, I am totally fine, just got a slow morning out in the yard and thought I ought to book my regular check-up. Nothing going on with me, just trying to keep the wife happy. Any day next month works fine.",
+          "tts_style": "Speaking through gritted teeth with low groans, sharp cries of pain, and winces between phrases.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "groaning",
+          "id": "dev-03-groaning",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-03-groaning.wav",
+          "seconds": 20.6,
+          "probes": {
+            "short_of_breath": 0.481,
+            "groaning": 0.906,
+            "coughing": 0.436,
+            "distressed": 0.594,
+            "slurred": 0.102,
+            "long_pauses": 0.675,
+            "sounds_well": 0.069
+          },
+          "gate": {
+            "kept": true,
+            "reason": "groaning 0.91",
+            "attempts": 4,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "No opening statement provided"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3713,
+            "grade": {
+              "identifies_sign": 0.087,
+              "flags_any_sign": 0.134,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.913,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Audio recording contains only indistinct background crowd chatter",
+                "No clear patient speech or opening statement is audible"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4858,
+            "grade": {
+              "identifies_sign": 0.054,
+              "flags_any_sign": 0.117,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.946,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "No verbal statement in transcript",
+                "Voice sounds well (0.77)",
+                "Moderate probability of long pauses (0.39)",
+                "Low probability of acute distress markers"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3202,
+            "grade": {
+              "identifies_sign": 0.083,
+              "flags_any_sign": 0.129,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.917,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A grandmother in her eighties who lives alone is calling the clinic to reschedule her routine appointment.",
+          "spoken_text": "Hello dear, I am doing just fine today, don't you worry. I just wanted to see if we could move my Tuesday visit to later in the month. My daughter is coming to town and I would love to spend the afternoon with her.",
+          "tts_style": "Speaking through gritted teeth, interrupted by low groans, winces, and sharp cries of pain between phrases.",
+          "voice": "Aoede",
+          "expected_urgency": "urgent",
+          "hidden_sign": "groaning",
+          "id": "dev-04-groaning",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-04-groaning.wav",
+          "seconds": 21.5,
+          "probes": {
+            "short_of_breath": 0.272,
+            "groaning": 0.852,
+            "coughing": 0.335,
+            "distressed": 0.359,
+            "slurred": 0.202,
+            "long_pauses": 0.626,
+            "sounds_well": 0.108
+          },
+          "gate": {
+            "kept": true,
+            "reason": "groaning 0.85",
+            "attempts": 4,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything is",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Incomplete opening statement",
+                "Unable to determine clinical complaint from truncated message"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2990,
+            "grade": {
+              "identifies_sign": 0.164,
+              "flags_any_sign": 0.188,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.836,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient speaks very quietly and mumbles",
+                "Repeats 'I don't know what to do'",
+                "Significant background noise in the recording",
+                "Sounds distressed or overwhelmed"
+              ],
+              "red_flags": [
+                "Inability to articulate a clear chief complaint",
+                "Expressions of acute helplessness or confusion"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 5701,
+            "grade": {
+              "identifies_sign": 0.351,
+              "flags_any_sign": 0.962,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.649,
+              "needs_review": true
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Incomplete opening statement ('Everything is')",
+                "Moderate probability of long pauses (0.48)",
+                "Voice generally sounds well (0.69)",
+                "Low probability of respiratory distress, pain, or slurred speech"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3074,
+            "grade": {
+              "identifies_sign": 0.049,
+              "flags_any_sign": 0.288,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.951,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A schoolteacher in her fifties calling to ask about the status of a routine referral letter.",
+          "spoken_text": "Hello, I am just calling to check if my referral letter is ready for pickup yet. <cough> <cough> Everything is fine on my end, <throat-clearing> no rush at all, I just wanted to see <cough> if I could grab it after school <throat-clearing> today.",
+          "tts_style": "Speak in a hoarse, scratchy voice, frequently interrupted by dry coughing and throat clearing.",
+          "voice": "Aoede",
+          "expected_urgency": "soon",
+          "hidden_sign": "cough",
+          "id": "dev-05-cough",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-05-cough.wav",
+          "seconds": 21.3,
+          "probes": {
+            "short_of_breath": 0.555,
+            "groaning": 0.222,
+            "coughing": 0.82,
+            "distressed": 0.225,
+            "slurred": 0.189,
+            "long_pauses": 0.646,
+            "sounds_well": 0.076
+          },
+          "gate": {
+            "kept": true,
+            "reason": "coughing 0.82",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Extremely brief, non-specific opening statement ('Everything')",
+                "No specific symptoms, duration, or chief complaint provided"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3617,
+            "grade": {
+              "identifies_sign": 0.094,
+              "flags_any_sign": 0.134,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.906,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Speaking very softly with significant background noise",
+                "Calling to check on referral letters",
+                "States there is no rush"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4762,
+            "grade": {
+              "identifies_sign": 0.032,
+              "flags_any_sign": 0.285,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.968,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "One-word opening statement ('Everything')",
+                "Long pauses in speech",
+                "Voice generally sounds well"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3445,
+            "grade": {
+              "identifies_sign": 0.12,
+              "flags_any_sign": 0.509,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.88,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A nurse in her forties calling during her break to update the home address on her file.",
+          "spoken_text": "Hi there, <cough> everything is going really well with me. I'm just calling on my break <throat-clearing> to update the street address on my chart <cough> since we moved across town last month. <cough> There is no rush on it at all.",
+          "tts_style": "Hoarse, scratchy voice frequently interrupted by coughing.",
+          "voice": "Leda",
+          "expected_urgency": "soon",
+          "hidden_sign": "cough",
+          "id": "dev-06-cough",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-06-cough.wav",
+          "seconds": 20.4,
+          "probes": {
+            "short_of_breath": 0.364,
+            "groaning": 0.086,
+            "coughing": 0.971,
+            "distressed": 0.124,
+            "slurred": 0.108,
+            "long_pauses": 0.738,
+            "sounds_well": 0.051
+          },
+          "gate": {
+            "kept": true,
+            "reason": "coughing 0.97",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Hi there. Everything is going really well. I'm just calling to let you know that since we moved across town last month, we're still in our old neighborhood.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Patient reports everything is going well",
+                "Calling regarding a move across town last month",
+                "Contradictory statement: states they moved across town yet are still in their old neighborhood"
+              ],
+              "red_flags": [
+                "Possible confusion or disorientation indicated by contradictory statement about location"
+              ],
+              "urgency": "routine"
+            },
+            "ms": 3576,
+            "grade": {
+              "identifies_sign": 0.031,
+              "flags_any_sign": 0.622,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.969,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Calm tone",
+                "Reports everything is fine",
+                "Calling to establish care after moving across town last month",
+                "States there is no rush",
+                "Loud background noise"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4192,
+            "grade": {
+              "identifies_sign": 0.041,
+              "flags_any_sign": 0.031,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.959,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Contradictory statement regarding living situation (moved across town yet still in old neighborhood)",
+                "Reports everything is going well",
+                "Audible coughing (0.80)",
+                "Long pauses in speech (0.68)",
+                "Low probability of sounding well (0.28)"
+              ],
+              "red_flags": [
+                "Possible confusion or disorientation",
+                "Prominent coughing and long pauses despite reporting feeling well"
+              ],
+              "urgency": "soon"
+            },
+            "ms": 3448,
+            "grade": {
+              "identifies_sign": 0.967,
+              "flags_any_sign": 0.965,
+              "status": "caught",
+              "caught": true,
+              "false_alarm": null,
+              "graded_urgency": "soon",
+              "confidence": 0.967,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A restaurant owner in her sixties calling to get a routine form signed.",
+          "spoken_text": "Hi there, <sigh> I am sorry to bother you. Everything is completely fine here, <whimper> I just have a basic kitchen inspection paperwork form that needs a quick signature from the office. <short pause> There is no rush at all, <sob> whenever someone has a minute.",
+          "tts_style": "Shaky, trembling voice close to tears, sounding deeply frightened and emotionally overwhelmed while trying to sound normal.",
+          "voice": "Aoede",
+          "expected_urgency": "soon",
+          "hidden_sign": "distress",
+          "id": "dev-07-distress",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-07-distress.wav",
+          "seconds": 22.6,
+          "probes": {
+            "short_of_breath": 0.835,
+            "groaning": 0.297,
+            "coughing": 0.838,
+            "distressed": 0.667,
+            "slurred": 0.181,
+            "long_pauses": 0.79,
+            "sounds_well": 0.069
+          },
+          "gate": {
+            "kept": false,
+            "reason": "distressed only 0.67, needs 0.8",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything is fine, doctor. I",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Statement abruptly cuts off mid-sentence"
+              ],
+              "red_flags": [
+                "Abruptly interrupted speech"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 3821,
+            "grade": {
+              "identifies_sign": 0.31,
+              "flags_any_sign": 0.937,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.69,
+              "needs_review": true
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient speaking softly in a noisy environment",
+                "Requests signature for basic kitchen inspection paperwork",
+                "States there is no rush",
+                "Second male voice heard at the end stating everything is fine"
+              ],
+              "red_flags": [
+                "Possible coercion or monitoring during the call",
+                "Third party interrupting to state everything is fine"
+              ],
+              "urgency": "urgent"
+            },
+            "ms": 4598,
+            "grade": {
+              "identifies_sign": 0.179,
+              "flags_any_sign": 0.583,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "urgent",
+              "confidence": 0.821,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "States 'Everything is fine, doctor'",
+                "Statement cuts off mid-sentence",
+                "Long pauses in speech",
+                "Generally sounds well"
+              ],
+              "red_flags": [
+                "Incomplete statement",
+                "Long pauses in speech"
+              ],
+              "urgency": "routine"
+            },
+            "ms": 3457,
+            "grade": {
+              "identifies_sign": 0.154,
+              "flags_any_sign": 0.842,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.846,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A hairdresser in her twenties calling to check the clinic pharmacy hours.",
+          "spoken_text": "Hi there, everything is totally fine with me, <whimper> I just had a quick question about the building. <short pause> I was wondering what time the downstairs counter closes on Thursdays, <sob> because I finish at the salon around six. <sigh> Thank you.",
+          "tts_style": "Shaky, trembling voice close to tears, speaking with fragile and frightened emotional distress.",
+          "voice": "Leda",
+          "expected_urgency": "soon",
+          "hidden_sign": "distress",
+          "id": "dev-08-distress",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-08-distress.wav",
+          "seconds": 20,
+          "probes": {
+            "short_of_breath": 0.666,
+            "groaning": 0.202,
+            "coughing": 0.417,
+            "distressed": 0.368,
+            "slurred": 0.152,
+            "long_pauses": 0.74,
+            "sounds_well": 0.099
+          },
+          "gate": {
+            "kept": false,
+            "reason": "distressed only 0.37, needs 0.8",
+            "attempts": 2,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Hi there. Everything is totally fine with me. I just had a quick question. I was wondering what time the dance class starts on Tuesdays? Cuz I practice the song at 6:00.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "States everything is totally fine",
+                "Asking about Tuesday dance class start time",
+                "Mentions practicing the song at 6:00"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2771,
+            "grade": {
+              "identifies_sign": 0.026,
+              "flags_any_sign": 0.023,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.974,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient states everything is fine and asks for dentist closing time",
+                "Reports a toothache",
+                "Speaks softly with significant background noise"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 5219,
+            "grade": {
+              "identifies_sign": 0.074,
+              "flags_any_sign": 0.187,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.926,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Asks non-medical question about dance class schedule",
+                "States everything is fine",
+                "Long pauses noted in speech (0.64)",
+                "Moderate probabilities for shortness of breath (0.40) and tearfulness (0.38)",
+                "Sounds well probability is 0.45"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3238,
+            "grade": {
+              "identifies_sign": 0.319,
+              "flags_any_sign": 0.582,
+              "status": "unclear",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.681,
+              "needs_review": true
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A construction foreman in his fifties calling to ask for a routine prescription refill.",
+          "spoken_text": "Hey there, good morning. Everything is totally fine on my end, I am just out at the job site and realized I need a refill sent over to my usual pharmacy. If you could put that through whenever you get a minute, I would appreciate it.",
+          "tts_style": "Heavily slurred speech with thick, mushy consonants and words sliding together.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "slurred",
+          "id": "dev-09-slurred",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-09-slurred.wav",
+          "seconds": 29,
+          "probes": {
+            "short_of_breath": 0.342,
+            "groaning": 0.129,
+            "coughing": 0.253,
+            "distressed": 0.22,
+            "slurred": 0.601,
+            "long_pauses": 0.758,
+            "sounds_well": 0.327
+          },
+          "gate": {
+            "kept": false,
+            "by": "physician",
+            "auto": {
+              "probe": 0.601,
+              "listener": "clear",
+              "listener_model": "gemini-4-carbon",
+              "decision": "review",
+              "why": "the listeners are not sure or disagree (probe 0.60, second listener: clear)"
+            },
+            "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.60, second listener: clear)",
+            "attempts": 5
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything is fine, doctor. I just need my medication refill to be sent. Nothing, I just want my",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Reports everything is fine",
+                "Requests a medication refill",
+                "Statement cuts off mid-sentence"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2884,
+            "grade": {
+              "identifies_sign": 0.107,
+              "flags_any_sign": 0.374,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.893,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Requests a medication refill",
+                "States everything is fine",
+                "Calm and conversational tone",
+                "Significant background chatter suggesting a public environment",
+                "Audio cuts off mid-sentence"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4292,
+            "grade": {
+              "identifies_sign": 0.026,
+              "flags_any_sign": 0.183,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.974,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Requests medication refill",
+                "States everything is fine",
+                "Statement trails off mid-sentence",
+                "Long pauses noted in speech (0.58)",
+                "Voice sounds well (0.75)"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3221,
+            "grade": {
+              "identifies_sign": 0.093,
+              "flags_any_sign": 0.799,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.907,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A software engineer in his thirties calling the clinic to pick up routine test results.",
+          "spoken_text": "Hi there, everything is going fine on my end, just checking in to see if my routine paperwork and results from last week are ready for me to come pick up at the front desk whenever you have a minute.",
+          "tts_style": "Heavily slurred speech with mushy consonants, thick tongue, and words sliding together.",
+          "voice": "Orus",
+          "expected_urgency": "urgent",
+          "hidden_sign": "slurred",
+          "id": "dev-10-slurred",
+          "set": "dev",
+          "author_model": "gemini-4-argon, voiced by gemini-3.1-flash-tts-preview",
+          "clip": "data/dev/clips/dev-10-slurred.wav",
+          "seconds": 22,
+          "probes": {
+            "short_of_breath": 0.373,
+            "groaning": 0.18,
+            "coughing": 0.457,
+            "distressed": 0.282,
+            "slurred": 0.516,
+            "long_pauses": 0.671,
+            "sounds_well": 0.199
+          },
+          "gate": {
+            "kept": false,
+            "by": "physician",
+            "auto": {
+              "probe": 0.516,
+              "listener": "clear",
+              "listener_model": "gemini-4-carbon",
+              "decision": "review",
+              "why": "the listeners are not sure or disagree (probe 0.52, second listener: clear)"
+            },
+            "reason": "waiting for a physician: the listeners are not sure or disagree (probe 0.52, second listener: clear)",
+            "attempts": 5
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Everything is fine",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Patient states everything is fine",
+                "No specific complaint or symptom reported"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2946,
+            "grade": {
+              "identifies_sign": 0.02,
+              "flags_any_sign": 0.024,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.98,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Loud background noise and chatter",
+                "Patient states 'Everything is fine'",
+                "No specific symptoms or complaints mentioned"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3346,
+            "grade": {
+              "identifies_sign": 0.038,
+              "flags_any_sign": 0.047,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.962,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Voice sounds well",
+                "No significant distress or acute symptoms detected in voice"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3030,
+            "grade": {
+              "identifies_sign": 0.025,
+              "flags_any_sign": 0.017,
+              "status": "missed",
+              "caught": false,
+              "false_alarm": null,
+              "graded_urgency": "routine",
+              "confidence": 0.975,
+              "needs_review": false
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A college student in his twenties calling to schedule a routine annual check-up before classes start.",
+          "spoken_text": "Hey there, I'm fine and everything is going great, I just wanted to get a routine check-up on the calendar before the new semester kicks off. Whenever you have an opening next month on a Tuesday or Thursday afternoon works for me.",
+          "tts_style": "Speak in a calm, relaxed, and even conversational tone with a steady pace.",
+          "voice": "Puck",
+          "expected_urgency": "routine",
+          "hidden_sign": "none",
+          "control_kind": "plain",
+          "id": "dev-11-none",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-11-none.wav",
+          "seconds": 13.4,
+          "probes": {
+            "short_of_breath": 0.076,
+            "groaning": 0.065,
+            "coughing": 0.108,
+            "distressed": 0.061,
+            "slurred": 0.057,
+            "long_pauses": 0.213,
+            "sounds_well": 0.919
+          },
+          "gate": {
+            "kept": true,
+            "reason": "control: every sign probe at or under 0.3",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Hey there. I'm fine and everything is going great. I just wanted to get a routine checkup.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "Reports feeling fine and doing great",
+                "Requesting a routine checkup",
+                "Casual and upbeat tone"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 2267,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.022,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.978,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "Patient reports feeling fine and everything going great",
+                "Requests a routine checkup",
+                "Calm and upbeat tone",
+                "Significant background noise in recording"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3403,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.036,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.964,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "Requests a routine checkup",
+                "Reports feeling fine",
+                "Voice sounds well overall",
+                "Some long pauses noted in speech"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 4126,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.633,
+              "status": "unclear",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.633,
+              "needs_review": true
+            }
+          }
+        ]
+      },
+      {
+        "patient": {
+          "persona": "A long-haul trucker in his forties calling the clinic to reschedule an upcoming appointment.",
+          "spoken_text": "Hello there. Everything is fine with me, I just got a new dispatch schedule for the next two weeks and I will be out on the road. I need to push my Thursday slot back to next month whenever you have an opening.",
+          "tts_style": "Unhurried, slow, measured delivery with clear, crisp articulation and steady pacing.",
+          "voice": "Orus",
+          "expected_urgency": "routine",
+          "hidden_sign": "none",
+          "control_kind": "slow",
+          "id": "dev-12-none",
+          "set": "dev",
+          "author_model": "gemini-4-argon",
+          "clip": "data/dev/clips/dev-12-none.wav",
+          "seconds": 16.2,
+          "probes": {
+            "short_of_breath": 0.104,
+            "groaning": 0.039,
+            "coughing": 0.114,
+            "distressed": 0.065,
+            "slurred": 0.057,
+            "long_pauses": 0.322,
+            "sounds_well": 0.907
+          },
+          "gate": {
+            "kept": true,
+            "reason": "control: every sign probe at or under 0.3",
+            "attempts": 1,
+            "by": "probe"
+          }
+        },
+        "rung": "snr-10",
+        "transcript": "Hello there. Just so you know, everything is fine with me. I just got a new dispatch schedule for the next two weeks and I was wondering if we could push my Thursday shift back to next week whenever you have time.",
+        "arms": [
+          {
+            "arm": "A",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Requesting to reschedule Thursday appointment to next week due to new dispatch schedule",
+                "Calm and polite tone"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3281,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.016,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.984,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "B",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Requesting to reschedule a Thursday appointment to next month due to being out of town for a new dispatch schedule",
+                "Calm, conversational tone",
+                "Background noise consistent with a busy public environment"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3081,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.024,
+              "status": "quiet",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.976,
+              "needs_review": false
+            }
+          },
+          {
+            "arm": "C",
+            "note": {
+              "observations": [
+                "States everything is fine",
+                "Requesting to reschedule Thursday appointment due to new dispatch schedule",
+                "Voice generally sounds well",
+                "Long pauses noted in speech"
+              ],
+              "red_flags": [],
+              "urgency": "routine"
+            },
+            "ms": 3426,
+            "grade": {
+              "identifies_sign": null,
+              "flags_any_sign": 0.63,
+              "status": "unclear",
+              "caught": null,
+              "false_alarm": false,
+              "graded_urgency": "routine",
+              "confidence": 0.63,
+              "needs_review": true
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

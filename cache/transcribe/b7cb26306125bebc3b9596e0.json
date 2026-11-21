@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "da7f67bf3f30575325f7a3d7e8746e44ef34a8f71527a576f3d2c3e85044bc2e"
+ },
+ "ms": 2485,
+ "at": "2026-11-21T18:53:06.030Z",
+ "value": "Hey there. I'm fine and everything is going great. I just wanted to get every team check on the calendar. Whenever you have an opening next week, Tuesday or Thursday afternoon, let's meet."
+}

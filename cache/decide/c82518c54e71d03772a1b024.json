@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient states everything is fine and asks a logistical question about building hours\",\n    \"Audibly short of breath and panting while speaking\",\n    \"Speaks in a quiet, strained voice with heavy breathing between phrases\",\n    \"Background noise suggests a public or crowded setting\"\n  ],\n  \"red_flags\": [\n    \"Audible respiratory distress or shortness of breath while speaking\",\n    \"Potential minimization of symptoms despite apparent physical distress\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds emotionally distressed, frightened, or tearful?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 282,
+ "at": "2026-11-21T18:53:29.412Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.8780767951364026,
+   "noul": 0.12192320486359746,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9742696392633017,
+   "noul": 0.9742696392633017,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9882804599128898,
+   "choice": "urgent",
+   "probabilities": {
+    "soon": 0.011021564036892645,
+    "routine": 0.0006979760502173832,
+    "urgent": 0.9882804599128898
+   },
+   "type": "choice"
+  }
+ }
+}

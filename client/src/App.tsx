@@ -204,7 +204,14 @@ function CaseView({ patient, result, hasNoise, reload }: { patient: Patient; res
         </div>
       )}
 
-      <NoiseBench clip={patient.clip} baseline={patient.probes} highlight={intended} hasNoise={hasNoise} title="What the Decisions API heard in the raw audio" />
+      <NoiseBench
+        clip={patient.clip}
+        baseline={patient.probes}
+        highlight={intended}
+        passMark={patient.gate.by !== "physician"}
+        hasNoise={hasNoise}
+        title="What the Decisions API heard in the raw audio"
+      />
     </section>
   );
 }
@@ -283,7 +290,7 @@ function List({ title, items, none }: { title: string; items: string[]; none?: s
 
 // ---- probes and noise ------------------------------------------------------------
 
-function ProbeBars({ probes, highlight, baseline }: { probes: Probes; highlight?: ProbeKey | null; baseline?: Probes }) {
+function ProbeBars({ probes, highlight, baseline, passMark }: { probes: Probes; highlight?: ProbeKey | null; baseline?: Probes; passMark?: boolean }) {
   return (
     <div className="bars">
       {PROBE_KEYS.map((k) => (
@@ -292,7 +299,7 @@ function ProbeBars({ probes, highlight, baseline }: { probes: Probes; highlight?
           <span className="track">
             {baseline && <i className="ghost" style={{ width: `${baseline[k] * 100}%` }} />}
             <i className="fill" style={{ width: `${probes[k] * 100}%` }} />
-            {k === highlight && <i className="need" style={{ left: `${GATE_SIGN_MIN * 100}%` }} title="The gate needs 0.80 here" />}
+            {k === highlight && passMark && <i className="need" style={{ left: `${GATE_SIGN_MIN * 100}%` }} title="The gate needs 0.80 here" />}
           </span>
           <span className="barvalue">{probes[k].toFixed(2)}</span>
         </div>
@@ -301,7 +308,7 @@ function ProbeBars({ probes, highlight, baseline }: { probes: Probes; highlight?
   );
 }
 
-function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKey | null; hasNoise: boolean; title: string; note?: string }) {
+function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKey | null; passMark?: boolean; hasNoise: boolean; title: string; note?: string }) {
   const [level, setLevel] = useState(0);
   const [heard, setHeard] = useState<{ probes: Probes; clip: string; ms: number; level: number } | null>(null);
   const [busy, setBusy] = useState(false);
@@ -327,10 +334,15 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
     <section className="bench">
       <h3>{props.title}</h3>
       {props.note && <p className="muted">{props.note}</p>}
-      <ProbeBars probes={probes} highlight={props.highlight} baseline={heard && heard.level > 0 ? props.baseline : undefined} />
-      {props.highlight && (
+      <ProbeBars probes={probes} highlight={props.highlight} passMark={props.passMark} baseline={heard && heard.level > 0 ? props.baseline : undefined} />
+      {props.highlight && props.passMark && (
         <p className="muted">
-          The dashed line is the pass mark: "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have, and it must reach 0.80 for the clip to be used.
+          The dashed line is this project's pass mark: "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have, and it must reach 0.80 for the clip to be used.
+        </p>
+      )}
+      {props.highlight && props.passMark === false && (
+        <p className="muted">
+          "{PROBE_LABEL[props.highlight]}" is the sign this patient was written to have. There is no pass mark on this bar, because a physician decides this sign by listening.
         </p>
       )}
       <div className="noise">

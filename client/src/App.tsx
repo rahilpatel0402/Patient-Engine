@@ -95,6 +95,17 @@ export function App() {
 
 // ---- exam patients ---------------------------------------------------------------
 
+/** One line on what each set is for, so nobody mistakes the practice set or the lab for the result. */
+function setNote(data: SetData): string {
+  const n = data.patients.length;
+  if (data.set === "exam") return `${n} patients written by Carbon. Nothing was tuned on these. This set is the result.`;
+  if (data.set === "dev") return `${n} patients written by Argon, run through the same steps as the exam. This set was used to build and tune the test. It is not the result.`;
+  if (data.set === "slurred-lab") {
+    return `${n} hand-picked takes of one fixed sentence, used to work out how slurred speech should be gated. They are kept as evidence for that decision and are not counted in the practice or exam results.`;
+  }
+  return `${n} patients.`;
+}
+
 /** One component for both tabs, so the chosen set and patient survive a switch between them. */
 function Exam({ view, sets, hasNoise, reload }: { view: "exam" | "results"; sets: SetData[]; hasNoise: boolean; reload: () => void }) {
   const ordered = useMemo(() => [...sets].sort((a, b) => (a.set === "exam" ? -1 : b.set === "exam" ? 1 : a.set.localeCompare(b.set))), [sets]);
@@ -117,6 +128,7 @@ function Exam({ view, sets, hasNoise, reload }: { view: "exam" | "results"; sets
           ))}
         </div>
       )}
+      <p className="setnote">{setNote(current)}</p>
       {view === "results" && (
         <>
           <Scoreboard data={current} />

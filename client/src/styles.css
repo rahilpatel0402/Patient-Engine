@@ -159,6 +159,7 @@ audio { height: 40px; max-width: 100%; }
 .noise .muted, .noise audio { grid-column: 1 / -1; }
 input[type="range"] { width: 100%; accent-color: var(--accent); height: 28px; }
 
+.setnote { color: var(--muted); max-width: 110ch; }
 .modes button.attn { border-color: var(--warn); background: var(--warn-soft); color: var(--warn); }
 .agree { background: var(--surface); border: 1px solid var(--line); padding: 10px 18px; font-weight: 600; }
 .blind { display: flex; flex-direction: column; gap: 16px; }

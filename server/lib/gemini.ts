@@ -129,6 +129,16 @@ function audioBlock(audio: AudioRef) {
   if (!audio.mime || audio.mime === "audio/wav") {
     try {
       fs.mkdirSync(FLAC_DIR, { recursive: true });
+      // Live mode runs in front of people on whatever network the room has, so it
+      // uploads a small Opus copy, about a twelfth of the WAV. Every graded run
+      // still uploads lossless FLAC, so no reported number depends on this.
+      if (currentRole() === "live") {
+        const ogg = path.join(FLAC_DIR, `${fileSha(audio.file).slice(0, 32)}.ogg`);
+        if (!fs.existsSync(ogg)) {
+          execFileSync(ffmpegStatic as unknown as string, ["-y", "-loglevel", "error", "-i", audio.file, "-c:a", "libopus", "-b:a", "32k", "-ac", "1", "-ar", "24000", ogg]);
+        }
+        return { type: "audio", data: fs.readFileSync(ogg, { encoding: "base64" }), mime_type: "audio/ogg" };
+      }
       const flac = path.join(FLAC_DIR, `${fileSha(audio.file).slice(0, 32)}.flac`);
       if (!fs.existsSync(flac)) {
         execFileSync(ffmpegStatic as unknown as string, ["-y", "-loglevel", "error", "-i", audio.file, "-c:a", "flac", "-compression_level", "8", flac]);

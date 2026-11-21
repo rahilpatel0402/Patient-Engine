@@ -1,0 +1,23 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": null,
+  "audio": "bf2cd35ac976d6a4d2e725bbfa4ca3a25192c1ebf003cdfdc87b78f3360cefc9",
+  "questions": {
+   "natural": {
+    "type": "noul",
+    "instructions": "Does this sound like a real person talking naturally and conversationally, and not like a synthetic voice or a commercial announcer?"
+   }
+  }
+ },
+ "ms": 9207,
+ "at": "2026-11-21T20:02:53.440Z",
+ "value": {
+  "natural": {
+   "confidence": 0.7071938453745775,
+   "noul": 0.7071938453745775,
+   "type": "noul"
+  }
+ }
+}

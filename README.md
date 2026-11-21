@@ -184,7 +184,7 @@ npm run dev
 
 The app runs on http://localhost:5173 and the server on http://localhost:8787.
 
-The saved runs open without spending any API calls. Live mode needs a key. The noise slider and the stress ladder also need a room noise recording of your own, uploaded on the Live mic tab.
+The saved runs open without spending any API calls. Live mode needs a key. Live mode uploads a small compressed copy of the recording, so it stays quick on a slow network. Every graded run uploads lossless audio. The noise slider and the stress ladder also need a room noise recording of your own, uploaded on the Live mic tab.
 
 To rebuild from scratch:
 

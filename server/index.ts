@@ -30,6 +30,10 @@ app.use("/data", express.static(DATA, { maxAge: 0 }));
 const fail = (res: express.Response, e: unknown) => {
   const message = e instanceof Error ? e.message : String(e);
   console.error(message);
+  // A visitor cannot fix the server's key, so say what happened in plain words.
+  if (/API key not valid|API_KEY_INVALID|\b401\b|PERMISSION_DENIED/i.test(message)) {
+    return void res.status(503).json({ error: "The model service refused this server's API key, so live mode cannot run right now. The saved patients and results still work." });
+  }
   res.status(500).json({ error: message });
 };
 

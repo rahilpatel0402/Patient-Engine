@@ -203,6 +203,17 @@ npx tsx scripts/write-results.ts exam    # writes results/ and the Results secti
 
 Model results are cached in `cache/`, so a rerun on the same clips repeats nothing. Rebuilding a set renders new audio, so its numbers will differ from the ones here.
 
+## Run the full app on a server
+
+The full app, with live mode, can run on any host that runs a Docker image. `Dockerfile` builds it and `render.yaml` describes it for Render. Set two values on the host, never in the repo:
+
+| Setting | What it is |
+|---|---|
+| `GEMINI_API_KEY` | Your own Gemini API key |
+| `ACCESS_CODE` | A code visitors must enter before they can record |
+
+In this mode the server asks for the access code before any call that spends API credit, allows 40 recordings a day unless `LIVE_DAILY_LIMIT` says otherwise, and refuses anything that would change the saved results. It deletes a visitor's recording within about 30 minutes and writes nothing the visitor said to disk. The room noise recorded at the venue is not published, so this mode uses generated noise and says so on the page.
+
 ## Read-only showcase
 
 The saved runs are published as a static site with no server and no API key, live at https://patient-engine.rahilpatel.dev/. The built site is committed in `docs/`, so any static host can serve that folder as it is. `netlify.toml` tells Netlify to publish it with no build step.

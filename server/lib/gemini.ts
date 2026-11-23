@@ -86,10 +86,12 @@ async function withRetry<T>(label: string, fn: () => Promise<T>): Promise<T> {
       last = e;
       const text = errorText(e);
       const rateLimited = /429|rate limit|quota/i.test(text);
-      const retryable = rateLimited || /500|502|503|504|overloaded|ECONNRESET|ETIMEDOUT|fetch failed/i.test(text);
+      // A key that has expired or been revoked. If another key is set, use that one instead.
+      const deadKey = /API key|API_KEY_INVALID|401|403/i.test(text) && keyNames(currentRole()).length > 1;
+      const retryable = rateLimited || deadKey || /500|502|503|504|overloaded|ECONNRESET|ETIMEDOUT|fetch failed/i.test(text);
       if (!retryable || attempt === 4) break;
       const slot = attemptStore.getStore();
-      const otherKey = rateLimited && slot && keyNames(currentRole()).length > 1;
+      const otherKey = (rateLimited || deadKey) && slot && keyNames(currentRole()).length > 1;
       if (otherKey) slot.keyIndex++;
       // With another key to try, go again at once. Otherwise back off.
       const wait = otherKey && attempt === 1 ? 0 : 1500 * 2 ** (attempt - 1);

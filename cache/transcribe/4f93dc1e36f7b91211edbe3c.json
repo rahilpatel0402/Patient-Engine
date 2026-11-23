@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "d95ced596a21ecad521a66ee026fe3429b96141e4978ee14c9f6c9e115905a6b"
+ },
+ "ms": 1125,
+ "at": "2026-11-21T22:11:12.844Z",
+ "value": "No, I'm fine. Really. I just need a refill of my usual prescription. It's nothing to worry about."
+}

@@ -1,0 +1,15 @@
+# Render blueprint for the full app with live mode.
+# Render asks for the two secret values when the service is created.
+services:
+  - type: web
+    name: patient-engine-live
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: ACCESS_CODE
+        sync: false
+      - key: LIVE_DAILY_LIMIT
+        value: "40"

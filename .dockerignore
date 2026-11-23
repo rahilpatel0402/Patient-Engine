@@ -1,0 +1,15 @@
+.git
+node_modules
+dist
+.env
+.env.*
+notes
+docs
+client/public-static
+smoke/out
+cache/tts
+cache/tts-prompted
+data/live
+data/mixed
+data/noise
+*.log

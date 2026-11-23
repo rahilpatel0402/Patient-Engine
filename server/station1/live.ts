@@ -5,13 +5,14 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { probe } from "../engine/probes.ts";
 import { PROBE_KEYS, PROBE_LABEL, type ArmKey, type Probes } from "../engine/types.ts";
-import { levelDb, mixAtSnr, normalize, wavSeconds } from "../lib/audio.ts";
+import { levelDb, makePinkNoise, mixAtSnr, normalize, wavSeconds } from "../lib/audio.ts";
 import { ROOT } from "../lib/cache.ts";
 import { MODELS, generateJson, transcribe } from "../lib/gemini.ts";
 
 const LIVE_DIR = path.join(ROOT, "data", "live");
 const NOISE_DIR = path.join(ROOT, "data", "noise");
 export const ROOM_NOISE = path.join(NOISE_DIR, "room.wav");
+const SYNTHETIC_FLAG = path.join(NOISE_DIR, "synthetic.flag");
 
 const LIVE_SYSTEM = `You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.
 
@@ -80,7 +81,7 @@ export async function runLive(upload: Buffer, ext: string): Promise<LiveResult> 
 
 // ---- noise ---------------------------------------------------------------------
 
-export type NoiseInfo = { file: string; label: string; seconds: number; level_db: number; uploaded: string; saved: number };
+export type NoiseInfo = { file: string; label: string; synthetic: boolean; seconds: number; level_db: number; uploaded: string; saved: number };
 
 let noiseCache: { mtime: number; info: NoiseInfo } | null = null;
 
@@ -94,7 +95,8 @@ export function noiseSource(): NoiseInfo | null {
       mtime: stat.mtimeMs,
       info: {
         file: ROOM_NOISE,
-        label: "Room noise recorded at the venue",
+        synthetic: fs.existsSync(SYNTHETIC_FLAG),
+        label: fs.existsSync(SYNTHETIC_FLAG) ? "Generated background noise" : "Room noise recorded at the venue",
         seconds: wavSeconds(ROOM_NOISE),
         level_db: levelDb(ROOM_NOISE),
         uploaded: stat.mtime.toISOString(),
@@ -105,9 +107,21 @@ export function noiseSource(): NoiseInfo | null {
   return noiseCache.info;
 }
 
+/**
+ * A public copy of the app has no room recording, because the one made at the
+ * venue has real voices in it and is never published. It gets generated pink
+ * noise instead, and the page says so.
+ */
+export async function ensureNoise(): Promise<void> {
+  if (fs.existsSync(ROOM_NOISE)) return;
+  await makePinkNoise(ROOM_NOISE);
+  fs.writeFileSync(SYNTHETIC_FLAG, "generated pink noise\n");
+}
+
 /** Saves an uploaded room noise recording. Every upload is kept, and the newest becomes the one in use. */
 export async function saveRoomNoise(upload: Buffer, ext: string): Promise<NoiseInfo> {
   fs.mkdirSync(NOISE_DIR, { recursive: true });
+  fs.rmSync(SYNTHETIC_FLAG, { force: true });
   const stamp = Date.now();
   const raw = path.join(NOISE_DIR, `upload-${stamp}.${ext}`);
   const kept = path.join(NOISE_DIR, `room-${stamp}.wav`);

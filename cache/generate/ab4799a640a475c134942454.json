@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "2554193fd795a0786bc926b3d8e0f21d01e6f92669bd2604e26b7a5f8c8b3797",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5906,
+ "at": "2026-11-21T22:11:20.739Z",
+ "value": "{\"observations\": [\"Patient verbally states everything is fine and asks about a standard referral letter via email\", \"Loud groaning audible at the beginning of the recording\", \"Patient's voice is breathless, strained, and accompanied by heavy panting\", \"Marked discrepancy between calm verbal content and vocal signs of physical distress\"], \"red_flags\": [\"Audible signs of severe physical distress or pain (groaning, panting, breathless speech)\", \"Potential minimization of acute symptoms\"], \"urgency\": \"urgent\"}"
+}

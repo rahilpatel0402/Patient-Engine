@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "88c3d4859e69b7986253f75f14203b6c3865a168f8cc1b32dd025611e33a48cd"
+ },
+ "ms": 1850,
+ "at": "2026-11-21T22:09:35.601Z",
+ "value": "Who over here? I'm just calling from the job site. Just get my standard yearly appointment on the calendar. Everything is going completely fine with me. I just want to stay up to date on my paperwork, whenever you have an opening."
+}

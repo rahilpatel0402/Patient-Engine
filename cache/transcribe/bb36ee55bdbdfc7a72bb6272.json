@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "68b68c6b4760bb8a77899150ca9fd87de3ccd87f25f08f202973c3a28139d37f"
+ },
+ "ms": 3100,
+ "at": "2026-11-21T22:11:02.925Z",
+ "value": "Hi there. Hope your morning is going well. Everything is fine on my end. Nothing going on at all. I just have a quick renewal form from the city that needs a signature on it whenever someone has a spare minute."
+}

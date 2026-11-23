@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "869a06a4ae8ba40716222f798f4afdad9fabf8b54c9d12996fd3dc211f150e5d"
+ },
+ "ms": 1686,
+ "at": "2026-11-21T22:10:59.879Z",
+ "value": "Hi there. I'm feeling totally fine. I just wanted to see about moving my appointment from Thursday afternoon to sometime next week. A project deadline came up at work, so any open slot in the morning would be really great."
+}

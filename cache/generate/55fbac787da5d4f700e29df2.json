@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "d0ddad01fd1b59c7db755d3f6b48806be37ca49f37f0f7cd8e3fef11fbf98417",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4931,
+ "at": "2026-11-21T22:09:55.605Z",
+ "value": "{\"observations\": [\"Patient groans and moans loudly at the start of the call\", \"Voice is strained, breathy, and trembling\", \"Audible heavy breathing and gasping between sentences\", \"Verbally states everything is fine and requests a standard referral letter\"], \"red_flags\": [\"Audible signs of severe pain or acute physical distress\", \"Marked discrepancy between verbal statement ('completely fine') and vocal/respiratory distress\"], \"urgency\": \"urgent\"}"
+}

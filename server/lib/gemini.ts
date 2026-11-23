@@ -35,6 +35,15 @@ export function withKeyRole<T>(role: KeyRole, fn: () => Promise<T>): Promise<T> 
 
 const currentRole = (): KeyRole => roleStore.getStore() ?? "batch";
 
+/**
+ * The disk cache, except for visitors on a public server: nothing a visitor says,
+ * and nothing a model says about it, is written to disk there.
+ */
+function remember<T>(kind: string, key: unknown, fn: () => Promise<{ value: T; ms: number }>): Promise<Cached<T>> {
+  if (process.env.HOSTED === "1" && currentRole() === "live") return fn().then((r) => ({ ...r, cached: false }));
+  return cached(kind, key, fn);
+}
+
 function ai(): GoogleGenAI {
   const names = keyNames(currentRole());
   if (!names.length) throw new Error("No Gemini API key found. Copy .env.example to .env and set GEMINI_API_KEY.");
@@ -175,7 +184,7 @@ export async function generate(opts: TextOpts): Promise<Cached<string>> {
     schema: opts.schema ?? null,
     thinking: opts.thinking ?? null,
   };
-  return cached("generate", key, () =>
+  return remember("generate", key, () =>
     call(`generate ${opts.model}`, async () => {
       const input = opts.audio ? [{ type: "text", text: opts.text }, audioBlock(opts.audio)] : opts.text;
       const body: Record<string, unknown> = { model: opts.model, input };
@@ -197,7 +206,7 @@ export async function generateJson<T>(opts: TextOpts & { schema: object }): Prom
 // ---- transcription -----------------------------------------------------------
 
 export async function transcribe(audio: AudioRef): Promise<Cached<string>> {
-  return cached("transcribe", { model: MODELS.transcribe, audio: fileSha(audio.file) }, () =>
+  return remember("transcribe", { model: MODELS.transcribe, audio: fileSha(audio.file) }, () =>
     call("transcribe", async () => {
       const interaction = (await ai().interactions.create({
         model: MODELS.transcribe,
@@ -281,7 +290,7 @@ export async function decide(opts: {
     audio: opts.audio ? fileSha(opts.audio.file) : null,
     questions: opts.questions,
   };
-  return cached("decide", key, () =>
+  return remember("decide", key, () =>
     call("decide", async () => {
       const input = opts.audio
         ? [...(opts.text ? [{ type: "text", text: opts.text }] : []), audioBlock(opts.audio)]

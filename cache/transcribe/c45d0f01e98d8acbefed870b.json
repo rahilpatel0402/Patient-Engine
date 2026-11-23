@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "f84d84c482c4c4761336cae00e1ce257eff0e111beba9cd4e81233c03d26b75c"
+ },
+ "ms": 1356,
+ "at": "2026-11-21T22:09:38.311Z",
+ "value": "Hello there. I am doing completely fine, thank you. I just realized it has been about a year since my last visit, so I wanted to call during my prep period and put a regular checkup on the calendar."
+}

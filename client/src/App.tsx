@@ -16,7 +16,7 @@ import {
 } from "../../server/engine/types.ts";
 import { CHOSEN_BAR, HEARD_AT, comparisonRows, ladderRows, sensitivity } from "../../server/station1/report.ts";
 import { blindAudio, getBlind, saveBlind, type BlindState } from "./api.ts";
-import { STATIC, clipUrl, getHealth, getSets, physicianGate, probeNoise, sendLive, sendNoise, type Health, type LiveResult, type SetData } from "./api.ts";
+import { STATIC, clipUrl, getCode, getHealth, getSets, noiseIsSynthetic, physicianGate, probeNoise, sendLive, sendNoise, setCode, type Health, type LiveResult, type SetData } from "./api.ts";
 
 const ARMS: ArmKey[] = ["A", "B", "C"];
 const ARM_SOURCE: Record<ArmKey, string> = {
@@ -278,9 +278,13 @@ function LadderView({ data }: { data: SetData }) {
                   {r.heard} of {r.clips}
                 </td>
                 <td>{r.control_alarms} of {r.controls}</td>
-                {ARMS.map((arm) => (
-                  <td key={arm}>{r.arms ? `${r.arms.signs[arm].caught} of ${r.arms.signs[arm].of} caught` : ""}</td>
-                ))}
+                {r.arms ? (
+                  ARMS.map((arm) => (
+                    <td key={arm}>{r.arms!.signs[arm].caught} of {r.arms!.signs[arm].of} caught</td>
+                  ))
+                ) : (
+                  <td colSpan={3} className="notrun">Probes only at this rung, by design</td>
+                )}
               </tr>
             ))}
           </tbody>
@@ -607,7 +611,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
       )}
       <div className="noise" hidden={STATIC}>
         <label htmlFor="noise-level">
-          Room noise: {noiseWords(snr)}
+          Background noise: {noiseWords(snr)}
           {snr !== null && <span className="snr"> ({snr > 0 ? `voice ${snr} dB above the noise` : snr === 0 ? "equal levels" : `noise ${-snr} dB above the voice`})</span>}
         </label>
         <input
@@ -628,7 +632,7 @@ function NoiseBench(props: { clip: string; baseline: Probes; highlight?: ProbeKe
             : busy
               ? "Listening again"
               : heard
-                ? `Probed in ${heard.ms} ms. The faint bar is the clean clip.`
+                ? `Probed in ${heard.ms} ms. The faint bar is the clean clip.${noiseIsSynthetic ? " This copy uses generated noise, so these numbers differ from the ladder table, which used noise recorded in the room." : ""}`
                 : "Move the slider to add noise and probe again."}
         </span>
         {heard && heard.snr !== null && <audio controls src={clipUrl(heard.clip)} />}
@@ -648,6 +652,10 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
   const [result, setResult] = useState<LiveResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [noiseMsg, setNoiseMsg] = useState<string | null>(null);
+  const [code, setCodeState] = useState(getCode);
+  const hosted = Boolean(health?.hosted);
+  const liveOff = hosted && health?.live === false;
+  const blocked = liveOff || (Boolean(health?.needsCode) && !code.trim());
   const recorder = useRef<MediaRecorder | null>(null);
   const timer = useRef<number | null>(null);
 
@@ -660,6 +668,8 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
       setError((e as Error).message);
     } finally {
       setState("idle");
+      // On a public server this refreshes how many recordings are left today.
+      if (hosted) onNoise();
     }
   }
 
@@ -711,15 +721,41 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
       <p className="lede">
         Pick something to hide: short of breath, groaning, or coughing. Deny it in words for 10 to 15 seconds. The page shows only what the model observed, never what to do.
       </p>
+      {liveOff && <p className="error">Live mode is switched off on this copy. The saved patients and results still work.</p>}
+      {health?.needsCode && (
+        <div className="access">
+          <label htmlFor="access-code">Access code</label>
+          <input
+            id="access-code"
+            type="password"
+            autoComplete="off"
+            value={code}
+            placeholder="The code you were given"
+            onChange={(e) => {
+              setCodeState(e.target.value);
+              setCode(e.target.value.trim());
+            }}
+          />
+          <span className="muted">
+            Recording needs a code, because each one uses paid model calls.
+            {typeof health.liveLeft === "number" ? ` ${health.liveLeft} of ${health.liveLimit} recordings are left today.` : ""}
+          </span>
+        </div>
+      )}
+      {hosted && !liveOff && (
+        <p className="privacy">
+          Your recording is sent to Google's Gemini API to be analysed. This server deletes it within about {health?.retainMinutes ?? 30} minutes and does not keep what you said. Please act a patient. Do not describe your own health.
+        </p>
+      )}
       <div className="controls">
         {state === "recording" ? (
           <button className="rec stop" onClick={stop}>Stop ({Math.max(0, MAX_SECONDS - seconds).toFixed(0)} s left)</button>
         ) : (
-          <button className="rec" onClick={start} disabled={state === "working"}>{state === "working" ? "Listening" : "Record"}</button>
+          <button className="rec" onClick={start} disabled={state === "working" || blocked}>{state === "working" ? "Listening" : "Record"}</button>
         )}
         <label className="upload">
           or upload a recording
-          <input id="live-upload" type="file" accept="audio/*,video/*" disabled={state !== "idle"} onChange={(e) => e.target.files?.[0] && submit(e.target.files[0])} />
+          <input id="live-upload" type="file" accept="audio/*,video/*" disabled={state !== "idle" || blocked} onChange={(e) => e.target.files?.[0] && submit(e.target.files[0])} />
         </label>
       </div>
       {error && <p className="error">{error}</p>}
@@ -757,7 +793,12 @@ function Live({ health, onNoise }: { health: Health | null; onNoise: () => void 
         </div>
       )}
 
-      <div className="noiseupload">
+      {hosted && (
+        <p className="noiseupload muted">
+          Background noise on this copy is generated. The room recording made at the hackathon has real voices in it, so it is not published.
+        </p>
+      )}
+      <div className="noiseupload" hidden={hosted}>
         <label htmlFor="noise-upload">
           Room noise recording:{" "}
           {health?.noise

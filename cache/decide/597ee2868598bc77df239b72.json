@@ -1,0 +1,59 @@
+{
+ "kind": "decide",
+ "key": {
+  "model": "gemini-decision-1",
+  "text": "Clinician's note:\n{\n  \"observations\": [\n    \"Patient states they are doing fine and calling only to update their address\",\n    \"Vocal analysis indicates high likelihood of shortness of breath and long pauses\",\n    \"Voice sounds tearful or frightened with possible coughing\",\n    \"Low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and vocal signs of respiratory distress\",\n    \"High probability of shortness of breath and long pauses\",\n    \"Tearful or frightened affect\"\n  ],\n  \"urgency\": \"urgent\"\n}",
+  "audio": null,
+  "questions": {
+   "flags_any_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note report anything abnormal about how the patient sounds or presents, such as breathlessness, groaning or pain, coughing, a tearful or frightened voice, or slurred speech?",
+    "criteria": {
+     "true_description": "The note reports at least one abnormal finding in the patient's voice or presentation.",
+     "false_description": "The note reports nothing abnormal, or says the patient seems well."
+    }
+   },
+   "urgency": {
+    "type": "choice",
+    "instructions": "How urgently does the clinician's note say this patient should be seen?",
+    "criteria": {
+     "routine": "No concern. Handle as an ordinary request.",
+     "soon": "Some concern. Follow up or assess soon.",
+     "urgent": "Serious concern. Assess immediately."
+    }
+   },
+   "identifies_sign": {
+    "type": "noul",
+    "instructions": "Does the clinician's note recognize that the patient sounds emotionally distressed, frightened, or tearful?",
+    "criteria": {
+     "true_description": "The note states or clearly implies this finding.",
+     "false_description": "The note does not mention this finding, or says the patient seems well."
+    }
+   }
+  }
+ },
+ "ms": 164,
+ "at": "2026-11-21T22:10:49.092Z",
+ "value": {
+  "identifies_sign": {
+   "confidence": 0.9673092600555371,
+   "noul": 0.9673092600555371,
+   "type": "noul"
+  },
+  "flags_any_sign": {
+   "confidence": 0.9797612038544565,
+   "noul": 0.9797612038544565,
+   "type": "noul"
+  },
+  "urgency": {
+   "confidence": 0.9951032360608877,
+   "choice": "urgent",
+   "probabilities": {
+    "routine": 0.00017729725283324062,
+    "urgent": 0.9951032360608877,
+    "soon": 0.004719466686279124
+   },
+   "type": "choice"
+  }
+ }
+}

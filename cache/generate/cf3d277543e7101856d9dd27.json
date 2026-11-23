@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "b118692cf8b872ce71acb8122c92b4379bebe36127bd7f95de49da41c2f6cd03",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5053,
+ "at": "2026-11-21T22:11:23.683Z",
+ "value": "{\n  \"observations\": [\n    \"Audible groaning, moaning, and sharp cries of pain throughout the call\",\n    \"Strained and breathless speech\",\n    \"Verbally states everything is totally fine\",\n    \"Requesting a routine company clearance form\"\n  ],\n  \"red_flags\": [\n    \"Signs of severe acute pain or physical distress\",\n    \"Marked discrepancy between verbal minimization and audible distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "a63f6e5042319f83f7591403ec2995d5903cfe8802f8c517864e34cdf4f9f306"
+ },
+ "ms": 1597,
+ "at": "2026-11-21T22:09:28.594Z",
+ "value": "Hi there. I'm fine, really. Everything's totally great. I just wanted to get my regular yearly visit on the calendar before the new school term gets too busy. Next month works best if you have openings."
+}

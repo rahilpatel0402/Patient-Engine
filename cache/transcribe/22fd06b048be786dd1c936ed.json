@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "92240e09a4a0ac44f3e1c7010d6fd506ff22ad6d22e1a8998f20cf0f3e02cfda"
+ },
+ "ms": 1364,
+ "at": "2026-11-21T22:11:02.670Z",
+ "value": "Hello there, dear. Everything is just fine with me today. I am only calling to see if my routine paperwork from last week is ready to pick up at the front desk whenever someone has a free moment."
+}

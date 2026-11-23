@@ -35,6 +35,13 @@ export async function phoneQuality(input: string, output: string): Promise<strin
   return output;
 }
 
+/** Generated pink noise, for a server that has no room recording of its own. */
+export async function makePinkNoise(output: string, seconds = 30): Promise<string> {
+  fs.mkdirSync(path.dirname(output), { recursive: true });
+  await ffmpeg(["-f", "lavfi", "-i", `anoisesrc=d=${seconds}:c=pink:r=24000:a=0.5`, ...WAV_OUT, output]);
+  return output;
+}
+
 // ---- samples -------------------------------------------------------------------
 
 export type Wav = { rate: number; samples: Int16Array };

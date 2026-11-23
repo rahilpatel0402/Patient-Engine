@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "f5b5096e3d90f9440f791dd4b2509f3c2447819751f749e6f764367692639c69",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4417,
+ "at": "2026-11-21T22:11:10.649Z",
+ "value": "{\n  \"observations\": [\n    \"Asks about downstairs counter closing time on Thursdays\",\n    \"States everything is totally fine\",\n    \"Audibly short of breath, gasping between words\",\n    \"Effortful, strained speech with frequent pauses to breathe\"\n  ],\n  \"red_flags\": [\n    \"Apparent acute shortness of breath / respiratory distress\",\n    \"Discrepancy between verbal statement of being fine and audible dyspnea\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

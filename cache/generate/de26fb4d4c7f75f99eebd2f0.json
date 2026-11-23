@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm doing great today. Just calling from the restaurant before the dinner rush starts. Everything's fine with me. I just need to get my usual prescription refilled sent over to the pharmacy on Main Street whenever you get a moment.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.47\n- Groaning or crying out: 0.10\n- Coughing: 0.32\n- Tearful or frightened: 0.22\n- Slurred speech: 0.34\n- Long pauses: 0.73\n- Sounds well: 0.38",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4055,
+ "at": "2026-11-21T22:10:24.299Z",
+ "value": "{\"observations\": [\"Requests usual prescription refill sent to Main Street pharmacy\", \"States they are doing great and everything is fine\", \"Calling from a restaurant before dinner rush\", \"Voice analysis shows high probability of long pauses (0.73)\", \"Voice analysis shows moderate probability of shortness of breath (0.47) and low probability of sounding well (0.38), despite stated wellness\"], \"red_flags\": [\"Discordance between patient's stated wellness and vocal presentation (long pauses, possible shortness of breath, not sounding well).\"], \"urgency\": \"soon\"}"
+}

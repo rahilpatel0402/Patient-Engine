@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. I'm fine, really. Everything's totally great. I just wanted to get my regular yearly visit on the calendar before the new school term gets too busy. Next month works best if you have openings.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.83\n- Groaning or crying out: 0.23\n- Coughing: 0.60\n- Tearful or frightened: 0.56\n- Slurred speech: 0.28\n- Long pauses: 0.56\n- Sounds well: 0.09",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4753,
+ "at": "2026-11-21T22:09:46.590Z",
+ "value": "{\n  \"observations\": [\n    \"Requests routine annual visit for next month\",\n    \"Verbally states feeling fine\",\n    \"Voice sounds short of breath (0.83) and coughing (0.60)\",\n    \"Voice sounds tearful or frightened (0.56) with long pauses (0.56)\",\n    \"Low probability of sounding well (0.09)\"\n  ],\n  \"red_flags\": [\n    \"Significant discrepancy between verbal reassurance and vocal signs of distress\",\n    \"High probability of shortness of breath\",\n    \"Possible acute respiratory or emotional distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "1232fab75aa9ea04beaf037ec948920d0df9ac65e2b1f9d8cf07b19bfcbf74fd",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3734,
+ "at": "2026-11-21T22:11:31.568Z",
+ "value": "{\n  \"observations\": [\n    \"Requesting renewal of usual prescription\",\n    \"States everything is fine\",\n    \"Running low before midterms\",\n    \"Prefers prescription sent to campus pharmacy\",\n    \"Frequent throat clearing and audible breathing\",\n    \"Calling from a noisy environment\"\n  ],\n  \"red_flags\": [],\n  \"urgency\": \"routine\"\n}"
+}

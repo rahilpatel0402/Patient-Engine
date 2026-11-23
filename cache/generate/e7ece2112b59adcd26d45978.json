@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, audio recording attached.",
+  "audio": "963af4c050ea9549dcb10da62cb08f42f574ba9e2394ffa75c30b54b8de74255",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4993,
+ "at": "2026-11-21T22:10:23.216Z",
+ "value": "{\n  \"observations\": [\n    \"Requests routine prescription refill sent to Main Street pharmacy\",\n    \"States they are doing great and everything is fine\",\n    \"Speech is markedly slow, labored, and weak/slurred\",\n    \"Audible heavy breathing and sighing between phrases\",\n    \"Calling from a restaurant before the dinner rush\"\n  ],\n  \"red_flags\": [\n    \"Discrepancy between verbal reassurance and markedly labored, weak, or slurred speech\",\n    \"Possible respiratory distress, extreme fatigue, or acute medical/neurological concern\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

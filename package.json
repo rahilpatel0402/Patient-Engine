@@ -13,7 +13,8 @@
     "smoke": "tsx smoke/run.ts",
     "export:static": "tsx scripts/export-static.ts",
     "build:static": "vite build --mode static",
-    "showcase": "tsx scripts/export-static.ts && vite build --mode static && node -e \"const fs=require('fs');fs.rmSync('docs',{recursive:true,force:true});fs.cpSync('dist/static','docs',{recursive:true})\""
+    "showcase": "tsx scripts/export-static.ts && vite build --mode static && node -e \"const fs=require('fs');fs.rmSync('docs',{recursive:true,force:true});fs.cpSync('dist/static','docs',{recursive:true})\"",
+    "start": "tsx server/index.ts"
   },
   "dependencies": {
     "@google/genai": "^3.6.1",

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hello dear, everything is completely fine with me today. I am just calling to see if my routine results from last month are printed out yet so I can stop by the front desk whenever it is quiet.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.87\n- Groaning or crying out: 0.23\n- Coughing: 0.66\n- Tearful or frightened: 0.45\n- Slurred speech: 0.16\n- Long pauses: 0.80\n- Sounds well: 0.07",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4142,
+ "at": "2026-11-21T22:09:46.904Z",
+ "value": "{\n  \"observations\": [\n    \"Patient verbally states everything is fine and inquires about routine results\",\n    \"Voice analysis indicates high probability of shortness of breath and long pauses\",\n    \"Coughing detected in voice recording\",\n    \"Very low probability of sounding well\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and vocal signs of respiratory distress\",\n    \"High probability of shortness of breath and long pauses while speaking\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

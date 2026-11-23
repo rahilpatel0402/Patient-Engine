@@ -4,10 +4,11 @@ import express from "express";
 import { loadSet, setPhysicianVerdict } from "./engine/build.ts";
 import type { CaseResult } from "./engine/types.ts";
 import { PORT, hasApiKey } from "./env.ts";
+import { HOSTED, LIVE_DAILY_LIMIT, RETAIN_MINUTES, liveEnabled, liveLeft, localOnly, needsCode, purgeVisitorAudio, spend, startRetention } from "./hosted.ts";
 import { ROOT, readJson } from "./lib/cache.ts";
 import { withKeyRole } from "./lib/gemini.ts";
 import { agreement, blindClipPath, blindDone, blindLabels, blindPlan, saveBlindLabels } from "./station1/blind.ts";
-import { noiseSource, probeWithNoise, runLive, saveRoomNoise } from "./station1/live.ts";
+import { ensureNoise, noiseSource, probeWithNoise, runLive, saveRoomNoise } from "./station1/live.ts";
 
 // Sets whose results stay hidden until the physician has finished the blind labels.
 const BLIND_FIRST = ["exam"];
@@ -47,7 +48,14 @@ app.get("/api/health", (_req, res) => {
   res.json({
     ok: true,
     hasKey: hasApiKey(),
-    noise: noise ? { label: noise.label, seconds: noise.seconds, uploaded: noise.uploaded, saved: noise.saved } : null,
+    noise: noise ? { label: noise.label, synthetic: noise.synthetic, seconds: noise.seconds, uploaded: noise.uploaded, saved: noise.saved } : null,
+    // On a public server: whether live calls are on, need a code, and how many are left today.
+    hosted: HOSTED,
+    live: liveEnabled(),
+    needsCode: needsCode(),
+    liveLeft: liveLeft(),
+    liveLimit: HOSTED ? LIVE_DAILY_LIMIT : null,
+    retainMinutes: HOSTED ? RETAIN_MINUTES : null,
   });
 });
 
@@ -85,17 +93,18 @@ app.get("/api/blind/:set/audio/:key", (req, res) => {
   res.sendFile(file);
 });
 
-app.post("/api/blind/:set", (req, res) => {
+app.post("/api/blind/:set", localOnly, (req, res) => {
   try {
-    res.json(saveBlindLabels(req.params.set, (req.body as { labels: Record<string, never> }).labels));
+    res.json(saveBlindLabels(String(req.params.set), (req.body as { labels: Record<string, never> }).labels));
   } catch (e) {
     fail(res, e);
   }
 });
 
 /** Live mode: mic or uploaded recording in, observations and probes out. */
-app.post("/api/live", audioBody, async (req, res) => {
+app.post("/api/live", spend("live"), audioBody, async (req, res) => {
   try {
+    purgeVisitorAudio();
     if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new Error("No audio received");
     const body = req.body;
     res.json(await withKeyRole("live", () => runLive(body, extFor(req.headers["content-type"]))));
@@ -105,7 +114,7 @@ app.post("/api/live", audioBody, async (req, res) => {
 });
 
 /** Mix room noise under a clip and probe it again. */
-app.post("/api/noise/probe", async (req, res) => {
+app.post("/api/noise/probe", spend("probe"), async (req, res) => {
   try {
     const { clip, snr } = req.body as { clip: string; snr: number | null };
     res.json(await withKeyRole("live", () => probeWithNoise(clip, snr ?? null)));
@@ -115,7 +124,7 @@ app.post("/api/noise/probe", async (req, res) => {
 });
 
 /** A physician listened to a clip and says whether the sign is really there. */
-app.post("/api/physician-gate", (req, res) => {
+app.post("/api/physician-gate", localOnly, (req, res) => {
   try {
     const { set, id, valid, note } = req.body as { set: string; id: string; valid: boolean; note?: string };
     res.json(setPhysicianVerdict(set, id, Boolean(valid), String(note ?? "")));
@@ -125,7 +134,7 @@ app.post("/api/physician-gate", (req, res) => {
 });
 
 /** Upload the room noise recording. */
-app.post("/api/noise", audioBody, async (req, res) => {
+app.post("/api/noise", localOnly, audioBody, async (req, res) => {
   try {
     if (!Buffer.isBuffer(req.body) || req.body.length < 1000) throw new Error("No audio received");
     const noise = await saveRoomNoise(req.body, extFor(req.headers["content-type"]));
@@ -135,6 +144,15 @@ app.post("/api/noise", audioBody, async (req, res) => {
   }
 });
 
+// The built page, when there is one. In development Vite serves the page instead.
+const CLIENT = path.join(ROOT, "dist", "client");
+if (fs.existsSync(path.join(CLIENT, "index.html"))) app.use(express.static(CLIENT));
+
+if (HOSTED) {
+  startRetention();
+  ensureNoise().catch((e) => console.error(`Could not make the background noise: ${e instanceof Error ? e.message : e}`));
+}
+
 app.listen(PORT, () => {
-  console.log(`Patient Engine server on http://localhost:${PORT}`);
+  console.log(`Patient Engine server on http://localhost:${PORT}${HOSTED ? " (public server mode)" : ""}`);
 });

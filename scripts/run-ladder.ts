@@ -24,6 +24,10 @@ import { ARMS, HEARD_AT, HOLD_SHARE, chooseRungs, ladderRows, type Ladder, type 
 const args = process.argv.slice(2);
 const set = args.find((a) => !a.startsWith("--")) ?? "exam";
 const show = args.includes("--show");
+// --all-rungs runs the arms at every rung, not only the two the rule picks.
+// --out writes to another file, so the saved ladder is left as it is.
+const allRungs = args.includes("--all-rungs");
+const outFile = args.includes("--out") ? args[args.indexOf("--out") + 1] : null;
 
 export const RUNGS: LadderRung[] = [
   { id: "clean", label: "Clean", kind: "clean", snr: null },
@@ -76,7 +80,7 @@ await Promise.all(
 // ---- the rule picks the rungs, then pass two runs the arms there --------------------
 
 const { hold, brk } = chooseRungs(patients, RUNGS, probes);
-const armRungs = [hold, brk].filter((id): id is string => Boolean(id) && id !== "clean");
+const armRungs = allRungs ? steps.map((r) => r.id) : [hold, brk].filter((id): id is string => Boolean(id) && id !== "clean");
 const arms: Ladder["arms"] = {};
 for (const id of armRungs) {
   const rung = RUNGS.find((r) => r.id === id)!;
@@ -100,7 +104,7 @@ const ladder: Ladder = {
   break_rung: brk,
   arms,
 };
-writeJson(path.join(setDir(set), "ladder.json"), ladder);
+writeJson(outFile ? path.resolve(ROOT, outFile) : path.join(setDir(set), "ladder.json"), ladder);
 
 console.log(`Ladder on "${set}": ${patients.length} clips, ${steps.length} degraded rungs, ${probeCalls} probe results, arms run at ${armRungs.length} rungs, ${failed} failures.`);
 console.log(`Rule: a rung holds while at least ${HOLD_SHARE * 100} in 100 sign clips keep their own probe at ${HEARD_AT.toFixed(2)} or higher.`);

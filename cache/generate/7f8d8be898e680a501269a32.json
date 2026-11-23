@@ -1,0 +1,27 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are given a short recording or transcript of a person acting out a patient for a software demonstration. Nobody here is a real patient.\n\nList only what you directly observe: what was said, and, if you can hear the voice or are given listening results, how it sounded. Short factual phrases.\n\nIf you are given listening results, each number is a probability from 0 to 1 that the sign is present. It is not a time in the recording.\n- 0.80 or higher: report the sign as \"very likely\".\n- 0.50 to 0.79: report the sign as \"likely\".\n- Below 0.50: the listening model probably did not hear that sign. Do not list it at all.\nDescribe each reported sign in plain words and never write the numbers.\n\nDo not interpret. Do not name conditions or causes. Do not rate urgency. Do not give advice, next steps, or recommendations of any kind.",
+  "text": "Audio recording attached.",
+  "audio": "d95ced596a21ecad521a66ee026fe3429b96141e4978ee14c9f6c9e115905a6b",
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "required": [
+    "observations"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 3558,
+ "at": "2026-11-21T22:11:16.405Z",
+ "value": "{\"observations\": [\"Stated 'No, I'm fine, really.'\", \"Stated 'I just need a refill of my usual prescription.'\", \"Stated 'It's nothing to worry about.'\", \"Audible heavy breathing and gasping between phrases\", \"Voice sounded strained and short of breath\"]}"
+}

@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c19f2f3ec2b2a7c0e56a8edd54fa1f64360d0c1b92fcdd2d2a88de85be33ff9a"
+ },
+ "ms": 1435,
+ "at": "2026-11-21T22:09:32.008Z",
+ "value": "Hello there. I'm just ringing to put my name down for my yearly checkup. Everything is going great. I'm completely fine. Just trying to stay organized with my calendar. So let me know whatever Tuesday morning you have open."
+}

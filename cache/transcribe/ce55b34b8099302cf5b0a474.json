@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "c0eebefb1c2c4234d9e4e67e6a082c38af47e814b293380607192ba5f3c72111"
+ },
+ "ms": 1513,
+ "at": "2026-11-21T22:10:56.906Z",
+ "value": "Morning there. Everything is going fine out here. Nothing to fuss over at all. I just wanted to check on picking up that standard referral letter whenever the office gets around to typing it. No rush on my account. Everything is fine."
+}

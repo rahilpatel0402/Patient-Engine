@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "e65daeeeadbd64c9dd3d4813b11efba509e4f9e3925d681e2dc4113091d38fd0"
+ },
+ "ms": 1347,
+ "at": "2026-11-21T22:11:01.530Z",
+ "value": "Morning folks, hope you are enjoying this fine weather. Everything is going great out here on the farm. I am doing just dandy. I only called to get my regular prescription sent over to the local pharmacy whenever you have a spare minute."
+}

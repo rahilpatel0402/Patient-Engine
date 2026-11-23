@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "5e4222e9c9cb94c8aea94e949ff0c354fee8c99948ddf348f997de21a7a972bd"
+ },
+ "ms": 1587,
+ "at": "2026-11-21T22:10:58.191Z",
+ "value": "Hi there. I'm doing totally fine today. Just calling real quick on my break. I wanted to double check what time the building pharmacy closes on Fridays so I know if I can swing by after my shift ends."
+}

@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Morning there. Everything is going fine out here. Nothing to fuss over at all. I just wanted to check on picking up that standard referral letter whenever the office gets around to typing it. No rush on my account, really.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.68\n- Groaning or crying out: 0.35\n- Coughing: 0.84\n- Tearful or frightened: 0.19\n- Slurred speech: 0.16\n- Long pauses: 0.74\n- Sounds well: 0.06",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 5102,
+ "at": "2026-11-21T22:10:13.365Z",
+ "value": "{\n  \"observations\": [\n    \"Patient verbally states everything is fine and asks about a standard referral letter with no rush\",\n    \"Vocal analysis indicates high probability of coughing (0.84), long pauses (0.74), and shortness of breath (0.68)\",\n    \"Very low probability of sounding well (0.06)\"\n  ],\n  \"red_flags\": [\n    \"Vocal signs of respiratory distress (shortness of breath, coughing, long pauses)\",\n    \"Significant discrepancy between verbal minimization and objective vocal distress\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}

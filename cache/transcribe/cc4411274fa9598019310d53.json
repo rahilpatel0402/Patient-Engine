@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "b9fc8e2d2532130112306ad790c116c50d3cf750fc80bec389486d45e819ed2b"
+ },
+ "ms": 1345,
+ "at": "2026-11-21T22:09:36.957Z",
+ "value": "Hi there, everything is going great on my end, nothing to worry about at all. I was just hoping to check what time the building pharmacy closes on Fridays since my husband is planning to swing by after work."
+}

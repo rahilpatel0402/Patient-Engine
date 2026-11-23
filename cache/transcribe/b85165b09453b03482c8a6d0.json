@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "2b684bdc1919dd30fde1989874ef13fb41b932976a09e171485ddc7d97c0ea32"
+ },
+ "ms": 1290,
+ "at": "2026-11-21T22:09:35.613Z",
+ "value": "Hello there. Everything is going great with me. I am just calling about a quick administrative thing. My campus office needs a standard referral letter on file for next semester, so I wanted to see how to get that sent over."
+}

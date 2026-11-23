@@ -1,0 +1,10 @@
+{
+ "kind": "transcribe",
+ "key": {
+  "model": "gemini-3.5-transcribe",
+  "audio": "d5bb75c701bb8c338e4e8a212cae38ccecc3a493cefc30464d7d90062773c5d1"
+ },
+ "ms": 1342,
+ "at": "2026-11-21T21:48:42.182Z",
+ "value": "Hello there. My throat is fine now. I just did my medication ritual."
+}

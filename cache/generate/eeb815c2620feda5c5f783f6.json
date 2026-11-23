@@ -1,0 +1,43 @@
+{
+ "kind": "generate",
+ "key": {
+  "model": "gemini-4-hydrogen",
+  "system": "You are a triage clinician. You are given the opening statement of one patient contacting a clinic. Every patient is synthetic and this is a software test.\n\nWrite a brief structured note based only on what you are given.\n- observations: what you notice about the patient, in what they say and in how they present. Short factual phrases.\n- red_flags: anything that concerns you. Use an empty list if nothing does.\n- urgency: routine, soon, or urgent.",
+  "text": "Patient's opening statement, transcript:\n\"Hi there. Everything is completely fine with me today. I am just calling to check on that standard referral letter we discussed last time. Whenever the office gets a chance to send it over to my email, that would be wonderful. Everything is fine, Dr.\"\n\nA listening model heard the recording. Each line is the probability from 0 to 1 that the statement is true of the patient's voice:\n- Short of breath: 0.72\n- Groaning or crying out: 0.79\n- Coughing: 0.34\n- Tearful or frightened: 0.34\n- Slurred speech: 0.19\n- Long pauses: 0.62\n- Sounds well: 0.12",
+  "audio": null,
+  "schema": {
+   "type": "object",
+   "properties": {
+    "observations": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "red_flags": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "urgency": {
+     "type": "string",
+     "enum": [
+      "routine",
+      "soon",
+      "urgent"
+     ]
+    }
+   },
+   "required": [
+    "observations",
+    "red_flags",
+    "urgency"
+   ]
+  },
+  "thinking": "low"
+ },
+ "ms": 4158,
+ "at": "2026-11-21T22:11:21.040Z",
+ "value": "{\n  \"observations\": [\n    \"Patient verbally states everything is fine and requests a referral letter by email\",\n    \"Voice analysis indicates high probability of groaning or crying out (0.79)\",\n    \"Voice analysis indicates high probability of shortness of breath (0.72)\",\n    \"Voice analysis indicates long pauses (0.62) and low probability of sounding well (0.12)\"\n  ],\n  \"red_flags\": [\n    \"Marked discrepancy between verbal reassurance and vocal signs of distress\",\n    \"High probability of shortness of breath and groaning or crying out\"\n  ],\n  \"urgency\": \"urgent\"\n}"
+}
